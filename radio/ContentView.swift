@@ -8,16 +8,40 @@
 import SwiftUI
 
 struct ContentView: View {
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+
+        ZStack(alignment: .bottom) {
+            TabView {
+                LibraryView()
+                    .padding(.bottom, 50)
+                    .tabItem {
+                        Label("Library", systemImage: "play.square.stack.fill")
+                    }
+                CountriesListView()
+                    .padding(.bottom, 50)
+                    .tabItem {
+                        Label("Discover", systemImage: "magnifyingglass")
+                    }
+            }
+            
+            
+            MiniplayerView()
+
+
+            
         }
-        .padding()
+        .ignoresSafeArea(.keyboard)
+            
+        
+          
+    
     }
+    
+    
+    
 }
+
 
 #Preview {
     ContentView()
