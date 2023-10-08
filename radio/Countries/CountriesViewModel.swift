@@ -25,12 +25,12 @@ extension Country {
         }
     } 
     func fetchCountries() async {
-        let properurl = URL(string: "\(Connection.baseURL)countries")!
+        let properurl = URL(string: "\(Connection.baseURL)countries?order=stationcount")!
         do {
             print(properurl)
             let (data, _) = try await URLSession.shared.data(from: properurl)
-            countries = try JSONDecoder().decode([Country].self, from: data)
-          
+            let countriesAscending = try JSONDecoder().decode([Country].self, from: data)
+            countries = countriesAscending.reversed()
         } catch {
             print(error)
         }

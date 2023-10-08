@@ -129,8 +129,8 @@
 		D359A77D2AD05166004A292B /* Countries */ = {
 			isa = PBXGroup;
 			children = (
-				D359A7802AD05166004A292B /* CountriesListView.swift */,
 				D359A77E2AD05166004A292B /* CountriesViewModel.swift */,
+				D359A7802AD05166004A292B /* CountriesListView.swift */,
 				D359A77F2AD05166004A292B /* CountryRowView.swift */,
 			);
 			path = Countries;
