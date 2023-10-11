@@ -18,4 +18,5 @@ struct Country: Codable, Equatable {
 }
 extension Country {
     static var selectedCountry = "poland"
+    
 }
