@@ -12,6 +12,10 @@ import SwiftUI
 @Observable
 class PlayingStation {
     var faviconData: Data? = nil
+    var faviconDataUnwrapped: Data {
+      
+            return faviconData ?? Data()
+    }
     var faviconUIImage: UIImage? {
         if let data = faviconData {
             return UIImage(data: data)
@@ -20,8 +24,8 @@ class PlayingStation {
     }
     var station: Station? = nil
     
-    func fetchStation() async {
-        guard let station = station else { return }
+    func fetchFavicon() async -> Data? {
+        guard let station = station else { return nil }
         
         
         // CACHE THE COVER ART
@@ -31,22 +35,30 @@ class PlayingStation {
                 do {
                     
                     let (data, _) = try await URLSession.shared.data(from: faviconURL)
-                    faviconData = data
+                    return data
 
-                    
                 } catch {
                     print("Cannot cache the station")
-                    faviconData = nil
-                    
+                    return nil
+
                 }
             }
         }
-
+        return  nil
         
     }
 
-    init(faviconData: Data? = nil, station: Station? = nil) {
-        self.faviconData = faviconData
+    init(faviconData: Data? = nil, station: Station? = nil, fetchFavicon: Bool = false) {
+        
+        
         self.station = station
+        if fetchFavicon {
+            Task {
+                self.faviconData = await self.fetchFavicon()
+            }
+           
+        } else {
+            self.faviconData = faviconData
+        }
     }
 }

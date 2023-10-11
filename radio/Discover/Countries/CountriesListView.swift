@@ -1,7 +1,8 @@
 import SwiftUI
 
 struct CountriesListView: View {
-    @Bindable var countriesModel = CountriesViewModel()
+    @Bindable var countriesModel = CountriesController()
+    @Environment(StationsController.self) private var stationsModel: StationsController
     @State private var firstTime: Bool = true
     var body: some View {
     
@@ -15,7 +16,8 @@ struct CountriesListView: View {
                         NavigationLink  {
                             StationsListView()
                                 .onAppear {
-                                    StationsViewModel.selectedCountry = country
+                                    stationsModel.stations = []
+                                    StationsController.selectedCountry = country
                                 }
                         } label: {
                             
@@ -27,15 +29,11 @@ struct CountriesListView: View {
                 .searchable(text: $countriesModel.searchText, prompt: Text("Search for countries"))
                 .disableAutocorrection(true)
             }
-            
-            .onAppear {
-                if firstTime {
-                    firstTime = false
-                    Task {
-                        await countriesModel.fetchCountries()
-                        
-                        
-                    }
+            .onFirstAppear {
+                Task {
+                    await countriesModel.fetchCountries()
+                    
+                    
                 }
                 
             }
@@ -48,4 +46,27 @@ struct CountriesListView: View {
     }
     
     
+}
+
+
+public extension View {
+    func onFirstAppear(_ action: @escaping () -> ()) -> some View {
+        modifier(FirstAppear(action: action))
+    }
+}
+
+private struct FirstAppear: ViewModifier {
+    let action: () -> ()
+    
+    // Use this to only fire your block one time
+    @State private var hasAppeared = false
+    
+    func body(content: Content) -> some View {
+        // And then, track it here
+        content.onAppear {
+            guard !hasAppeared else { return }
+            hasAppeared = true
+            action()
+        }
+    }
 }

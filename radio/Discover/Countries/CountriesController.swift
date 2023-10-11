@@ -1,27 +1,17 @@
 import SwiftUI
 
 
-struct Country: Codable, Equatable {
-        var name = ""
-        var iso_3166_1 = ""
-        var stationcount = -1
-    
-    static func ==(lhs: Country, rhs: Country) -> Bool {
-        lhs.name == rhs.name
-    }
-    }
-extension Country {
-    static var selectedCountry = "poland"
-}
 
-@Observable class CountriesViewModel {
+
+@Observable 
+class CountriesController {
     var countries : [Country] = []
     var searchText = ""
     var searchableCountries: [Country] {
         if searchText.isEmpty {
             return countries
         } else {
-            return countries.filter { $0.name.localizedCaseInsensitiveContains(searchText) }
+            return countries.filter { $0.name.localizedStandardContains(searchText) }
         }
     } 
     func fetchCountries() async {
@@ -31,6 +21,7 @@ extension Country {
             let (data, _) = try await URLSession.shared.data(from: properurl)
             let countriesAscending = try JSONDecoder().decode([Country].self, from: data)
             countries = countriesAscending.reversed()
+            print("Successfully fetched countries from \(properurl)")
         } catch {
             print(error)
         }

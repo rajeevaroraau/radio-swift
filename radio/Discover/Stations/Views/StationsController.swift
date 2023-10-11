@@ -12,7 +12,7 @@ import SimpleCodable
 
 @Observable
 
-class StationsViewModel {
+class StationsController {
     
 
 
@@ -22,7 +22,7 @@ class StationsViewModel {
         if searchText.isEmpty {
             return stations.sorted { $0.votes > $1.votes }
         } else {
-            return stations.filter { $0.name.localizedCaseInsensitiveContains(searchText) }
+            return stations.filter { $0.name.localizedStandardContains(searchText) }
             
         }
     } 
@@ -40,7 +40,7 @@ class StationsViewModel {
         do {
             let (data, _) = try await URLSession.shared.data(from: properurl)
              stations = try decoder.decode([Station].self, from: data)
-            print("Done")
+            print("Successfully fetched stations from \(properurl)")
         } catch {
             print(error)
         }

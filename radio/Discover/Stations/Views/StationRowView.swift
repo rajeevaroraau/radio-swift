@@ -18,25 +18,26 @@ struct StationRowView: View {
                 
             } else {
                 if let urlFavicon = urlFavicon {
-                    AsyncImage(url: URL(string: urlFavicon)) { phase in
-                        if let image = phase.image {
-                            image
-                                .resizable()
-                                .scaledToFill()
-                                .frame(width: 50, height: 50)
-                                .clipShape(RoundedRectangle(cornerRadius: 50/6))
+                    if urlFavicon.hasPrefix("https") {
+                        AsyncImage(url: URL(string: urlFavicon)) { phase in
+                            if let image = phase.image {
+                                image
+                                    .resizable()
+                                    .scaledToFill()
+                                    .frame(width: 50, height: 50)
+                                    .clipShape(RoundedRectangle(cornerRadius: 50/6))
                                 
-                            
-                        } else {
-                            Image(uiImage: UIImage(named: "DefaultFavicon")!)
-                                .resizable()
-                                .scaledToFill()
-                                .frame(width: 50, height: 50)
-                                .clipShape(RoundedRectangle(cornerRadius: 50/6))
+                                
+                            } else {
+                                Image(uiImage: UIImage(named: "DefaultFavicon")!)
+                                    .resizable()
+                                    .scaledToFill()
+                                    .frame(width: 50, height: 50)
+                                    .clipShape(RoundedRectangle(cornerRadius: 50/6))
+                            }
                         }
+                    }
                 }
-            }
-
                 
             }
 

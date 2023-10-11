@@ -12,9 +12,7 @@ struct LibraryView: View {
     @Environment(AudioModel.self) private var audioModel: AudioModel
     @Environment(\.modelContext) var modelContext
     @Environment(PlayingStation.self) private var playingStation: PlayingStation
-    
     @Query var libraryStations: [CachedStation]
-    @State private var gridView = true
     let columns = [
         GridItem(.flexible(), spacing: 0),
         GridItem(.flexible(), spacing: 0),
@@ -22,63 +20,37 @@ struct LibraryView: View {
     ]
     var body: some View {
         NavigationView {
-            Group {
-                
-                
-                if gridView {
-                    ScrollView {
-                        
-                        
-                        LazyVGrid(columns: columns, spacing: 0) {
-                            
-                            ForEach(libraryStations) { libraryStation in
+                ScrollView {
+                    LazyVGrid(columns: columns, spacing: 0) {
+                        ForEach(libraryStations) { libraryStation in
+                            Button {
+                                handleStationTap(libraryStation: libraryStation)
+                            } label: {
+                                LibraryTile(libraryStation: libraryStation)
                                 
-                                Button {
-                                    if let url = URL(string: libraryStation.station.url) {
-                                        
-                                        
-                                        playingStation.station = libraryStation.station
-                                        let playingStationTemp = PlayingStation()
-                                        playingStationTemp.station = libraryStation.station
-                                        Task {
-                                            await playingStationTemp.fetchStation()
-                                        }
-                                        audioModel.playingStation = playingStationTemp
-                                        audioModel.play(url: url)
-                                        playingStation.station = libraryStation.station
-                                        Task {
-                                            // FETCHING
-                                            
-                                            await playingStation.fetchStation()
-                                        }
-
-                                        
-                                    }
-                                } label: {
-                                    LibraryTile(libraryStation: libraryStation)
-                                    .padding(6)
-                                }
-
                             }
-                            
-                            
                         }
-                        .padding(.horizontal, 5)
                     }
-                } else {
-                    LibraryListView()
+                    .padding(.horizontal, 5)
                 }
-            }
-            .toolbar {
-                Button("\(gridView ? "List style" : "Grid style")", systemImage: gridView ? "list.bullet" : "rectangle.grid.2x2.fill") {
-                    withAnimation {
-                        gridView.toggle()
-                    }
-                    
-                }
-            }
             .navigationTitle("Library")
         }
+}
+    func handleStationTap(libraryStation: CachedStation) {
+        guard let streamUrl = URL(string: libraryStation.station.url)  else { return }
+            
+            
+            playingStation.station = libraryStation.station
+
+        let playingStationTemp = PlayingStation(station: libraryStation.station, fetchFavicon: true)
+
+
+        audioModel.play(playingStation: playingStationTemp, url: streamUrl)
+            playingStation.station = libraryStation.station
+
+
+            
+        
     }
 }
 

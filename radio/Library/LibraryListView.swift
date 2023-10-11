@@ -24,19 +24,12 @@ struct LibraryListView: View {
                         
                         
                         playingStation.station = libraryStation.station
-                        let playingStationTemp = PlayingStation()
-                        playingStationTemp.station = libraryStation.station
-                        Task {
-                            await playingStationTemp.fetchStation()
-                        }
-                        audioModel.playingStation = playingStationTemp
-                        audioModel.play(url: url)
-                        playingStation.station = libraryStation.station
-                        Task {
-                            // FETCHING
-                            
-                            await playingStation.fetchStation()
-                        }
+                        let playingStationTemp = PlayingStation(station: libraryStation.station, fetchFavicon: true)
+
+
+                        audioModel.play(playingStation: playingStationTemp, url: url)
+
+
 
                         
                     }

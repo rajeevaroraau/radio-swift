@@ -13,7 +13,7 @@ class AudioModel {
 
 
     
-    func play(url: URL) {
+    func play(playingStation: PlayingStation, url: URL) {
         
         UIApplication.shared.beginReceivingRemoteControlEvents()
         
@@ -27,9 +27,10 @@ class AudioModel {
             // Configure AVPlayer
             playerItem = AVPlayerItem(url: url)
             player.replaceCurrentItem(with: playerItem)
+            // RESUME URL STREAM
             player.play()
             setupRemoteCommandCenter()
-            updateInfoCenter()
+            updateInfoCenter(playingStation: playingStation)
                 isPlaying = true
         } catch let error {
             print(error)
@@ -40,8 +41,7 @@ class AudioModel {
     }
 
     
-    func updateInfoCenter() {
-        guard let playingStation = playingStation else { return }
+    func updateInfoCenter(playingStation: PlayingStation) {
         guard let station = playingStation.station else { return }
         var nowPlayingInfo = nowPlayingInfoCenter.nowPlayingInfo ?? [String: Any]()
         
@@ -61,29 +61,36 @@ class AudioModel {
         if playingStation.faviconData == nil {
             
            
-            if let image = UIImage(named: "iOS_App_Icon_SecondaryVariantBlackWhite") {
+            if let image = UIImage(named: "DefaultFavicon") {
+                
+                
                 nowPlayingInfo[MPMediaItemPropertyArtwork] = MPMediaItemArtwork(boundsSize: image.size) { size in
+                    print("Set the Default Favicon")
                     return image
+                    
                 }
+                DispatchQueue.main.asyncAfter(deadline: .now() + 5.0) {
+                    if let image = playingStation.faviconUIImage {
+                        nowPlayingInfo[MPMediaItemPropertyArtwork] = MPMediaItemArtwork(boundsSize: image.size) { size in
+                            return image
+                        }
+                        self.nowPlayingInfoCenter.nowPlayingInfo = nowPlayingInfo
+                        print("Successful second attempt to set remote favicon.")
+                    }
+                    
+                }
+                
             }
+            
         } else {
             // CUSTOM
             if let image = playingStation.faviconUIImage {
                 nowPlayingInfo[MPMediaItemPropertyArtwork] = MPMediaItemArtwork(boundsSize: image.size) { size in
+                    print("Successful first attempt to set remote favicon.")
                     return image
                 }
             }
-                
-                
-                    
-                
-            
-            
         }
-        
-
-
-                
         
         // SET THE MPNowPlayingInfoCenter
         nowPlayingInfoCenter.nowPlayingInfo = nowPlayingInfo

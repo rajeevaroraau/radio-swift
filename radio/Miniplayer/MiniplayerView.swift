@@ -10,7 +10,7 @@ import SwiftUI
 struct MiniplayerView: View {
     @Environment(AudioModel.self) private var audioModel: AudioModel
     @Environment(PlayingStation.self) private var playingStation: PlayingStation
-    @Environment(StationsViewModel.self) private var stationsModel: StationsViewModel
+    @Environment(StationsController.self) private var stationsModel: StationsController
 
     var body: some View {
         VStack {

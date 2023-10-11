@@ -12,8 +12,11 @@ import SwiftData
 struct radioApp: App {
     @State private var playingStation = PlayingStation()
     @State private var audioModel = AudioModel()
-    @Bindable var stationsModel = StationsViewModel()
-   
+    @Bindable var stationsModel = StationsController()
+
+}
+
+extension radioApp {
     var body: some Scene {
         WindowGroup {
             ContentView()
@@ -23,9 +26,6 @@ struct radioApp: App {
         .environment(audioModel)
         .environment(stationsModel)
         .environment(playingStation)
-        
-
-
-
     }
+        
 }
