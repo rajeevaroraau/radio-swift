@@ -31,18 +31,20 @@ class StationsController {
     static var selectedCountry = Country()
     
     func fetchList() async {
-        
-        let decoder = JSONDecoder()
-        decoder.dateDecodingStrategy = .iso8601
-        
-        let properurl = URL(string: "\(Connection.baseURL)stations/bycountryexact/\(Country.selectedCountry)")!
-        
-        do {
-            let (data, _) = try await URLSession.shared.data(from: properurl)
-             stations = try decoder.decode([Station].self, from: data)
-            print("Successfully fetched stations from \(properurl)")
-        } catch {
-            print(error)
+        await measureTime {
+            
+            let decoder = JSONDecoder()
+            decoder.dateDecodingStrategy = .iso8601
+            
+            let properurl = URL(string: "\(Connection.baseURL)stations/bycountryexact/\(Country.selectedCountry)")!
+            
+            do {
+                let (data, _) = try await URLSession.shared.data(from: properurl)
+                self.stations = try decoder.decode([Station].self, from: data)
+                print("Successfully fetched stations from \(properurl)")
+            } catch {
+                print(error)
+            }
         }
     }
     

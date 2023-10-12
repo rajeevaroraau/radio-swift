@@ -15,15 +15,17 @@ class CountriesController {
         }
     } 
     func fetchCountries() async {
-        let properurl = URL(string: "\(Connection.baseURL)countries?order=stationcount")!
-        do {
-            print(properurl)
-            let (data, _) = try await URLSession.shared.data(from: properurl)
-            let countriesAscending = try JSONDecoder().decode([Country].self, from: data)
-            countries = countriesAscending.reversed()
-            print("Successfully fetched countries from \(properurl)")
-        } catch {
-            print(error)
+        await measureTime {
+            let properurl = URL(string: "\(Connection.baseURL)countries?order=stationcount")!
+            do {
+                print(properurl)
+                let (data, _) = try await URLSession.shared.data(from: properurl)
+                let countriesAscending = try JSONDecoder().decode([Country].self, from: data)
+                self.countries = countriesAscending.reversed()
+                print("Successfully fetched countries from \(properurl)")
+            } catch {
+                print(error)
+            }
         }
     }
 }
