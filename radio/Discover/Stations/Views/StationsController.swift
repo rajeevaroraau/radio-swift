@@ -1,7 +1,6 @@
 import SwiftUI
 
 import Foundation
-import AVFoundation
 import SwiftData
 import SimpleCodable
 
@@ -39,8 +38,10 @@ class StationsController {
             let properurl = URL(string: "\(Connection.baseURL)stations/bycountryexact/\(Country.selectedCountry)")!
             
             do {
-                let (data, _) = try await URLSession.shared.data(from: properurl)
+                let (data, _) = try await Connection.manager.data(from: properurl)
                 self.stations = try decoder.decode([Station].self, from: data)
+                
+                
                 print("Successfully fetched stations from \(properurl)")
             } catch {
                 print(error)

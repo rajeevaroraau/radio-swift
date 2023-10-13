@@ -11,6 +11,7 @@
 		D34D4B4D2AD7F97D00D03029 /* measureTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34D4B4C2AD7F97D00D03029 /* measureTime.swift */; };
 		D34F54B92AD1F3AC00347E99 /* PlayingStation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34F54B82AD1F3AC00347E99 /* PlayingStation.swift */; };
 		D34F54DC2AD2DAB600347E99 /* StationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34F54DB2AD2DAB600347E99 /* StationModel.swift */; };
+		D3520CD42AD884CD0063B548 /* averageUIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3520CD32AD884CD0063B548 /* averageUIColor.swift */; };
 		D359A7652AD0509B004A292B /* radioApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D359A7642AD0509B004A292B /* radioApp.swift */; };
 		D359A7672AD0509B004A292B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D359A7662AD0509B004A292B /* ContentView.swift */; };
 		D359A7692AD0509C004A292B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D359A7682AD0509C004A292B /* Assets.xcassets */; };
@@ -29,7 +30,7 @@
 		D38C155B2AD09D3D009E831D /* CachedStation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D38C155A2AD09D34009E831D /* CachedStation.swift */; };
 		D38C15602AD0D22A009E831D /* SimpleCodable in Frameworks */ = {isa = PBXBuildFile; productRef = D38C155F2AD0D22A009E831D /* SimpleCodable */; };
 		D38C15622AD0D22A009E831D /* SimpleCodableClient in Frameworks */ = {isa = PBXBuildFile; productRef = D38C15612AD0D22A009E831D /* SimpleCodableClient */; };
-		D3CCC41E2AD2EC540069F900 /* cachedFaviconImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CCC41D2AD2EC540069F900 /* cachedFaviconImage.swift */; };
+		D3CCC41E2AD2EC540069F900 /* faviconCachedImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CCC41D2AD2EC540069F900 /* faviconCachedImage.swift */; };
 		D3CCC4202AD2F3850069F900 /* LibraryTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CCC41F2AD2F3850069F900 /* LibraryTile.swift */; };
 		D3CCC4222AD2FB870069F900 /* ShazamButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CCC4212AD2FB870069F900 /* ShazamButton.swift */; };
 		D3F492792AD1B5FC007DD232 /* LibraryListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F492782AD1B5FC007DD232 /* LibraryListView.swift */; };
@@ -40,6 +41,7 @@
 		D34D4B4C2AD7F97D00D03029 /* measureTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = measureTime.swift; sourceTree = "<group>"; };
 		D34F54B82AD1F3AC00347E99 /* PlayingStation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayingStation.swift; sourceTree = "<group>"; };
 		D34F54DB2AD2DAB600347E99 /* StationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationModel.swift; sourceTree = "<group>"; };
+		D3520CD32AD884CD0063B548 /* averageUIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = averageUIColor.swift; path = radio/averageUIColor.swift; sourceTree = SOURCE_ROOT; };
 		D359A7612AD0509B004A292B /* Radio.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Radio.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D359A7642AD0509B004A292B /* radioApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = radioApp.swift; sourceTree = "<group>"; };
 		D359A7662AD0509B004A292B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -58,7 +60,7 @@
 		D359A7882AD07986004A292B /* BlurView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlurView.swift; sourceTree = "<group>"; };
 		D359A78A2AD07B77004A292B /* MiniplayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniplayerView.swift; sourceTree = "<group>"; };
 		D38C155A2AD09D34009E831D /* CachedStation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CachedStation.swift; sourceTree = "<group>"; };
-		D3CCC41D2AD2EC540069F900 /* cachedFaviconImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cachedFaviconImage.swift; sourceTree = "<group>"; };
+		D3CCC41D2AD2EC540069F900 /* faviconCachedImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = faviconCachedImage.swift; sourceTree = "<group>"; };
 		D3CCC41F2AD2F3850069F900 /* LibraryTile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryTile.swift; sourceTree = "<group>"; };
 		D3CCC4212AD2FB870069F900 /* ShazamButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShazamButton.swift; sourceTree = "<group>"; };
 		D3F492782AD1B5FC007DD232 /* LibraryListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryListView.swift; sourceTree = "<group>"; };
@@ -106,12 +108,15 @@
 		D359A7632AD0509B004A292B /* radio */ = {
 			isa = PBXGroup;
 			children = (
-				D34D4B4C2AD7F97D00D03029 /* measureTime.swift */,
 				D359A7642AD0509B004A292B /* radioApp.swift */,
+				D3520CD32AD884CD0063B548 /* averageUIColor.swift */,
+				D34D4B4C2AD7F97D00D03029 /* measureTime.swift */,
 				D359A7662AD0509B004A292B /* ContentView.swift */,
+				D3A1FBFF2AD1E95E00B4E77C /* Miniplayer */,
 				D3F492772AD1B5A7007DD232 /* Library */,
 				D30799962AD7011E00D11D60 /* Discover */,
-				D3A1FBFF2AD1E95E00B4E77C /* Miniplayer */,
+				D38C155A2AD09D34009E831D /* CachedStation.swift */,
+				D34F54B82AD1F3AC00347E99 /* PlayingStation.swift */,
 				D359A77B2AD05156004A292B /* Connection.swift */,
 				D359A7722AD05105004A292B /* AudioModel.swift */,
 				D359A7682AD0509C004A292B /* Assets.xcassets */,
@@ -132,8 +137,6 @@
 			isa = PBXGroup;
 			children = (
 				D359A7842AD053E1004A292B /* Views */,
-				D38C155A2AD09D34009E831D /* CachedStation.swift */,
-				D34F54B82AD1F3AC00347E99 /* PlayingStation.swift */,
 				D34F54DB2AD2DAB600347E99 /* StationModel.swift */,
 			);
 			path = Stations;
@@ -175,7 +178,7 @@
 			children = (
 				D359A7862AD06777004A292B /* LibraryView.swift */,
 				D3CCC41F2AD2F3850069F900 /* LibraryTile.swift */,
-				D3CCC41D2AD2EC540069F900 /* cachedFaviconImage.swift */,
+				D3CCC41D2AD2EC540069F900 /* faviconCachedImage.swift */,
 				D3F492782AD1B5FC007DD232 /* LibraryListView.swift */,
 			);
 			path = Library;
@@ -266,8 +269,9 @@
 				D359A7812AD05166004A292B /* CountriesController.swift in Sources */,
 				D3CCC4222AD2FB870069F900 /* ShazamButton.swift in Sources */,
 				D3F492792AD1B5FC007DD232 /* LibraryListView.swift in Sources */,
-				D3CCC41E2AD2EC540069F900 /* cachedFaviconImage.swift in Sources */,
+				D3CCC41E2AD2EC540069F900 /* faviconCachedImage.swift in Sources */,
 				D359A7652AD0509B004A292B /* radioApp.swift in Sources */,
+				D3520CD42AD884CD0063B548 /* averageUIColor.swift in Sources */,
 				D359A7892AD07986004A292B /* BlurView.swift in Sources */,
 				D3CCC4202AD2F3850069F900 /* LibraryTile.swift in Sources */,
 				D38C155B2AD09D3D009E831D /* CachedStation.swift in Sources */,

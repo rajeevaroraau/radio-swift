@@ -10,10 +10,21 @@ import SwiftData
 
 @main
 struct radioApp: App {
-    @State private var playingStation = PlayingStation()
-    @State private var audioModel = AudioModel()
-    @Bindable var stationsModel = StationsController()
+    init() {
+        
+        let stationsModel = StationsController()
+        let playingStation = PlayingStation()
+        let audioModel = AudioModel(playingStation: playingStation)
+        
+        _stationsModel = Bindable(wrappedValue: stationsModel)
+        _playingStation = State(initialValue: playingStation)
+        _audioModel = State(initialValue: audioModel)
+        
+    }
 
+    @State private var audioModel: AudioModel
+    @Bindable var stationsModel: StationsController
+    @State private var playingStation: PlayingStation
 }
 
 extension radioApp {

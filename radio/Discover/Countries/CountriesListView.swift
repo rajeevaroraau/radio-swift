@@ -5,29 +5,30 @@ struct CountriesListView: View {
     @Environment(StationsController.self) private var stationsModel: StationsController
     @State private var firstTime: Bool = true
     var body: some View {
-    
+        
         NavigationView {
             
             Group {
-                
-                List {
-                    
-                    ForEach(countriesModel.searchableCountries, id: \.iso_3166_1) { country in
-                        NavigationLink  {
-                            StationsListView()
-                                .onAppear {
-                                    stationsModel.stations = []
-                                    StationsController.selectedCountry = country
-                                }
-                        } label: {
-                            
-                            CountryRow(country: country)
-                            
+                if countriesModel.countries == [] {
+                    ProgressView()
+                } else {
+                    List {
+                        
+                        ForEach(countriesModel.searchableCountries, id: \.iso_3166_1) { country in
+                            NavigationLink  {
+                                StationsListView()
+                                    .onAppear {
+                                        stationsModel.stations = []
+                                        StationsController.selectedCountry = country
+                                    }
+                            } label: {
+                                CountryRow(country: country)
+                            }
                         }
                     }
+                    .searchable(text: $countriesModel.searchText, prompt: Text("Search for countries"))
+                    .disableAutocorrection(true)
                 }
-                .searchable(text: $countriesModel.searchText, prompt: Text("Search for countries"))
-                .disableAutocorrection(true)
             }
             .onFirstAppear {
                 Task {
@@ -37,17 +38,12 @@ struct CountriesListView: View {
                 }
                 
             }
-         
+            
             .navigationTitle("Countries")
-     
         }
         
-    
     }
-    
-    
 }
-
 
 public extension View {
     func onFirstAppear(_ action: @escaping () -> ()) -> some View {

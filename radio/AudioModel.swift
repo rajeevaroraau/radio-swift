@@ -4,19 +4,27 @@ import MediaPlayer
 
 @Observable
 class AudioModel {
+    init(player: AVPlayer = AVPlayer(), playerItem: AVPlayerItem? = nil, isPlaying: Bool = false, playingStation: PlayingStation) {
+        self.player = player
+        self.playerItem = playerItem
+        self.isPlaying = isPlaying
+        self.playingStation = playingStation
+    }
+    
     
     let nowPlayingInfoCenter = MPNowPlayingInfoCenter.default()
-    var player: AVPlayer = AVPlayer()
+    var player = AVPlayer()
     var playerItem: AVPlayerItem? = nil
     var isPlaying = false
-    var playingStation: PlayingStation? = nil
-
+    let playingStation: PlayingStation
 
     
-    func play(playingStation: PlayingStation, url: URL) {
+    func play() {
+        guard playingStation.station != nil else { return }
         
-        UIApplication.shared.beginReceivingRemoteControlEvents()
-        
+        guard let url = URL(string: playingStation.station!.url) else { return }
+        let start = CFAbsoluteTimeGetCurrent()
+
         do {
             // Configure AVAudioSession
             try AVAudioSession.sharedInstance().setMode(.default)
@@ -30,24 +38,27 @@ class AudioModel {
             // RESUME URL STREAM
             player.play()
             setupRemoteCommandCenter()
-            updateInfoCenter(playingStation: playingStation)
+            updateInfoCenter()
                 isPlaying = true
         } catch let error {
             print(error)
           
         }
 
-        
+        print("Took \(CFAbsoluteTimeGetCurrent() - start) seconds")
+
     }
 
     
-    func updateInfoCenter(playingStation: PlayingStation) {
-        guard let station = playingStation.station else { return }
+    func updateInfoCenter() {
+        
+        guard playingStation.station != nil else { return }
         var nowPlayingInfo = nowPlayingInfoCenter.nowPlayingInfo ?? [String: Any]()
         
-       
+        UIApplication.shared.beginReceivingRemoteControlEvents()
+
         // SET NAME
-        nowPlayingInfo[MPMediaItemPropertyTitle] = station.name
+        nowPlayingInfo[MPMediaItemPropertyTitle] = playingStation.station!.name
         nowPlayingInfo[MPMediaItemPropertyPlaybackDuration] = 0
         nowPlayingInfo[MPNowPlayingInfoPropertyIsLiveStream] = true
       //  nowPlayingInfo[MPNowPlayingInfoPropertyAssetURL] = cachedStation.station?.url
@@ -70,16 +81,16 @@ class AudioModel {
                     
                 }
                 DispatchQueue.main.asyncAfter(deadline: .now() + 5.0) {
-                    if let image = playingStation.faviconUIImage {
+                    if let image = self.playingStation.faviconUIImage {
                         nowPlayingInfo[MPMediaItemPropertyArtwork] = MPMediaItemArtwork(boundsSize: image.size) { size in
+                            
                             return image
                         }
-                        self.nowPlayingInfoCenter.nowPlayingInfo = nowPlayingInfo
-                        print("Successful second attempt to set remote favicon.")
                     }
-                    
+                    self.nowPlayingInfoCenter.nowPlayingInfo = nowPlayingInfo
                 }
-                
+                nowPlayingInfoCenter.nowPlayingInfo = nowPlayingInfo
+                print("Successful second attempt to set remote favicon.")
             }
             
         } else {
@@ -99,7 +110,9 @@ class AudioModel {
     
   
     func resume() {
-        isPlaying = true
+        let generator = UINotificationFeedbackGenerator()
+        generator.notificationOccurred(.success)
+        
         do {
             try AVAudioSession.sharedInstance().setActive(true)
         } catch let error {
@@ -111,6 +124,8 @@ class AudioModel {
     }
     
     func pause() {
+        let generator = UINotificationFeedbackGenerator()
+        generator.notificationOccurred(.success)
         isPlaying = false
         do {
             try AVAudioSession.sharedInstance().setActive(false)
@@ -118,10 +133,20 @@ class AudioModel {
             print(error)
         }
         player.pause()
+        
 
     }
+    @MainActor
     func togglePlayback() {
-        isPlaying ? pause() :  resume()
+        if isPlaying {
+            isPlaying = false
+            pause()
+
+        } else {
+            
+            isPlaying = true
+            resume()
+        }
     }
     func setupRemoteCommandCenter() {
         let commandCenter = MPRemoteCommandCenter.shared()

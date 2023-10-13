@@ -3,9 +3,8 @@ import AVFoundation
 import AVKit
 struct StationsListView: View {
     @Environment(StationsController.self) private var stationsModel: StationsController
-    @Environment(PlayingStation.self) private var playingStation: PlayingStation
     @Environment(AudioModel.self) private var audioModel: AudioModel
-    
+    @Environment(PlayingStation.self) private var playingStation: PlayingStation
     @Environment(\.modelContext) var modelContext
     
     var body: some View {
@@ -23,15 +22,13 @@ struct StationsListView: View {
                 ForEach(stationsModel.searchableStations, id: \.stationuuid) { station in
                     Button {
                         
-                        if let url = URL(string: station.url) {
-                            
-                            let playingStationTemp = PlayingStation(station: station, fetchFavicon: true)
-                            audioModel.play(playingStation: playingStationTemp, url: url)
-                            
-                        }
+                        playingStation.setStation(station, faviconCached: nil)
+                            audioModel.play()
+
                         
                     } label: {
-                        StationRowView(name: station.name, favicon: nil, urlFavicon: station.favicon, isPlaying: playingStation.station == nil ? false : station == playingStation.station!, votes: station.votes)
+                        StationRowView(faviconCached: nil, urlFavicon: station.url, station: station)
+                        
                         
                     }
                     .buttonStyle(.plain)

@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-struct cachedFaviconImage: View {
+struct faviconCachedImage: View {
     let image: UIImage?
     let height: CGFloat
     var body: some View {
@@ -16,9 +16,10 @@ struct cachedFaviconImage: View {
 
         Image(uiImage: image ?? UIImage(named: "DefaultFavicon")!)
             .resizable()
-        .scaledToFill()
+            .accessibilityHidden(true)
+        .scaledToFit()
         .frame(width: height, height: height)
-        .clipShape(RoundedRectangle(cornerRadius: height/6))
+        .clipShape(RoundedRectangle(cornerRadius: height/5))
         
 
     }

@@ -10,32 +10,19 @@ import SwiftData
 
 struct LibraryListView: View {
     @Environment(\.modelContext) var modelContext
-    
-    @Environment(AudioModel.self) private var audioModel: AudioModel
     @Environment(PlayingStation.self) private var playingStation: PlayingStation
+    @Environment(AudioModel.self) private var audioModel: AudioModel
     
     @Query var libraryStations: [CachedStation]
     var body: some View {
         List {
             ForEach(libraryStations) { libraryStation in
-                Button {
-                    
-                    if let url = URL(string: libraryStation.station.url) {
-                        
-                        
-                        playingStation.station = libraryStation.station
-                        let playingStationTemp = PlayingStation(station: libraryStation.station, fetchFavicon: true)
-
-
-                        audioModel.play(playingStation: playingStationTemp, url: url)
-
-
-
-                        
-                    }
+                Button {             
+                        playingStation.setStation(libraryStation.station, faviconCached: libraryStation.faviconData)
+                        audioModel.play()
                 } label: {
-                    StationRowView(name: libraryStation.station.name , favicon: libraryStation.faviconUIImage, urlFavicon: libraryStation.station.favicon, isPlaying: playingStation.station == nil ? false : libraryStation.station == playingStation.station!, votes: libraryStation.station.votes)
-                        
+                    StationRowView(faviconCached: nil, urlFavicon: libraryStation.station.favicon, station: libraryStation.station)
+                    
                 }
                 .buttonStyle(.plain)
                 .foregroundStyle(.primary)

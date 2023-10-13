@@ -6,88 +6,74 @@
 //
 
 import SwiftUI
+import Observation
 
 struct MiniplayerView: View {
     @Environment(AudioModel.self) private var audioModel: AudioModel
-    @Environment(PlayingStation.self) private var playingStation: PlayingStation
     @Environment(StationsController.self) private var stationsModel: StationsController
-
+    @Environment(PlayingStation.self) private var playingStation: PlayingStation
+    @State private var isTouching = false
     var body: some View {
-        VStack {
+        ZStack {
+            RoundedRectangle(cornerRadius: 15)
+                .foregroundStyle(.ultraThinMaterial)
+                .shadow(color: .black.opacity(0.3), radius: 10, x: 0, y: 5)
+                .frame(height: 60)
             
-            HStack(spacing: 0) {
+            HStack(spacing: 5) {
                 
-                cachedFaviconImage(image: playingStation.faviconUIImage, height: 40)
-                if let name = playingStation.station?.name {
-                    Text(name)
+                faviconCachedImage(image: playingStation.faviconUIImage, height: 50)
+                    Text(playingStation.station?.name ?? "Select a station")
                         .font(.headline)
-                        .padding()
-                }
+                        .multilineTextAlignment(.leading)
+                        .lineSpacing(-3)
                 
                 Spacer()
                 
-                    ShazamButton()
-
-
+                ShazamButton()
                     .font(.title)
-
-                    
                     .frame(width: 60, height:60)
                 
-          
-            
-
-                
                 Button {
-                    print("tap!")
-                    let generator = UINotificationFeedbackGenerator()
-                    generator.notificationOccurred(.success)
-                    withAnimation(.easeInOut(duration: 0.02)) {
-                        audioModel.togglePlayback()
-                    }
+                    handlePlayPauseTap()
                 } label: {
                     Image(systemName: audioModel.isPlaying ? "pause.fill" : "play.fill")
-                        .contentTransition(.symbolEffect(.replace))
+                        .contentTransition(.symbolEffect(.replace, options: .speed(10.0)))
                         .accessibilityLabel("\(audioModel.isPlaying ? "Pause" : "Resume")")
                         .font(.title)
                         .frame(width: 60, height:60)
+                        .contentShape(
+                            Rectangle()
+                        )
                         .tint(.primary)
-
-
-
-                }
-    
-
-
-                
-
-
-                .contentShape(Rectangle())
-                
+                    // POST-TAP EFFECT
+                        .background(
+                            isTouching
+                            ? Circle().fill(Color.secondary).padding(2)
+                            : Circle().fill(Color.clear).padding(2)
+                            
+                        )
                     
-                
+                }
+                .contentShape(Rectangle())
             }
-            .padding(.horizontal, 20)
-
+            .padding(.horizontal, 5)
+            .foregroundStyle(.primary)
             .frame(maxWidth: .infinity)
             
-           
-                    
         }
-        .foregroundStyle(.primary)
-        .frame(height: 60)
-        .background(
-            VStack(spacing: 0) {
-                Divider()
-                BlurView()
-                Divider()
-            }
-            
-        )
-        .offset(y: -48)
-        .ignoresSafeArea(.keyboard)
-        
-
+        .padding(.horizontal, 10)
+        .offset(y: -55)
+    }
+    
+    
+    @MainActor
+    func handlePlayPauseTap() {
+        isTouching = true
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+            isTouching = false
+        }
+        audioModel.togglePlayback()
     }
 }
 

@@ -10,32 +10,25 @@ import SwiftUI
 struct ContentView: View {
     
     var body: some View {
-
+        
         ZStack(alignment: .bottom) {
             TabView {
                 LibraryView()
-                    .padding(.bottom, 50)
+                    .padding(.bottom, 60)
                     .tabItem {
                         Label("Library", systemImage: "play.square.stack.fill")
                     }
                 CountriesListView()
-                    .padding(.bottom, 50)
+                    .padding(.bottom, 70)
                     .tabItem {
                         Label("Discover", systemImage: "magnifyingglass")
                     }
             }
             
-            
             MiniplayerView()
-
-
-            
         }
         .ignoresSafeArea(.keyboard)
-            
         
-          
-    
     }
     
     

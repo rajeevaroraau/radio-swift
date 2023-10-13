@@ -13,16 +13,23 @@ struct LibraryTile: View {
     var body: some View {
         ZStack(alignment: .bottomLeading) {
             RoundedRectangle(cornerRadius: 10)
-                .foregroundStyle(.blue.gradient)
+                .foregroundColor(.black)
                 .frame(height: 100)
+            RoundedRectangle(cornerRadius: 10)
+                
+                .foregroundStyle(libraryStation.faviconUIImage?.averageColor?.gradient ?? Color.gray.gradient)
+                .frame(height: 100)
+                .opacity(0.8)
             
             VStack(alignment: .leading) {
                 
-                cachedFaviconImage(image: libraryStation.faviconUIImage, height: 30)
+                faviconCachedImage(image: libraryStation.faviconUIImage, height: 30)
                 
                 Text(libraryStation.station.name)
                     .font(.headline)
                     .foregroundStyle(.white)
+                    .multilineTextAlignment(.leading)
+
             }
             // CONTENT PADDING
             .padding(12)

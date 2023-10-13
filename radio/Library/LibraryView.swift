@@ -16,13 +16,24 @@ struct LibraryView: View {
     let columns = [
         GridItem(.flexible(), spacing: 0),
         GridItem(.flexible(), spacing: 0),
-
+        
     ]
     var body: some View {
         NavigationView {
-                ScrollView {
-                    LazyVGrid(columns: columns, spacing: 0) {
-                        ForEach(libraryStations) { libraryStation in
+            ScrollView {
+                LazyVGrid(columns: columns, spacing: 0) {
+                    ForEach(libraryStations) { libraryStation in
+                        Button {
+                            handleStationTap(libraryStation: libraryStation)
+                        } label: {
+                            LibraryTile(libraryStation: libraryStation)
+                            
+                        }
+                        .contextMenu() {
+                            Button("Unlove", systemImage: "heart.slash") {
+                                modelContext.delete(libraryStation)
+                            }
+                        } preview: {
                             Button {
                                 handleStationTap(libraryStation: libraryStation)
                             } label: {
@@ -31,26 +42,18 @@ struct LibraryView: View {
                             }
                         }
                     }
-                    .padding(.horizontal, 5)
+                    
                 }
+                .padding(.horizontal, 5)
+                
+            }
             .navigationTitle("Library")
+            
         }
-}
+    }
     func handleStationTap(libraryStation: CachedStation) {
-        guard let streamUrl = URL(string: libraryStation.station.url)  else { return }
-            
-            
-            playingStation.station = libraryStation.station
-
-        let playingStationTemp = PlayingStation(station: libraryStation.station, fetchFavicon: true)
-
-
-        audioModel.play(playingStation: playingStationTemp, url: streamUrl)
-            playingStation.station = libraryStation.station
-
-
-            
-        
+        playingStation.setStation(libraryStation.station, faviconCached: libraryStation.faviconData)
+        audioModel.play()
     }
 }
 

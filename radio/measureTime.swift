@@ -14,7 +14,6 @@ func measureTime(_ closure: @escaping () async -> Void) async {
     Task {
         await closure()
         
-        let diff = CFAbsoluteTimeGetCurrent() - start
-        print("Took \(diff) seconds")
+        print("Took \(CFAbsoluteTimeGetCurrent() - start) seconds")
     }
 }

@@ -18,8 +18,7 @@ class CountriesController {
         await measureTime {
             let properurl = URL(string: "\(Connection.baseURL)countries?order=stationcount")!
             do {
-                print(properurl)
-                let (data, _) = try await URLSession.shared.data(from: properurl)
+                let (data, _) = try await Connection.manager.data(from: properurl)
                 let countriesAscending = try JSONDecoder().decode([Country].self, from: data)
                 self.countries = countriesAscending.reversed()
                 print("Successfully fetched countries from \(properurl)")

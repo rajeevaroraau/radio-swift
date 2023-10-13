@@ -32,7 +32,7 @@ class CachedStation {
             if let faviconURL = URL(string: station.favicon) {
                 do {
                     
-                    let (data, _) = try await URLSession.shared.data(from: faviconURL)
+                    let (data, _) = try await Connection.manager.data(from: faviconURL)
                     faviconData = data
 
                     
@@ -52,3 +52,5 @@ class CachedStation {
         self.station = station
     }
 }
+
+
