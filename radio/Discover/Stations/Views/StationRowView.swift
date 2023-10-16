@@ -24,15 +24,20 @@ struct StationRowView: View {
                                     .scaledToFit()
                                     .frame(width: 50, height: 50)
                                     .clipShape(RoundedRectangle(cornerRadius: 50/6))
-                                
+                                    .onAppear {
+                                        print("Rich favicon loaded in StationRowView")
+                                    }
                                 // IF STILL LOADING SHOW PLACEHOLDER
                             } else {
                                 ProgressView()
                                     .frame(width: 50, height: 50)
+                                    .onAppear {
+                                        print("Temporary screen loaded in StationRowView")
+                                    }
                             }
                         }
                     } else {
-                        Image(uiImage: UIImage(named: "DefaultFavicon")!)
+                        Image(uiImage: UIImage(named: "DefaultFaviconSmall")!)
                             .resizable()
                             .scaledToFit()
                             .frame(width: 50, height: 50)
@@ -41,7 +46,7 @@ struct StationRowView: View {
                     
                     
                 } else {
-                    Image(uiImage: UIImage(named: "DefaultFavicon")!)
+                    Image(uiImage: UIImage(named: "DefaultFaviconSmall")!)
                         .resizable()
                         .scaledToFit()
                         .frame(width: 50, height: 50)
@@ -77,11 +82,8 @@ struct StationRowView: View {
             
         }
         .contentShape(Rectangle())
-        
-        
-        
+    
     }
-    
-    
 }
+
 

@@ -17,64 +17,61 @@ class AudioModel {
     var playerItem: AVPlayerItem? = nil
     var isPlaying = false
     let playingStation: PlayingStation
-
+    let generator = UINotificationFeedbackGenerator()
+    
     
     func play() {
+        isPlaying = true
+        
         guard playingStation.station != nil else { return }
         
         guard let url = URL(string: playingStation.station!.url) else { return }
         let start = CFAbsoluteTimeGetCurrent()
-
+        
         do {
             // Configure AVAudioSession
             try AVAudioSession.sharedInstance().setMode(.default)
             try AVAudioSession.sharedInstance().setCategory(.playback)
-            print("here")
             try AVAudioSession.sharedInstance().setActive(true)
-    
-            // Configure AVPlayer
-            playerItem = AVPlayerItem(url: url)
-            player.replaceCurrentItem(with: playerItem)
-            // RESUME URL STREAM
-            player.play()
-            setupRemoteCommandCenter()
-            updateInfoCenter()
-                isPlaying = true
+            
+            
+            
         } catch let error {
+            isPlaying = false
             print(error)
-          
+            
         }
-
+        // Configure AVPlayer
+        playerItem = AVPlayerItem(url: url)
+        player.replaceCurrentItem(with: playerItem)
+        // RESUME URL STREAM
+        player.play()
+        setupRemoteCommandCenter()
+        updateInfoCenter()
+        
         print("Took \(CFAbsoluteTimeGetCurrent() - start) seconds")
-
+        
     }
-
+    
     
     func updateInfoCenter() {
         
         guard playingStation.station != nil else { return }
         var nowPlayingInfo = nowPlayingInfoCenter.nowPlayingInfo ?? [String: Any]()
         
-        UIApplication.shared.beginReceivingRemoteControlEvents()
-
+        
+        
         // SET NAME
         nowPlayingInfo[MPMediaItemPropertyTitle] = playingStation.station!.name
         nowPlayingInfo[MPMediaItemPropertyPlaybackDuration] = 0
         nowPlayingInfo[MPNowPlayingInfoPropertyIsLiveStream] = true
-      //  nowPlayingInfo[MPNowPlayingInfoPropertyAssetURL] = cachedStation.station?.url
-      //  nowPlayingInfo[MPMediaItemPropertyMediaType] = MPMediaType.anyAudio
-       // nowPlayingInfo[MPNowPlayingInfoPropertyPlaybackRate] = 1.0
-    //    nowPlayingInfo[MPMediaItemPropertyPersistentID] = UUID().uuidString
+        nowPlayingInfo[MPNowPlayingInfoPropertyPlaybackRate] = 1.0
         
         nowPlayingInfoCenter.nowPlayingInfo = nowPlayingInfo
         // SET ARTWORK
         // DEFAULT
         if playingStation.faviconData == nil {
-            
-           
-            if let image = UIImage(named: "DefaultFavicon") {
-                
-                
+            if let image = UIImage(named: "DefaultFaviconLarge") {
                 nowPlayingInfo[MPMediaItemPropertyArtwork] = MPMediaItemArtwork(boundsSize: image.size) { size in
                     print("Set the Default Favicon")
                     return image
@@ -105,43 +102,49 @@ class AudioModel {
         
         // SET THE MPNowPlayingInfoCenter
         nowPlayingInfoCenter.nowPlayingInfo = nowPlayingInfo
+        UIApplication.shared.beginReceivingRemoteControlEvents()
         
     }
     
-  
+    
     func resume() {
-        let generator = UINotificationFeedbackGenerator()
-        generator.notificationOccurred(.success)
-        
-        do {
-            try AVAudioSession.sharedInstance().setActive(true)
-        } catch let error {
-            print(error)
+        Task {
+            do {
+                await generator.notificationOccurred(.success)
+                try AVAudioSession.sharedInstance().setActive(true)
+                player.play()
+            } catch let error {
+                print(error)
+            }
         }
         
-        player.play()
-
+        
     }
     
     func pause() {
-        let generator = UINotificationFeedbackGenerator()
-        generator.notificationOccurred(.success)
-        isPlaying = false
-        do {
-            try AVAudioSession.sharedInstance().setActive(false)
-        } catch let error {
-            print(error)
-        }
-        player.pause()
         
-
+        isPlaying = false
+        
+        Task {
+            
+            do {
+                player.pause()
+                await generator.notificationOccurred(.success)
+                try AVAudioSession.sharedInstance().setActive(false)
+            } catch let error {
+                print(error)
+            }
+        }
+        
+        
+        
     }
     @MainActor
     func togglePlayback() {
         if isPlaying {
             isPlaying = false
             pause()
-
+            
         } else {
             
             isPlaying = true
@@ -151,7 +154,7 @@ class AudioModel {
     func setupRemoteCommandCenter() {
         let commandCenter = MPRemoteCommandCenter.shared()
         commandCenter.playCommand.isEnabled = true
-        commandCenter.playCommand.addTarget {event in
+        commandCenter.playCommand.addTarget { event in
             self.resume()
             return .success
         }
@@ -161,6 +164,6 @@ class AudioModel {
             return .success
         }
     }
-
+    
 }
 

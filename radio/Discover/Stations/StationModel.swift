@@ -45,6 +45,9 @@ class Station: Codable, Equatable, Identifiable {
     static func ==(lhs: Station, rhs: Station) -> Bool {
         return lhs.stationuuid == rhs.stationuuid
     }
+    
+    
+    
     init(changeuuid: String, stationuuid: String, name: String, url: String, url_resolved: String, homepage: String, favicon: String, tags: String, country: String, countrycode: String, iso_3166_2: String?, state: String, language: String, languagecodes: String, votes: Int, lastchangetime: String, lastchangetime_iso8601: Date, codec: String, bitrate: Int, hls: Int, lastcheckok: Int, lastchecktime: String, lastchecktime_iso8601: Date, lastcheckoktime: String, lastcheckoktime_iso8601: Date?, lastlocalchecktime: String, lastlocalchecktime_iso8601: Date?, clicktimestamp: String, clickcount: Int, clicktrend: Int, ssl_error: Int, geo_lat: Double?, geo_long: Double?, has_extended_info: Bool) {
         self.changeuuid = changeuuid
         self.stationuuid = stationuuid
@@ -81,4 +84,7 @@ class Station: Codable, Equatable, Identifiable {
         self.geo_long = geo_long
         self.has_extended_info = has_extended_info
     }
+
 }
+
+

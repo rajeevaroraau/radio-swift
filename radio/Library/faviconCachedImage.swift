@@ -14,7 +14,7 @@ struct faviconCachedImage: View {
     var body: some View {
 
 
-        Image(uiImage: image ?? UIImage(named: "DefaultFavicon")!)
+        Image(uiImage: image ?? UIImage(named: "DefaultFaviconSmall")!)
             .resizable()
             .accessibilityHidden(true)
         .scaledToFit()

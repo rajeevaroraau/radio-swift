@@ -10,7 +10,6 @@ import SimpleCodable
 
 
 @Observable
-
 class StationsController {
     
 

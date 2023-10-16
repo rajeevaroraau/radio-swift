@@ -16,14 +16,14 @@ struct radioApp: App {
         let playingStation = PlayingStation()
         let audioModel = AudioModel(playingStation: playingStation)
         
-        _stationsModel = Bindable(wrappedValue: stationsModel)
+        _stationsModel = State(initialValue: stationsModel)
         _playingStation = State(initialValue: playingStation)
         _audioModel = State(initialValue: audioModel)
-        
+
     }
 
     @State private var audioModel: AudioModel
-    @Bindable var stationsModel: StationsController
+    @State var stationsModel: StationsController
     @State private var playingStation: PlayingStation
 }
 

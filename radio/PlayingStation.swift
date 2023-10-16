@@ -24,6 +24,8 @@ class PlayingStation {
     }
     private(set)  var station: Station? = nil
     
+
+    
      func fetchFavicon() async -> Data? {
         guard let station = self.station else { return nil }
         self.faviconData = nil
