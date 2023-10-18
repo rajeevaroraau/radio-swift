@@ -9,16 +9,16 @@ class AudioModel {
         self.playerItem = playerItem
         self.isPlaying = isPlaying
         self.playingStation = playingStation
+        self.nowPlayingInfo = nowPlayingInfoCenter.nowPlayingInfo ?? [String: Any]()
     }
     
-    
-    let nowPlayingInfoCenter = MPNowPlayingInfoCenter.default()
-    var player = AVPlayer()
-    var playerItem: AVPlayerItem? = nil
+    private let nowPlayingInfoCenter = MPNowPlayingInfoCenter.default()
+    private var player = AVPlayer()
+    private var playerItem: AVPlayerItem? = nil
     var isPlaying = false
     let playingStation: PlayingStation
-    let generator = UINotificationFeedbackGenerator()
-    
+   private  let generator = UINotificationFeedbackGenerator()
+    private var nowPlayingInfo: [String: Any]
     
     func play() {
         isPlaying = true
@@ -49,15 +49,14 @@ class AudioModel {
         setupRemoteCommandCenter()
         updateInfoCenter()
         
+        
         print("Took \(CFAbsoluteTimeGetCurrent() - start) seconds")
         
     }
-    
-    
-    func updateInfoCenter() {
+    private func updateInfoCenter()  {
         
         guard playingStation.station != nil else { return }
-        var nowPlayingInfo = nowPlayingInfoCenter.nowPlayingInfo ?? [String: Any]()
+        
         
         
         
@@ -70,52 +69,83 @@ class AudioModel {
         nowPlayingInfoCenter.nowPlayingInfo = nowPlayingInfo
         // SET ARTWORK
         // DEFAULT
-        if playingStation.faviconData == nil {
-            if let image = UIImage(named: "DefaultFaviconLarge") {
-                nowPlayingInfo[MPMediaItemPropertyArtwork] = MPMediaItemArtwork(boundsSize: image.size) { size in
-                    print("Set the Default Favicon")
-                    return image
-                    
-                }
-                DispatchQueue.main.asyncAfter(deadline: .now() + 5.0) {
-                    if let image = self.playingStation.faviconUIImage {
-                        nowPlayingInfo[MPMediaItemPropertyArtwork] = MPMediaItemArtwork(boundsSize: image.size) { size in
-                            
-                            return image
-                        }
-                    }
-                    self.nowPlayingInfoCenter.nowPlayingInfo = nowPlayingInfo
-                }
-                nowPlayingInfoCenter.nowPlayingInfo = nowPlayingInfo
-                print("Successful second attempt to set remote favicon.")
-            }
-            
-        } else {
-            // CUSTOM
-            if let image = playingStation.faviconUIImage {
-                nowPlayingInfo[MPMediaItemPropertyArtwork] = MPMediaItemArtwork(boundsSize: image.size) { size in
-                    print("Successful first attempt to set remote favicon.")
-                    return image
-                }
-            }
+        Task {
+            await setRemoteFavicon()
         }
+        
         
         // SET THE MPNowPlayingInfoCenter
         nowPlayingInfoCenter.nowPlayingInfo = nowPlayingInfo
         UIApplication.shared.beginReceivingRemoteControlEvents()
         
     }
-    
+    private func setRemoteFavicon() async {
+        // FIRST ATTEMPT
+        if let image = playingStation.faviconUIImage {
+            nowPlayingInfo[MPMediaItemPropertyArtwork] = MPMediaItemArtwork(boundsSize: image.size) { size in
+                print("Successful first attempt to set remote favicon.")
+                return image
+            }
+            
+            // SECOND ATTEMPT
+        } else {
+            guard let image = UIImage(named: "DefaultFaviconLarge") else  { return }
+        
+            // DEFAULT FAVICON
+            nowPlayingInfo[MPMediaItemPropertyArtwork] = MPMediaItemArtwork(boundsSize: image.size) { size in
+                print("Set the Default Favicon")
+                return image
+                
+            }
+            //TRY AGAIN AFTER SOME TIME
+            DispatchQueue.main.asyncAfter(deadline: .now() + 4.0) {
+                if let image = self.playingStation.faviconUIImage {
+                    self.nowPlayingInfo[MPMediaItemPropertyArtwork] = MPMediaItemArtwork(boundsSize: image.size) { size in
+                        print("Successful second attempt to set remote favicon.")
+                        return image
+                    }
+                }
+
+                self.nowPlayingInfoCenter.nowPlayingInfo = self.nowPlayingInfo
+            }
+            
+            
+            
+            
+        }
+        self.nowPlayingInfoCenter.nowPlayingInfo = self.nowPlayingInfo
+        
+    }
+    private func setupRemoteCommandCenter() {
+        let commandCenter = MPRemoteCommandCenter.shared()
+        commandCenter.playCommand.isEnabled = true
+        commandCenter.playCommand.addTarget { event in
+            self.resume()
+            return .success
+        }
+        commandCenter.pauseCommand.isEnabled = true
+        commandCenter.pauseCommand.addTarget { event in
+            self.pause()
+            return .success
+        }
+    }
+
+    func togglePlayback() {
+        if isPlaying {
+            isPlaying = false
+            pause()
+            
+        } else {
+            
+            isPlaying = true
+            resume()
+        }
+    }
     
     func resume() {
         Task {
-            do {
                 await generator.notificationOccurred(.success)
-                try AVAudioSession.sharedInstance().setActive(true)
                 player.play()
-            } catch let error {
-                print(error)
-            }
         }
         
         
@@ -139,31 +169,8 @@ class AudioModel {
         
         
     }
-    @MainActor
-    func togglePlayback() {
-        if isPlaying {
-            isPlaying = false
-            pause()
-            
-        } else {
-            
-            isPlaying = true
-            resume()
-        }
-    }
-    func setupRemoteCommandCenter() {
-        let commandCenter = MPRemoteCommandCenter.shared()
-        commandCenter.playCommand.isEnabled = true
-        commandCenter.playCommand.addTarget { event in
-            self.resume()
-            return .success
-        }
-        commandCenter.pauseCommand.isEnabled = true
-        commandCenter.pauseCommand.addTarget { event in
-            self.pause()
-            return .success
-        }
-    }
+    
+
     
 }
 

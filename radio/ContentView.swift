@@ -14,7 +14,7 @@ struct ContentView: View {
         ZStack(alignment: .bottom) {
             TabView {
                 LibraryView()
-                    .padding(.bottom, 60)
+                    .padding(.bottom, 70)
                     .tabItem {
                         Label("Library", systemImage: "play.square.stack.fill")
                     }

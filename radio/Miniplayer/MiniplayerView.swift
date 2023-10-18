@@ -63,7 +63,7 @@ struct MiniplayerView: View {
             
         }
         .padding(.horizontal, 10)
-        .offset(y: -55)
+        .offset(y: -60)
     }
     
     

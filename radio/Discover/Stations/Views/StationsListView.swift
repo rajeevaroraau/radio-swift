@@ -27,7 +27,8 @@ struct StationsListView: View {
 
                         
                     } label: {
-                        StationRowView(faviconCached: nil, urlFavicon: station.url, station: station)
+                        StationRowView(faviconCached: nil, station: station)
+                    
                         
                         
                     }

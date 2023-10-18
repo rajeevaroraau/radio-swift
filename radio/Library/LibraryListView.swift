@@ -21,7 +21,7 @@ struct LibraryListView: View {
                         playingStation.setStation(libraryStation.station, faviconCached: libraryStation.faviconData)
                         audioModel.play()
                 } label: {
-                    StationRowView(faviconCached: nil, urlFavicon: libraryStation.station.favicon, station: libraryStation.station)
+                    StationRowView(faviconCached: nil, station: libraryStation.station)
                     
                 }
                 .buttonStyle(.plain)

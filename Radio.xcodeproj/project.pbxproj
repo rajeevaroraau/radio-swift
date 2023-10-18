@@ -25,7 +25,6 @@
 		D359A7822AD05166004A292B /* CountryRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D359A77F2AD05166004A292B /* CountryRowView.swift */; };
 		D359A7832AD05166004A292B /* CountriesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D359A7802AD05166004A292B /* CountriesListView.swift */; };
 		D359A7872AD06777004A292B /* LibraryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D359A7862AD06777004A292B /* LibraryView.swift */; };
-		D359A7892AD07986004A292B /* BlurView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D359A7882AD07986004A292B /* BlurView.swift */; };
 		D359A78B2AD07B77004A292B /* MiniplayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D359A78A2AD07B77004A292B /* MiniplayerView.swift */; };
 		D38C155B2AD09D3D009E831D /* CachedStation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D38C155A2AD09D34009E831D /* CachedStation.swift */; };
 		D38C15602AD0D22A009E831D /* SimpleCodable in Frameworks */ = {isa = PBXBuildFile; productRef = D38C155F2AD0D22A009E831D /* SimpleCodable */; };
@@ -57,7 +56,6 @@
 		D359A7802AD05166004A292B /* CountriesListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountriesListView.swift; sourceTree = "<group>"; };
 		D359A7852AD0581F004A292B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = Info.plist; path = Radio/Info.plist; sourceTree = "<group>"; };
 		D359A7862AD06777004A292B /* LibraryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryView.swift; sourceTree = "<group>"; };
-		D359A7882AD07986004A292B /* BlurView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlurView.swift; sourceTree = "<group>"; };
 		D359A78A2AD07B77004A292B /* MiniplayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniplayerView.swift; sourceTree = "<group>"; };
 		D38C155A2AD09D34009E831D /* CachedStation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CachedStation.swift; sourceTree = "<group>"; };
 		D3CCC41D2AD2EC540069F900 /* faviconCachedImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = faviconCachedImage.swift; sourceTree = "<group>"; };
@@ -109,9 +107,9 @@
 			isa = PBXGroup;
 			children = (
 				D359A7642AD0509B004A292B /* radioApp.swift */,
+				D359A7662AD0509B004A292B /* ContentView.swift */,
 				D3520CD32AD884CD0063B548 /* averageUIColor.swift */,
 				D34D4B4C2AD7F97D00D03029 /* measureTime.swift */,
-				D359A7662AD0509B004A292B /* ContentView.swift */,
 				D3A1FBFF2AD1E95E00B4E77C /* Miniplayer */,
 				D3F492772AD1B5A7007DD232 /* Library */,
 				D30799962AD7011E00D11D60 /* Discover */,
@@ -168,7 +166,6 @@
 			children = (
 				D359A78A2AD07B77004A292B /* MiniplayerView.swift */,
 				D3CCC4212AD2FB870069F900 /* ShazamButton.swift */,
-				D359A7882AD07986004A292B /* BlurView.swift */,
 			);
 			path = Miniplayer;
 			sourceTree = "<group>";
@@ -272,7 +269,6 @@
 				D3CCC41E2AD2EC540069F900 /* faviconCachedImage.swift in Sources */,
 				D359A7652AD0509B004A292B /* radioApp.swift in Sources */,
 				D3520CD42AD884CD0063B548 /* averageUIColor.swift in Sources */,
-				D359A7892AD07986004A292B /* BlurView.swift in Sources */,
 				D3CCC4202AD2F3850069F900 /* LibraryTile.swift in Sources */,
 				D38C155B2AD09D3D009E831D /* CachedStation.swift in Sources */,
 				D359A7822AD05166004A292B /* CountryRowView.swift in Sources */,
