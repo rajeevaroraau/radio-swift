@@ -29,6 +29,8 @@ struct LibraryTile: View {
                     .font(.headline)
                     .foregroundStyle(.white)
                     .multilineTextAlignment(.leading)
+                    .lineLimit(2)
+                    .truncationMode(.tail)
 
             }
             // CONTENT PADDING

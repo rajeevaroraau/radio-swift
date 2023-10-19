@@ -14,12 +14,12 @@ struct LibraryView: View {
     @Environment(PlayingStation.self) private var playingStation: PlayingStation
     @Query var libraryStations: [CachedStation]
     let columns = [
-        GridItem(.flexible(), spacing: 0),
-        GridItem(.flexible(), spacing: 0),
+        GridItem(.adaptive(minimum: 180, maximum: 180), spacing: 0),
         
     ]
     var body: some View {
-        NavigationView {
+      
+        NavigationStack {
             ScrollView {
                 LazyVGrid(columns: columns, spacing: 0) {
                     ForEach(libraryStations) { libraryStation in

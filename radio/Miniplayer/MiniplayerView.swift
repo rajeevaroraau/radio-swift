@@ -23,11 +23,14 @@ struct MiniplayerView: View {
             HStack(spacing: 5) {
                 
                 faviconCachedImage(image: playingStation.faviconUIImage, height: 50)
+                
                     Text(playingStation.station?.name ?? "Select a station")
-                        .font(.headline)
+                    .font(.body)
+                    .bold()
                         .multilineTextAlignment(.leading)
                         .lineSpacing(-3)
-                
+                        .lineLimit(2)
+                        .truncationMode(.tail)
                 Spacer()
                 
                 ShazamButton()

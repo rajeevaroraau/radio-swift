@@ -49,6 +49,8 @@ struct StationRowView: View {
                     
                     Text(station.name)
                         .font(.headline)
+                        .lineLimit(2)
+                        .truncationMode(.tail)
                     if station == playingStation.station {
                         Image(systemName: "waveform")
                             .opacity(opacity)
@@ -62,7 +64,7 @@ struct StationRowView: View {
                             }
                     }
                 }
-                Text("\(station.votes) votes")
+                Text("\(station.votes) likes")
                     .foregroundStyle(.secondary)
                     .font(.caption)
             }
