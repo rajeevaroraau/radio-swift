@@ -30,7 +30,7 @@ struct LibraryView: View {
                             
                         }
                         .contextMenu() {
-                            Button("Unlove", systemImage: "heart.slash") {
+                            Button("Unfavourite", systemImage: "heart.slash") {
                                 modelContext.delete(libraryStation)
                             }
                         } preview: {
@@ -47,7 +47,7 @@ struct LibraryView: View {
                 .padding(.horizontal, 5)
                 
             }
-            .navigationTitle("Library")
+            .navigationTitle("Favourite")
             
         }
     }

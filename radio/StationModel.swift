@@ -14,7 +14,6 @@ class Station: Codable, Equatable, Identifiable {
     let url_resolved: String
     let homepage: String
     let favicon: String
-    let tags: String
     let country: String
     let countrycode: String
     let iso_3166_2: String?
@@ -22,7 +21,6 @@ class Station: Codable, Equatable, Identifiable {
     let language: String
     let languagecodes: String
     let votes: Int
-    let lastchangetime: String
     let lastchangetime_iso8601: Date
     let codec: String
     let bitrate: Int
@@ -30,9 +28,7 @@ class Station: Codable, Equatable, Identifiable {
     let lastcheckok: Int
     let lastchecktime: String
     let lastchecktime_iso8601: Date
-    let lastcheckoktime: String
     let lastcheckoktime_iso8601: Date?
-    let lastlocalchecktime: String
     let lastlocalchecktime_iso8601: Date?
     let clicktimestamp: String
     let clickcount: Int
@@ -56,7 +52,6 @@ class Station: Codable, Equatable, Identifiable {
         self.url_resolved = url_resolved
         self.homepage = homepage
         self.favicon = favicon
-        self.tags = tags
         self.country = country
         self.countrycode = countrycode
         self.iso_3166_2 = iso_3166_2
@@ -64,7 +59,6 @@ class Station: Codable, Equatable, Identifiable {
         self.language = language
         self.languagecodes = languagecodes
         self.votes = votes
-        self.lastchangetime = lastchangetime
         self.lastchangetime_iso8601 = lastchangetime_iso8601
         self.codec = codec
         self.bitrate = bitrate
@@ -72,9 +66,7 @@ class Station: Codable, Equatable, Identifiable {
         self.lastcheckok = lastcheckok
         self.lastchecktime = lastchecktime
         self.lastchecktime_iso8601 = lastchecktime_iso8601
-        self.lastcheckoktime = lastcheckoktime
         self.lastcheckoktime_iso8601 = lastcheckoktime_iso8601
-        self.lastlocalchecktime = lastlocalchecktime
         self.lastlocalchecktime_iso8601 = lastlocalchecktime_iso8601
         self.clicktimestamp = clicktimestamp
         self.clickcount = clickcount

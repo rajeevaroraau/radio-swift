@@ -14,12 +14,12 @@ struct ContentView: View {
         ZStack(alignment: .bottom) {
             TabView {
                 LibraryView()
-                    .padding(.bottom, 70)
+                    .padding(.bottom, 60)
                     .tabItem {
-                        Label("Library", systemImage: "play.square.stack.fill")
+                        Label("Favourite", systemImage: "play.square.stack.fill")
                     }
                 CountriesListView()
-                    .padding(.bottom, 70)
+                    .padding(.bottom, 60)
                     .tabItem {
                         Label("Discover", systemImage: "magnifyingglass")
                     }

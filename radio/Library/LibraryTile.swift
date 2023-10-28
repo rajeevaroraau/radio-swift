@@ -24,13 +24,9 @@ struct LibraryTile: View {
             VStack(alignment: .leading) {
                 
                 faviconCachedImage(image: libraryStation.faviconUIImage, height: 30)
-                
-                Text(libraryStation.station.name)
-                    .font(.headline)
+                StationTextView(stationName: libraryStation.station.name, textAlignment: .leading, textSize: .headline)
                     .foregroundStyle(.white)
-                    .multilineTextAlignment(.leading)
-                    .lineLimit(2)
-                    .truncationMode(.tail)
+
 
             }
             // CONTENT PADDING
@@ -47,3 +43,20 @@ struct LibraryTile: View {
     
 }
 
+
+
+struct StationTextView: View {
+    let stationName: String
+    let textAlignment: TextAlignment
+    let textSize: Font
+    var body: some View {
+        Group {
+            Text(stationName)
+                .font(textSize)
+                .multilineTextAlignment(textAlignment)
+                .lineLimit(2)
+                .truncationMode(.tail)
+                
+        }
+    }
+}

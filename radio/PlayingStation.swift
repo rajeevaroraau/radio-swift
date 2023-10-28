@@ -11,6 +11,7 @@ import SwiftUI
 
 @Observable
 class PlayingStation {
+    
      var faviconData: Data? = nil
      var faviconDataUnwrapped: Data {
         
@@ -22,6 +23,8 @@ class PlayingStation {
         }
         return nil
     }
+    
+
     private(set)  var station: Station? = nil
     
 
