@@ -15,7 +15,6 @@ class CountriesController {
         }
     } 
     func fetchCountries() async {
-        await measureTime {
             let properurl = URL(string: "\(Connection.baseURL)countries?order=stationcount")!
             do {
                 let (data, _) = try await Connection.manager.data(from: properurl)
@@ -26,5 +25,5 @@ class CountriesController {
                 print(error)
             }
         }
-    }
+    
 }

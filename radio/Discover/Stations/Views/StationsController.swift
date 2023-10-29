@@ -28,9 +28,8 @@ class StationsController {
     
     static var selectedCountry = Country()
     
-    func fetchList() async {
-        await measureTime {
-            
+    func fetchStationsListForCountry() async {
+        let diagnosticMarker = DiagnosticsMarker(prefix: "fetchingStationListForCountry \(Country.selectedCountry)")
             let decoder = JSONDecoder()
             decoder.dateDecodingStrategy = .iso8601
             
@@ -45,7 +44,7 @@ class StationsController {
             } catch {
                 print(error)
             }
-        }
+        diagnosticMarker.printCheckpoint(with: "Task 1")
     }
     
 }

@@ -10,7 +10,7 @@
 		D307999A2AD7154600D11D60 /* CountryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30799992AD7154600D11D60 /* CountryModel.swift */; };
 		D30D040C2AED54D40077371E /* AirPlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30D040B2AED54D40077371E /* AirPlayView.swift */; };
 		D31B4FAE2AE1A88B002F9563 /* FullScreenAudioControllerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D31B4FAD2AE1A88B002F9563 /* FullScreenAudioControllerView.swift */; };
-		D34D4B4D2AD7F97D00D03029 /* measureTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34D4B4C2AD7F97D00D03029 /* measureTime.swift */; };
+		D34D4B4D2AD7F97D00D03029 /* DiagnosticsMarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34D4B4C2AD7F97D00D03029 /* DiagnosticsMarker.swift */; };
 		D34F54B92AD1F3AC00347E99 /* PlayingStation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34F54B82AD1F3AC00347E99 /* PlayingStation.swift */; };
 		D34F54DC2AD2DAB600347E99 /* StationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34F54DB2AD2DAB600347E99 /* StationModel.swift */; };
 		D3520CD42AD884CD0063B548 /* averageUIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3520CD32AD884CD0063B548 /* averageUIColor.swift */; };
@@ -41,7 +41,7 @@
 		D30799992AD7154600D11D60 /* CountryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryModel.swift; sourceTree = "<group>"; };
 		D30D040B2AED54D40077371E /* AirPlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirPlayView.swift; sourceTree = "<group>"; };
 		D31B4FAD2AE1A88B002F9563 /* FullScreenAudioControllerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullScreenAudioControllerView.swift; sourceTree = "<group>"; };
-		D34D4B4C2AD7F97D00D03029 /* measureTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = measureTime.swift; sourceTree = "<group>"; };
+		D34D4B4C2AD7F97D00D03029 /* DiagnosticsMarker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiagnosticsMarker.swift; sourceTree = "<group>"; };
 		D34F54B82AD1F3AC00347E99 /* PlayingStation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayingStation.swift; sourceTree = "<group>"; };
 		D34F54DB2AD2DAB600347E99 /* StationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationModel.swift; sourceTree = "<group>"; };
 		D3520CD32AD884CD0063B548 /* averageUIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = averageUIColor.swift; path = radio/averageUIColor.swift; sourceTree = SOURCE_ROOT; };
@@ -113,7 +113,7 @@
 				D359A7642AD0509B004A292B /* radioApp.swift */,
 				D359A7662AD0509B004A292B /* ContentView.swift */,
 				D3520CD32AD884CD0063B548 /* averageUIColor.swift */,
-				D34D4B4C2AD7F97D00D03029 /* measureTime.swift */,
+				D34D4B4C2AD7F97D00D03029 /* DiagnosticsMarker.swift */,
 				D3A1FBFF2AD1E95E00B4E77C /* Miniplayer */,
 				D3F492772AD1B5A7007DD232 /* Library */,
 				D30799962AD7011E00D11D60 /* Discover */,
@@ -287,7 +287,7 @@
 				D359A77C2AD05156004A292B /* Connection.swift in Sources */,
 				D34F54DC2AD2DAB600347E99 /* StationModel.swift in Sources */,
 				D359A7832AD05166004A292B /* CountriesListView.swift in Sources */,
-				D34D4B4D2AD7F97D00D03029 /* measureTime.swift in Sources */,
+				D34D4B4D2AD7F97D00D03029 /* DiagnosticsMarker.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

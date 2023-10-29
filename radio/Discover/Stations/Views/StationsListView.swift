@@ -78,7 +78,7 @@ struct StationsListView: View {
                     
                     updateCountry()
                     stationsModel.stations = []
-                    await  stationsModel.fetchList()
+                    await  stationsModel.fetchStationsListForCountry()
                 }
             }
     }
