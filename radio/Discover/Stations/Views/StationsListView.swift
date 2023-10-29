@@ -73,7 +73,7 @@ struct StationsListView: View {
                     // await  stationsModel.fetchList()
                 }
             }
-            .onFirstAppear {
+            .onAppear {
                 Task {
                     
                     updateCountry()
