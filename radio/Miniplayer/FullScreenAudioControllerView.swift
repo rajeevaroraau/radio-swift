@@ -50,6 +50,7 @@ struct FullScreenAudioControllerView: View {
                                 }
                             }               
                         }
+                        .contentTransition(.symbolEffect(.replace))
                         .symbolRenderingMode(.hierarchical)
                         .labelStyle(.iconOnly)
                         .foregroundStyle(.white)
