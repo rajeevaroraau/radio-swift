@@ -12,7 +12,7 @@ struct LibraryView: View {
     @Environment(AudioModel.self) private var audioModel: AudioModel
     @Environment(\.modelContext) var modelContext
     @Environment(PlayingStation.self) private var playingStation: PlayingStation
-    @Query var libraryStations: [CachedStation]
+    @Query var favouriteStations: [CachedStation]
     let columns = [
         GridItem(.adaptive(minimum: 180, maximum: 180), spacing: 0),
         
@@ -22,7 +22,7 @@ struct LibraryView: View {
         NavigationStack {
             ScrollView {
                 LazyVGrid(columns: columns, spacing: 0) {
-                    ForEach(libraryStations) { libraryStation in
+                    ForEach(favouriteStations) { libraryStation in
                         Button {
                             handleStationTap(libraryStation: libraryStation)
                         } label: {

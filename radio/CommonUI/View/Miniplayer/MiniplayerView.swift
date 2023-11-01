@@ -47,22 +47,9 @@ struct MiniplayerView: View {
                 Button {
                     handlePlayPauseTap()
                 } label: {
-                    Image(systemName: audioModel.isPlaying ? "pause.fill" : "play.fill")
-                        .contentTransition(.symbolEffect(.replace, options: .speed(10.0)))
-                        .accessibilityLabel("\(audioModel.isPlaying ? "Pause" : "Resume")")
-                        .font(.title)
+                    TogglePlaybackButton(font: .title)
                         .frame(width: 60, height:60)
-                        .contentShape(
-                            Rectangle()
-                        )
-                        .tint(.primary)
-                    // POST-TAP EFFECT
-                        .background(
-                            isTouching
-                            ? Circle().fill(Color.secondary).padding(2)
-                            : Circle().fill(Color.clear).padding(2)
-                            
-                        )
+
                     
                 }
                 .contentShape(Rectangle())

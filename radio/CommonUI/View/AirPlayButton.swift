@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 import SwiftUI
 import AVKit
-struct AirPlayView: UIViewRepresentable {
+struct AirPlayButton: UIViewRepresentable {
 
     func makeUIView(context: Context) -> UIView {
 

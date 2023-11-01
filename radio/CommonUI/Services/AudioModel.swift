@@ -18,6 +18,7 @@ class AudioModel {
     var isPlaying = false
     let playingStation: PlayingStation
    private  let generator = UINotificationFeedbackGenerator()
+    
     private var nowPlayingInfo: [String: Any]
     
     func play() {
@@ -173,4 +174,7 @@ class AudioModel {
 
     
 }
+
+
+
 

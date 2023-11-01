@@ -13,10 +13,10 @@ struct LibraryListView: View {
     @Environment(PlayingStation.self) private var playingStation: PlayingStation
     @Environment(AudioModel.self) private var audioModel: AudioModel
     
-    @Query var libraryStations: [CachedStation]
+    @Query var favouriteStations: [CachedStation]
     var body: some View {
         List {
-            ForEach(libraryStations) { libraryStation in
+            ForEach(favouriteStations) { libraryStation in
                 Button {             
                         playingStation.setStation(libraryStation.station, faviconCached: libraryStation.faviconData)
                         audioModel.play()
@@ -30,7 +30,7 @@ struct LibraryListView: View {
             .onDelete  { indexSet in
                 
                 for index in indexSet {
-                    modelContext.delete(libraryStations[index])
+                    modelContext.delete(favouriteStations[index])
                 }
                 
             }
