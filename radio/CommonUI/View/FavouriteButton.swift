@@ -37,6 +37,4 @@ struct FavouriteButton: View {
 }
 
 
-#Preview {
-    FavouriteButton()
-}
+

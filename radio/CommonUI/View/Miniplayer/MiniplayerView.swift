@@ -91,8 +91,3 @@ struct MiniplayerView: View {
         audioModel.togglePlayback()
     }
 }
-
-#Preview {
-    MiniplayerView()
-}
-

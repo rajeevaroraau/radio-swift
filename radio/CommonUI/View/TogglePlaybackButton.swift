@@ -42,6 +42,3 @@ struct TogglePlaybackButton: View {
     }
 }
 
-#Preview {
-    TogglePlaybackButton(font: .title)
-}
