@@ -21,12 +21,12 @@ public class DiagnosticsMarker {
         start = CFAbsoluteTimeGetCurrent()
     }
 
-    public func printCheckpoint(with text: String) {
+    public func printCheckpoint() {
         guard printingEnabled else { return }
         let now = CFAbsoluteTimeGetCurrent()
-        var message = "\(text) took \(now - start)"
+        var message = "Took \(now - start)"
         if prefix.count > 0 {
-            message = "[\(prefix)]: \(message)"
+            message = "\(prefix): \(message)"
         }
         print(message)
         start = now

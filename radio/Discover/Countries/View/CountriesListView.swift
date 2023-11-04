@@ -18,6 +18,7 @@ struct CountriesListView: View {
                             NavigationLink  {
                                 StationsListView()
                                     .onAppear {
+                                        hapticFeedback()
                                         stationsModel.stations = []
                                         StationsController.selectedCountry = country
                                     }

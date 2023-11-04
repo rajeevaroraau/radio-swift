@@ -18,8 +18,10 @@ struct LibraryListView: View {
         List {
             ForEach(favouriteStations) { libraryStation in
                 Button {             
-                        playingStation.setStation(libraryStation.station, faviconCached: libraryStation.faviconData)
-                        audioModel.play()
+                    Task {
+                        await playingStation.setStation(libraryStation.station, faviconCached: libraryStation.faviconData)
+                    }
+                    audioModel.play()
                 } label: {
                     StationRowView(faviconCached: nil, station: libraryStation.station)
                     

@@ -24,7 +24,9 @@ struct LibraryView: View {
                 LazyVGrid(columns: columns, spacing: 0) {
                     ForEach(favouriteStations) { libraryStation in
                         Button {
-                            handleStationTap(libraryStation: libraryStation)
+                            Task {
+                                await handleStationTap(libraryStation: libraryStation)
+                            }
                         } label: {
                             LibraryTile(libraryStation: libraryStation)
                             
@@ -35,7 +37,10 @@ struct LibraryView: View {
                             }
                         } preview: {
                             Button {
-                                handleStationTap(libraryStation: libraryStation)
+                                Task {
+                                    await handleStationTap(libraryStation: libraryStation)
+                                }
+                                
                             } label: {
                                 LibraryTile(libraryStation: libraryStation)
                                 
@@ -51,8 +56,9 @@ struct LibraryView: View {
             
         }
     }
-    func handleStationTap(libraryStation: CachedStation) {
-        playingStation.setStation(libraryStation.station, faviconCached: libraryStation.faviconData)
+    func handleStationTap(libraryStation: CachedStation) async {
+            await playingStation.setStation(libraryStation.station, faviconCached: libraryStation.faviconData)
+        
         audioModel.play()
     }
 }

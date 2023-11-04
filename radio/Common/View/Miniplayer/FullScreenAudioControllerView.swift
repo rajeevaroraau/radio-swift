@@ -20,43 +20,50 @@ struct FullScreenAudioControllerView: View {
             Rectangle()
                 .foregroundStyle(playingStation.faviconUIImage?.averageColor?.gradient ?? Color.gray.gradient)
             VStack(alignment: .center) {
+                
                 // COVER
-                ZStack {
+                ZStack(alignment: .center) {
                     RoundedRectangle(cornerRadius: 10)
-                    
+                        .containerRelativeFrame(.horizontal)
+                        .aspectRatio(1.0, contentMode: .fit)
                         .foregroundStyle(playingStation.faviconUIImage?.averageColor ?? Color.gray)
-                        .padding()
-                    faviconCachedImage(image: playingStation.faviconUIImage, height: 100)
+                    faviconCachedImage(image: playingStation.faviconUIImage, height: 320, manualCornerRadius: true, customCornerRadius: 10)
                     
                 }
-                
-                // METADATA
+                .padding(15)
 
-                VStack(alignment: .leading) {
-                    HStack {
-                        StationTextView(stationName: playingStation.station?.name ?? "Unknown", textAlignment: .leading, textSize: .largeTitle.bold())
-                        Spacer()
-                        FavouriteButton()
-                    }
-                    HStack {
+                
+                // PRIMARY METADATA
+                
+                HStack {
+                    StationTextView(stationName: playingStation.station?.name ?? "Not Playing", textAlignment: .leading, textSize: .largeTitle.bold())
+                    Spacer()
+                    FavouriteButton()
+                }
+                .padding(.horizontal, 20)
+
+                
+                // BUTTONS
+                
+                HStack {
                         AirPlayButton()
                             .frame(width:60, height: 60)
-                        Spacer()
-                        TogglePlaybackButton(font: .system(size: 55))
-                        Spacer()
+                    Spacer()
+                        TogglePlaybackButton(font: .system(size: 75))
+                    Spacer()
                         ShazamButton()
                             .foregroundStyle(.white)
                             .font(.largeTitle)
                             .frame(width: 60, height:60)
-                    }
-                    
-                    // BUMPER
-                    Rectangle()
-                        .frame(height:30)
-                        .foregroundStyle(.clear)
                 }
-                .padding()
+                .padding(.horizontal, 20)
+
                 
+                
+                // BUMPER
+                Rectangle()
+                    .foregroundStyle(.clear)
+                    .frame(height:30)
                 
             }
         }

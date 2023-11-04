@@ -12,24 +12,24 @@ import SwiftUI
 @Observable
 class PlayingStation {
     
-     var faviconData: Data? = nil
-     var faviconDataUnwrapped: Data {
+    var faviconData: Data? = nil
+    var faviconDataUnwrapped: Data {
         
         return faviconData ?? Data()
     }
-     var faviconUIImage: UIImage? {
+    var faviconUIImage: UIImage? {
         if let data = faviconData {
             return UIImage(data: data)
         }
         return nil
     }
     
-
+    
     private(set)  var station: Station? = nil
     
-
     
-     func fetchFavicon() async -> Data? {
+    
+    func fetchFavicon() async -> Data? {
         guard let station = self.station else { return nil }
         self.faviconData = nil
         
@@ -52,17 +52,15 @@ class PlayingStation {
         return  nil
         
     }
-     func setStation(_ station: Station, faviconCached data: Data?) {
+    func setStation(_ station: Station, faviconCached data: Data?) async {
         self.station = station
-         self.faviconData = nil
-        if  data != nil {
+        self.faviconData = nil
+        if data != nil {
             self.faviconData = data!
             print("Set faviconCached as PlayingStation data")
         } else {
-            Task {
-                await self.fetchFavicon()
-            }
+            await self.fetchFavicon()
         }
     }
-
+    
 }

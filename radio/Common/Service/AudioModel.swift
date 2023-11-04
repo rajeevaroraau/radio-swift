@@ -77,7 +77,10 @@ class AudioModel {
         
         // SET THE MPNowPlayingInfoCenter
         nowPlayingInfoCenter.nowPlayingInfo = nowPlayingInfo
-        UIApplication.shared.beginReceivingRemoteControlEvents()
+        DispatchQueue.main.async {
+            UIApplication.shared.beginReceivingRemoteControlEvents()
+        }
+        
         
     }
     private func setRemoteFavicon() async {

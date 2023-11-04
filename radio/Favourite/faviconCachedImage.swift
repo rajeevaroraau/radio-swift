@@ -11,6 +11,8 @@ import SwiftUI
 struct faviconCachedImage: View {
     let image: UIImage?
     let height: CGFloat
+    var manualCornerRadius: Bool = false
+    var customCornerRadius: CGFloat? = nil
     var body: some View {
 
 
@@ -19,7 +21,7 @@ struct faviconCachedImage: View {
             .accessibilityHidden(true)
         .scaledToFit()
         .frame(width: height, height: height)
-        .clipShape(RoundedRectangle(cornerRadius: height/5))
+        .clipShape(RoundedRectangle(cornerRadius: manualCornerRadius ? (customCornerRadius ?? height/5) : (height/5)))
         
 
     }

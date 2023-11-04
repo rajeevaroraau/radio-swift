@@ -17,15 +17,14 @@ struct StationsListView: View {
             ProgressView()
         } else {
             List {
-                
-                
                 ForEach(stationsModel.searchableStations, id: \.stationuuid) { station in
                     Button {
-                        
-                        playingStation.setStation(station, faviconCached: nil)
-                            audioModel.play()
-
-                        
+                        Task {
+                            await playingStation.setStation(station, faviconCached: nil)
+                        }
+                        hapticFeedback()
+                        audioModel.play()
+   
                     } label: {
                         StationRowView(faviconCached: nil, station: station)
                     
