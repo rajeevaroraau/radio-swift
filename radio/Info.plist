@@ -2,15 +2,25 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>shazam</string>
+		<string>https</string>
+		<string>http</string>
+	</array>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>audio</string>
 	</array>
-    <key>LSApplicationQueriesSchemes</key>
-    <array>
-    <string>shazam</string>
-    <string>https</string>
-    <string>http</string>
-    </array>
+	<key>UILaunchScreen</key>
+	<dict>
+		<key>UITabBar</key>
+		<dict>
+			<key>UIImageName</key>
+			<string></string>
+		</dict>
+		<key>UIImageRespectsSafeAreaInsets</key>
+		<true/>
+	</dict>
 </dict>
 </plist>
