@@ -55,12 +55,11 @@ class PlayingStation {
     func setStation(_ station: Station, faviconCached data: Data?) async {
         self.station = station
         self.faviconData = nil
-        if data != nil {
-            self.faviconData = data!
+        
+        guard let data = data else {  await self.fetchFavicon(); return }
+        
+            self.faviconData = data
             print("Set faviconCached as PlayingStation data")
-        } else {
-            await self.fetchFavicon()
-        }
+   
     }
-    
 }

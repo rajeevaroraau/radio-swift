@@ -43,7 +43,7 @@ struct LibraryView: View {
                                 
                             } label: {
                                 LibraryTile(libraryStation: libraryStation)
-                                
+                                    .frame(width: 200, height: 200)
                             }
                         }
                     }
