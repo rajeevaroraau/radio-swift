@@ -16,24 +16,25 @@ struct FullScreenAudioControllerView: View {
     
     var body: some View {
         ZStack {
+            // BACKGROUND
             Rectangle()
                 .foregroundStyle(playingStation.faviconUIImage?.averageColor?.gradient ?? Color.gray.gradient)
-            VStack {
-                VStack(alignment: .center) {
-                    ZStack {
-                        RoundedRectangle(cornerRadius: 10)
-                            
-                            .foregroundStyle(playingStation.faviconUIImage?.averageColor ?? Color.gray)
-                            .padding()
-                        faviconCachedImage(image: playingStation.faviconUIImage, height: 100)
-                        
-                    }
+            VStack(alignment: .center) {
+                // COVER
+                ZStack {
+                    RoundedRectangle(cornerRadius: 10)
+                    
+                        .foregroundStyle(playingStation.faviconUIImage?.averageColor ?? Color.gray)
+                        .padding()
+                    faviconCachedImage(image: playingStation.faviconUIImage, height: 100)
                     
                 }
+                
+                // METADATA
+
                 VStack(alignment: .leading) {
                     HStack {
                         StationTextView(stationName: playingStation.station?.name ?? "Unknown", textAlignment: .leading, textSize: .largeTitle.bold())
-                        
                         Spacer()
                         FavouriteButton()
                     }
@@ -48,13 +49,15 @@ struct FullScreenAudioControllerView: View {
                             .font(.largeTitle)
                             .frame(width: 60, height:60)
                     }
+                    
+                    // BUMPER
                     Rectangle()
                         .frame(height:30)
                         .foregroundStyle(.clear)
                 }
                 .padding()
-
-
+                
+                
             }
         }
         .colorScheme(.dark)

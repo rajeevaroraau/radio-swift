@@ -19,7 +19,7 @@ struct TogglePlaybackButton: View {
             }
             audioModel.togglePlayback()
         } label: {
-            Image(systemName: audioModel.isPlaying ? "pause.fill" : "play.fill")
+            Image(systemName: audioModel.isPlaying ? "pause.circle.fill" : "play.circle.fill")
                 .contentTransition(.symbolEffect(.replace, options: .speed(10.0)))
                 .accessibilityLabel("\(audioModel.isPlaying ? "Pause" : "Resume")")
                 .font(font)
