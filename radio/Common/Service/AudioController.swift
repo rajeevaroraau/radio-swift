@@ -3,48 +3,46 @@ import AVFoundation
 import MediaPlayer
 
 @Observable
-class AudioModel {
-    init(player: AVPlayer = AVPlayer(), playerItem: AVPlayerItem? = nil, isPlaying: Bool = false, playingStation: PlayingStation) {
-        self.player = player
-        self.playerItem = playerItem
-        self.isPlaying = isPlaying
-        self.playingStation = playingStation
+class AudioController {
+    init() {
         self.nowPlayingInfo = nowPlayingInfoCenter.nowPlayingInfo ?? [String: Any]()
+        print("Init complete")
     }
-    
+    static let shared = AudioController()
+    func startPlayer(url: URL) {
+        playerItem = AVPlayerItem(url: url)
+        player.replaceCurrentItem(with: playerItem)
+    }
     private let nowPlayingInfoCenter = MPNowPlayingInfoCenter.default()
     private var player = AVPlayer()
     private var playerItem: AVPlayerItem? = nil
     var isPlaying = false
-    let playingStation: PlayingStation
-   private  let generator = UINotificationFeedbackGenerator()
+    var playingStation = PlayingStation.shared
+    private  let generator = UINotificationFeedbackGenerator()
     
     private var nowPlayingInfo: [String: Any]
     
     func play() {
+    print("EXECUTING: play()")
         isPlaying = true
         
-        guard playingStation.station != nil else { return }
+        guard let station = playingStation.station else { print("No playingStation");return }
         
-        guard let url = URL(string: playingStation.station!.url) else { return }
         let start = CFAbsoluteTimeGetCurrent()
         
         do {
             // Configure AVAudioSession
-            try AVAudioSession.sharedInstance().setMode(.default)
-            try AVAudioSession.sharedInstance().setCategory(.playback)
+            try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
             try AVAudioSession.sharedInstance().setActive(true)
-            
-            
-            
+            print("AVAudioSession is ready")
         } catch let error {
             isPlaying = false
             print(error)
             
         }
         // Configure AVPlayer
-        playerItem = AVPlayerItem(url: url)
-        player.replaceCurrentItem(with: playerItem)
+        guard let url = URL(string: station.url) else {  print("Bad url");return }
+        startPlayer(url: url)
         // RESUME URL STREAM
         player.play()
         setupRemoteCommandCenter()
@@ -94,7 +92,7 @@ class AudioModel {
             // SECOND ATTEMPT
         } else {
             guard let image = UIImage(named: "DefaultFaviconLarge") else  { return }
-        
+            
             // DEFAULT FAVICON
             nowPlayingInfo[MPMediaItemPropertyArtwork] = MPMediaItemArtwork(boundsSize: image.size) { size in
                 print("Set the Default Favicon")
@@ -109,7 +107,7 @@ class AudioModel {
                         return image
                     }
                 }
-
+                
                 self.nowPlayingInfoCenter.nowPlayingInfo = self.nowPlayingInfo
             }
             
@@ -133,7 +131,7 @@ class AudioModel {
             return .success
         }
     }
-
+    
     func togglePlayback() {
         if isPlaying {
             isPlaying = false
@@ -148,8 +146,8 @@ class AudioModel {
     
     func resume() {
         Task {
-                await generator.notificationOccurred(.success)
-                player.play()
+            await generator.notificationOccurred(.success)
+            player.play()
         }
         
         
@@ -174,7 +172,7 @@ class AudioModel {
         
     }
     
-
+    
     
 }
 

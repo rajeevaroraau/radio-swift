@@ -13,18 +13,12 @@ struct radioApp: App {
     init() {
         
         let stationsModel = StationsController()
-        let playingStation = PlayingStation()
-        let audioModel = AudioModel(playingStation: playingStation)
+        
         
         _stationsModel = State(initialValue: stationsModel)
-        _playingStation = State(initialValue: playingStation)
-        _audioModel = State(initialValue: audioModel)
-
     }
 
-    @State private var audioModel: AudioModel
     @State var stationsModel: StationsController
-    @State private var playingStation: PlayingStation
 }
 
 extension radioApp {
@@ -32,11 +26,9 @@ extension radioApp {
         WindowGroup {
             ContentView()
         }
-        .modelContainer(for: CachedStation.self)
+        .modelContainer(for: PersistableStation.self)
         
-        .environment(audioModel)
         .environment(stationsModel)
-        .environment(playingStation)
     }
         
 }

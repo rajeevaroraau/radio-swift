@@ -10,18 +10,16 @@ import SwiftData
 
 struct LibraryListView: View {
     @Environment(\.modelContext) var modelContext
-    @Environment(PlayingStation.self) private var playingStation: PlayingStation
-    @Environment(AudioModel.self) private var audioModel: AudioModel
     
-    @Query var favouriteStations: [CachedStation]
+    @Query var favouriteStations: [PersistableStation]
     var body: some View {
         List {
             ForEach(favouriteStations) { libraryStation in
                 Button {             
                     Task {
-                        await playingStation.setStation(libraryStation.station, faviconCached: libraryStation.faviconData)
+                        await PlayingStation.shared.setStation(libraryStation.station, faviconCached: libraryStation.faviconData)
                     }
-                    audioModel.play()
+                    AudioController.shared.play()
                 } label: {
                     StationRowView(faviconCached: nil, station: libraryStation.station)
                     

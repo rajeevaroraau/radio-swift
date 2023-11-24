@@ -9,57 +9,61 @@ import SwiftUI
 import SwiftData
 
 struct LibraryView: View {
-    @Environment(AudioModel.self) private var audioModel: AudioModel
     @Environment(\.modelContext) var modelContext
-    @Environment(PlayingStation.self) private var playingStation: PlayingStation
-    @Query var favouriteStations: [CachedStation]
+    @Query var favouriteStations: [PersistableStation]
     let columns = [
         GridItem(.adaptive(minimum: 180, maximum: 180), spacing: 0),
         
     ]
     var body: some View {
-      
-        NavigationStack {
-            ScrollView {
-                LazyVGrid(columns: columns, spacing: 0) {
-                    ForEach(favouriteStations) { libraryStation in
-                        Button {
-                            Task {
-                                await handleStationTap(libraryStation: libraryStation)
-                            }
-                        } label: {
-                            LibraryTile(libraryStation: libraryStation)
-                            
-                        }
-                        .contextMenu() {
-                            Button("Unfavourite", systemImage: "heart.slash") {
-                                modelContext.delete(libraryStation)
-                            }
-                        } preview: {
+            NavigationStack {
+                ScrollView {
+
+                if favouriteStations.count > 0 {
+                    ContentUnavailableView("Add Stations", systemImage: "magnifyingglass" , description: Text("You haven't favourited a station yet."))
+                } else {
+                    LazyVGrid(columns: columns, spacing: 0) {
+                        ForEach(favouriteStations) { libraryStation in
                             Button {
                                 Task {
                                     await handleStationTap(libraryStation: libraryStation)
                                 }
-                                
                             } label: {
                                 LibraryTile(libraryStation: libraryStation)
-                                    .frame(width: 200, height: 200)
+                                
+                            }
+                            .contextMenu() {
+                                Button("Unfavourite", systemImage: "heart.slash") {
+                                    modelContext.delete(libraryStation)
+                                }
+                            } preview: {
+                                Button {
+                                    Task {
+                                        await handleStationTap(libraryStation: libraryStation)
+                                    }
+                                    
+                                } label: {
+                                    LibraryTile(libraryStation: libraryStation)
+                                        .frame(width: 200, height: 200)
+                                }
                             }
                         }
+                        
                     }
-                    
+                    .padding(.horizontal, 5)
                 }
-                .padding(.horizontal, 5)
+                
+                
                 
             }
             .navigationTitle("Favourite")
             
         }
     }
-    func handleStationTap(libraryStation: CachedStation) async {
-            await playingStation.setStation(libraryStation.station, faviconCached: libraryStation.faviconData)
+    func handleStationTap(libraryStation: PersistableStation) async {
+        await PlayingStation.shared.setStation(libraryStation.station, faviconCached: libraryStation.faviconData)
         
-        audioModel.play()
+        AudioController.shared.play()
     }
 }
 

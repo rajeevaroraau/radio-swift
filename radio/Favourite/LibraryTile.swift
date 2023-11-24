@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct LibraryTile: View {
-    let libraryStation: CachedStation
+    let libraryStation: PersistableStation
     let customPadding: CGFloat
     var body: some View {
         ZStack(alignment: .bottomLeading) {
@@ -36,7 +36,7 @@ struct LibraryTile: View {
         }
         .padding(customPadding)
     }
-    init(libraryStation: CachedStation, customPadding: CGFloat = 6) {
+    init(libraryStation: PersistableStation, customPadding: CGFloat = 6) {
         self.libraryStation = libraryStation
         self.customPadding = customPadding
     }

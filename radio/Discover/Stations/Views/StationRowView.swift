@@ -1,7 +1,6 @@
 import SwiftUI
 
 struct StationRowView: View {
-    @Environment(PlayingStation.self) private var playingStation: PlayingStation
     let faviconCached: UIImage?
     var urlFavicon: String {
         return station.favicon
@@ -51,7 +50,7 @@ struct StationRowView: View {
                         .font(.headline)
                         .lineLimit(2)
                         .truncationMode(.tail)
-                    if station == playingStation.station {
+                    if station == PlayingStation.shared.station {
                         Image(systemName: "waveform")
                             .opacity(opacity)
                             .animation(

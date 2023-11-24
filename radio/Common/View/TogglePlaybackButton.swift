@@ -10,18 +10,17 @@ import SwiftUI
 struct TogglePlaybackButton: View {
     @State private var isTouching = false
     let font: Font
-    @Environment(AudioModel.self) private var audioModel: AudioModel
     var body: some View {
         Button {
             isTouching = true
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
                 isTouching = false
             }
-            audioModel.togglePlayback()
+            AudioController.shared.togglePlayback()
         } label: {
-            Image(systemName: audioModel.isPlaying ? "pause.circle.fill" : "play.circle.fill")
+            Image(systemName: AudioController.shared.isPlaying ? "pause.circle.fill" : "play.circle.fill")
                 .contentTransition(.symbolEffect(.replace, options: .speed(10.0)))
-                .accessibilityLabel("\(audioModel.isPlaying ? "Pause" : "Resume")")
+                .accessibilityLabel("\(AudioController.shared.isPlaying ? "Pause" : "Resume")")
                 .font(font)
                 
                 .frame(width: 60, height:60)

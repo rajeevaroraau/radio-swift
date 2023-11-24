@@ -9,11 +9,9 @@ import SwiftUI
 import Observation
 
 struct MiniplayerView: View {
-    @Environment(AudioModel.self) private var audioModel: AudioModel
     @Environment(StationsController.self) private var stationsModel: StationsController
-    @Environment(PlayingStation.self) private var playingStation: PlayingStation
     @State private var isTouching = false
-    @State private var isShowingSheet = false
+    @State private var isShowingModal = false
     var body: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 15)
@@ -22,16 +20,16 @@ struct MiniplayerView: View {
                 .frame(height: 60)
             RoundedRectangle(cornerRadius: 15)
 
-                .foregroundStyle(playingStation.faviconUIImage?.averageColor?.gradient.opacity(0.3) ?? Color.gray.gradient.opacity(0.3))
+                .foregroundStyle(PlayingStation.shared.faviconUIImage?.averageColor?.gradient.opacity(0.3) ?? Color.gray.gradient.opacity(0.3))
                 .foregroundStyle(.ultraThinMaterial)
                 .shadow(color: .black.opacity(0.3), radius: 10, x: 0, y: 5)
                 .frame(height: 60)
             
             HStack(spacing: 5) {
                 
-                faviconCachedImage(image: playingStation.faviconUIImage, height: 50)
+                faviconCachedImage(image: PlayingStation.shared.faviconUIImage, height: 50)
                 
-                Text(playingStation.station?.name ?? "Select a station")
+                Text(PlayingStation.shared.station?.name ?? "Select a station")
                     .font(.body)
                     .bold()
                     .multilineTextAlignment(.leading)
@@ -62,7 +60,7 @@ struct MiniplayerView: View {
         .padding(.horizontal, 10)
         .offset(y: -60)
         .onTapGesture {
-            isShowingSheet = true
+            isShowingModal = true
         }
         .gesture(DragGesture(minimumDistance: 10.0, coordinateSpace: .local)
             .onEnded { value in
@@ -70,14 +68,25 @@ struct MiniplayerView: View {
                 switch(value.translation.height) {
                 case ...(-40):  
                     print("up swipe : \(value.translation) [\(value.translation.height)]")
-                    isShowingSheet = true
+                    isShowingModal = true
                 default:  print("no clue : \(value.translation) [\(value.translation.height)]")
                 }
             }
         )
-        .sheet(isPresented: $isShowingSheet) {
+        .fullScreenCover(isPresented: $isShowingModal) {
             
-            FullScreenAudioControllerView(isShowingSheet: $isShowingSheet)
+            FullScreenAudioControllerView(isShowingSheet: $isShowingModal)
+                .gesture(DragGesture(minimumDistance: 10.0, coordinateSpace: .local)
+                    .onEnded { value in
+                        
+                        switch(value.translation.height) {
+                        case (20)...:
+                            print("up swipe : \(value.translation) [\(value.translation.height)]")
+                            isShowingModal = false
+                        default:  print("no clue : \(value.translation) [\(value.translation.height)]")
+                        }
+                    }
+                )
         }
     }
     
@@ -88,6 +97,6 @@ struct MiniplayerView: View {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
             isTouching = false
         }
-        audioModel.togglePlayback()
+        AudioController.shared.togglePlayback()
     }
 }

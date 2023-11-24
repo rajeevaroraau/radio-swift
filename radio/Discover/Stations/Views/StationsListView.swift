@@ -3,8 +3,6 @@ import AVFoundation
 import AVKit
 struct StationsListView: View {
     @Environment(StationsController.self) private var stationsModel: StationsController
-    @Environment(AudioModel.self) private var audioModel: AudioModel
-    @Environment(PlayingStation.self) private var playingStation: PlayingStation
     @Environment(\.modelContext) var modelContext
     
     var body: some View {
@@ -20,10 +18,10 @@ struct StationsListView: View {
                 ForEach(stationsModel.searchableStations, id: \.stationuuid) { station in
                     Button {
                         Task {
-                            await playingStation.setStation(station, faviconCached: nil)
+                            await PlayingStation.shared.setStation(station, faviconCached: nil)
                         }
                         hapticFeedback()
-                        audioModel.play()
+                        AudioController.shared.play()
    
                     } label: {
                         StationRowView(faviconCached: nil, station: station)
@@ -34,7 +32,7 @@ struct StationsListView: View {
                     .buttonStyle(.plain)
                     .swipeActions(allowsFullSwipe: true) {
                         Button {
-                            let stationTemp = CachedStation(station: station)
+                            let stationTemp = PersistableStation(station: station)
                             modelContext.insert(stationTemp)
                             
                             Task {

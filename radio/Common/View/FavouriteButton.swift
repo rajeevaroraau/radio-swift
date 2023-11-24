@@ -9,17 +9,16 @@ import SwiftUI
 import SwiftData
 
 struct FavouriteButton: View {
-    @Environment(PlayingStation.self) private var playingStation: PlayingStation
-    @Query var favouriteStations: [CachedStation]
+    @Query var favouriteStations: [PersistableStation]
     @Environment(\.modelContext) var modelContext
     var body: some View {
-        Button("Favourite", systemImage: favouriteStations.contains(where: { $0.station == playingStation.station }) ? "star.circle.fill" : "star.circle") {
-            guard let station =  playingStation.station else { return }
+        Button("Favourite", systemImage: favouriteStations.contains(where: { $0.station == PlayingStation.shared.station }) ? "star.circle.fill" : "star.circle") {
+            guard let station =  PlayingStation.shared.station else { return }
             hapticFeedback()
-            if let stationToDelete = favouriteStations.first(where: { $0.station == playingStation.station }) {
+            if let stationToDelete = favouriteStations.first(where: { $0.station == PlayingStation.shared.station }) {
                 modelContext.delete(stationToDelete)
             } else {
-                let stationTemp = CachedStation(station: station)
+                let stationTemp = PersistableStation(station: station)
                 modelContext.insert(stationTemp)
                 
                 Task {

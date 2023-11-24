@@ -11,7 +11,7 @@ import SwiftUI
 
 @Observable
 class PlayingStation {
-    
+    static var shared = PlayingStation()
     var faviconData: Data? = nil
     var faviconDataUnwrapped: Data {
         

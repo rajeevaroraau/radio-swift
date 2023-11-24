@@ -10,7 +10,7 @@ import SwiftUI
 import SwiftData
 
 @Model
-class CachedStation {
+class PersistableStation {
     var faviconData: Data? = nil
     var faviconUIImage: UIImage? {
         if let data = faviconData {
