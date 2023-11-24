@@ -7,7 +7,7 @@
 
 import SwiftUI
 import SwiftData
-struct FullScreenAudioControllerView: View {
+struct BigPlayerView: View {
     @Binding var isShowingSheet: Bool
     @Query var libraryStations: [PersistableStation]
     
