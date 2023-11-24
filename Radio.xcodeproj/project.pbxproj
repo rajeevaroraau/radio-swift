@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		D307999A2AD7154600D11D60 /* CountryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30799992AD7154600D11D60 /* CountryModel.swift */; };
 		D30D040C2AED54D40077371E /* AirPlayButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30D040B2AED54D40077371E /* AirPlayButton.swift */; };
-		D31B4FAE2AE1A88B002F9563 /* FullScreenAudioControllerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D31B4FAD2AE1A88B002F9563 /* FullScreenAudioControllerView.swift */; };
+		D31B4FAE2AE1A88B002F9563 /* BigPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D31B4FAD2AE1A88B002F9563 /* BigPlayerView.swift */; };
 		D32D8A972AF6F11E004D1FB0 /* CountryDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32D8A962AF6F11E004D1FB0 /* CountryDataService.swift */; };
 		D32D8A9D2AF6F620004D1FB0 /* StationDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32D8A9C2AF6F620004D1FB0 /* StationDataService.swift */; };
 		D330D8252AFE3C260085C65D /* AppIntents.swift in Sources */ = {isa = PBXBuildFile; fileRef = D330D8242AFE3C260085C65D /* AppIntents.swift */; };
@@ -46,7 +46,7 @@
 /* Begin PBXFileReference section */
 		D30799992AD7154600D11D60 /* CountryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryModel.swift; sourceTree = "<group>"; };
 		D30D040B2AED54D40077371E /* AirPlayButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirPlayButton.swift; sourceTree = "<group>"; };
-		D31B4FAD2AE1A88B002F9563 /* FullScreenAudioControllerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullScreenAudioControllerView.swift; sourceTree = "<group>"; };
+		D31B4FAD2AE1A88B002F9563 /* BigPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BigPlayerView.swift; sourceTree = "<group>"; };
 		D32D8A962AF6F11E004D1FB0 /* CountryDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryDataService.swift; sourceTree = "<group>"; };
 		D32D8A9C2AF6F620004D1FB0 /* StationDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationDataService.swift; sourceTree = "<group>"; };
 		D330D8242AFE3C260085C65D /* AppIntents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIntents.swift; sourceTree = "<group>"; };
@@ -277,7 +277,7 @@
 			isa = PBXGroup;
 			children = (
 				D359A78A2AD07B77004A292B /* MiniplayerView.swift */,
-				D31B4FAD2AE1A88B002F9563 /* FullScreenAudioControllerView.swift */,
+				D31B4FAD2AE1A88B002F9563 /* BigPlayerView.swift */,
 			);
 			path = Miniplayer;
 			sourceTree = "<group>";
@@ -374,7 +374,7 @@
 				D359A7782AD05125004A292B /* StationRowView.swift in Sources */,
 				D359A7672AD0509B004A292B /* ContentView.swift in Sources */,
 				D307999A2AD7154600D11D60 /* CountryModel.swift in Sources */,
-				D31B4FAE2AE1A88B002F9563 /* FullScreenAudioControllerView.swift in Sources */,
+				D31B4FAE2AE1A88B002F9563 /* BigPlayerView.swift in Sources */,
 				D34F54B92AD1F3AC00347E99 /* PlayingStation.swift in Sources */,
 				D359A77A2AD05125004A292B /* StationsListView.swift in Sources */,
 				D359A7812AD05166004A292B /* CountriesController.swift in Sources */,

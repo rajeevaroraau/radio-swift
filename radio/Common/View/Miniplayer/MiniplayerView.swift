@@ -75,7 +75,7 @@ struct MiniplayerView: View {
         )
         .fullScreenCover(isPresented: $isShowingModal) {
             
-            FullScreenAudioControllerView(isShowingSheet: $isShowingModal)
+            BigPlayerView(isShowingSheet: $isShowingModal)
                 .gesture(DragGesture(minimumDistance: 10.0, coordinateSpace: .local)
                     .onEnded { value in
                         
