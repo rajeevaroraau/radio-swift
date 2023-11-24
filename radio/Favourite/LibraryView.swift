@@ -19,7 +19,7 @@ struct LibraryView: View {
             NavigationStack {
                 ScrollView {
 
-                if favouriteStations.count > 0 {
+                if favouriteStations.count == 0 {
                     ContentUnavailableView("Add Stations", systemImage: "magnifyingglass" , description: Text("You haven't favourited a station yet."))
                 } else {
                     LazyVGrid(columns: columns, spacing: 0) {
@@ -35,6 +35,11 @@ struct LibraryView: View {
                             .contextMenu() {
                                 Button("Unfavourite", systemImage: "heart.slash") {
                                     modelContext.delete(libraryStation)
+                                    do {
+                                       try  modelContext.save()
+                                    } catch {
+                                        print("Cannot delete station")
+                                    }
                                 }
                             } preview: {
                                 Button {
