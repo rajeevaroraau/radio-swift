@@ -15,19 +15,18 @@ struct BigPlayerView: View {
     var body: some View {
         ZStack {
             // BACKGROUND
-            Rectangle()
-                .foregroundStyle(PlayingStation.shared.faviconUIImage?.averageColor?.gradient ?? Color.gray.gradient)
+            ZStack {
+                Color(.black)
+                    .opacity(0.05)
+                Rectangle()
+                    .foregroundStyle(PlayingStation.shared.faviconUIImage?.averageColor?.gradient ?? Color.gray.gradient)
+            }
+            
             VStack(alignment: .center) {
                 
                 // COVER
-                ZStack(alignment: .center) {
-                    RoundedRectangle(cornerRadius: 10)
-                        .containerRelativeFrame(.horizontal)
-                        .aspectRatio(1.0, contentMode: .fit)
-                        .foregroundStyle(PlayingStation.shared.faviconUIImage?.averageColor ?? Color.gray)
                     faviconCachedImage(image: PlayingStation.shared.faviconUIImage, height: 320, manualCornerRadius: true, customCornerRadius: 10)
-                    
-                }
+                    .shadow(radius: 10)
                 .padding(15)
 
                 

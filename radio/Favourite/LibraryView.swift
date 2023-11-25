@@ -17,45 +17,49 @@ struct LibraryView: View {
     ]
     var body: some View {
             NavigationStack {
-                ScrollView {
+                Group {
 
                 if favouriteStations.count == 0 {
+                    Spacer()
                     ContentUnavailableView("Add Stations", systemImage: "magnifyingglass" , description: Text("You haven't favourited a station yet."))
+                    Spacer()
                 } else {
-                    LazyVGrid(columns: columns, spacing: 0) {
-                        ForEach(favouriteStations) { libraryStation in
-                            Button {
-                                Task {
-                                    await handleStationTap(libraryStation: libraryStation)
-                                }
-                            } label: {
-                                LibraryTile(libraryStation: libraryStation)
-                                
-                            }
-                            .contextMenu() {
-                                Button("Unfavourite", systemImage: "heart.slash") {
-                                    modelContext.delete(libraryStation)
-                                    do {
-                                       try  modelContext.save()
-                                    } catch {
-                                        print("Cannot delete station")
-                                    }
-                                }
-                            } preview: {
+                    ScrollView {
+                        LazyVGrid(columns: columns, spacing: 0) {
+                            ForEach(favouriteStations) { libraryStation in
                                 Button {
                                     Task {
                                         await handleStationTap(libraryStation: libraryStation)
                                     }
-                                    
                                 } label: {
                                     LibraryTile(libraryStation: libraryStation)
-                                        .frame(width: 200, height: 200)
+                                    
+                                }
+                                .contextMenu() {
+                                    Button("Unfavourite", systemImage: "heart.slash") {
+                                        modelContext.delete(libraryStation)
+                                        do {
+                                            try  modelContext.save()
+                                        } catch {
+                                            print("Cannot delete station")
+                                        }
+                                    }
+                                } preview: {
+                                    Button {
+                                        Task {
+                                            await handleStationTap(libraryStation: libraryStation)
+                                        }
+                                        
+                                    } label: {
+                                        LibraryTile(libraryStation: libraryStation)
+                                            .frame(width: 200, height: 200)
+                                    }
                                 }
                             }
+                            
                         }
-                        
+                        .padding(.horizontal, 5)
                     }
-                    .padding(.horizontal, 5)
                 }
                 
                 

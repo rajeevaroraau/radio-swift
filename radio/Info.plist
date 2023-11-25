@@ -14,11 +14,8 @@
 	</array>
 	<key>UILaunchScreen</key>
 	<dict>
-		<key>UITabBar</key>
-		<dict>
-			<key>UIImageName</key>
-			<string></string>
-		</dict>
+		<key>UIImageName</key>
+		<string>launchScreen</string>
 		<key>UIImageRespectsSafeAreaInsets</key>
 		<true/>
 	</dict>

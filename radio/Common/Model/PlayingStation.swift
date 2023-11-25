@@ -56,7 +56,7 @@ class PlayingStation {
         self.station = station
         self.faviconData = nil
         
-        guard let data = data else {  await self.fetchFavicon(); return }
+        guard let data = data else {  Task { await self.fetchFavicon()} ; return }
         
             self.faviconData = data
             print("Set faviconCached as PlayingStation data")
