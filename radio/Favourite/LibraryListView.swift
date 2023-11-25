@@ -16,9 +16,7 @@ struct LibraryListView: View {
         List {
             ForEach(favouriteStations) { libraryStation in
                 Button {             
-                    Task {
-                        await PlayingStation.shared.setStation(libraryStation.station, faviconCached: libraryStation.faviconData)
-                    }
+                    PlayingStation.shared.setStation(libraryStation.station, faviconCached: libraryStation.faviconData)
                     AudioController.shared.play()
                 } label: {
                     StationRowView(faviconCached: nil, station: libraryStation.station)

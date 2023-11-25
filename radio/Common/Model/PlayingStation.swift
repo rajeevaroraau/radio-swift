@@ -52,14 +52,27 @@ class PlayingStation {
         return  nil
         
     }
-    func setStation(_ station: Station, faviconCached data: Data?) async {
-        self.station = station
-        self.faviconData = nil
-        
-        guard let data = data else {  Task { await self.fetchFavicon()} ; return }
-        
+    func setStationAsync(_ station: Station) async {
+        withAnimation {
+            self.station = station
+            self.faviconData = nil
+        }
+        self.faviconData = await self.fetchFavicon()
+
+            
+       
+    }
+    
+    func setStation(_ station: Station, faviconCached data: Data?)  {
+        withAnimation {
+            self.station = station
+            guard let data = data else {
+                self.faviconData = nil;
+                return
+            }
+            
             self.faviconData = data
-            print("Set faviconCached as PlayingStation data")
-   
+            
+        }
     }
 }

@@ -36,6 +36,7 @@ struct MiniplayerView: View {
                     .lineSpacing(-3)
                     .lineLimit(2)
                     .truncationMode(.tail)
+                    .contentTransition(.numericText())
                 Spacer()
                 
                 ShazamButton()
