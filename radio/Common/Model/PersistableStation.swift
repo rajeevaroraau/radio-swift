@@ -18,7 +18,11 @@ class PersistableStation {
         }
         return nil
     }
-
+    
+    var faviconDataUnwrapped: Data {
+        
+        return faviconData ?? Data()
+    }
 
     var station: Station
     
@@ -48,8 +52,13 @@ class PersistableStation {
     }
 
     init(faviconData: Data? = nil, station: Station) {
+        print("Preparing PersistableStation")
         self.faviconData = faviconData
+        print("FaviconData Prepared")
+
         self.station = station
+        print("Station Prepared")
+
     }
 }
 

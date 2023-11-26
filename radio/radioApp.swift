@@ -10,8 +10,11 @@ import SwiftData
 
 @main
 struct radioApp: App {
+    
+
+
+    
     init() {
-        
         let stationsModel = StationsController()
         
         
@@ -26,9 +29,10 @@ extension radioApp {
         WindowGroup {
             ContentView()
         }
-        .modelContainer(for: PersistableStation.self)
+        .modelContainer(Container.shared.container)
         
         .environment(stationsModel)
+        
     }
         
 }

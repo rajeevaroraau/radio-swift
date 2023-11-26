@@ -1,10 +1,10 @@
 import SwiftUI
-    import Network
+import Network
 @Observable
 class Connection {
     static var baseURL = "https://de1.api.radio-browser.info/json/"
-
-
+    
+    
     
     static var manager = URLSession.shared
 }

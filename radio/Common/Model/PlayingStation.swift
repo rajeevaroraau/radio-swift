@@ -58,9 +58,9 @@ class PlayingStation {
             self.faviconData = nil
         }
         self.faviconData = await self.fetchFavicon()
-
-            
-       
+        
+        
+        
     }
     
     func setStation(_ station: Station, faviconCached data: Data?)  {
