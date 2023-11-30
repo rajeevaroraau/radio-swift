@@ -16,23 +16,16 @@ struct LibraryTileView: View {
                 .foregroundColor(.black)
                 .frame(height: 100)
             RoundedRectangle(cornerRadius: 10)
-                
                 .foregroundStyle(libraryStation.faviconUIImage?.averageColor?.gradient ?? Color.gray.gradient)
                 .frame(height: 100)
                 .opacity(0.8)
-            
             VStack(alignment: .leading) {
-                
                 faviconCachedImageView(image: libraryStation.faviconUIImage, isPlaceholderLowRes: true, height: 30 )
                 StationTextView(stationName: libraryStation.station.name, textAlignment: .leading, textSize: .headline)
                     .foregroundStyle(.white)
-
-
             }
             // CONTENT PADDING
             .padding(12)
-        
-            
         }
         .padding(customPadding)
     }
