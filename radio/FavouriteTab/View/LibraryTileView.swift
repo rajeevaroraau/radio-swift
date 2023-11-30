@@ -23,7 +23,7 @@ struct LibraryTileView: View {
             
             VStack(alignment: .leading) {
                 
-                faviconCachedImageView(image: libraryStation.faviconUIImage, height: 30)
+                faviconCachedImageView(image: libraryStation.faviconUIImage, isPlaceholderLowRes: true, height: 30 )
                 StationTextView(stationName: libraryStation.station.name, textAlignment: .leading, textSize: .headline)
                     .foregroundStyle(.white)
 

@@ -11,7 +11,7 @@ struct StationRowView: View {
         HStack {
             
             if let faviconCached = faviconCached {
-                faviconCachedImageView(image: faviconCached, height: 50)
+                faviconCachedImageView(image: faviconCached, isPlaceholderLowRes: true, height: 50)
             } else {
                 // CHECK IF AN FAVICONURL EXISTS
                 if let url = URL(string: urlFavicon), urlFavicon.hasPrefix("https") == true {

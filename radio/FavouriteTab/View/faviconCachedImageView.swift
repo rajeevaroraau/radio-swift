@@ -10,13 +10,22 @@ import SwiftUI
 
 struct faviconCachedImageView: View {
     let image: UIImage?
+    let isPlaceholderLowRes: Bool
+    
+    var placeholderImage: UIImage {
+        if isPlaceholderLowRes {
+            return UIImage(named: "DefaultFaviconSmall")!
+        } else {
+            return UIImage(named: "DefaultFaviconLarge")!
+        }
+    }
     let height: CGFloat
     var manualCornerRadius: Bool = false
     var customCornerRadius: CGFloat? = nil
     var body: some View {
 
 
-        Image(uiImage: image ?? UIImage(named: "DefaultFaviconSmall")!)
+        Image(uiImage: image ?? placeholderImage)
             .resizable()
             .accessibilityHidden(true)
         .scaledToFit()
