@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-struct faviconCachedImage: View {
+struct faviconCachedImageView: View {
     let image: UIImage?
     let height: CGFloat
     var manualCornerRadius: Bool = false

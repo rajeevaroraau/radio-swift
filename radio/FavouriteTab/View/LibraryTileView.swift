@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct LibraryTile: View {
+struct LibraryTileView: View {
     let libraryStation: PersistableStation
     let customPadding: CGFloat
     var body: some View {
@@ -23,7 +23,7 @@ struct LibraryTile: View {
             
             VStack(alignment: .leading) {
                 
-                faviconCachedImage(image: libraryStation.faviconUIImage, height: 30)
+                faviconCachedImageView(image: libraryStation.faviconUIImage, height: 30)
                 StationTextView(stationName: libraryStation.station.name, textAlignment: .leading, textSize: .headline)
                     .foregroundStyle(.white)
 

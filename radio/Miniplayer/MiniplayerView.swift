@@ -27,7 +27,7 @@ struct MiniplayerView: View {
             
             HStack(spacing: 5) {
                 
-                faviconCachedImage(image: PlayingStation.shared.faviconUIImage, height: 50)
+                faviconCachedImageView(image: PlayingStation.shared.faviconUIImage, height: 50)
                 
                 Text(PlayingStation.shared.station?.name ?? "Select a station")
                     .font(.body)

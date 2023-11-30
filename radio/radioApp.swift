@@ -10,14 +10,8 @@ import SwiftData
 
 @main
 struct radioApp: App {
-    
-
-
-    
     init() {
         let stationsModel = StationsController()
-        
-        
         _stationsModel = State(initialValue: stationsModel)
     }
 
@@ -30,7 +24,6 @@ extension radioApp {
             ContentView()
         }
         .modelContainer(Container.shared.container)
-        
         .environment(stationsModel)
         
     }

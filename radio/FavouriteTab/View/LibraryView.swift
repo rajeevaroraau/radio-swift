@@ -11,6 +11,7 @@ import SwiftData
 struct LibraryView: View {
     @Environment(\.modelContext) var modelContext
     @Query var favouriteStations: [PersistableStation]
+    
     let columns = [
         GridItem(.adaptive(minimum: 180, maximum: 180), spacing: 0),
         
@@ -31,7 +32,7 @@ struct LibraryView: View {
                                          handleStationTap(libraryStation: libraryStation)
                                     
                                 } label: {
-                                    LibraryTile(libraryStation: libraryStation)
+                                    LibraryTileView(libraryStation: libraryStation)
                                     
                                 }
                                 .contextMenu() {
@@ -50,7 +51,7 @@ struct LibraryView: View {
                                     
                                         
                                     } label: {
-                                        LibraryTile(libraryStation: libraryStation)
+                                        LibraryTileView(libraryStation: libraryStation)
                                             .frame(width: 200, height: 200)
                                     }
                                 }
