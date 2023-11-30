@@ -1,8 +1,9 @@
 {
   "images" : [
     {
-      "filename" : "launchScreenAppIconLight.png",
-      "idiom" : "universal"
+      "filename" : "launchIconApp.png",
+      "idiom" : "universal",
+      "scale" : "1x"
     },
     {
       "appearances" : [
@@ -11,8 +12,41 @@
           "value" : "dark"
         }
       ],
-      "filename" : "launchScreenAppIconDark.png",
-      "idiom" : "universal"
+      "filename" : "launchIconDark.png",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "filename" : "launchIconApp@2x.png",
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "filename" : "launchIconDark@2x.png",
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "filename" : "launchIconApp@3x.png",
+      "idiom" : "universal",
+      "scale" : "3x"
+    },
+    {
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "filename" : "launchIconDark@3x.png",
+      "idiom" : "universal",
+      "scale" : "3x"
     }
   ],
   "info" : {
