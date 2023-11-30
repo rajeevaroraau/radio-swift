@@ -25,7 +25,7 @@ struct BigPlayerView: View {
             VStack(alignment: .center) {
                 
                 // COVER
-                    faviconCachedImageView(image: PlayingStation.shared.faviconUIImage, isPlaceholderLowRes: true, height: 320, manualCornerRadius: true, customCornerRadius: 10)
+                    faviconCachedImageView(image: PlayingStation.shared.faviconUIImage, isPlaceholderLowRes: false, height: 320, manualCornerRadius: true, customCornerRadius: 10)
                     .shadow(radius: 10)
                 .padding(15)
 
