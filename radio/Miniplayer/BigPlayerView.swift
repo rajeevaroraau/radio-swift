@@ -17,7 +17,7 @@ struct BigPlayerView: View {
             // BACKGROUND
             ZStack {
                 Color(.black)
-                    .opacity(0.05)
+                    .opacity(0.15)
                 Rectangle()
                     .foregroundStyle(PlayingStation.shared.faviconUIImage?.averageColor?.gradient ?? Color.gray.gradient)
             }
