@@ -10,11 +10,11 @@ import SimpleCodable
 
 
 @Observable
-class StationsController {
+class StationsViewController {
     static var selectedCountry = Country()
 
     
-    private let service = StationDataService()
+    private let networking = StationNetworking()
     
     var stations : [Station] = []
     var searchText = ""
@@ -27,13 +27,14 @@ class StationsController {
         }
     } 
     
+    var fetchStationsTask = Task{}
     
     
     
     func fetchStationsListForCountry() async {
         do {
             let diagnosticMarker = DiagnosticsMarker(prefix: "[FETCH TIME] \(Country.selectedCountry)")
-            let data = try await service.fetchStationsListForCountry()
+            let data = try await networking.fetchStationsListForCountry()
             DispatchQueue.main.async {
                 self.stations = data
             }

@@ -16,7 +16,7 @@ struct FavouriteStation: AppIntent {
     func perform() async throws -> some IntentResult {
         print("Start \(Self.title.locale)")
         
-        guard var stationPlaying = PlayingStation.shared.station else {
+        guard let stationPlaying = PlayingStation.shared.station else {
             print("No")
             return .result()
         }

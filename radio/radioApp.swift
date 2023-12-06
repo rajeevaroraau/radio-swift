@@ -11,11 +11,11 @@ import SwiftData
 @main
 struct radioApp: App {
     init() {
-        let stationsModel = StationsController()
+        let stationsModel = StationsViewController()
         _stationsModel = State(initialValue: stationsModel)
     }
 
-    @State var stationsModel: StationsController
+    @State var stationsModel: StationsViewController
 }
 
 extension radioApp {

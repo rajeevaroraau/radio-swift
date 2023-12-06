@@ -1,5 +1,5 @@
 //
-//  CountryDataService.swift
+//  CountryNetworking.swift
 //  Radio
 //
 //  Created by Marcin Wolski on 04/11/2023.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-class CountryDataService {
+class CountryNetworking {
     private let url = URL(string: "\(Connection.baseURL)countries?order=stationcount")!
 
     func fetchCountries() async throws -> [Country]{

@@ -2,7 +2,7 @@ import SwiftUI
 
 struct CountriesListView: View {
     @Bindable var countriesModel = CountriesController()
-    @Environment(StationsController.self) private var stationsModel: StationsController
+    @Environment(StationsViewController.self) private var stationsModel: StationsViewController
     @State private var firstTime: Bool = true
     var body: some View {
         
@@ -20,7 +20,7 @@ struct CountriesListView: View {
                                     .onAppear {
                                         hapticFeedback()
                                         stationsModel.stations = []
-                                        StationsController.selectedCountry = country
+                                        StationsViewController.selectedCountry = country
                                     }
                             } label: {
                                 CountryRow(country: country)

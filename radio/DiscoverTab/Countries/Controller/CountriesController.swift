@@ -5,7 +5,7 @@ import SwiftUI
 
 @Observable
 class CountriesController {
-    private let service = CountryDataService()
+    private let networking = CountryNetworking()
     
     var searchText = ""
     var countries : [Country] = []
@@ -19,7 +19,7 @@ class CountriesController {
     }
     func fetchCountries() async {
         do {
-            let data = try await service.fetchCountries()
+            let data = try await networking.fetchCountries()
             DispatchQueue.main.async {
                 self.countries = data
             }

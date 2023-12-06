@@ -9,7 +9,7 @@ import SwiftUI
 import Observation
 
 struct MiniplayerView: View {
-    @Environment(StationsController.self) private var stationsModel: StationsController
+    @Environment(StationsViewController.self) private var stationsModel: StationsViewController
     @State private var isTouching = false
     @State private var isShowingModal = false
     var body: some View {

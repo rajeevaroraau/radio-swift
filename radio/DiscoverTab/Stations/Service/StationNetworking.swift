@@ -1,5 +1,5 @@
 //
-//  StationDataService.swift
+//  StationDataNetworking.swift
 //  Radio
 //
 //  Created by Marcin Wolski on 04/11/2023.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-class StationDataService {
+class StationNetworking {
     func fetchStationsListForCountry() async throws -> [Station] {
 
 
