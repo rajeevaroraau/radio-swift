@@ -54,8 +54,10 @@ struct LibraryView: View {
 
 extension LibraryView {
     func handleStationTap(libraryStation: PersistableStation)  {
+        hapticFeedback()
         PlayingStation.shared.setStation(libraryStation.station, faviconCached: libraryStation.faviconData)
         AudioController.shared.play()
+        
     }
     
     
