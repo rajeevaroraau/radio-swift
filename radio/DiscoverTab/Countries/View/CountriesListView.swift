@@ -1,45 +1,31 @@
-import SwiftUI
+//
+//  CountriesListView.swift
+//  Radio
+//
+//  Created by Marcin Wolski on 09/12/2023.
+//
 
+import SwiftUI
+import OSLog
 struct CountriesListView: View {
-    @Bindable var countriesModel = CountriesController()
+    @State var countriesModel = CountriesController.shared
     @Environment(StationsViewController.self) private var stationsModel: StationsViewController
     @State private var firstTime: Bool = true
     var body: some View {
-        
-        NavigationView {
+        List {
             
-            Group {
-                if countriesModel.countries == [] {
-                    ProgressView()
-                } else {
-                    List {
-                        
-                        ForEach(countriesModel.searchableCountries, id: \.iso_3166_1) { country in
-                            NavigationLink  {
-                                StationsListView()
-                                    .onAppear {
-                                        hapticFeedback()
-                                        stationsModel.stations = []
-                                        StationsViewController.selectedCountry = country
-                                    }
-                            } label: {
-                                CountryRow(country: country)
-                            }
-                        }
-                    }
-                    .searchable(text: $countriesModel.searchText, prompt: Text("Search for countries"))
-                    .disableAutocorrection(true)
+            ForEach(countriesModel.searchableCountries, id: \.iso_3166_1) { country in
+                NavigationLink  {
+                    StationsListContentView(country: country)
+                } label: {
+                    CountryRow(country: country)
+
                 }
             }
-            .task {
-                await countriesModel.fetchCountries()
-            }
-            
         }
-        
-        .navigationTitle("Countries")
+        .searchable(text: $countriesModel.searchText, prompt: Text("Search for countries"))
+        .disableAutocorrection(true)
     }
+
     
 }
-
-

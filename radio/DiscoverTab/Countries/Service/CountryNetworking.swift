@@ -10,7 +10,7 @@ import SwiftUI
 class CountryNetworking {
     private let url = URL(string: "\(Connection.baseURL)countries?order=stationcount")!
 
-    func fetchCountries() async throws -> [Country]{
+    func requestCountries() async throws -> [Country]{
         do {
             let (data, _) = try await Connection.manager.data(from: url)
             

@@ -1,10 +1,9 @@
 import SwiftUI
 
-
-
-
 @Observable
 class CountriesController {
+    static var shared = CountriesController()
+    
     private let networking = CountryNetworking()
     
     var searchText = ""
@@ -19,7 +18,7 @@ class CountriesController {
     }
     func fetchCountries() async {
         do {
-            let data = try await networking.fetchCountries()
+            let data = try await networking.requestCountries()
             DispatchQueue.main.async {
                 self.countries = data
             }

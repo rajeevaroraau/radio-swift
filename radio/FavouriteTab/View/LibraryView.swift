@@ -2,7 +2,7 @@
 //  LibraryView.swift
 //  Radio
 //
-//  Created by Marcin Wolski on 06/10/2023.
+//  Created by Marcin Wolski on 09/12/2023.
 //
 
 import SwiftUI
@@ -17,61 +17,46 @@ struct LibraryView: View {
         
     ]
     var body: some View {
-            NavigationStack {
-                Group {
-
-                if favouriteStations.count == 0 {
-                    Spacer()
-                    ContentUnavailableView("Add Stations", systemImage: "magnifyingglass" , description: Text("You haven't favourited a station yet."))
-                    Spacer()
-                } else {
-                    ScrollView {
-                        LazyVGrid(columns: columns, spacing: 0) {
-                            ForEach(favouriteStations) { libraryStation in
-                                Button {
-                                         handleStationTap(libraryStation: libraryStation)
-                                    
-                                } label: {
-                                    LibraryTileView(libraryStation: libraryStation)
-                                    
-                                }
-                                .contextMenu() {
-                                    Button("Unfavourite", systemImage: "heart.slash") {
-                                        modelContext.delete(libraryStation)
-                                        do {
-                                            try  modelContext.save()
-                                        } catch {
-                                            print("Cannot delete station")
-                                        }
-                                    }
-                                } preview: {
-                                    Button {
-                                        
-                                             handleStationTap(libraryStation: libraryStation)
-                                    
-                                        
-                                    } label: {
-                                        LibraryTileView(libraryStation: libraryStation)
-                                            .frame(width: 200, height: 200)
-                                    }
-                                }
+        ScrollView {
+            LazyVGrid(columns: columns, spacing: 0) {
+                ForEach(favouriteStations) { libraryStation in
+                    Button {
+                        handleStationTap(libraryStation: libraryStation)
+                        
+                    } label: {
+                        LibraryTileView(libraryStation: libraryStation)
+                        
+                    }
+                    .contextMenu() {
+                        Button("Unfavourite", systemImage: "heart.slash") {
+                            modelContext.delete(libraryStation)
+                            do {
+                                try  modelContext.save()
+                            } catch {
+                                print("Cannot delete station")
                             }
-                            
                         }
-                        .padding(.horizontal, 5)
+                    } preview: {
+                        Button {
+                            handleStationTap(libraryStation: libraryStation)
+                        } label: {
+                        LibraryTileView(libraryStation: libraryStation)
+                            .frame(width: 200, height: 200)
+                        }
                     }
                 }
                 
-                
-                
             }
-            .navigationTitle("Favourite")
-            
+            .padding(.horizontal, 5)
         }
     }
+}
+
+extension LibraryView {
     func handleStationTap(libraryStation: PersistableStation)  {
         PlayingStation.shared.setStation(libraryStation.station, faviconCached: libraryStation.faviconData)
         AudioController.shared.play()
     }
+    
+    
 }
-
