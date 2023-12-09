@@ -37,7 +37,7 @@ struct StationsListView: View {
                         
                         modelContext.insert(stationTemp)
                         hapticFeedback()
-
+                        
                         Task {
                             await stationTemp.fetchStation()
                         }

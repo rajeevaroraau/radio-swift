@@ -34,7 +34,7 @@ class StationsViewController {
     func fetchStationsListForCountry() async {
         do {
             let diagnosticMarker = DiagnosticsMarker(prefix: "[FETCH TIME] \(Country.selectedCountry)")
-            let data = try await networking.fetchStationsListForCountry()
+            let data = try await networking.requestStationListForCountry()
             DispatchQueue.main.async {
                 self.stations = data
             }

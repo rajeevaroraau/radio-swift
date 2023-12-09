@@ -8,7 +8,7 @@
 import SwiftUI
 
 class StationNetworking {
-    func fetchStationsListForCountry() async throws -> [Station] {
+    func requestStationListForCountry() async throws -> [Station] {
 
 
         // PREPARE CUSTOM JSONDECODER
