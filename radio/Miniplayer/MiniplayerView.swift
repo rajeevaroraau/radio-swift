@@ -7,27 +7,30 @@
 
 import SwiftUI
 import Observation
+import SwiftData
 
 struct MiniplayerView: View {
     @Environment(StationsViewController.self) private var stationsModel: StationsViewController
     @State private var isTouching = false
     @State private var isShowingModal = false
+    @State private var firstPlay = true
+
+    
     var body: some View {
         ZStack {
-            RoundedRectangle(cornerRadius: 15)
-
-                .foregroundStyle(.ultraThinMaterial)
-                .frame(height: 60)
-            RoundedRectangle(cornerRadius: 15)
-
-                .foregroundStyle(PlayingStation.shared.faviconUIImage?.averageColor?.gradient.opacity(0.3) ?? Color.gray.gradient.opacity(0.3))
-                .foregroundStyle(.ultraThinMaterial)
-                .shadow(color: .black.opacity(0.3), radius: 10, x: 0, y: 5)
-                .frame(height: 60)
+            Group {
+                RoundedRectangle(cornerRadius: 15)
+                RoundedRectangle(cornerRadius: 15)
+                    .foregroundStyle(PlayingStation.shared.faviconUIImage?.averageColor?.gradient.opacity(0.3) ?? Color.gray.gradient.opacity(0.3))
+                    .shadow(color: .black.opacity(0.3), radius: 10, x: 0, y: 5)
+            }
+            .frame(height: 60)
+            .foregroundStyle(.ultraThinMaterial)
+            
             
             HStack(spacing: 5) {
                 
-                faviconCachedImageView(image: PlayingStation.shared.faviconUIImage, isPlaceholderLowRes: true, height: 50)
+                ImageFaviconCached(image: PlayingStation.shared.faviconUIImage, isPlaceholderLowRes: true, height: 50, isPlayingStationImage: true)
                 
                 Text(PlayingStation.shared.station?.name ?? "Select a station")
                     .font(.body)
@@ -43,14 +46,8 @@ struct MiniplayerView: View {
                     .font(.title)
                     .frame(width: 60, height:60)
                 
-                Button {
-                    handlePlayPauseTap()
-                } label: {
-                    TogglePlaybackButton(font: .title)
-                        .frame(width: 60, height:60)
-
-                    
-                }
+                TogglePlaybackButton(font: .title)
+                    .frame(width: 60, height:60)
                 .contentShape(Rectangle())
             }
             .padding(.horizontal, 5)
@@ -67,7 +64,7 @@ struct MiniplayerView: View {
             .onEnded { value in
                 
                 switch(value.translation.height) {
-                case ...(-40):  
+                case ...(-40):
                     print("up swipe : \(value.translation) [\(value.translation.height)]")
                     isShowingModal = true
                 default:  print("no clue : \(value.translation) [\(value.translation.height)]")
@@ -92,12 +89,5 @@ struct MiniplayerView: View {
     }
     
     
-    @MainActor
-    func handlePlayPauseTap() {
-        isTouching = true
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-            isTouching = false
-        }
-        AudioController.shared.togglePlayback()
     }
-}
+

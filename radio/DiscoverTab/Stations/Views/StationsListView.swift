@@ -18,12 +18,14 @@ struct StationsListView: View {
         List {
             ForEach(stationsModel.searchableStations, id: \.stationuuid) { station in
                 Button {
-                    Task {
-                        await PlayingStation.shared.setStationAsync(station)
-                    }
-                    hapticFeedback()
-                    AudioController.shared.play()
                     
+                        hapticFeedback()
+                        PlayingStation.shared.setStationWithFetchingFavicon(station)
+                        AudioController.shared.playWithSetup()
+                    
+                    
+                    
+
                 } label: {
                     StationRowView(faviconCached: nil, station: station)
                     

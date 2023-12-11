@@ -11,15 +11,15 @@ import SwiftData
 struct LibraryListView: View {
     @Environment(\.modelContext) var modelContext
     
-    @Query var favouriteStations: [PersistableStation]
+    @Query var favoriteStations: [PersistableStation]
     var body: some View {
         List {
-            ForEach(favouriteStations) { libraryStation in
+            ForEach(favoriteStations) { favoriteStation in
                 Button {             
-                    PlayingStation.shared.setStation(libraryStation.station, faviconCached: libraryStation.faviconData)
-                    AudioController.shared.play()
+                    PlayingStation.shared.setStation(favoriteStation.station, faviconCached: favoriteStation.faviconData)
+                    AudioController.shared.playWithSetup()
                 } label: {
-                    StationRowView(faviconCached: nil, station: libraryStation.station)
+                    StationRowView(faviconCached: nil, station: favoriteStation.station)
                     
                 }
                 .buttonStyle(.plain)
@@ -28,7 +28,7 @@ struct LibraryListView: View {
             .onDelete  { indexSet in
                 
                 for index in indexSet {
-                    modelContext.delete(favouriteStations[index])
+                    modelContext.delete(favoriteStations[index])
                 }
                 
             }

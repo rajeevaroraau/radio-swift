@@ -12,12 +12,13 @@ import SimpleCodable
 @Observable
 class StationsViewController {
     static var selectedCountry = Country()
-
+    
     
     private let networking = StationNetworking()
     
     var stations : [Station] = []
     var searchText = ""
+    
     var searchableStations: [Station] {
         if searchText.isEmpty {
             return stations.sorted { $0.votes > $1.votes }
@@ -25,22 +26,21 @@ class StationsViewController {
             return stations.filter { $0.name.localizedStandardContains(searchText) }
             
         }
-    } 
+    }
     
-    var fetchStationsTask = Task{}
+    
+    
+    // EMPTY TASK ALLOWING FOR TASK CANCELATION
+    var fetchStationsTask = Task{ }
     
     
     
     func fetchStationsListForCountry() async {
         do {
-            let diagnosticMarker = DiagnosticsMarker(prefix: "[FETCH TIME] \(Country.selectedCountry)")
             let data = try await networking.requestStationListForCountry()
-            DispatchQueue.main.async {
-                self.stations = data
-            }
-            diagnosticMarker.printCheckpoint()
+            self.stations = data
         } catch {
-            print(error)
+            print("Fetching error: \(error)")
         }
     }
 }

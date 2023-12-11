@@ -7,6 +7,13 @@
 
 import UIKit
 func hapticFeedback() {
-    let generator = UINotificationFeedbackGenerator()
-    generator.notificationOccurred(.success)
+    Task {
+        
+        
+        let generator = await UINotificationFeedbackGenerator()
+        await generator.notificationOccurred(.success)
+        print("Haptic Used")
+    }
 }
+
+

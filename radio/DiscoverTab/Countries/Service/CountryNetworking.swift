@@ -12,13 +12,15 @@ class CountryNetworking {
 
     func requestCountries() async throws -> [Country]{
         do {
-            let (data, _) = try await Connection.manager.data(from: url)
+            let (data, _) = try await URLSession.shared.data(from: url)
             
-            let countries = try JSONDecoder().decode([Country].self, from: data)
-            print("Successfully fetched countries from \(url)")
-            return countries.reversed()
+            return try await MainActor.run {
+                let countries = try JSONDecoder().decode([Country].self, from: data)
+                print("Successfully fetched countries from \(url)")
+                return countries.reversed()
+            }
         } catch {
-            print(error)
+            print("Request error: \(error)")
             return []
         }
     }

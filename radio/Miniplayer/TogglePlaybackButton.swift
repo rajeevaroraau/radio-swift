@@ -12,15 +12,12 @@ struct TogglePlaybackButton: View {
     let font: Font
     var body: some View {
         Button {
-            isTouching = true
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                isTouching = false
-            }
-            AudioController.shared.togglePlayback()
+            animationPlayPauseTap()
+            handlePlayPauseTap()
         } label: {
-            Image(systemName: AudioController.shared.isPlaying ? "pause.circle.fill" : "play.circle.fill")
+            Image(systemName: PlayerState.shared.isPlaying  ? "pause.circle.fill" : "play.circle.fill")
                 .contentTransition(.symbolEffect(.replace, options: .speed(10.0)))
-                .accessibilityLabel("\(AudioController.shared.isPlaying ? "Pause" : "Resume")")
+                .accessibilityLabel("\(PlayerState.shared.isPlaying ? "Pause" : "Resume")")
                 .font(font)
                 
                 .frame(width: 60, height:60)
@@ -38,6 +35,31 @@ struct TogglePlaybackButton: View {
             
         }
         .contentShape(Rectangle())
+    }
+    
+    @MainActor
+    func handlePlayPauseTap() {
+        animationPlayPauseTap()
+        if PlayerState.shared.firstPlay {
+            print("PlayingWithSetup...")
+            AudioController.shared.playWithSetup()
+            PlayerState.shared.firstPlay  = false
+        } else {
+            print("Toggling the playback")
+            AudioController.shared.togglePlayback()
+        }
+    }
+    
+    @MainActor
+    func animationPlayPauseTap() {
+        isTouching = true
+        
+
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+            isTouching = false
+        }
+       
+        
     }
 }
 

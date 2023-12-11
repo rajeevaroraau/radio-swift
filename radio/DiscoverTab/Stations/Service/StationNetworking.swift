@@ -9,24 +9,27 @@ import SwiftUI
 
 class StationNetworking {
     func requestStationListForCountry() async throws -> [Station] {
-
-
+        
+        
         // PREPARE CUSTOM JSONDECODER
-            let decoder = JSONDecoder()
-            decoder.dateDecodingStrategy = .iso8601
+        let decoder = JSONDecoder()
+        decoder.dateDecodingStrategy = .iso8601
+        
+        let properUrl = URL(string: "\(Connection.baseURL)stations/bycountryexact/\(Country.selectedCountry)")!
+        
+        do {
+            let (data, _) = try await URLSession.shared.data(from: properUrl)
             
-            let properUrl = URL(string: "\(Connection.baseURL)stations/bycountryexact/\(Country.selectedCountry)")!
-            
-            do {
-                let (data, _) = try await Connection.manager.data(from: properUrl)
+            return try await MainActor.run {
                 let stations = try decoder.decode([Station].self, from: data)
                 print("Successfully fetched stations from \(properUrl)")
                 
                 return stations
-            } catch {
-                print(error)
-                return []
             }
+        } catch {
+            print("Request error: \(error)")
+            return []
+        }
     }
 }
 

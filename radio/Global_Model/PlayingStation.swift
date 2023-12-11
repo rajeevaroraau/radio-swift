@@ -7,16 +7,18 @@
 
 import Foundation
 import SwiftUI
+import SwiftData
+import Observation
 
-
-@Observable
+@Model
 class PlayingStation {
     static var shared = PlayingStation()
+    
+    // ACTUAL MODEL
+    private(set) var station: Station? = nil
+    //RAW FAVICON DATA
     var faviconData: Data? = nil
-    var faviconDataUnwrapped: Data {
-        
-        return faviconData ?? Data()
-    }
+    
     var faviconUIImage: UIImage? {
         if let data = faviconData {
             return UIImage(data: data)
@@ -24,49 +26,67 @@ class PlayingStation {
         return nil
     }
     
+    init(faviconData: Data? = nil, station: Station? = nil) {
+        self.faviconData = faviconData
+        self.station = station
+    }
     
-    private(set)  var station: Station? = nil
     
     
-    
-    func fetchFavicon() async -> Data? {
-        guard let station = self.station else { return nil }
-        self.faviconData = nil
+    func fetchFavicon() async {
         
+        guard let station = self.station else {
+            print("No station in fetchFavicon()");
+            return
+        }
+        
+        print("fetchFavicon: Found a station in PlayingStation.station: \(station.name)")
+        
+//        self.faviconData = nil
+        print("faviconData set to nil")
         // CACHE THE COVER ART
-        if station.favicon.hasPrefix("https") {
+        if let faviconURL = URL(string: station.favicon) {
+            print("faviconURL found")
+
             
-            if let faviconURL = URL(string: station.favicon) {
-                do {
-                    let (data, _) = try await Connection.manager.data(from: faviconURL)
-                    self.faviconData =  data
-                    print("Fetched PlayingStation Favicon")
-                    
-                } catch {
-                    print("Cannot cache the station")
-                    return nil
-                    
-                }
+            do {
+                print("Starting to fetching data from favicon url")
+                let (data, _) = try await URLSession.shared.data(from: faviconURL)
+                self.faviconData =  data
+                print("Fetched PlayingStation Favicon")
+            } catch {
+                print("Cannot cache the station")
+                
             }
+            
+        } else {
+            print("No favicon link")
         }
-        return  nil
-        
-    }
-    func setStationAsync(_ station: Station) async {
-        withAnimation {
-            self.station = station
-            self.faviconData = nil
-        }
-        self.faviconData = await self.fetchFavicon()
-        
-        
-        
     }
     
-    func setStation(_ station: Station, faviconCached data: Data?)  {
+    func setStationWithFetchingFavicon(_ station: Station) {
+
+
+        print("Setting known info for PlayingStation")
+  
+        self.station = station
+        
+        Task {
+            await fetchFavicon()
+        }
+        
+    
+        print("Setting station for PlayingStation (async)")
+    }
+    
+    func setStation(_ stationToSet: Station, faviconCached data: Data?)  {
         withAnimation {
-            self.station = station
+            
+            self.station = stationToSet
+            print("PlayingStation's station is set! \(stationToSet.name)")
+            
             guard let data = data else {
+                print("No data in PlayingStation's setStation");
                 self.faviconData = nil;
                 return
             }
@@ -75,4 +95,6 @@ class PlayingStation {
             
         }
     }
+    
+    
 }

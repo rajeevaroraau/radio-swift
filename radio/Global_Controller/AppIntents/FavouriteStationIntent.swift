@@ -17,35 +17,19 @@ struct FavouriteStation: AppIntent {
         print("Start \(Self.title.locale)")
         
         guard let stationPlaying = PlayingStation.shared.station else {
-            print("No")
+            print("No station in FavouriteStation App Intent's perform()");
             return .result()
         }
         
-        print("Found a persisted station in PlayingStation.station")
+        print("Found a persisted station in PlayingStation.station: \(stationPlaying.name)")
         
         let stationTemp = PersistableStation(station: stationPlaying)
-//        Task {
-//            await stationTemp.fetchStation()
-//        }
-        
-       
-        
-        print("StationTemp created")
+        Task {
+            await stationTemp.fetchStation()
+        }
 
-//        let modelContext = ModelContext(modelContainer)
-//        print("modelContext created")
-//
-//        modelContext.insert(temporaryPersistableStation)
-//        print("Insrted!")
-//
-//        do {
-//            try modelContext.save()
-//            print("Favourite Done!")
-//            return .result()
-//        } catch {
-//            print("Bad")
-//        }
-        Container.shared.container.mainContext.insert(stationTemp)
+        print("StationTemp created")
+        SwiftDataContainers.shared.container.mainContext.insert(stationTemp)
         return .result()
        
     }

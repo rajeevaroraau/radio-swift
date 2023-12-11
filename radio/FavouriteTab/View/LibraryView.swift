@@ -10,55 +10,47 @@ import SwiftData
 
 struct LibraryView: View {
     @Environment(\.modelContext) var modelContext
-    @Query var favouriteStations: [PersistableStation]
+    @Query var favoriteStations: [PersistableStation]
     
     let columns = [
         GridItem(.adaptive(minimum: 180, maximum: 180), spacing: 0),
-        
     ]
+    
     var body: some View {
         ScrollView {
             LazyVGrid(columns: columns, spacing: 0) {
-                ForEach(favouriteStations) { libraryStation in
-                    Button {
-                        handleStationTap(libraryStation: libraryStation)
-                        
-                    } label: {
-                        LibraryTileView(libraryStation: libraryStation)
-                        
-                    }
-                    .contextMenu() {
-                        Button("Unfavourite", systemImage: "heart.slash") {
-                            modelContext.delete(libraryStation)
-                            do {
-                                try  modelContext.save()
-                            } catch {
-                                print("Cannot delete station")
+                ForEach(favoriteStations) { favoriteStation in
+                    Button { handleStationTap(favoriteStation: favoriteStation) } label: { LibraryTileView(favoriteStation: favoriteStation) }
+                        .contextMenu() {
+                            Button("Unfavorite", systemImage: "star.slash") {
+                                modelContext.delete(favoriteStation)
+                                do {
+                                    try  modelContext.save()
+                                } catch {
+                                    print("Cannot delete station")
+                                }
+                            }
+                        } preview: {
+                            Button {
+                                handleStationTap(favoriteStation: favoriteStation)
+                            } label: {
+                                LibraryTileView(favoriteStation: favoriteStation)
+                                    .frame(width: 200, height: 200)
                             }
                         }
-                    } preview: {
-                        Button {
-                            handleStationTap(libraryStation: libraryStation)
-                        } label: {
-                        LibraryTileView(libraryStation: libraryStation)
-                            .frame(width: 200, height: 200)
-                        }
-                    }
                 }
-                
             }
             .padding(.horizontal, 5)
         }
     }
 }
 
+@MainActor
 extension LibraryView {
-    func handleStationTap(libraryStation: PersistableStation)  {
+    func handleStationTap(favoriteStation: PersistableStation)  {
         hapticFeedback()
-        PlayingStation.shared.setStation(libraryStation.station, faviconCached: libraryStation.faviconData)
-        AudioController.shared.play()
+        PlayingStation.shared.setStation(favoriteStation.station, faviconCached: favoriteStation.faviconData)
+        AudioController.shared.playWithSetup()
         
     }
-    
-    
 }

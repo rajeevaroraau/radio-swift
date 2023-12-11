@@ -28,10 +28,6 @@ struct ContentView: View {
             MiniplayerView()
         }
         .ignoresSafeArea(.keyboard)
-        
     }
-    
-    
-    
 }
 

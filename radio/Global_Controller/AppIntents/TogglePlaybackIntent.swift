@@ -15,7 +15,12 @@ struct TogglePlayback: AppIntent {
     static var description: IntentDescription? = "Toggles the playback"
     @MainActor
     func perform() async throws -> some IntentResult {
-        AudioController.shared.togglePlayback()
+        if PlayerState.shared.firstPlay == true {
+            AudioController.shared.playWithSetup()
+        } else {
+            AudioController.shared.togglePlayback()
+        }
+        
         return .result()
     }
     

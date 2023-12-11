@@ -2,7 +2,7 @@ import SwiftUI
 
 struct CountriesListContentView: View {
     @State var countriesModel = CountriesController.shared
-
+    
     var body: some View {
         
         NavigationView {
@@ -17,7 +17,8 @@ struct CountriesListContentView: View {
             .task {
                 print("Fetching countries")
                 await countriesModel.fetchCountries()
-            }        }
+            }
+        }
     }
     
 }

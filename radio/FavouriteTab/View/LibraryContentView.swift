@@ -7,16 +7,18 @@
 
 import SwiftUI
 import SwiftData
+
 struct LibraryContentView: View {
-    @Query var favouriteStations: [PersistableStation]
+    
+    @Query var favoriteStations: [PersistableStation]
 
     var body: some View {
         NavigationStack {
             Group {
                 
-                if favouriteStations.count == 0 {
+                if favoriteStations.count == 0 {
                     Spacer()
-                    ContentUnavailableView("Add Stations", systemImage: "magnifyingglass" , description: Text("You haven't favourited a station yet."))
+                    ContentUnavailableView("Add Stations", systemImage: "magnifyingglass" , description: Text("You haven't favorited a station yet."))
                     Spacer()
                 } else {
                     LibraryView()
@@ -26,4 +28,5 @@ struct LibraryContentView: View {
         }
     }
 }
+
 

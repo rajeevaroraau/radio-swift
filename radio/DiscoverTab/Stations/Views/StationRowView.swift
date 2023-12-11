@@ -11,7 +11,7 @@ struct StationRowView: View {
         HStack {
             
             if let faviconCached = faviconCached {
-                faviconCachedImageView(image: faviconCached, isPlaceholderLowRes: true, height: 50)
+                ImageFaviconCached(image: faviconCached, isPlaceholderLowRes: true, height: 50, isPlayingStationImage: false)
             } else {
                 // CHECK IF AN FAVICONURL EXISTS
                 if let url = URL(string: urlFavicon), urlFavicon.hasPrefix("https") == true {
@@ -50,7 +50,7 @@ struct StationRowView: View {
                         .font(.headline)
                         .lineLimit(2)
                         .truncationMode(.tail)
-                    if station == PlayingStation.shared.station {
+                    if station.stationuuid == PlayingStation.shared.station?.stationuuid {
                         Image(systemName: "waveform")
                             .opacity(opacity)
                             .animation(

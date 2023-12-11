@@ -8,7 +8,7 @@ class CountriesController {
     
     var searchText = ""
     var countries : [Country] = []
-
+    
     var searchableCountries: [Country] {
         if searchText.isEmpty {
             return countries
@@ -19,11 +19,10 @@ class CountriesController {
     func fetchCountries() async {
         do {
             let data = try await networking.requestCountries()
-            DispatchQueue.main.async {
-                self.countries = data
-            }
+            self.countries = data
+            
         } catch {
-            print(error)
+            print("Fetching error: \(error)")
         }
     }
 }

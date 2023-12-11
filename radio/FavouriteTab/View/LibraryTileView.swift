@@ -8,20 +8,23 @@
 import SwiftUI
 
 struct LibraryTileView: View {
-    let libraryStation: PersistableStation
+    let favoriteStation: PersistableStation
     let customPadding: CGFloat
     var body: some View {
         ZStack(alignment: .bottomLeading) {
-            RoundedRectangle(cornerRadius: 10)
-                .foregroundColor(.black)
-                .frame(height: 100)
-            RoundedRectangle(cornerRadius: 10)
-                .foregroundStyle(libraryStation.faviconUIImage?.averageColor?.gradient ?? Color.gray.gradient)
-                .frame(height: 100)
-                .opacity(0.8)
+            Group {
+                RoundedRectangle(cornerRadius: 10)
+                    .foregroundColor(.black)
+                RoundedRectangle(cornerRadius: 10)
+                    .foregroundStyle(favoriteStation.faviconUIImage?.averageColor?.gradient ?? Color.gray.gradient)
+
+                    .opacity(0.8)
+            }
+            .frame(height: 100)
+
             VStack(alignment: .leading) {
-                faviconCachedImageView(image: libraryStation.faviconUIImage, isPlaceholderLowRes: true, height: 30 )
-                StationTextView(stationName: libraryStation.station.name, textAlignment: .leading, textSize: .headline)
+                ImageFaviconCached(image: favoriteStation.faviconUIImage, isPlaceholderLowRes: true, height: 30, isPlayingStationImage: false )
+                StationTextView(stationName: favoriteStation.station.name, textAlignment: .leading, textSize: .headline)
                     .foregroundStyle(.white)
             }
             // CONTENT PADDING
@@ -29,8 +32,8 @@ struct LibraryTileView: View {
         }
         .padding(customPadding)
     }
-    init(libraryStation: PersistableStation, customPadding: CGFloat = 6) {
-        self.libraryStation = libraryStation
+    init(favoriteStation: PersistableStation, customPadding: CGFloat = 6) {
+        self.favoriteStation = favoriteStation
         self.customPadding = customPadding
     }
     

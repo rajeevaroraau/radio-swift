@@ -10,22 +10,33 @@ import SwiftData
 
 @main
 struct radioApp: App {
-    init() {
-        let stationsModel = StationsViewController()
-        _stationsModel = State(initialValue: stationsModel)
-    }
+    @State var stationsModel = StationsViewController()
 
-    @State var stationsModel: StationsViewController
+
+    init() {
+        if let stationToPlay = try? SwiftDataContainers.shared.container.mainContext.fetch(FetchDescriptor<PlayingStation>()).last {
+            guard let station = stationToPlay.station else {
+                print("No station in stationToPlay");
+                return
+            }
+            
+            PlayingStation.shared.setStation(station, faviconCached: stationToPlay.faviconData)
+            print("Reverted to the latest station: \(PlayingStation.shared.station?.name ?? "EROR")")
+        } else {
+            print("No station to revert to")
+        }
+        
+    }
 }
 
 extension radioApp {
+    
+    
     var body: some Scene {
         WindowGroup {
             ContentView()
         }
-        .modelContainer(Container.shared.container)
+        .modelContainer(SwiftDataContainers.shared.container)
         .environment(stationsModel)
-        
     }
-        
 }

@@ -11,6 +11,7 @@ import SwiftData
 
 @Model
 class PersistableStation {
+    var station: Station
     var faviconData: Data? = nil
     var faviconUIImage: UIImage? {
         if let data = faviconData {
@@ -18,40 +19,8 @@ class PersistableStation {
         }
         return nil
     }
-    
-    var faviconDataUnwrapped: Data {
-        
-        return faviconData ?? Data()
-    }
 
-    var station: Station
-    
-    func fetchStation() async {
-        
-        
-        
-        // CACHE THE COVER ART
-        if station.favicon.hasPrefix("https") {
-            
-            if let faviconURL = URL(string: station.favicon) {
-                do {
-                    
-                    let (data, _) = try await Connection.manager.data(from: faviconURL)
-                    faviconData = data
-
-                    
-                } catch {
-                    print("Cannot cache the station")
-                    faviconData = nil
-                    
-                }
-            }
-        }
-
-        
-    }
-
-    init(faviconData: Data? = nil, station: Station) {
+   init(faviconData: Data? = nil, station: Station) {
         print("Preparing PersistableStation")
         self.faviconData = faviconData
         print("FaviconData Prepared")
@@ -63,3 +32,24 @@ class PersistableStation {
 }
 
 
+
+
+extension PersistableStation {
+    func fetchStation() async {
+     
+        // CACHE THE COVER ART
+        if station.favicon.hasPrefix("https") {
+            
+            if let faviconURL = URL(string: station.favicon) {
+                do {
+                    let (data, _) = try await URLSession.shared.data(from: faviconURL)
+                    faviconData = data
+                } catch {
+                    print("Cannot cache the station")
+                    faviconData = nil
+                    
+                }
+            }
+        }
+    }
+}
