@@ -10,6 +10,7 @@
 		D307999A2AD7154600D11D60 /* CountryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30799992AD7154600D11D60 /* CountryModel.swift */; };
 		D30D040C2AED54D40077371E /* AirPlayButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30D040B2AED54D40077371E /* AirPlayButton.swift */; };
 		D30E76E32B13D5D900237F8B /* SwiftDataContainers.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30E76E22B13D5D900237F8B /* SwiftDataContainers.swift */; };
+		D30EC7042B2A4737000D8C53 /* OSLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30EC7032B2A4737000D8C53 /* OSLog.swift */; };
 		D31B4FAE2AE1A88B002F9563 /* BigPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D31B4FAD2AE1A88B002F9563 /* BigPlayerView.swift */; };
 		D32D8A972AF6F11E004D1FB0 /* CountryNetworking.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32D8A962AF6F11E004D1FB0 /* CountryNetworking.swift */; };
 		D32D8A9D2AF6F620004D1FB0 /* StationNetworking.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32D8A9C2AF6F620004D1FB0 /* StationNetworking.swift */; };
@@ -56,6 +57,7 @@
 		D30799992AD7154600D11D60 /* CountryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryModel.swift; sourceTree = "<group>"; };
 		D30D040B2AED54D40077371E /* AirPlayButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirPlayButton.swift; sourceTree = "<group>"; };
 		D30E76E22B13D5D900237F8B /* SwiftDataContainers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftDataContainers.swift; sourceTree = "<group>"; };
+		D30EC7032B2A4737000D8C53 /* OSLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OSLog.swift; sourceTree = "<group>"; };
 		D31B4FAD2AE1A88B002F9563 /* BigPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BigPlayerView.swift; sourceTree = "<group>"; };
 		D32D8A962AF6F11E004D1FB0 /* CountryNetworking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryNetworking.swift; sourceTree = "<group>"; };
 		D32D8A9C2AF6F620004D1FB0 /* StationNetworking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationNetworking.swift; sourceTree = "<group>"; };
@@ -182,6 +184,7 @@
 				D359A77B2AD05156004A292B /* Connection.swift */,
 				D36B91D92AF2C6D100356285 /* hapticFeedback.swift */,
 				D3BEFA942B1349730082675A /* AppIntents */,
+				D30EC7032B2A4737000D8C53 /* OSLog.swift */,
 			);
 			path = Global_Controller;
 			sourceTree = "<group>";
@@ -423,6 +426,7 @@
 				D3911D4E2B26595900F0B7A1 /* PlayerState.swift in Sources */,
 				D366F4052B24AF49001C54D6 /* LibraryView.swift in Sources */,
 				D359A77C2AD05156004A292B /* Connection.swift in Sources */,
+				D30EC7042B2A4737000D8C53 /* OSLog.swift in Sources */,
 				D34F54DC2AD2DAB600347E99 /* Station.swift in Sources */,
 				D36B91DA2AF2C6D100356285 /* hapticFeedback.swift in Sources */,
 				D359A7832AD05166004A292B /* CountriesListContentView.swift in Sources */,
