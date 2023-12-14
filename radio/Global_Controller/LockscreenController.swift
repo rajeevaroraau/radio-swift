@@ -69,7 +69,7 @@ class LockscreenController {
     
     
     func tryToSetFaviconForLockScreen() async {
-        
+        os_signpost(.end, log: pointsOfInterest, name: "Try to set faviconForLockscreen")
         os_signpost(.begin, log: pointsOfInterest, name: "Try to set faviconForLockscreen")
         
         if let faviconUIImage = PlayingStation.shared.faviconUIImage {
@@ -78,6 +78,10 @@ class LockscreenController {
                 print("Successful first attempt to set remote favicon.")
                 return faviconUIImage
             }
+            await MainActor.run {
+                self.nowPlayingInfoCenter.nowPlayingInfo = self.nowPlayingInfo
+            }
+            
             os_signpost(.end, log: pointsOfInterest, name: "Try to set faviconForLockscreen")
             
             
