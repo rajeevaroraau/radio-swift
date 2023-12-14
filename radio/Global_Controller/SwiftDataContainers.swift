@@ -13,12 +13,9 @@ class SwiftDataContainers {
     static let shared = SwiftDataContainers()
     let container: ModelContainer
     
-    
     init() {
         do {
-
             container = try ModelContainer(for: PlayingStation.self, PersistableStation.self)
-           
         } catch {
             fatalError("Failed to configure SwiftData container.")
         }

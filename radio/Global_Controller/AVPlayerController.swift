@@ -7,6 +7,7 @@
 
 import Foundation
 import AVFoundation
+import OSLog
 
 class AVPlayerController {
     static let shared = AVPlayerController()
@@ -15,20 +16,29 @@ class AVPlayerController {
     private var playerItem: AVPlayerItem? = nil
     
     func setupAVPlayerItem(url: URL) {
+        os_signpost(.begin, log: pointsOfInterest, name: "AVPlayerController.setupAVPlayerItem")
         playerItem = AVPlayerItem(url: url)
         avPlayer.replaceCurrentItem(with: playerItem)
+        os_signpost(.end, log: pointsOfInterest, name: "AVPlayerController.setupAVPlayerItem")
+        
     }
     
     func play() {
+        os_signpost(.begin, log: pointsOfInterest, name: "AVPlayerController.play")
         Task {
             avPlayer.play()
+            os_signpost(.end, log: pointsOfInterest, name: "AVPlayerController.play")
         }
         
     }
     
     func pause() {
+        os_signpost(.begin, log: pointsOfInterest, name: "AVPlayerController.pause()")
+        
         Task {
             avPlayer.pause()
+            os_signpost(.end, log: pointsOfInterest, name: "AVPlayerController.pause()")
+            
         }
         
     }

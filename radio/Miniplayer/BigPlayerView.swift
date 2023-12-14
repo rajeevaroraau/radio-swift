@@ -18,22 +18,24 @@ struct BigPlayerView: View {
                 .foregroundStyle(PlayingStation.shared.faviconUIImage?.averageColor?.gradient ?? Color.gray.gradient)
                 .overlay(
                     Color(.black)
-                        .opacity(0.15)
+                        .opacity(0.2)
                 )
             
             VStack(alignment: .center) {
                 
                 // COVER
-                ImageFaviconCached(image: PlayingStation.shared.faviconUIImage, isPlaceholderLowRes: false, height: 320, isPlayingStationImage: true, manualCornerRadius: true, customCornerRadius: 10)
-                    .shadow(radius: 10)
+                ImageFaviconCached(image: PlayingStation.shared.faviconUIImage, isPlaceholderLowRes: false, height: 260, isPlayingStationImage: true, manualCornerRadius: true, customCornerRadius: 10)
+                    .shadow(color: .black.opacity(0.2) , radius: 20, x: 0.0, y: 50.0)
                     .padding(15)
                 
                 
                 // STATION NAME AND FAVOURITE BUTTON
                 HStack {
                     StationTextView(stationName: PlayingStation.shared.station?.name ?? "Not Playing", textAlignment: .leading, textSize: .largeTitle.bold())
+                        .shadow(radius: 10, y: 10)
                     Spacer()
                     FavouriteButton()
+                        .shadow(radius: 10, y: 10)
                 }
                 .padding(.horizontal, 20)
                 
@@ -44,7 +46,7 @@ struct BigPlayerView: View {
                     AirPlayButton()
                         .frame(width:60, height: 60)
                     Spacer()
-                    TogglePlaybackButton(font: .system(size: 75))
+                    TogglePlaybackButton(fontSize: 45)
                     Spacer()
                     ShazamButton()
                         .foregroundStyle(.white)
@@ -63,6 +65,7 @@ struct BigPlayerView: View {
             }
         }
         .colorScheme(.dark)
+        .toolbarColorScheme(.dark, for: .navigationBar)
     }
 }
 

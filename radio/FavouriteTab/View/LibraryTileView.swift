@@ -52,6 +52,7 @@ struct StationTextView: View {
                 .multilineTextAlignment(textAlignment)
                 .lineLimit(2)
                 .truncationMode(.tail)
+                .fontDesign(.rounded)
                 
         }
     }

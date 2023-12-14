@@ -1,6 +1,6 @@
 import SwiftUI
 import SwiftData
-
+import OSLog
 
 class AudioController {
     
@@ -16,30 +16,26 @@ class AudioController {
         print("===========================")
         print("isPlaying is true")
         
-
-
-        
-        
         
         Task {
+            
             await MainActor.run {
+                os_signpost(.begin, log: pointsOfInterest, name: "Initially Set PlayerState")
+                
                 PlayerState.shared.isPlaying = true
                 PlayerState.shared.firstPlay = false
+                os_signpost(.end, log: pointsOfInterest, name: "Initially Set PlayerState")
+                
             }
             guard let station = PlayingStation.shared.station else {
                 print("No playingStation in playWithSetup");
-                await MainActor.run {
-                    PlayerState.shared.isPlaying = false;
-                }
-                
+                pause()
                 return
             }
             
             guard let url = URL(string: station.url) else {
                 print("Bad url");
-                await MainActor.run {
-                    PlayerState.shared.isPlaying = false;
-                }
+                pause()
                 return
             }
             
@@ -65,6 +61,8 @@ class AudioController {
             //        }
             //
             await MainActor.run {
+                os_signpost(.begin, log: pointsOfInterest, name: "Save the PlayingStation.shared with mainContext")
+                
                 do {
                     print("Trying to save...")
                     //            let playingStation = PlayingStation(faviconData: PlayingStation.shared.faviconData, station: PlayingStation.shared.station)
@@ -72,7 +70,11 @@ class AudioController {
                     
                     try SwiftDataContainers.shared.container.mainContext.save()
                     print("Finished saving the latest station")
+                    os_signpost(.end, log: pointsOfInterest, name: "Save the PlayingStation.shared with mainContext")
+                    
                 } catch {
+                    os_signpost(.end, log: pointsOfInterest, name: "Save the PlayingStation.shared with mainContext")
+                    
                     print("Cannot save")
                 }
             }
@@ -82,7 +84,7 @@ class AudioController {
     
     
     func resume() {
-    
+        
         
         Task {
             await MainActor.run {
@@ -90,22 +92,21 @@ class AudioController {
             }
             AVPlayerController.shared.play()
             AVAudioSessionController.shared.setActive(true)
-            hapticFeedback()
         }
         
         
     }
     
     
-     func pause() {
+    func pause() {
         
-         Task {
-             await MainActor.run {
-                 PlayerState.shared.isPlaying = false
-             }
+        Task {
+            await MainActor.run {
+                PlayerState.shared.isPlaying = false
+            }
             AVPlayerController.shared.pause()
             AVAudioSessionController.shared.setActive(false)
-            hapticFeedback()
+            
         }
         
         

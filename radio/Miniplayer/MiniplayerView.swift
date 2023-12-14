@@ -46,7 +46,7 @@ struct MiniplayerView: View {
                     .font(.title)
                     .frame(width: 60, height:60)
                 
-                TogglePlaybackButton(font: .title)
+                TogglePlaybackButton(fontSize: 28)
                     .frame(width: 60, height:60)
                 .contentShape(Rectangle())
             }

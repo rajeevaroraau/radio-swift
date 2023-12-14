@@ -7,7 +7,7 @@
 
 import Foundation
 import MediaPlayer
-
+import OSLog
 
 class LockscreenController {
     static let shared = LockscreenController()
@@ -21,7 +21,7 @@ class LockscreenController {
     private let nowPlayingInfoCenter = MPNowPlayingInfoCenter.default()
     
     
-     func setupRemoteCommandCenter() {
+    func setupRemoteCommandCenter() {
         let commandCenter = MPRemoteCommandCenter.shared()
         commandCenter.playCommand.isEnabled = true
         commandCenter.playCommand.addTarget { event in
@@ -35,14 +35,14 @@ class LockscreenController {
         }
     }
     
-     func updateInfoCenterWithPlayingStation()  {
+    func updateInfoCenterWithPlayingStation()  {
         
-        guard PlayingStation.shared.station != nil else { 
+        guard let station = PlayingStation.shared.station else {
             print("No station in updateInfoCenterWithPlayingStation()");
             return }
         
         // SET NAME
-        nowPlayingInfo[MPMediaItemPropertyTitle] = PlayingStation.shared.station!.name
+        nowPlayingInfo[MPMediaItemPropertyTitle] = station.name
         nowPlayingInfo[MPMediaItemPropertyPlaybackDuration] = 0
         nowPlayingInfo[MPNowPlayingInfoPropertyIsLiveStream] = true
         nowPlayingInfo[MPNowPlayingInfoPropertyPlaybackRate] = 1.0
@@ -56,47 +56,71 @@ class LockscreenController {
         
         
         // SET THE MPNowPlayingInfoCenter
-        nowPlayingInfoCenter.nowPlayingInfo = nowPlayingInfo
-        DispatchQueue.main.async {
-            UIApplication.shared.beginReceivingRemoteControlEvents()
-        }
-    }
-     func tryToSetFaviconForLockScreen() async {
-        // FIRST ATTEMPT WITH CACHEDIMAGE
-        if let image = PlayingStation.shared.faviconUIImage {
-            nowPlayingInfo[MPMediaItemPropertyArtwork] = MPMediaItemArtwork(boundsSize: image.size) { size in
-                print("Successful first attempt to set remote favicon.")
-                return image
+        Task {
+            await MainActor.run {
+                UIApplication.shared.beginReceivingRemoteControlEvents()
             }
+        }
+        
+    }
+    
+    
+    
+    
+    
+    func tryToSetFaviconForLockScreen() async {
+        
+        os_signpost(.begin, log: pointsOfInterest, name: "Try to set faviconForLockscreen")
+        
+        if let faviconUIImage = PlayingStation.shared.faviconUIImage {
+            // FIRST ATTEMPT WITH CACHEDIMAGE IF THERE IS IN PLAYINGSTATION
+            nowPlayingInfo[MPMediaItemPropertyArtwork] = MPMediaItemArtwork(boundsSize: faviconUIImage.size) { size in
+                print("Successful first attempt to set remote favicon.")
+                return faviconUIImage
+            }
+            os_signpost(.end, log: pointsOfInterest, name: "Try to set faviconForLockscreen")
             
-        // SECOND ATTEMPT WITH REQUEST
+            
         } else {
+            // SECOND ATTEMPT WITH REQUEST
             
             // FIRST LET's SET TEMPORARY DEFAULT FAVICON
-            guard let image = UIImage(named: "DefaultFaviconLarge") else  {
-                print("No Default UIImage in tryToSetFaviconForLockScreen()");
-                return
-            }
-            nowPlayingInfo[MPMediaItemPropertyArtwork] = MPMediaItemArtwork(boundsSize: image.size) { size in
-                print("Set the Default Favicon")
-                return image
-                
+            setDefaultFavicon()
+            await MainActor.run {
+                self.nowPlayingInfoCenter.nowPlayingInfo = self.nowPlayingInfo
             }
             
             //TRY AGAIN AFTER SOME TIME WITH REQUESTED FAVICON
-            DispatchQueue.main.asyncAfter(deadline: .now() + 4.0) {
-                if let image = PlayingStation.shared.faviconUIImage {
-                    self.nowPlayingInfo[MPMediaItemPropertyArtwork] = MPMediaItemArtwork(boundsSize: image.size) { size in
+            Task {
+                // Delay the task by 1 second:
+                try await Task.sleep(nanoseconds: 4_000_000_000)
+                if let faviconUIImage = PlayingStation.shared.faviconUIImage {
+                    self.nowPlayingInfo[MPMediaItemPropertyArtwork] = MPMediaItemArtwork(boundsSize: faviconUIImage.size) { size in
                         print("Successful second attempt to set remote favicon.")
-                        return image
+                        return faviconUIImage
                     }
+                    await MainActor.run {
+                        self.nowPlayingInfoCenter.nowPlayingInfo = self.nowPlayingInfo
+                    }
+                    
+                    os_signpost(.end, log: pointsOfInterest, name: "Try to set faviconForLockscreen")
+                } else {
+                    os_signpost(.end, log: pointsOfInterest, name: "Try to set faviconForLockscreen")
                 }
-                
-                self.nowPlayingInfoCenter.nowPlayingInfo = self.nowPlayingInfo
             }
         }
-         
-         // UPDATE THE INFO
-        self.nowPlayingInfoCenter.nowPlayingInfo = self.nowPlayingInfo
     }
+    
+    func setDefaultFavicon() {
+        guard let defaultFaviconLarge = UIImage(named: "DefaultFaviconLarge") else  {
+            print("No Default UIImage in tryToSetFaviconForLockScreen()");
+            return
+        }
+        nowPlayingInfo[MPMediaItemPropertyArtwork] = MPMediaItemArtwork(boundsSize: defaultFaviconLarge.size) { size in
+            print("Set the Default Favicon")
+            return defaultFaviconLarge
+            
+        }
+    }
+    
 }

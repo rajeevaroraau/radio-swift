@@ -18,19 +18,11 @@ struct StationsListView: View {
         List {
             ForEach(stationsModel.searchableStations, id: \.stationuuid) { station in
                 Button {
-                    
-                        hapticFeedback()
-                        PlayingStation.shared.setStationWithFetchingFavicon(station)
-                        AudioController.shared.playWithSetup()
-                    
-                    
-                    
-
+                    hapticFeedback()
+                    PlayingStation.shared.setStationWithFetchingFavicon(station)
+                    AudioController.shared.playWithSetup()
                 } label: {
                     StationRowView(faviconCached: nil, station: station)
-                    
-                    
-                    
                 }
                 .buttonStyle(.plain)
                 .swipeActions(allowsFullSwipe: true) {
@@ -43,18 +35,13 @@ struct StationsListView: View {
                         Task {
                             await stationTemp.fetchStation()
                         }
-                        
-                        
-                        
-                        
                     } label: {
                         Label("Favourite", systemImage: "star.circle.fill")
                     }
                 }
             }
         }
-        .disableAutocorrection(true)
         .searchable(text: $stationsModel.searchText, placement: .automatic, prompt: Text("Search for stations"))
-        
+        .disableAutocorrection(true)
     }
 }

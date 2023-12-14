@@ -22,27 +22,32 @@ struct StationsListContentView: View {
         }
         .navigationTitle("\(country.name)")
         
-        .onChange(of: StationsViewController.selectedCountry) {
-            StationsViewController.selectedCountry = country
-
-            stationsModel.stations = []
-            stationsModel.fetchStationsTask.cancel()
-            
-            stationsModel.fetchStationsTask = Task {
-                await  stationsModel.fetchStationsListForCountry()
-            }
-        }
+//        .onChange(of: StationsViewController.selectedCountry) {
+//            StationsViewController.selectedCountry = country
+//
+//            stationsModel.stations = []
+//            stationsModel.fetchStationsTask.cancel()
+//            
+//            stationsModel.fetchStationsTask = Task {
+//                await  stationsModel.fetchStationsListForCountry()
+//            }
+//        }
         .onAppear {
             StationsViewController.selectedCountry = country
             stationsModel.stations = []
-            stationsModel.fetchStationsTask.cancel()
             
+            stationsModel.fetchStationsTask.cancel()
             stationsModel.fetchStationsTask = Task {
                 await  stationsModel.fetchStationsListForCountry()
             }
 
         }
+        .onChange(of: stationsModel.searchText) {
+            stationsModel.debounceSearch()
+        }
+
     }
-    
+
+
     
 }

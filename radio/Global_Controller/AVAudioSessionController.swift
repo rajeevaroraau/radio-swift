@@ -7,26 +7,29 @@
 
 import Foundation
 import AVFAudio
-
+import OSLog
 class AVAudioSessionController {
     static let shared = AVAudioSessionController()
     func configureAudioSession() {
+        os_signpost(.begin, log: pointsOfInterest, name: "AVAudioSessionController.configureAudioSession()")
         Task {
             do {
                 // Configure AVAudioSession
                 try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
                 try AVAudioSession.sharedInstance().setActive(true)
                 print("AVAudioSession is ready")
+                os_signpost(.end, log: pointsOfInterest, name: "AVAudioSessionController.configureAudioSession()")
             } catch let error {
+                os_signpost(.end, log: pointsOfInterest, name: "AVAudioSessionController.configureAudioSession()")
                 await MainActor.run {
                     PlayerState.shared.isPlaying = false
                 }
                 
                 print("AVAudioSession error: \(error)")
-
+                
             }
         }
-
+        
     }
     
     
@@ -39,5 +42,5 @@ class AVAudioSessionController {
         
     }
     
-
+    
 }

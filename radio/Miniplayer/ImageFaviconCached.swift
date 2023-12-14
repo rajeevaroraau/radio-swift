@@ -22,7 +22,7 @@ struct ImageFaviconCached: View {
             return UIImage(named: "DefaultFaviconLarge")!
         }
     }
-
+    
     var isPlayingStationImage: Bool
     var manualCornerRadius: Bool = false
     var customCornerRadius: CGFloat? = nil
@@ -35,10 +35,6 @@ struct ImageFaviconCached: View {
             .scaledToFit()
             .frame(width: height, height: height)
             .clipShape(RoundedRectangle(cornerRadius: manualCornerRadius ? (customCornerRadius ?? height/5) : (height/5)))
-        
-            .onChange(of: PlayingStation.shared.faviconUIImage ) {
-                print("Refreshed ImageFaviconCached!")
-            }
     }
 }
 

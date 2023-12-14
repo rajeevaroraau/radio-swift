@@ -22,10 +22,11 @@ struct FavouriteButton: View {
             if let stationToDelete = favoriteStations.first(where: { $0.station == PlayingStation.shared.station }) {
                 modelContext.delete(stationToDelete)
             } else {
-                let stationTemp = PersistableStation(station: station)
+                let stationTemp = PersistableStation(faviconData: PlayingStation.shared.faviconData, station: station)
+                
                 modelContext.insert(stationTemp)
                 hapticFeedback()
-
+                
                 Task {
                     await stationTemp.fetchStation()
                 }

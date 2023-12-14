@@ -20,10 +20,11 @@ class PlayingStation {
     var faviconData: Data? = nil
     
     var faviconUIImage: UIImage? {
-        if let data = faviconData {
-            return UIImage(data: data)
+        if let faviconData = faviconData {
+            return UIImage(data: faviconData)
         }
         return nil
+        
     }
     
     init(faviconData: Data? = nil, station: Station? = nil) {
@@ -42,8 +43,11 @@ class PlayingStation {
         
         print("fetchFavicon: Found a station in PlayingStation.station: \(station.name)")
         
-//        self.faviconData = nil
-        print("faviconData set to nil")
+        await MainActor.run {
+            self.faviconData = nil
+        }
+        
+
         // CACHE THE COVER ART
         if let faviconURL = URL(string: station.favicon) {
             print("faviconURL found")
@@ -52,15 +56,25 @@ class PlayingStation {
             do {
                 print("Starting to fetching data from favicon url")
                 let (data, _) = try await URLSession.shared.data(from: faviconURL)
-                self.faviconData =  data
+
+                    await MainActor.run {
+                        self.faviconData =  data
+                    }
+                
+                
                 print("Fetched PlayingStation Favicon")
             } catch {
                 print("Cannot cache the station")
-                
+                await MainActor.run {
+                    self.faviconData = nil
+                }
             }
             
         } else {
             print("No favicon link")
+            await MainActor.run {
+                self.faviconData = nil
+            }
         }
     }
     
@@ -69,7 +83,12 @@ class PlayingStation {
 
         print("Setting known info for PlayingStation")
   
-        self.station = station
+        Task {
+            await MainActor.run {
+                self.station = station
+            }
+        }
+        
         
         Task {
             await fetchFavicon()
@@ -87,11 +106,22 @@ class PlayingStation {
             
             guard let data = data else {
                 print("No data in PlayingStation's setStation");
-                self.faviconData = nil;
+                Task {
+                    await MainActor.run {
+                        self.faviconData = nil;
+                    }
+                }
+                
                 return
             }
             
-            self.faviconData = data
+            Task {
+                await MainActor.run {
+                    self.faviconData = data
+                }
+            }
+ 
+            
             
         }
     }

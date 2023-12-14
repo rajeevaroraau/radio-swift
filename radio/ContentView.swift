@@ -14,18 +14,19 @@ struct ContentView: View {
         ZStack(alignment: .bottom) {
             TabView {
                 LibraryContentView()
-                    .padding(.bottom, 60)
+                    .padding(.bottom, 70)
                     .tabItem {
                         Label("Favourite", systemImage: "play.square.stack.fill")
                     }
                 CountriesListContentView()
-                    .padding(.bottom, 60)
+                    .padding(.bottom, 70)
                     .tabItem {
                         Label("Discover", systemImage: "magnifyingglass")
                     }
             }
             
             MiniplayerView()
+                .shadow(radius: 10)
         }
         .ignoresSafeArea(.keyboard)
     }

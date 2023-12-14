@@ -9,29 +9,29 @@ import SwiftUI
 
 struct TogglePlaybackButton: View {
     @State private var isTouching = false
-    let font: Font
+    @State var fontSize: CGFloat
     var body: some View {
         Button {
-            animationPlayPauseTap()
             handlePlayPauseTap()
         } label: {
-            Image(systemName: PlayerState.shared.isPlaying  ? "pause.circle.fill" : "play.circle.fill")
+            Image(systemName: PlayerState.shared.isPlaying  ? "pause.fill" : "play.fill")
                 .contentTransition(.symbolEffect(.replace, options: .speed(10.0)))
                 .accessibilityLabel("\(PlayerState.shared.isPlaying ? "Pause" : "Resume")")
-                .font(font)
-                
-                .frame(width: 60, height:60)
+                .font(.system(size: fontSize))
+                .frame(width: fontSize, height: fontSize)
                 .contentShape(
                     Rectangle()
                 )
                 .tint(.primary)
             // POST-TAP EFFECT
-                .background(
+                .overlay(
                     isTouching
-                    ? Circle().fill(Color.secondary).padding(2)
-                    : Circle().fill(Color.clear).padding(2)
+                    ? Circle().frame(width: fontSize, height: fontSize).scaleEffect(1.75).foregroundStyle(Color.secondary)
+                    : Circle().frame(width: fontSize, height: fontSize).scaleEffect(1.75).foregroundStyle(Color.clear)
+         
                     
                 )
+                .animation(.easeInOut, value: isTouching)
             
         }
         .contentShape(Rectangle())
@@ -43,7 +43,6 @@ struct TogglePlaybackButton: View {
         if PlayerState.shared.firstPlay {
             print("PlayingWithSetup...")
             AudioController.shared.playWithSetup()
-            PlayerState.shared.firstPlay  = false
         } else {
             print("Toggling the playback")
             AudioController.shared.togglePlayback()
@@ -54,11 +53,13 @@ struct TogglePlaybackButton: View {
     func animationPlayPauseTap() {
         isTouching = true
         
-
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+        
+        Task {
+            // Delay the task by 1 second:
+            try await Task.sleep(nanoseconds: 100_000_000)
             isTouching = false
         }
-       
+        
         
     }
 }
