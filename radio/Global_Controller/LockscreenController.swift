@@ -9,7 +9,7 @@ import Foundation
 import MediaPlayer
 import OSLog
 
-class LockscreenController {
+class LockscreenController  {
     static let shared = LockscreenController()
     
     init() {
@@ -20,22 +20,7 @@ class LockscreenController {
     private var nowPlayingInfo: [String: Any]
     private let nowPlayingInfoCenter = MPNowPlayingInfoCenter.default()
     
-    
-    func setupRemoteCommandCenter() {
-        let commandCenter = MPRemoteCommandCenter.shared()
-        commandCenter.playCommand.isEnabled = true
-        commandCenter.playCommand.addTarget { event in
-            AudioController.shared.resume()
-            return .success
-        }
-        commandCenter.pauseCommand.isEnabled = true
-        commandCenter.pauseCommand.addTarget { event in
-            AudioController.shared.pause()
-            return .success
-        }
-    }
-    
-    func updateInfoCenterWithPlayingStation()  {
+    func updateInfoCenterWithPlayingStation() async  {
         
         guard let station = PlayingStation.shared.station else {
             print("No station in updateInfoCenterWithPlayingStation()");
@@ -50,25 +35,13 @@ class LockscreenController {
         nowPlayingInfoCenter.nowPlayingInfo = nowPlayingInfo
         // SET ARTWORK
         // DEFAULT
-        Task {
-            await tryToSetFaviconForLockScreen()
-        }
         
-        
+        tryToSetFaviconForLockScreen()
         // SET THE MPNowPlayingInfoCenter
-        Task {
-            await MainActor.run {
-                UIApplication.shared.beginReceivingRemoteControlEvents()
-            }
-        }
-        
+        await MainActor.run { UIApplication.shared.beginReceivingRemoteControlEvents() }
     }
     
-    
-    
-    
-    
-    func tryToSetFaviconForLockScreen() async {
+    func tryToSetFaviconForLockScreen() {
         os_signpost(.end, log: pointsOfInterest, name: "Try to set faviconForLockscreen")
         os_signpost(.begin, log: pointsOfInterest, name: "Try to set faviconForLockscreen")
         
@@ -78,9 +51,8 @@ class LockscreenController {
                 print("Successful first attempt to set remote favicon.")
                 return faviconUIImage
             }
-            await MainActor.run {
-                self.nowPlayingInfoCenter.nowPlayingInfo = self.nowPlayingInfo
-            }
+            self.nowPlayingInfoCenter.nowPlayingInfo = self.nowPlayingInfo
+            
             
             os_signpost(.end, log: pointsOfInterest, name: "Try to set faviconForLockscreen")
             
@@ -88,11 +60,9 @@ class LockscreenController {
         } else {
             // SECOND ATTEMPT WITH REQUEST
             
-            // FIRST LET's SET TEMPORARY DEFAULT FAVICON
             setDefaultFavicon()
-            await MainActor.run {
-                self.nowPlayingInfoCenter.nowPlayingInfo = self.nowPlayingInfo
-            }
+            self.nowPlayingInfoCenter.nowPlayingInfo = self.nowPlayingInfo
+            
             
             //TRY AGAIN AFTER SOME TIME WITH REQUESTED FAVICON
             Task {
@@ -124,6 +94,25 @@ class LockscreenController {
             print("Set the Default Favicon")
             return defaultFaviconLarge
             
+        }
+    }
+    
+    func setupRemoteCommandCenterForLockScreenInput() {
+        let commandCenter = MPRemoteCommandCenter.shared()
+        commandCenter.playCommand.isEnabled = true
+        commandCenter.playCommand.addTarget { event in
+            Task {
+                await AudioController.shared.resume()
+            }
+            return .success
+        }
+        commandCenter.pauseCommand.isEnabled = true
+        commandCenter.pauseCommand.addTarget { event in
+            Task {
+                await AudioController.shared.pause()
+            }
+            
+            return .success
         }
     }
     

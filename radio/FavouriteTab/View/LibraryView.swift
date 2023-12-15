@@ -13,14 +13,18 @@ struct LibraryView: View {
     @Query var favoriteStations: [PersistableStation]
     
     let columns = [
-        GridItem(.adaptive(minimum: 180, maximum: 180), spacing: 0),
+        GridItem(.adaptive(minimum: 150, maximum: 180), spacing: 12),
     ]
     
     var body: some View {
         ScrollView {
-            LazyVGrid(columns: columns, spacing: 0) {
+            LazyVGrid(columns: columns, spacing: 12) {
                 ForEach(favoriteStations) { favoriteStation in
-                    Button { handleStationTap(favoriteStation: favoriteStation) } label: { LibraryTileView(favoriteStation: favoriteStation) }
+                    Button {
+                        handleStationTap(favoriteStation: favoriteStation)
+                    } label: {
+                        LibraryTileView(favoriteStation: favoriteStation)
+                    }
                         .contextMenu() {
                             Button("Unfavorite", systemImage: "star.slash") {
                                 modelContext.delete(favoriteStation)
@@ -35,22 +39,25 @@ struct LibraryView: View {
                                 handleStationTap(favoriteStation: favoriteStation)
                             } label: {
                                 LibraryTileView(favoriteStation: favoriteStation)
-                                    .frame(width: 200, height: 200)
                             }
                         }
                 }
+
             }
-            .padding(.horizontal, 5)
+            
+
+            
         }
+        .contentMargins(.bottom, 96, for: .automatic)
+        .padding(.horizontal, 8)
     }
 }
 
-@MainActor
 extension LibraryView {
     func handleStationTap(favoriteStation: PersistableStation)  {
-        hapticFeedback()
-        PlayingStation.shared.setStation(favoriteStation.station, faviconCached: favoriteStation.faviconData)
-        AudioController.shared.playWithSetup()
-        
+        PlayingStation.shared.setStationWithFetchingFavicon(favoriteStation.station, faviconCached: favoriteStation.faviconData)
+        Task {
+            await AudioController.shared.playWithSetup()
+        }     
     }
 }

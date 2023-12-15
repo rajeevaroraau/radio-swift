@@ -9,32 +9,35 @@ import SwiftUI
 
 struct LibraryTileView: View {
     let favoriteStation: PersistableStation
-    let customPadding: CGFloat
     var body: some View {
         ZStack(alignment: .bottomLeading) {
             Group {
-                RoundedRectangle(cornerRadius: 10)
+                RoundedRectangle(cornerRadius: 12)
                     .foregroundColor(.black)
-                RoundedRectangle(cornerRadius: 10)
+                RoundedRectangle(cornerRadius: 12)
                     .foregroundStyle(favoriteStation.faviconUIImage?.averageColor?.gradient ?? Color.gray.gradient)
 
                     .opacity(0.8)
             }
-            .frame(height: 100)
 
             VStack(alignment: .leading) {
-                ImageFaviconCached(image: favoriteStation.faviconUIImage, isPlaceholderLowRes: true, height: 30, isPlayingStationImage: false )
-                StationTextView(stationName: favoriteStation.station.name, textAlignment: .leading, textSize: .headline)
-                    .foregroundStyle(.white)
+                Spacer()
+                VStack(alignment: .leading) {
+                    ImageFaviconCached(image: favoriteStation.faviconUIImage, isPlaceholderLowRes: true, height: 30, isPlayingStationImage: false )
+                    StationTextView(stationName: favoriteStation.station.name, textAlignment: .leading, textSize: .headline)
+                        .foregroundStyle(.white)
+                }
+                .padding()
+
             }
             // CONTENT PADDING
-            .padding(12)
+
         }
-        .padding(customPadding)
+        .frame(height: 100)
+
     }
-    init(favoriteStation: PersistableStation, customPadding: CGFloat = 6) {
+    init(favoriteStation: PersistableStation) {
         self.favoriteStation = favoriteStation
-        self.customPadding = customPadding
     }
     
 }

@@ -23,18 +23,12 @@ struct DynamicImageFaviconView: View {
                         image
                             .resizable()
                             .scaledToFit()
-                            .frame(width: 50, height: 50)
-                            .clipShape(RoundedRectangle(cornerRadius: 50/6))
-                            .onAppear {
-                                print("Rich favicon loaded in StationRowView")
-                            }
+                            .frame(width: 48, height: 48)
+                            .clipShape(RoundedRectangle(cornerRadius: 48/6))
                         // IF STILL LOADING SHOW PLACEHOLDER
                     } else {
                         ProgressView()
-                            .frame(width: 50, height: 50)
-                            .onAppear {
-                                print("Temporary screen loaded in StationRowView")
-                            }
+                            .frame(width: 48, height: 48)
                     }
                 }
             } else {

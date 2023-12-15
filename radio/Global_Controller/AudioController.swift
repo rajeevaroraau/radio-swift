@@ -11,112 +11,109 @@ class AudioController {
     // HAPTIC ENGINE
     
     
-    
-    func playWithSetup() {
-        print("===========================")
-        print("isPlaying is true")
+    // MARK: PLAY WITH SETUP
+    func playWithSetup() async {
+        os_signpost(.begin, log: pointsOfInterest, name: "Initially Set PlayerState")
         
+        await MainActor.run {
+            PlayerState.shared.isPlaying = true
+            PlayerState.shared.firstPlay = false
+            os_signpost(.end, log: pointsOfInterest, name: "Initially Set PlayerState")
+            
+        }
+        guard let station = PlayingStation.shared.station else {
+            print("No playingStation in playWithSetup");
+            Task {
+                await pause()
+            }
+            return
+        }
         
-        Task {
-            
-            await MainActor.run {
-                os_signpost(.begin, log: pointsOfInterest, name: "Initially Set PlayerState")
-                
-                PlayerState.shared.isPlaying = true
-                PlayerState.shared.firstPlay = false
-                os_signpost(.end, log: pointsOfInterest, name: "Initially Set PlayerState")
-                
-            }
-            guard let station = PlayingStation.shared.station else {
-                print("No playingStation in playWithSetup");
-                pause()
-                return
+        guard let url = URL(string: station.url) else {
+            print("Bad url");
+            Task {
+                await pause()
             }
             
-            guard let url = URL(string: station.url) else {
-                print("Bad url");
-                pause()
-                return
-            }
-            
-            // SETUP AUDIOSESSION
-            AVAudioSessionController.shared.configureAudioSession()
-            // SETUP AVPlayerItem
-            AVPlayerController.shared.setupAVPlayerItem(url: url)
-            // RESUME URL STREAM WITH AVPLAYER
-            AVPlayerController.shared.play()
-            LockscreenController.shared.setupRemoteCommandCenter()
-            LockscreenController.shared.updateInfoCenterWithPlayingStation()
-            
-            
-            
-            
-            //        do {
-            //            print("Trying to delete...")
-            //            if let stationToDelete = try? SwiftDataContainers.shared.container.mainContext.fetch(FetchDescriptor<PlayingStation>()).last {
-            //                if
-            //            }
-            //        } catch {
-            //            fatalError("Can't delete")
-            //        }
-            //
-            await MainActor.run {
-                os_signpost(.begin, log: pointsOfInterest, name: "Save the PlayingStation.shared with mainContext")
+            return
+        }
+        
+        // MARK: SETUP AUDIOSESSION
+        
+        AVAudioSessionController.shared.configureAudioSession()
+        // SETUP AVPlayerItem
+        AVPlayerController.shared.setupAVPlayerItem(url: url)
+        // RESUME URL STREAM WITH AVPLAYER
+        AVPlayerController.shared.play()
+        
+        // MARK: SETUP LOCKSCREEN
+        LockscreenController.shared.setupRemoteCommandCenterForLockScreenInput()
+        await LockscreenController.shared.updateInfoCenterWithPlayingStation()
+
+        //        do {
+        //            print("Trying to delete...")
+        //            if let stationToDelete = try? SwiftDataContainers.shared.container.mainContext.fetch(FetchDescriptor<PlayingStation>()).last {
+        //                if
+        //            }
+        //        } catch {
+        //            fatalError("Can't delete")
+        //        }
+        //
+        
+        // MARK: CACHE PLAYINGSTATION
+        await MainActor.run {
+            os_signpost(.begin, log: pointsOfInterest, name: "Save the PlayingStation.shared with mainContext")
+            do {
+                print("Trying to save...")
+                //            let playingStation = PlayingStation(faviconData: PlayingStation.shared.faviconData, station: PlayingStation.shared.station)
+                //            SwiftDataContainers.shared.container.mainContext.insert(playingStation)
                 
-                do {
-                    print("Trying to save...")
-                    //            let playingStation = PlayingStation(faviconData: PlayingStation.shared.faviconData, station: PlayingStation.shared.station)
-                    //            SwiftDataContainers.shared.container.mainContext.insert(playingStation)
-                    
-                    try SwiftDataContainers.shared.container.mainContext.save()
-                    print("Finished saving the latest station")
-                    os_signpost(.end, log: pointsOfInterest, name: "Save the PlayingStation.shared with mainContext")
-                    
-                } catch {
-                    os_signpost(.end, log: pointsOfInterest, name: "Save the PlayingStation.shared with mainContext")
-                    
-                    print("Cannot save")
-                }
+                try SwiftDataContainers.shared.container.mainContext.save()
+                print("Finished saving the latest station")
+                os_signpost(.end, log: pointsOfInterest, name: "Save the PlayingStation.shared with mainContext")
+                
+            } catch {
+                os_signpost(.end, log: pointsOfInterest, name: "Save the PlayingStation.shared with mainContext")
+                print("Cannot save")
             }
         }
+        
     }
     
     
-    
-    func resume() {
-        
-        
-        Task {
-            await MainActor.run {
-                PlayerState.shared.isPlaying = true
-            }
+    // MARK: DEF RESUME()
+    func resume() async {
+            await MainActor.run { PlayerState.shared.isPlaying = true }
             AVPlayerController.shared.play()
             AVAudioSessionController.shared.setActive(true)
-        }
+
         
         
     }
     
-    
-    func pause() {
-        
-        Task {
+    // MARK: DEF PAUSE()
+
+    func pause() async {
             await MainActor.run {
                 PlayerState.shared.isPlaying = false
             }
             AVPlayerController.shared.pause()
             AVAudioSessionController.shared.setActive(false)
-            
-        }
-        
-        
     }
     
+    // MARK: DEF TOGGLEPLAYBACK()
+
     @MainActor func togglePlayback() {
         if PlayerState.shared.isPlaying {
-            pause()
+            Task {
+                await pause()
+            }
+            
         } else {
-            resume()
+            Task {
+                await resume()
+            }
+            
         }
     }
 }

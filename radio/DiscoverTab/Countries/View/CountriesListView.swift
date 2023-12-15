@@ -25,6 +25,8 @@ struct CountriesListView: View {
         }
         .searchable(text: $countriesModel.searchText, prompt: Text("Search for countries"))
         .disableAutocorrection(true)
+        .contentMargins(.bottom, 96, for: .automatic)
+
     }
 
     

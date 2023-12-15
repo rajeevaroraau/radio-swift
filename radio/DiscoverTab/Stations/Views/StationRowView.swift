@@ -39,11 +39,12 @@ struct StationRowView: View {
 
 
 struct DefaultFaviconView: View {
+    var height: CGFloat = 48
     var body: some View {
         Image(uiImage: UIImage(named: "DefaultFaviconSmall")!)
             .resizable()
             .scaledToFit()
-            .frame(width: 50, height: 50)
-            .clipShape(RoundedRectangle(cornerRadius: 50/6))
+            .frame(width: height, height: height)
+            .clipShape(RoundedRectangle(cornerRadius: height/6))
     }
 }

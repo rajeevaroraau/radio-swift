@@ -20,8 +20,8 @@ class CountriesController {
     func fetchCountries() async {
         do {
             let data = try await networking.requestCountries()
+            
             os_signpost(.begin, log: pointsOfInterest, name: "CountriesController.fetchCountries(): Save Data to Memory")
-
             await MainActor.run {
                 self.countries = data
             }

@@ -16,7 +16,7 @@ struct TogglePlayback: AppIntent {
     @MainActor
     func perform() async throws -> some IntentResult {
         if PlayerState.shared.firstPlay == true {
-            AudioController.shared.playWithSetup()
+            await AudioController.shared.playWithSetup()
         } else {
             AudioController.shared.togglePlayback()
         }

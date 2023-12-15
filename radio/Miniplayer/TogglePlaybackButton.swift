@@ -42,7 +42,10 @@ struct TogglePlaybackButton: View {
         animationPlayPauseTap()
         if PlayerState.shared.firstPlay {
             print("PlayingWithSetup...")
-            AudioController.shared.playWithSetup()
+            Task {
+                await AudioController.shared.playWithSetup()
+            }
+            
         } else {
             print("Toggling the playback")
             AudioController.shared.togglePlayback()

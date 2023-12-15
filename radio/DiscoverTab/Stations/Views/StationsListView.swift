@@ -18,9 +18,12 @@ struct StationsListView: View {
         List {
             ForEach(stationsModel.searchableStations, id: \.stationuuid) { station in
                 Button {
-                    hapticFeedback()
-                    PlayingStation.shared.setStationWithFetchingFavicon(station)
-                    AudioController.shared.playWithSetup()
+                    
+                    PlayingStation.shared.setStationWithFetchingFavicon(station, faviconCached: nil)
+                    Task {
+                        await AudioController.shared.playWithSetup()
+                    }
+                    
                 } label: {
                     StationRowView(faviconCached: nil, station: station)
                 }
@@ -30,7 +33,7 @@ struct StationsListView: View {
                         let stationTemp = PersistableStation(station: station)
                         
                         modelContext.insert(stationTemp)
-                        hapticFeedback()
+                        
                         
                         Task {
                             await stationTemp.fetchStation()
@@ -43,5 +46,9 @@ struct StationsListView: View {
         }
         .searchable(text: $stationsModel.searchText, placement: .automatic, prompt: Text("Search for stations"))
         .disableAutocorrection(true)
+        .contentMargins(.bottom, 96, for: .automatic)
+
+
+
     }
 }

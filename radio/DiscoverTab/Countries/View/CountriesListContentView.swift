@@ -8,7 +8,12 @@ struct CountriesListContentView: View {
         NavigationView {
             Group {
                 if countriesModel.countries == [] {
-                    ProgressView()
+                    VStack {
+                        ProgressView()
+                            .padding()
+                        Text("LOADING...")
+                            .foregroundStyle(.secondary)
+                    }
                 } else {
                     CountriesListView()
                 }

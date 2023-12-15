@@ -15,7 +15,6 @@ struct LibraryContentView: View {
     var body: some View {
         NavigationStack {
             Group {
-                
                 if favoriteStations.count == 0 {
                     Spacer()
                     ContentUnavailableView("Add Stations", systemImage: "magnifyingglass" , description: Text("You haven't favorited a station yet."))

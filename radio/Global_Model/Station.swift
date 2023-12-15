@@ -39,7 +39,7 @@ class Station: Codable, Equatable, Identifiable {
     let has_extended_info: Bool
     
     static func ==(lhs: Station, rhs: Station) -> Bool {
-        return lhs.stationuuid == rhs.stationuuid
+        return lhs.url == rhs.url
     }
     
     

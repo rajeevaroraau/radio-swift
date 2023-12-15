@@ -4,7 +4,7 @@ struct StationsListContentView: View {
     @Environment(StationsViewController.self) private var stationsModel: StationsViewController
     
     var country: Country
-
+    
     var body: some View {
         @Bindable var stationsModel = stationsModel
         Group {
@@ -12,7 +12,12 @@ struct StationsListContentView: View {
             
             
             if stationsModel.stations == [] {
-                ProgressView()
+                VStack {
+                    ProgressView()
+                        .padding()
+                    Text("LOADING...")
+                        .foregroundStyle(.secondary)
+                }
             } else {
                 StationsListView()
                 
@@ -22,32 +27,31 @@ struct StationsListContentView: View {
         }
         .navigationTitle("\(country.name)")
         
-//        .onChange(of: StationsViewController.selectedCountry) {
-//            StationsViewController.selectedCountry = country
-//
-//            stationsModel.stations = []
-//            stationsModel.fetchStationsTask.cancel()
-//            
-//            stationsModel.fetchStationsTask = Task {
-//                await  stationsModel.fetchStationsListForCountry()
-//            }
-//        }
-        .onAppear {
+        //        .onChange(of: StationsViewController.selectedCountry) {
+        //            StationsViewController.selectedCountry = country
+        //
+        //            stationsModel.stations = []
+        //            stationsModel.fetchStationsTask.cancel()
+        //
+        //            stationsModel.fetchStationsTask = Task {
+        //                await  stationsModel.fetchStationsListForCountry()
+        //            }
+        //        }
+        .task {
             StationsViewController.selectedCountry = country
             stationsModel.stations = []
             
             stationsModel.fetchStationsTask.cancel()
-            stationsModel.fetchStationsTask = Task {
-                await  stationsModel.fetchStationsListForCountry()
-            }
-
+            await  stationsModel.fetchStationsListForCountry()
+            
+            
         }
         .onChange(of: stationsModel.searchText) {
             stationsModel.debounceSearch()
         }
-
+        
     }
-
-
+    
+    
     
 }

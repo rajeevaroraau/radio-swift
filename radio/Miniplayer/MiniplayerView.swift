@@ -18,19 +18,19 @@ struct MiniplayerView: View {
     
     var body: some View {
         ZStack {
+            // MARK: - BACKGROUND
             Group {
-                RoundedRectangle(cornerRadius: 15)
-                RoundedRectangle(cornerRadius: 15)
+                RoundedRectangle(cornerRadius: 16)
+                RoundedRectangle(cornerRadius: 16)
                     .foregroundStyle(PlayingStation.shared.faviconUIImage?.averageColor?.gradient.opacity(0.3) ?? Color.gray.gradient.opacity(0.3))
-                    .shadow(color: .black.opacity(0.3), radius: 10, x: 0, y: 5)
             }
-            .frame(height: 60)
+            .frame(height: 64)
             .foregroundStyle(.ultraThinMaterial)
             
-            
-            HStack(spacing: 5) {
+            // MARK: - BODY
+            HStack(spacing: 8) {
                 
-                ImageFaviconCached(image: PlayingStation.shared.faviconUIImage, isPlaceholderLowRes: true, height: 50, isPlayingStationImage: true)
+                ImageFaviconCached(image: PlayingStation.shared.faviconUIImage, isPlaceholderLowRes: true, height: 48, isPlayingStationImage: true)
                 
                 Text(PlayingStation.shared.station?.name ?? "Select a station")
                     .font(.body)
@@ -44,22 +44,24 @@ struct MiniplayerView: View {
                 
                 ShazamButton()
                     .font(.title)
-                    .frame(width: 60, height:60)
+                    .frame(width: 64, height:64)
                 
                 TogglePlaybackButton(fontSize: 28)
-                    .frame(width: 60, height:60)
+                    .frame(width: 64, height:64)
                 .contentShape(Rectangle())
             }
-            .padding(.horizontal, 5)
+            .padding(.horizontal, 8)
             .foregroundStyle(.primary)
             .frame(maxWidth: .infinity)
             
         }
-        .padding(.horizontal, 10)
-        .offset(y: -60)
+        .foregroundStyle(.white)
+        .padding(8)
+        .offset(y: -48)
         .onTapGesture {
             isShowingModal = true
         }
+        // MARK: - GESTURE
         .gesture(DragGesture(minimumDistance: 10.0, coordinateSpace: .local)
             .onEnded { value in
                 
@@ -71,6 +73,7 @@ struct MiniplayerView: View {
                 }
             }
         )
+        // MARK: - BIGPLAYERVIEW
         .fullScreenCover(isPresented: $isShowingModal) {
             
             BigPlayerView(isShowingSheet: $isShowingModal)

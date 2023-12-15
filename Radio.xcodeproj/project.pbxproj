@@ -39,6 +39,9 @@
 		D36B91DC2AF2C90500356285 /* TogglePlaybackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36B91DB2AF2C90500356285 /* TogglePlaybackButton.swift */; };
 		D36B91DE2AF2C94F00356285 /* FavouriteButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36B91DD2AF2C94F00356285 /* FavouriteButton.swift */; };
 		D36B91E42AF2CC3800356285 /* AverageColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36B91E32AF2CC3800356285 /* AverageColor.swift */; };
+		D37A37CA2B2C55A900A44E43 /* BigScreenBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37A37C92B2C55A900A44E43 /* BigScreenBackground.swift */; };
+		D37A37CC2B2C55DB00A44E43 /* BigScreenControls.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37A37CB2B2C55DB00A44E43 /* BigScreenControls.swift */; };
+		D37A37CE2B2C57BD00A44E43 /* BigScreenFavicon.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37A37CD2B2C57BD00A44E43 /* BigScreenFavicon.swift */; };
 		D38C155B2AD09D3D009E831D /* PersistableStation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D38C155A2AD09D34009E831D /* PersistableStation.swift */; };
 		D38C15602AD0D22A009E831D /* SimpleCodable in Frameworks */ = {isa = PBXBuildFile; productRef = D38C155F2AD0D22A009E831D /* SimpleCodable */; };
 		D38C15622AD0D22A009E831D /* SimpleCodableClient in Frameworks */ = {isa = PBXBuildFile; productRef = D38C15612AD0D22A009E831D /* SimpleCodableClient */; };
@@ -89,6 +92,9 @@
 		D36B91DB2AF2C90500356285 /* TogglePlaybackButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TogglePlaybackButton.swift; sourceTree = "<group>"; };
 		D36B91DD2AF2C94F00356285 /* FavouriteButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteButton.swift; sourceTree = "<group>"; };
 		D36B91E32AF2CC3800356285 /* AverageColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AverageColor.swift; sourceTree = "<group>"; };
+		D37A37C92B2C55A900A44E43 /* BigScreenBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BigScreenBackground.swift; sourceTree = "<group>"; };
+		D37A37CB2B2C55DB00A44E43 /* BigScreenControls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BigScreenControls.swift; sourceTree = "<group>"; };
+		D37A37CD2B2C57BD00A44E43 /* BigScreenFavicon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BigScreenFavicon.swift; sourceTree = "<group>"; };
 		D38C155A2AD09D34009E831D /* PersistableStation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistableStation.swift; sourceTree = "<group>"; };
 		D3911D472B26160900F0B7A1 /* LockscreenController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockscreenController.swift; sourceTree = "<group>"; };
 		D3911D492B26183A00F0B7A1 /* AVAudioSessionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVAudioSessionController.swift; sourceTree = "<group>"; };
@@ -296,6 +302,9 @@
 				D36B91DD2AF2C94F00356285 /* FavouriteButton.swift */,
 				D359A78A2AD07B77004A292B /* MiniplayerView.swift */,
 				D31B4FAD2AE1A88B002F9563 /* BigPlayerView.swift */,
+				D37A37CD2B2C57BD00A44E43 /* BigScreenFavicon.swift */,
+				D37A37C92B2C55A900A44E43 /* BigScreenBackground.swift */,
+				D37A37CB2B2C55DB00A44E43 /* BigScreenControls.swift */,
 			);
 			path = Miniplayer;
 			sourceTree = "<group>";
@@ -420,6 +429,7 @@
 				D359A7652AD0509B004A292B /* radioApp.swift in Sources */,
 				D366F4072B24B161001C54D6 /* CountriesListView.swift in Sources */,
 				D3CCC4202AD2F3850069F900 /* LibraryTileView.swift in Sources */,
+				D37A37CC2B2C55DB00A44E43 /* BigScreenControls.swift in Sources */,
 				D38C155B2AD09D3D009E831D /* PersistableStation.swift in Sources */,
 				D359A7822AD05166004A292B /* CountryRowView.swift in Sources */,
 				D359A7792AD05125004A292B /* StationsViewController.swift in Sources */,
@@ -435,6 +445,8 @@
 				D36B91DA2AF2C6D100356285 /* hapticFeedback.swift in Sources */,
 				D359A7832AD05166004A292B /* CountriesListContentView.swift in Sources */,
 				D30E76E32B13D5D900237F8B /* SwiftDataContainers.swift in Sources */,
+				D37A37CE2B2C57BD00A44E43 /* BigScreenFavicon.swift in Sources */,
+				D37A37CA2B2C55A900A44E43 /* BigScreenBackground.swift in Sources */,
 				D3BEFA962B1349840082675A /* TogglePlaybackIntent.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

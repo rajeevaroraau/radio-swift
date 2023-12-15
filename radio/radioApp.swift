@@ -19,7 +19,7 @@ struct radioApp: App {
                 print("No station in stationToPlay");
                 return
             }
-            PlayingStation.shared.setStation(station, faviconCached: stationToPlay.faviconData)
+            PlayingStation.shared.setStationWithFetchingFavicon(station, faviconCached: stationToPlay.faviconData)
             print("Reverted to the latest station: \(PlayingStation.shared.station?.name ?? "EROR")")
         } else {
             print("No station to revert to")

@@ -25,10 +25,11 @@ struct FavouriteButton: View {
                 let stationTemp = PersistableStation(faviconData: PlayingStation.shared.faviconData, station: station)
                 
                 modelContext.insert(stationTemp)
-                hapticFeedback()
+                
                 
                 Task {
                     await stationTemp.fetchStation()
+                    await hapticFeedback()
                 }
             }
         }
@@ -37,7 +38,7 @@ struct FavouriteButton: View {
         .labelStyle(.iconOnly)
         .foregroundStyle(.white)
         .font(.largeTitle)
-        .padding(10)
+        .padding(8)
     }
 }
 

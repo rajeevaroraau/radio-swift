@@ -16,8 +16,11 @@ struct LibraryListView: View {
         List {
             ForEach(favoriteStations) { favoriteStation in
                 Button {             
-                    PlayingStation.shared.setStation(favoriteStation.station, faviconCached: favoriteStation.faviconData)
-                    AudioController.shared.playWithSetup()
+                    PlayingStation.shared.setStationWithFetchingFavicon(favoriteStation.station, faviconCached: favoriteStation.faviconData)
+                    Task {
+                        await AudioController.shared.playWithSetup()
+                    }
+                    
                 } label: {
                     StationRowView(faviconCached: nil, station: favoriteStation.station)
                     
