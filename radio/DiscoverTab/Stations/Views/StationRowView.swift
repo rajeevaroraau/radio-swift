@@ -39,7 +39,7 @@ struct StationRowView: View {
 
 
 struct DefaultFaviconView: View {
-    var height: CGFloat = 48
+    @State private var height: CGFloat = 48
     var body: some View {
         Image(uiImage: UIImage(named: "DefaultFaviconSmall")!)
             .resizable()
