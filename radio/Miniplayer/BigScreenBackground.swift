@@ -9,13 +9,17 @@ import SwiftUI
 
 struct BigScreenBackground: View {
     var body: some View {
-        VStack(spacing:0) {
-            Rectangle()
-                .foregroundStyle(PlayingStation.shared.faviconUIImage?.averageColor?.gradient ?? Color.gray.gradient)
+        ZStack {
             Rectangle()
                 .foregroundStyle(PlayingStation.shared.faviconUIImage?.averageColor ?? Color.gray)
-                .frame(height: UIScreen.main.bounds.height / 3)
+            VStack(spacing:0) {
+                Rectangle()
+                    .foregroundStyle(PlayingStation.shared.faviconUIImage?.averageColor?.gradient ?? Color.gray.gradient)
+                Spacer()
+                    .frame(height: UIScreen.main.bounds.height / 3)
+            }
         }
+
         .ignoresSafeArea()
     }
 }
