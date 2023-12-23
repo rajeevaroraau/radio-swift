@@ -9,26 +9,22 @@ import SwiftUI
 import SwiftData
 
 struct FavouriteButton: View {
-    @Query var favoriteStations: [PersistableStation]
+    @Query var favoriteStations: [ExtendedStation]
     @Environment(\.modelContext) var modelContext
     
     var body: some View {
         
-        Button("Favourite", systemImage: favoriteStations.contains(where: { $0.station == PlayingStation.shared.station }) ? "star.circle.fill" : "star.circle") {
-            guard let station =  PlayingStation.shared.station else {
-                print("No station in FavouriteButton");
-                return
-            }
-            if let stationToDelete = favoriteStations.first(where: { $0.station == PlayingStation.shared.station }) {
+        Button("Favourite", systemImage: favoriteStations.contains(where: { $0.stationBase == PlayingStation.shared.extendedStation.stationBase }) ? "star.circle.fill" : "star.circle") {
+
+            if let stationToDelete = favoriteStations.first(where: { $0.stationBase == PlayingStation.shared.extendedStation.stationBase }) {
                 modelContext.delete(stationToDelete)
             } else {
-                let stationTemp = PersistableStation(faviconData: PlayingStation.shared.faviconData, station: station)
-                
+                let stationTemp = ExtendedStation(stationBase: PlayingStation.shared.extendedStation.stationBase, faviconData: PlayingStation.shared.extendedStation.faviconData)
                 modelContext.insert(stationTemp)
                 
                 
+                stationTemp.setStationWithFetchingFavicon(PlayingStation.shared.extendedStation.stationBase, faviconCached: PlayingStation.shared.extendedStation.faviconData)
                 Task {
-                    await stationTemp.fetchStation()
                     await hapticFeedback()
                 }
             }

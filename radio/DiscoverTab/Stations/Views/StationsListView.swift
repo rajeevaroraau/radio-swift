@@ -19,7 +19,7 @@ struct StationsListView: View {
             ForEach(stationsModel.searchableStations, id: \.stationuuid) { station in
                 Button {
                     
-                    PlayingStation.shared.setStationWithFetchingFavicon(station, faviconCached: nil)
+                    PlayingStation.shared.extendedStation.setStationWithFetchingFavicon(station, faviconCached: nil)
                     Task {
                         await AudioController.shared.playWithSetup()
                     }
@@ -30,14 +30,13 @@ struct StationsListView: View {
                 .buttonStyle(.plain)
                 .swipeActions(allowsFullSwipe: true) {
                     Button {
-                        let stationTemp = PersistableStation(station: station)
+                        let extendedStationLocal = ExtendedStation(stationBase: station)
                         
-                        modelContext.insert(stationTemp)
+                        modelContext.insert(extendedStationLocal)
                         
                         
-                        Task {
-                            await stationTemp.fetchStation()
-                        }
+                        extendedStationLocal.setStationWithFetchingFavicon(station, faviconCached: extendedStationLocal.faviconData)
+                        
                     } label: {
                         Label("Favourite", systemImage: "star.circle.fill")
                     }
@@ -47,8 +46,8 @@ struct StationsListView: View {
         .searchable(text: $stationsModel.searchText, placement: .automatic, prompt: Text("Search for stations"))
         .disableAutocorrection(true)
         .contentMargins(.bottom, 96, for: .automatic)
-
-
-
+        
+        
+        
     }
 }

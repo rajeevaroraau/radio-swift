@@ -11,9 +11,9 @@ struct BigScreenBackground: View {
     var body: some View {
         VStack(spacing:0) {
             Rectangle()
-                .foregroundStyle(PlayingStation.shared.faviconUIImage?.averageColor?.gradient ?? Color.gray.gradient)
+                .foregroundStyle(PlayingStation.shared.extendedStation.faviconUIImage?.averageColor?.gradient ?? Color.gray.gradient)
             Rectangle()
-                .foregroundStyle(PlayingStation.shared.faviconUIImage?.averageColor ?? Color.gray)
+                .foregroundStyle(PlayingStation.shared.extendedStation.faviconUIImage?.averageColor ?? Color.gray)
                 .frame(height: UIScreen.main.bounds.height / 3)
         }
         .ignoresSafeArea()

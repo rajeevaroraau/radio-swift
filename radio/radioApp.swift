@@ -14,16 +14,25 @@ struct radioApp: App {
 
 
     init() {
-        if let stationToPlay = try? SwiftDataContainers.shared.container.mainContext.fetch(FetchDescriptor<PlayingStation>()).last {
-            guard let station = stationToPlay.station else {
-                print("No station in stationToPlay");
-                return
+        do {
+            if let extendedStationToPlay = try SwiftDataContainers.shared.container.mainContext.fetch(FetchDescriptor<PlayingStation>()).last?.extendedStation {
+                print("\(extendedStationToPlay.stationBase.name)")
+print("Inside the loop")
+                PlayingStation.shared.extendedStation.setStationWithFetchingFavicon(extendedStationToPlay.stationBase, faviconCached: extendedStationToPlay.faviconData)
+                
+                
+                print("Reverted to the latest station: \(PlayingStation.shared.extendedStation.stationBase.name)")
+            } else {
+                print("No station to revert to")
+                SwiftDataContainers.shared.container.mainContext.insert(PlayingStation.shared.self)
+                try SwiftDataContainers.shared.container.mainContext.save()
+
             }
-            PlayingStation.shared.setStationWithFetchingFavicon(station, faviconCached: stationToPlay.faviconData)
-            print("Reverted to the latest station: \(PlayingStation.shared.station?.name ?? "EROR")")
-        } else {
-            print("No station to revert to")
+        } catch {
+            print(error.localizedDescription)
         }
+        
+
         
     }
 }

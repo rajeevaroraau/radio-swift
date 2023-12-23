@@ -6,7 +6,7 @@ import SimpleCodable
 @Codable
 @Model
 
-class Station: Codable, Equatable, Identifiable {
+class StationBase: Codable, Equatable, Identifiable {
     let changeuuid: String
     let stationuuid: String
     let name: String
@@ -38,7 +38,7 @@ class Station: Codable, Equatable, Identifiable {
     let geo_long: Double?
     let has_extended_info: Bool
     
-    static func ==(lhs: Station, rhs: Station) -> Bool {
+    static func ==(lhs: StationBase, rhs: StationBase) -> Bool {
         return lhs.url == rhs.url
     }
     

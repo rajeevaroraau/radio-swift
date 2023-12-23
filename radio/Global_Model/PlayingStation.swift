@@ -14,51 +14,78 @@ import Observation
 class PlayingStation {
     static var shared = PlayingStation()
     
-    // ACTUAL MODEL
-    private(set) var station: Station? = nil
+    var extendedStation: ExtendedStation
     
-    //RAW FAVICON DATA
-    var faviconData: Data? = nil
-    var faviconUIImage: UIImage? { if let faviconData = faviconData { UIImage(data: faviconData) } else { nil } }
     
-    init(faviconData: Data? = nil, station: Station? = nil) {
-        self.faviconData = faviconData
-        self.station = station
+    init() {
+        
+        let json = {"""
+{
+  "changeuuid": "30ab2c13-6038-4895-85a6-1dec17ec8444",
+  "stationuuid": "963ccae5-0601-11e8-ae97-52543be04c81",
+  "serveruuid": "cf9ec7b9-8d0e-4d30-aec3-e83c7ecb9185",
+  "name": "No station selected",
+  "url": "https://example.com",
+  "url_resolved": "https://example.com",
+  "homepage": "http://www.deutschlandfunk.de/",
+  "favicon": "http://www.deutschlandfunk.de/static/img/deutschlandfunk/icons/apple-touch-icon-128x128.png",
+  "tags": "cultural news,culture,information,kultur,news",
+  "country": "Germany",
+  "countrycode": "DE",
+  "iso_3166_2": null,
+  "state": "",
+  "language": "german",
+  "languagecodes": "de",
+  "votes": 34856,
+  "lastchangetime": "2023-11-04 17:34:32",
+  "lastchangetime_iso8601": "2023-11-04T17:34:32Z",
+  "codec": "MP3",
+  "bitrate": 128,
+  "hls": 0,
+  "lastcheckok": 1,
+  "lastchecktime": "2023-12-14 22:24:15",
+  "lastchecktime_iso8601": "2023-12-14T22:24:15Z",
+  "lastcheckoktime": "2023-12-14 22:24:15",
+  "lastcheckoktime_iso8601": "2023-12-14T22:24:15Z",
+  "lastlocalchecktime": "2023-12-14 22:24:15",
+  "lastlocalchecktime_iso8601": "2023-12-14T22:24:15Z",
+  "clicktimestamp": "2023-12-15 19:24:35",
+  "clicktimestamp_iso8601": "2023-12-15T19:24:35Z",
+  "clickcount": 7539,
+  "clicktrend": -4,
+  "ssl_error": 0,
+  "geo_lat": null,
+  "geo_long": null,
+  "has_extended_info": false
+}
+"""
+        }()
+        let data = json.data(using: .utf8)
+        guard let data = data  else { fatalError("Bad data") }
+        let faviconData = imageToData()
+        
+        let decoder = JSONDecoder()
+        decoder.dateDecodingStrategy = .iso8601
+        
+        do {
+            let stationBase = try decoder.decode(StationBase.self, from: data)
+            let initialExtendedStation = ExtendedStation(stationBase: stationBase, faviconData: faviconData)
+            self.extendedStation = initialExtendedStation
+        } catch {
+            fatalError("Cannot decode JSON from PlayingStation Init")
+        }
+        
+        
     }
 }
 
-
-extension PlayingStation {
-    func setStationWithFetchingFavicon(_ station: Station, faviconCached data: Data?) {
-        self.station = station
-        if let data = data {
-            self.faviconData = data
-        } else {
-            Task { await fetchFavicon() }
-        }
-        
+func imageToData() ->  Data {
+    if let image = UIImage(named: "DefaultFaviconLarge"),
+       let imageData = image.pngData() {
+        // Now you have the data representation of the image in PNG format
+        return imageData
+    } else {
+        print("Unable to convert UIImage to Data.")
     }
-    
-    func fetchFavicon() async {
-        guard let station = self.station else {
-            print("No station in fetchFavicon()");
-            return
-        }
-        await MainActor.run { self.faviconData = nil }
-        // CACHE THE COVER ART
-        if let faviconURL = URL(string: station.favicon) {
-            do {
-                let (data, _) = try await URLSession.shared.data(from: faviconURL)
-                await MainActor.run { self.faviconData =  data }
-            } catch {
-                await MainActor.run { self.faviconData = nil }
-            }
-        } else {
-            print("No favicon link")
-        }
-    }
-    
-    
-    
-
+    return Data()
 }

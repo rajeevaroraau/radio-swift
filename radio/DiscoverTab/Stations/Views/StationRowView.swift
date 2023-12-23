@@ -4,13 +4,13 @@ struct StationRowView: View {
     let faviconCached: UIImage?
     
     @State private var opacity = 1.0
-    let station: Station
+    let station: StationBase
     var body: some View {
         HStack {
             DynamicImageFaviconView(faviconCached: faviconCached, urlFavicon: station.favicon)
             VStack(alignment: .leading) {
                 
-                if station.stationuuid == PlayingStation.shared.station?.stationuuid {
+                if station.stationuuid == PlayingStation.shared.extendedStation.stationBase.stationuuid {
                     Text(station.name).font(.headline).lineLimit(2).truncationMode(.tail)
                         .opacity(opacity)
                         .animation(

@@ -10,7 +10,7 @@ import OSLog
 class StationNetworking {
     
     
-    func requestStationListForCountry() async throws -> [Station] {
+    func requestStationListForCountry() async throws -> [StationBase] {
         os_signpost(.begin, log: pointsOfInterest, name: "StationNetworking.requestStationListForCountry(): Prepare JSONDecoder")
 
         // PREPARE CUSTOM JSONDECODER
@@ -28,7 +28,7 @@ class StationNetworking {
             os_signpost(.end, log: pointsOfInterest, name: "StationNetworking.requestStationListForCountry(): Get Data from Request")
 
             os_signpost(.begin, log: pointsOfInterest, name: "StationNetworking.requestStationListForCountry(): Decode Data")
-            let stations = try decoder.decode([Station].self, from: data)
+            let stations = try decoder.decode([StationBase].self, from: data)
             print("Successfully fetched stations from \(properUrl)")
             os_signpost(.end, log: pointsOfInterest, name: "StationNetworking.requestStationListForCountry(): Decode Data")
 

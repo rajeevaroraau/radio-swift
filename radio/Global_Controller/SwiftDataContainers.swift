@@ -15,9 +15,9 @@ class SwiftDataContainers {
     
     init() {
         do {
-            container = try ModelContainer(for: PlayingStation.self, PersistableStation.self)
+            container = try ModelContainer(for: PlayingStation.self, ExtendedStation.self)
         } catch {
-            fatalError("Failed to configure SwiftData container.")
+            fatalError("\(error.localizedDescription)")
         }
     }
 }

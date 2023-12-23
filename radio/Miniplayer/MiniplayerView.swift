@@ -22,7 +22,7 @@ struct MiniplayerView: View {
             Group {
                 RoundedRectangle(cornerRadius: 16)
                 RoundedRectangle(cornerRadius: 16)
-                    .foregroundStyle(PlayingStation.shared.faviconUIImage?.averageColor?.gradient.opacity(0.3) ?? Color.gray.gradient.opacity(0.3))
+                    .foregroundStyle(PlayingStation.shared.extendedStation.faviconUIImage?.averageColor?.gradient.opacity(0.3) ?? Color.gray.gradient.opacity(0.3))
             }
             .frame(height: 64)
             .foregroundStyle(.ultraThinMaterial)
@@ -30,9 +30,9 @@ struct MiniplayerView: View {
             // MARK: - BODY
             HStack(spacing: 8) {
                 
-                ImageFaviconCached(image: PlayingStation.shared.faviconUIImage, isPlaceholderLowRes: true, height: 48, isPlayingStationImage: true)
+                ImageFaviconCached(image: PlayingStation.shared.extendedStation.faviconUIImage, isPlaceholderLowRes: true, height: 48, isPlayingStationImage: true)
                 
-                Text(PlayingStation.shared.station?.name ?? "Select a station")
+                Text(PlayingStation.shared.extendedStation.stationBase.name)
                     .font(.body)
                     .bold()
                     .multilineTextAlignment(.leading)

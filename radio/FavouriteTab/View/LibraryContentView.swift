@@ -10,7 +10,7 @@ import SwiftData
 
 struct LibraryContentView: View {
     
-    @Query var favoriteStations: [PersistableStation]
+    @Query var favoriteStations: [ExtendedStation]
 
     var body: some View {
         NavigationStack {

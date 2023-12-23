@@ -11,18 +11,23 @@ import SwiftData
 struct LibraryListView: View {
     @Environment(\.modelContext) var modelContext
     
-    @Query var favoriteStations: [PersistableStation]
+    @Query var favoriteStations: [ExtendedStation]
     var body: some View {
         List {
             ForEach(favoriteStations) { favoriteStation in
-                Button {             
-                    PlayingStation.shared.setStationWithFetchingFavicon(favoriteStation.station, faviconCached: favoriteStation.faviconData)
-                    Task {
-                        await AudioController.shared.playWithSetup()
-                    }
+                Button {
+                        
+                    PlayingStation.shared.extendedStation.setStationWithFetchingFavicon(favoriteStation.stationBase, faviconCached: favoriteStation.faviconData)
+                        
+                        Task {
+                            await AudioController.shared.playWithSetup()
+                        }
                     
                 } label: {
-                    StationRowView(faviconCached: nil, station: favoriteStation.station)
+
+                    StationRowView(faviconCached: favoriteStation.faviconUIImage, station: favoriteStation.stationBase)
+                    
+                    
                     
                 }
                 .buttonStyle(.plain)

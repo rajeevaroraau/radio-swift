@@ -21,15 +21,9 @@ class AudioController {
             os_signpost(.end, log: pointsOfInterest, name: "Initially Set PlayerState")
             
         }
-        guard let station = PlayingStation.shared.station else {
-            print("No playingStation in playWithSetup");
-            Task {
-                await pause()
-            }
-            return
-        }
+
         
-        guard let url = URL(string: station.url) else {
+        guard let url = URL(string: PlayingStation.shared.extendedStation.stationBase.url) else {
             print("Bad url");
             Task {
                 await pause()

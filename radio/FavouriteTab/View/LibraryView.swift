@@ -10,7 +10,7 @@ import SwiftData
 
 struct LibraryView: View {
     @Environment(\.modelContext) var modelContext
-    @Query var favoriteStations: [PersistableStation]
+    @Query var favoriteStations: [ExtendedStation]
     
     let columns = [
         GridItem(.adaptive(minimum: 150, maximum: 180), spacing: 12),
@@ -54,9 +54,13 @@ struct LibraryView: View {
 }
 
 extension LibraryView {
-    func handleStationTap(favoriteStation: PersistableStation)  {
-        PlayingStation.shared.setStationWithFetchingFavicon(favoriteStation.station, faviconCached: favoriteStation.faviconData)
+    func handleStationTap(favoriteStation: ExtendedStation)  {
+
+        
         Task {
+            await MainActor.run {
+                PlayingStation.shared.extendedStation.setStationWithFetchingFavicon(favoriteStation.stationBase, faviconCached: favoriteStation.faviconData)
+            }
             await AudioController.shared.playWithSetup()
         }     
     }

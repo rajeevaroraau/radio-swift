@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct LibraryTileView: View {
-    let favoriteStation: PersistableStation
+    let favoriteStation: ExtendedStation
     var body: some View {
         ZStack(alignment: .bottomLeading) {
             Group {
@@ -24,7 +24,7 @@ struct LibraryTileView: View {
                 Spacer()
                 VStack(alignment: .leading) {
                     ImageFaviconCached(image: favoriteStation.faviconUIImage, isPlaceholderLowRes: true, height: 30, isPlayingStationImage: false )
-                    StationTextView(stationName: favoriteStation.station.name, textAlignment: .leading, textSize: .headline)
+                    StationTextView(stationName: favoriteStation.stationBase.name, textAlignment: .leading, textSize: .headline)
                         .foregroundStyle(.white)
                 }
                 .padding()
@@ -36,7 +36,7 @@ struct LibraryTileView: View {
         .frame(height: 100)
 
     }
-    init(favoriteStation: PersistableStation) {
+    init(favoriteStation: ExtendedStation) {
         self.favoriteStation = favoriteStation
     }
     
