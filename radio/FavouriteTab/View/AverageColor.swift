@@ -32,7 +32,7 @@ extension UIImage {
         var bitmap = [UInt8](repeating: 0, count: 4)
         let context = CIContext(options: [.workingColorSpace: kCFNull!])
         context.render(outputImage, toBitmap: &bitmap, rowBytes: 4, bounds: CGRect(x: 0, y: 0, width: 1, height: 1), format: .RGBA8, colorSpace: nil)
-        let color = Color(UIColor(red: CGFloat(bitmap[0]) / 255, green: CGFloat(bitmap[1]) / 255, blue: CGFloat(bitmap[2]) / 255, alpha: CGFloat(bitmap[3]) / 255))
+        let color = Color(UIColor(red: CGFloat(bitmap[0]) / 255, green: CGFloat(bitmap[1]) / 255, blue: CGFloat(bitmap[2]) / 255, alpha: CGFloat(255) / 255))
         os_signpost(.end, log: pointsOfInterest, name: "averageColor Calculation")
         
         return color
