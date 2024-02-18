@@ -9,28 +9,17 @@ import SwiftUI
 import SwiftData
 
 struct FavouriteButton: View {
-    @Query var favoriteStations: [PersistableStation]
-    @Environment(\.modelContext) var modelContext
+    @Query(filter: #Predicate<ExtendedStation> { extendedStation in extendedStation.currentlyPlaying } ) var currentlyPlayingExtendedStation: [ExtendedStation]
+    @Query(filter: #Predicate<ExtendedStation> { extendedStation in extendedStation.favourite } ) var favoriteExtendedStations: [ExtendedStation]
+
     
     var body: some View {
-        
-        Button("Favourite", systemImage: favoriteStations.contains(where: { $0.station == PlayingStation.shared.station }) ? "star.circle.fill" : "star.circle") {
-            guard let station =  PlayingStation.shared.station else {
-                print("No station in FavouriteButton");
-                return
-            }
-            if let stationToDelete = favoriteStations.first(where: { $0.station == PlayingStation.shared.station }) {
-                modelContext.delete(stationToDelete)
-            } else {
-                let stationTemp = PersistableStation(faviconData: PlayingStation.shared.faviconData, station: station)
+        Button("Favourite", systemImage: favoriteExtendedStations.contains(where: { $0.stationBase == currentlyPlayingExtendedStation.first?.stationBase }) ? "star.circle.fill" : "star.circle") {
+
+            Task {
+                guard let currentlyPlayingExtendedStation = currentlyPlayingExtendedStation.first else { return }
+                await CachingManager.shared.toggleFavorite(stationBase: currentlyPlayingExtendedStation.stationBase)
                 
-                modelContext.insert(stationTemp)
-                
-                
-                Task {
-                    await stationTemp.fetchStation()
-                    await hapticFeedback()
-                }
             }
         }
         .contentTransition(.symbolEffect(.replace))

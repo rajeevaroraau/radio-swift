@@ -10,8 +10,7 @@ import SwiftData
 
 struct LibraryView: View {
     @Environment(\.modelContext) var modelContext
-    @Query var favoriteStations: [PersistableStation]
-    
+    @Query(filter: #Predicate<ExtendedStation> { extendedStation in extendedStation.favourite } ) var favoriteExtendedStations: [ExtendedStation]
     let columns = [
         GridItem(.adaptive(minimum: 150, maximum: 180), spacing: 12),
     ]
@@ -19,26 +18,24 @@ struct LibraryView: View {
     var body: some View {
         ScrollView {
             LazyVGrid(columns: columns, spacing: 12) {
-                ForEach(favoriteStations) { favoriteStation in
+                ForEach(favoriteExtendedStations) { favoriteExtendedStation in
                     Button {
-                        handleStationTap(favoriteStation: favoriteStation)
+                        handleStationTap(favoriteExtendedStation: favoriteExtendedStation)
                     } label: {
-                        LibraryTileView(favoriteStation: favoriteStation)
+                        LibraryTileView(favoriteStation: favoriteExtendedStation)
                     }
                         .contextMenu() {
                             Button("Unfavorite", systemImage: "star.slash") {
-                                modelContext.delete(favoriteStation)
-                                do {
-                                    try  modelContext.save()
-                                } catch {
-                                    print("Cannot delete station")
+                                Task {
+                                    await CachingManager.shared.removeFromFavorites(extendedStationToUnfavorite: favoriteExtendedStation)
+
                                 }
                             }
                         } preview: {
                             Button {
-                                handleStationTap(favoriteStation: favoriteStation)
+                                handleStationTap(favoriteExtendedStation: favoriteExtendedStation)
                             } label: {
-                                LibraryTileView(favoriteStation: favoriteStation)
+                                LibraryTileView(favoriteStation: favoriteExtendedStation)
                             }
                         }
                 }
@@ -54,10 +51,11 @@ struct LibraryView: View {
 }
 
 extension LibraryView {
-    func handleStationTap(favoriteStation: PersistableStation)  {
-        PlayingStation.shared.setStationWithFetchingFavicon(favoriteStation.station, faviconCached: favoriteStation.faviconData)
+    func handleStationTap(favoriteExtendedStation: ExtendedStation)  {
+
+        
         Task {
-            await AudioController.shared.playWithSetup()
-        }     
+            await AudioController.shared.playWithSetupExtendedStation(favoriteExtendedStation)
+        }
     }
 }

@@ -16,20 +16,16 @@ struct FavouriteStation: AppIntent {
     func perform() async throws -> some IntentResult {
         print("Start \(Self.title.locale)")
         
-        guard let stationPlaying = PlayingStation.shared.station else {
-            print("No station in FavouriteStation App Intent's perform()");
+
+        
+        print("Found a persisted station in PlayingStation.station: \(PlayingStationManager.shared.currentlyPlayingExtendedStation?.stationBase.name ?? "Nothing")")
+        
+        guard let currentlyPlayingExtendedStation = PlayingStationManager.shared.currentlyPlayingExtendedStation else {
             return .result()
         }
         
-        print("Found a persisted station in PlayingStation.station: \(stationPlaying.name)")
-        
-        let stationTemp = PersistableStation(station: stationPlaying)
-        Task {
-            await stationTemp.fetchStation()
-        }
-
-        print("StationTemp created")
-        SwiftDataContainers.shared.container.mainContext.insert(stationTemp)
+        currentlyPlayingExtendedStation.favourite = true
+        SwiftDataContainers.shared.container.mainContext.insert(currentlyPlayingExtendedStation)
         return .result()
        
     }

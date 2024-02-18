@@ -12,18 +12,9 @@ struct BigScreenBackground: View {
         
         ZStack(alignment: .bottomLeading) {
             Rectangle()
-                .foregroundStyle(PlayingStation.shared.faviconUIImage?.averageColor ?? Color.gray)
-            VStack(spacing:0) {
-                Rectangle()
-                    .foregroundStyle(PlayingStation.shared.faviconUIImage?.averageColor?.gradient ?? Color.gray.gradient)
-                    .frame(height: (UIScreen.main.bounds.height / 3) * 2)
-                Spacer()
-                
-            }
-            
-            
+                .foregroundStyle(PlayingStationManager.shared.currentlyPlayingExtendedStation?.computedFaviconUIImage?.averageColor?.gradient ?? Color.gray.gradient)
             Rectangle()
-                .foregroundStyle(PlayingStation.shared.faviconUIImage?.averageColor ?? Color.gray)
+                .foregroundStyle(PlayingStationManager.shared.currentlyPlayingExtendedStation?.computedFaviconUIImage?.averageColor ?? Color.gray)
                 .frame(height: UIScreen.main.bounds.height / 3)
                 .blur(radius: 5)
                 .scaleEffect(1.5)

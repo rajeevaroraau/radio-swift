@@ -9,13 +9,12 @@ import SwiftUI
 import SwiftData
 
 struct LibraryContentView: View {
-    
-    @Query var favoriteStations: [PersistableStation]
+    @Query(filter: #Predicate<ExtendedStation> { extendedStation in extendedStation.favourite } ) var favoriteExtendedStations: [ExtendedStation]
 
     var body: some View {
         NavigationStack {
             Group {
-                if favoriteStations.count == 0 {
+                if favoriteExtendedStations.count == 0 {
                     Spacer()
                     ContentUnavailableView("Add Stations", systemImage: "magnifyingglass" , description: Text("You haven't favorited a station yet."))
                     Spacer()

@@ -31,7 +31,7 @@ struct ImageFaviconCached: View {
     var body: some View {
         
         
-        Image(uiImage: isPlayingStationImage ? (PlayingStation.shared.faviconUIImage ?? placeholderImage) : image ?? placeholderImage)
+        Image(uiImage: isPlayingStationImage ? (PlayingStationManager.shared.currentlyPlayingExtendedStation?.computedFaviconUIImage ?? placeholderImage) : image ?? placeholderImage)
             .resizable()
             .accessibilityHidden(true)
             .scaledToFit()

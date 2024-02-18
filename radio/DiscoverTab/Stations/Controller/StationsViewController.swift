@@ -15,10 +15,10 @@ class StationsViewController {
     
     private let networking = StationNetworking()
     
-    var stations : [Station] = []
+    var stations : [StationBase] = []
     var searchText = ""
-    var filteredStations : [Station] = []
-    var searchableStations: [Station] {
+    var filteredStations : [StationBase] = []
+    var searchableStations: [StationBase] {
         if searchText == "" {
             return stations
         } else {
