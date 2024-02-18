@@ -11,11 +11,10 @@ struct BigScreenControls: View {
     var body: some View {
         VStack {
             HStack {
-                StationTextView(stationName: PlayingStation.shared.extendedStation.stationBase.name, textAlignment: .leading, textSize: .largeTitle.bold())
+                StationTextView(stationName: PlayingStationManager.shared.currentlyPlayingExtendedStation?.stationBase.name ?? "Nothing Playing", textAlignment: .leading, textSize: .largeTitle.bold())
                     .shadow(radius: 8, y: 8)
                 Spacer()
-                FavouriteButton()
-                    .shadow(radius: 8, y: 8)
+                FavouriteButton().shadow(radius: 8, y: 8)
             }
             // STATION NAME AND FAVOURITE BUTTON
             HStack {

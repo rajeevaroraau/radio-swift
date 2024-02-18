@@ -14,6 +14,7 @@ struct MiniplayerView: View {
     @State private var isTouching = false
     @State private var isShowingModal = false
     @State private var firstPlay = true
+    @Query(filter: #Predicate<ExtendedStation> { extendedStation in extendedStation.currentlyPlaying } ) var currentlyPlayingExtendedStation: [ExtendedStation]
 
     
     var body: some View {
@@ -22,7 +23,7 @@ struct MiniplayerView: View {
             Group {
                 RoundedRectangle(cornerRadius: 16)
                 RoundedRectangle(cornerRadius: 16)
-                    .foregroundStyle(PlayingStation.shared.extendedStation.faviconUIImage?.averageColor?.gradient.opacity(0.3) ?? Color.gray.gradient.opacity(0.3))
+                    .foregroundStyle(PlayingStationManager.shared.currentlyPlayingExtendedStation?.computedFaviconUIImage?.averageColor?.gradient.opacity(0.3) ?? Color.gray.gradient.opacity(0.3))
             }
             .frame(height: 64)
             .foregroundStyle(.ultraThinMaterial)
@@ -30,9 +31,9 @@ struct MiniplayerView: View {
             // MARK: - BODY
             HStack(spacing: 8) {
                 
-                ImageFaviconCached(image: PlayingStation.shared.extendedStation.faviconUIImage, isPlaceholderLowRes: true, height: 48, isPlayingStationImage: true)
+                ImageFaviconCached(image: PlayingStationManager.shared.currentlyPlayingExtendedStation?.computedFaviconUIImage, isPlaceholderLowRes: true, height: 48, isPlayingStationImage: true)
                 
-                Text(PlayingStation.shared.extendedStation.stationBase.name)
+                Text(currentlyPlayingExtendedStation.first?.stationBase.name ?? "Nothing Plays")
                     .font(.body)
                     .bold()
                     .multilineTextAlignment(.leading)

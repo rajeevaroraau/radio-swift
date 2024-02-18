@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D301EBD62B82AF2400FA0BCD /* CachingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D301EBD52B82AF2400FA0BCD /* CachingManager.swift */; };
 		D307999A2AD7154600D11D60 /* CountryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30799992AD7154600D11D60 /* CountryModel.swift */; };
 		D30D040C2AED54D40077371E /* AirPlayButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30D040B2AED54D40077371E /* AirPlayButton.swift */; };
 		D30E76E32B13D5D900237F8B /* SwiftDataContainers.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30E76E22B13D5D900237F8B /* SwiftDataContainers.swift */; };
@@ -15,8 +16,9 @@
 		D32D8A972AF6F11E004D1FB0 /* CountryNetworking.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32D8A962AF6F11E004D1FB0 /* CountryNetworking.swift */; };
 		D32D8A9D2AF6F620004D1FB0 /* StationNetworking.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32D8A9C2AF6F620004D1FB0 /* StationNetworking.swift */; };
 		D330D8252AFE3C260085C65D /* FavouriteStationIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = D330D8242AFE3C260085C65D /* FavouriteStationIntent.swift */; };
+		D336AF4A2B82A49000108C87 /* ImageToData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D336AF492B82A49000108C87 /* ImageToData.swift */; };
 		D342B2A02B2A9BA200C4C10C /* DynamicImageFaviconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D342B29F2B2A9BA200C4C10C /* DynamicImageFaviconView.swift */; };
-		D34F54B92AD1F3AC00347E99 /* PlayingStation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34F54B82AD1F3AC00347E99 /* PlayingStation.swift */; };
+		D34F54B92AD1F3AC00347E99 /* PlayingStationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34F54B82AD1F3AC00347E99 /* PlayingStationManager.swift */; };
 		D34F54DC2AD2DAB600347E99 /* StationBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34F54DB2AD2DAB600347E99 /* StationBase.swift */; };
 		D359A7652AD0509B004A292B /* radioApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D359A7642AD0509B004A292B /* radioApp.swift */; };
 		D359A7672AD0509B004A292B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D359A7662AD0509B004A292B /* ContentView.swift */; };
@@ -54,10 +56,10 @@
 		D3CCC41E2AD2EC540069F900 /* ImageFaviconCached.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CCC41D2AD2EC540069F900 /* ImageFaviconCached.swift */; };
 		D3CCC4202AD2F3850069F900 /* LibraryTileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CCC41F2AD2F3850069F900 /* LibraryTileView.swift */; };
 		D3CCC4222AD2FB870069F900 /* ShazamButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CCC4212AD2FB870069F900 /* ShazamButton.swift */; };
-		D3F492792AD1B5FC007DD232 /* LibraryListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F492782AD1B5FC007DD232 /* LibraryListView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D301EBD52B82AF2400FA0BCD /* CachingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CachingManager.swift; sourceTree = "<group>"; };
 		D30799992AD7154600D11D60 /* CountryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryModel.swift; sourceTree = "<group>"; };
 		D30D040B2AED54D40077371E /* AirPlayButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirPlayButton.swift; sourceTree = "<group>"; };
 		D30E76E22B13D5D900237F8B /* SwiftDataContainers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftDataContainers.swift; sourceTree = "<group>"; };
@@ -66,8 +68,9 @@
 		D32D8A962AF6F11E004D1FB0 /* CountryNetworking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryNetworking.swift; sourceTree = "<group>"; };
 		D32D8A9C2AF6F620004D1FB0 /* StationNetworking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationNetworking.swift; sourceTree = "<group>"; };
 		D330D8242AFE3C260085C65D /* FavouriteStationIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteStationIntent.swift; sourceTree = "<group>"; };
+		D336AF492B82A49000108C87 /* ImageToData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageToData.swift; sourceTree = "<group>"; };
 		D342B29F2B2A9BA200C4C10C /* DynamicImageFaviconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicImageFaviconView.swift; sourceTree = "<group>"; };
-		D34F54B82AD1F3AC00347E99 /* PlayingStation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayingStation.swift; sourceTree = "<group>"; };
+		D34F54B82AD1F3AC00347E99 /* PlayingStationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayingStationManager.swift; sourceTree = "<group>"; };
 		D34F54DB2AD2DAB600347E99 /* StationBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationBase.swift; sourceTree = "<group>"; };
 		D359A7612AD0509B004A292B /* Radio.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Radio.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D359A7642AD0509B004A292B /* radioApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = radioApp.swift; sourceTree = "<group>"; };
@@ -105,7 +108,6 @@
 		D3CCC41D2AD2EC540069F900 /* ImageFaviconCached.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageFaviconCached.swift; sourceTree = "<group>"; };
 		D3CCC41F2AD2F3850069F900 /* LibraryTileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryTileView.swift; sourceTree = "<group>"; };
 		D3CCC4212AD2FB870069F900 /* ShazamButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShazamButton.swift; sourceTree = "<group>"; };
-		D3F492782AD1B5FC007DD232 /* LibraryListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryListView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -193,6 +195,7 @@
 				D3911D4D2B26595900F0B7A1 /* PlayerState.swift */,
 				D3BEFA942B1349730082675A /* AppIntents */,
 				D30EC7032B2A4737000D8C53 /* OSLog.swift */,
+				D301EBD52B82AF2400FA0BCD /* CachingManager.swift */,
 			);
 			path = Global_Controller;
 			sourceTree = "<group>";
@@ -273,7 +276,8 @@
 		D36B91E12AF2CA7300356285 /* Global_Model */ = {
 			isa = PBXGroup;
 			children = (
-				D34F54B82AD1F3AC00347E99 /* PlayingStation.swift */,
+				D34F54B82AD1F3AC00347E99 /* PlayingStationManager.swift */,
+				D336AF492B82A49000108C87 /* ImageToData.swift */,
 				D38C155A2AD09D34009E831D /* ExtendedStation.swift */,
 				D34F54DB2AD2DAB600347E99 /* StationBase.swift */,
 			);
@@ -287,7 +291,6 @@
 				D366F4042B24AF49001C54D6 /* LibraryView.swift */,
 				D3CCC41F2AD2F3850069F900 /* LibraryTileView.swift */,
 				D36B91E32AF2CC3800356285 /* AverageColor.swift */,
-				D3F492782AD1B5FC007DD232 /* LibraryListView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -409,18 +412,18 @@
 				D359A7672AD0509B004A292B /* ContentView.swift in Sources */,
 				D307999A2AD7154600D11D60 /* CountryModel.swift in Sources */,
 				D31B4FAE2AE1A88B002F9563 /* BigPlayerView.swift in Sources */,
-				D34F54B92AD1F3AC00347E99 /* PlayingStation.swift in Sources */,
+				D34F54B92AD1F3AC00347E99 /* PlayingStationManager.swift in Sources */,
 				D359A77A2AD05125004A292B /* StationsListContentView.swift in Sources */,
 				D359A7812AD05166004A292B /* CountriesController.swift in Sources */,
 				D36B91E42AF2CC3800356285 /* AverageColor.swift in Sources */,
 				D3CCC4222AD2FB870069F900 /* ShazamButton.swift in Sources */,
 				D342B2A02B2A9BA200C4C10C /* DynamicImageFaviconView.swift in Sources */,
+				D301EBD62B82AF2400FA0BCD /* CachingManager.swift in Sources */,
 				D36B91DC2AF2C90500356285 /* TogglePlaybackButton.swift in Sources */,
 				D3911D4C2B2619A200F0B7A1 /* AVPlayerController.swift in Sources */,
 				D330D8252AFE3C260085C65D /* FavouriteStationIntent.swift in Sources */,
 				D32D8A972AF6F11E004D1FB0 /* CountryNetworking.swift in Sources */,
 				D3911D482B26160900F0B7A1 /* LockscreenController.swift in Sources */,
-				D3F492792AD1B5FC007DD232 /* LibraryListView.swift in Sources */,
 				D30D040C2AED54D40077371E /* AirPlayButton.swift in Sources */,
 				D3CCC41E2AD2EC540069F900 /* ImageFaviconCached.swift in Sources */,
 				D3BEFA982B1349BB0082675A /* AppShortcutsProvider.swift in Sources */,
@@ -445,6 +448,7 @@
 				D36B91DA2AF2C6D100356285 /* hapticFeedback.swift in Sources */,
 				D359A7832AD05166004A292B /* CountriesListContentView.swift in Sources */,
 				D30E76E32B13D5D900237F8B /* SwiftDataContainers.swift in Sources */,
+				D336AF4A2B82A49000108C87 /* ImageToData.swift in Sources */,
 				D37A37CE2B2C57BD00A44E43 /* BigScreenFavicon.swift in Sources */,
 				D37A37CA2B2C55A900A44E43 /* BigScreenBackground.swift in Sources */,
 				D3BEFA962B1349840082675A /* TogglePlaybackIntent.swift in Sources */,

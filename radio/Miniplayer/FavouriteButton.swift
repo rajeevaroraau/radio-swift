@@ -9,24 +9,17 @@ import SwiftUI
 import SwiftData
 
 struct FavouriteButton: View {
-    @Query var favoriteStations: [ExtendedStation]
-    @Environment(\.modelContext) var modelContext
+    @Query(filter: #Predicate<ExtendedStation> { extendedStation in extendedStation.currentlyPlaying } ) var currentlyPlayingExtendedStation: [ExtendedStation]
+    @Query(filter: #Predicate<ExtendedStation> { extendedStation in extendedStation.favourite } ) var favoriteExtendedStations: [ExtendedStation]
+
     
     var body: some View {
-        
-        Button("Favourite", systemImage: favoriteStations.contains(where: { $0.stationBase == PlayingStation.shared.extendedStation.stationBase }) ? "star.circle.fill" : "star.circle") {
+        Button("Favourite", systemImage: favoriteExtendedStations.contains(where: { $0.stationBase == currentlyPlayingExtendedStation.first?.stationBase }) ? "star.circle.fill" : "star.circle") {
 
-            if let stationToDelete = favoriteStations.first(where: { $0.stationBase == PlayingStation.shared.extendedStation.stationBase }) {
-                modelContext.delete(stationToDelete)
-            } else {
-                let stationTemp = ExtendedStation(stationBase: PlayingStation.shared.extendedStation.stationBase, faviconData: PlayingStation.shared.extendedStation.faviconData)
-                modelContext.insert(stationTemp)
+            Task {
+                guard let currentlyPlayingExtendedStation = currentlyPlayingExtendedStation.first else { return }
+                await CachingManager.shared.toggleFavorite(stationBase: currentlyPlayingExtendedStation.stationBase)
                 
-                
-                stationTemp.setStationWithFetchingFavicon(PlayingStation.shared.extendedStation.stationBase, faviconCached: PlayingStation.shared.extendedStation.faviconData)
-                Task {
-                    await hapticFeedback()
-                }
             }
         }
         .contentTransition(.symbolEffect(.replace))

@@ -18,13 +18,14 @@ struct FavouriteStation: AppIntent {
         
 
         
-        print("Found a persisted station in PlayingStation.station: \(PlayingStation.shared.extendedStation.stationBase.name)")
+        print("Found a persisted station in PlayingStation.station: \(PlayingStationManager.shared.currentlyPlayingExtendedStation?.stationBase.name ?? "Nothing")")
         
-        let extendedStationLocal = ExtendedStation(stationBase: PlayingStation.shared.extendedStation.stationBase)
-        extendedStationLocal.setStationWithFetchingFavicon(PlayingStation.shared.extendedStation.stationBase, faviconCached: PlayingStation.shared.extendedStation.faviconData)
-
-        print("StationTemp created")
-        SwiftDataContainers.shared.container.mainContext.insert(extendedStationLocal)
+        guard let currentlyPlayingExtendedStation = PlayingStationManager.shared.currentlyPlayingExtendedStation else {
+            return .result()
+        }
+        
+        currentlyPlayingExtendedStation.favourite = true
+        SwiftDataContainers.shared.container.mainContext.insert(currentlyPlayingExtendedStation)
         return .result()
        
     }
