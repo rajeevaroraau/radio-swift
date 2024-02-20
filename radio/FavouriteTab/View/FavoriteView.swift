@@ -8,7 +8,7 @@
 import SwiftUI
 import SwiftData
 
-struct LibraryView: View {
+struct FavoriteView: View {
     @Environment(\.modelContext) var modelContext
     @Query(filter: #Predicate<ExtendedStation> { extendedStation in extendedStation.favourite } ) var favoriteExtendedStations: [ExtendedStation]
     let columns = [
@@ -50,7 +50,7 @@ struct LibraryView: View {
     }
 }
 
-extension LibraryView {
+extension FavoriteView {
     func handleStationTap(favoriteExtendedStation: ExtendedStation)  {
 
         

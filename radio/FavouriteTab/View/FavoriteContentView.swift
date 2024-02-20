@@ -8,7 +8,7 @@
 import SwiftUI
 import SwiftData
 
-struct LibraryContentView: View {
+struct FavoriteContentView: View {
     @Query(filter: #Predicate<ExtendedStation> { extendedStation in extendedStation.favourite } ) var favoriteExtendedStations: [ExtendedStation]
 
     var body: some View {
@@ -19,7 +19,7 @@ struct LibraryContentView: View {
                     ContentUnavailableView("Add Stations", systemImage: "magnifyingglass" , description: Text("You haven't favorited a station yet."))
                     Spacer()
                 } else {
-                    LibraryView()
+                    FavoriteView()
                 }
             }
             .navigationTitle("Favourite")

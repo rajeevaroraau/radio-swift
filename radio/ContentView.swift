@@ -13,7 +13,7 @@ struct ContentView: View {
         
         ZStack(alignment: .bottom) {
             TabView {
-                LibraryContentView()
+                FavoriteContentView()
                     .tabItem {
                         Label("Favourite", systemImage: "play.square.stack.fill")
                     }

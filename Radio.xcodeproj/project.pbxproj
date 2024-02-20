@@ -32,9 +32,9 @@
 		D359A7812AD05166004A292B /* CountriesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D359A77E2AD05166004A292B /* CountriesController.swift */; };
 		D359A7822AD05166004A292B /* CountryRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D359A77F2AD05166004A292B /* CountryRowView.swift */; };
 		D359A7832AD05166004A292B /* CountriesListContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D359A7802AD05166004A292B /* CountriesListContentView.swift */; };
-		D359A7872AD06777004A292B /* LibraryContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D359A7862AD06777004A292B /* LibraryContentView.swift */; };
+		D359A7872AD06777004A292B /* FavoriteContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D359A7862AD06777004A292B /* FavoriteContentView.swift */; };
 		D359A78B2AD07B77004A292B /* MiniplayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D359A78A2AD07B77004A292B /* MiniplayerView.swift */; };
-		D366F4052B24AF49001C54D6 /* LibraryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D366F4042B24AF49001C54D6 /* LibraryView.swift */; };
+		D366F4052B24AF49001C54D6 /* FavoriteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D366F4042B24AF49001C54D6 /* FavoriteView.swift */; };
 		D366F4072B24B161001C54D6 /* CountriesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D366F4062B24B161001C54D6 /* CountriesListView.swift */; };
 		D366F4092B24B71E001C54D6 /* StationsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D366F4082B24B71E001C54D6 /* StationsListView.swift */; };
 		D36B91DA2AF2C6D100356285 /* hapticFeedback.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36B91D92AF2C6D100356285 /* hapticFeedback.swift */; };
@@ -86,9 +86,9 @@
 		D359A77F2AD05166004A292B /* CountryRowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountryRowView.swift; sourceTree = "<group>"; };
 		D359A7802AD05166004A292B /* CountriesListContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountriesListContentView.swift; sourceTree = "<group>"; };
 		D359A7852AD0581F004A292B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = Info.plist; path = Radio/Info.plist; sourceTree = "<group>"; };
-		D359A7862AD06777004A292B /* LibraryContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryContentView.swift; sourceTree = "<group>"; };
+		D359A7862AD06777004A292B /* FavoriteContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteContentView.swift; sourceTree = "<group>"; };
 		D359A78A2AD07B77004A292B /* MiniplayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniplayerView.swift; sourceTree = "<group>"; };
-		D366F4042B24AF49001C54D6 /* LibraryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryView.swift; sourceTree = "<group>"; };
+		D366F4042B24AF49001C54D6 /* FavoriteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteView.swift; sourceTree = "<group>"; };
 		D366F4062B24B161001C54D6 /* CountriesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountriesListView.swift; sourceTree = "<group>"; };
 		D366F4082B24B71E001C54D6 /* StationsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationsListView.swift; sourceTree = "<group>"; };
 		D36B91D92AF2C6D100356285 /* hapticFeedback.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = hapticFeedback.swift; sourceTree = "<group>"; };
@@ -287,8 +287,8 @@
 		D39B7E0E2B191F5900824FCE /* View */ = {
 			isa = PBXGroup;
 			children = (
-				D359A7862AD06777004A292B /* LibraryContentView.swift */,
-				D366F4042B24AF49001C54D6 /* LibraryView.swift */,
+				D359A7862AD06777004A292B /* FavoriteContentView.swift */,
+				D366F4042B24AF49001C54D6 /* FavoriteView.swift */,
 				D3CCC41F2AD2F3850069F900 /* LibraryTileView.swift */,
 				D36B91E32AF2CC3800356285 /* AverageColor.swift */,
 			);
@@ -436,12 +436,12 @@
 				D38C155B2AD09D3D009E831D /* ExtendedStation.swift in Sources */,
 				D359A7822AD05166004A292B /* CountryRowView.swift in Sources */,
 				D359A7792AD05125004A292B /* StationsViewController.swift in Sources */,
-				D359A7872AD06777004A292B /* LibraryContentView.swift in Sources */,
+				D359A7872AD06777004A292B /* FavoriteContentView.swift in Sources */,
 				D3911D4A2B26183A00F0B7A1 /* AVAudioSessionController.swift in Sources */,
 				D359A7732AD05105004A292B /* AudioController.swift in Sources */,
 				D359A78B2AD07B77004A292B /* MiniplayerView.swift in Sources */,
 				D3911D4E2B26595900F0B7A1 /* PlayerState.swift in Sources */,
-				D366F4052B24AF49001C54D6 /* LibraryView.swift in Sources */,
+				D366F4052B24AF49001C54D6 /* FavoriteView.swift in Sources */,
 				D359A77C2AD05156004A292B /* Connection.swift in Sources */,
 				D30EC7042B2A4737000D8C53 /* OSLog.swift in Sources */,
 				D34F54DC2AD2DAB600347E99 /* StationBase.swift in Sources */,
