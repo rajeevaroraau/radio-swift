@@ -24,26 +24,21 @@ struct FavoriteView: View {
                     } label: {
                         LibraryTileView(favoriteStation: favoriteExtendedStation)
                     }
-                        .contextMenu() {
-                            Button("Unfavorite", systemImage: "star.slash") {
-                                Task {
-                                    await CachingManager.shared.removeFromFavorites(extendedStationToUnfavorite: favoriteExtendedStation)
-
-                                }
-                            }
-                        } preview: {
-                            Button {
-                                handleStationTap(favoriteExtendedStation: favoriteExtendedStation)
-                            } label: {
-                                LibraryTileView(favoriteStation: favoriteExtendedStation)
+                    .contextMenu() {
+                        Button("Unfavorite", systemImage: "star.slash") {
+                            Task {
+                                await CachingManager.shared.removeFromFavorites(extendedStationToUnfavorite: favoriteExtendedStation)
                             }
                         }
+                    } preview: {
+                        Button {
+                            handleStationTap(favoriteExtendedStation: favoriteExtendedStation)
+                        } label: {
+                            LibraryTileView(favoriteStation: favoriteExtendedStation)
+                        }
+                    }
                 }
-
             }
-            
-
-            
         }
         .contentMargins(.bottom, 96, for: .automatic)
         .padding(.horizontal, 8)
@@ -52,8 +47,6 @@ struct FavoriteView: View {
 
 extension FavoriteView {
     func handleStationTap(favoriteExtendedStation: ExtendedStation)  {
-
-        
         Task {
             await AudioController.shared.playWithSetupExtendedStation(favoriteExtendedStation)
         }

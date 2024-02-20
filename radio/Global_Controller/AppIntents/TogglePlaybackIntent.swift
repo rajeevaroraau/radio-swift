@@ -9,7 +9,6 @@ import Foundation
 import AppIntents
 import SwiftData
 
-
 struct TogglePlayback: AppIntent {
     static var title: LocalizedStringResource = "Toggle Playback"
     static var description: IntentDescription? = "Toggles the playback"
@@ -19,10 +18,8 @@ struct TogglePlayback: AppIntent {
             guard let currentlyPlayingExtendedStation = PlayingStationManager.shared.currentlyPlayingExtendedStation else { return .result()}
             await AudioController.shared.playWithSetupExtendedStation(currentlyPlayingExtendedStation)
         } else {
-            AudioController.shared.togglePlayback()
+            await AudioController.shared.togglePlayback()
         }
-        
         return .result()
     }
-    
 }

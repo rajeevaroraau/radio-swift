@@ -11,14 +11,9 @@ import SwiftData
 @main
 struct radioApp: App {
     @State var stationsModel = StationsViewController()
-    
-
 }
 
-
-
 extension radioApp {
-
     var body: some Scene {
         WindowGroup {
             ContentView()

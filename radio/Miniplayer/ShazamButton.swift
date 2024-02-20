@@ -17,5 +17,4 @@ struct ShazamButton: View {
         .contentTransition(.symbolEffect(.replace))
         .disabled(!UIApplication.shared.canOpenURL(URL(string: "shazam://shazam")!))
     }
-    
 }

@@ -9,7 +9,6 @@ import SwiftUI
 
 struct BigScreenBackground: View {
     var body: some View {
-        
         ZStack(alignment: .bottomLeading) {
             Rectangle()
                 .foregroundStyle(PlayingStationManager.shared.currentlyPlayingExtendedStation?.computedFaviconUIImage?.averageColor?.gradient ?? Color.gray.gradient)
@@ -18,11 +17,7 @@ struct BigScreenBackground: View {
                 .frame(height: UIScreen.main.bounds.height / 3)
                 .blur(radius: 5)
                 .scaleEffect(1.5)
-            
-            
-            
         }
-        
         .ignoresSafeArea()
     }
 }

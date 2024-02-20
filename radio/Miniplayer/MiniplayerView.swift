@@ -15,8 +15,6 @@ struct MiniplayerView: View {
     @State private var isShowingModal = false
     @State private var firstPlay = true
     @Query(filter: #Predicate<ExtendedStation> { extendedStation in extendedStation.currentlyPlaying } ) var currentlyPlayingExtendedStation: [ExtendedStation]
-
-    
     var body: some View {
         ZStack {
             // MARK: - BACKGROUND
@@ -27,7 +25,6 @@ struct MiniplayerView: View {
             }
             .frame(height: 64)
             .foregroundStyle(.ultraThinMaterial)
-            
             // MARK: - BODY
             HStack(spacing: 8) {
                 
@@ -42,19 +39,16 @@ struct MiniplayerView: View {
                     .truncationMode(.tail)
                     .contentTransition(.numericText())
                 Spacer()
-                
                 ShazamButton()
                     .font(.title)
                     .frame(width: 64, height:64)
-                
                 TogglePlaybackButton(fontSize: 28)
                     .frame(width: 64, height:64)
-                .contentShape(Rectangle())
+                    .contentShape(Rectangle())
             }
             .padding(.horizontal, 8)
             .foregroundStyle(.primary)
             .frame(maxWidth: .infinity)
-            
         }
         .foregroundStyle(.white)
         .padding(8)
@@ -76,7 +70,6 @@ struct MiniplayerView: View {
         )
         // MARK: - BIGPLAYERVIEW
         .fullScreenCover(isPresented: $isShowingModal) {
-            
             BigPlayerView(isShowingSheet: $isShowingModal)
                 .gesture(DragGesture(minimumDistance: 10.0, coordinateSpace: .local)
                     .onEnded { value in
@@ -91,7 +84,5 @@ struct MiniplayerView: View {
                 )
         }
     }
-    
-    
-    }
+}
 

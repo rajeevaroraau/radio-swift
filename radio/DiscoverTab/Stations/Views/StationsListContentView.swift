@@ -2,15 +2,11 @@ import SwiftUI
 
 struct StationsListContentView: View {
     @Environment(StationsViewController.self) private var stationsModel: StationsViewController
-    
     var country: Country
     
     var body: some View {
         @Bindable var stationsModel = stationsModel
         Group {
-            
-            
-            
             if stationsModel.stations == [] {
                 VStack {
                     ProgressView()
@@ -20,10 +16,7 @@ struct StationsListContentView: View {
                 }
             } else {
                 StationsListView()
-                
             }
-            
-            
         }
         .navigationTitle("\(country.name)")
         

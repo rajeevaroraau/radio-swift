@@ -12,7 +12,10 @@ struct TogglePlaybackButton: View {
     @State var fontSize: CGFloat
     var body: some View {
         Button {
-            handlePlayPauseTap()
+            Task {
+                await handlePlayPauseTap()
+            }
+
         } label: {
             Image(systemName: PlayerState.shared.isPlaying  ? "pause.fill" : "play.fill")
                 .contentTransition(.symbolEffect(.replace, options: .speed(10.0)))
@@ -38,7 +41,7 @@ struct TogglePlaybackButton: View {
     }
     
     @MainActor
-    func handlePlayPauseTap() {
+    func handlePlayPauseTap() async {
         animationPlayPauseTap()
         if PlayerState.shared.firstPlay {
             print("PlayingWithSetup...")
@@ -49,22 +52,19 @@ struct TogglePlaybackButton: View {
             
         } else {
             print("Toggling the playback")
-            AudioController.shared.togglePlayback()
+            await AudioController.shared.togglePlayback()
         }
     }
     
     @MainActor
     func animationPlayPauseTap() {
         isTouching = true
-        
-        
         Task {
             // Delay the task by 1 second:
             try await Task.sleep(nanoseconds: 100_000_000)
             isTouching = false
         }
-        
-        
     }
+    
 }
 

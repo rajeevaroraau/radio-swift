@@ -35,9 +35,6 @@ struct StationRowView: View {
     }
 }
 
-
-
-
 struct DefaultFaviconView: View {
     @State private var height: CGFloat = 48
     var body: some View {

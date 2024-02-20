@@ -16,7 +16,6 @@ struct DynamicImageFaviconView: View {
         } else {
             // CHECK IF AN FAVICONURL EXISTS
             if let url = URL(string: urlFavicon) {
-                
                 AsyncImage(url: url) { phase in
                     // SHOW LOADED IMAGE
                     if let image = phase.image {

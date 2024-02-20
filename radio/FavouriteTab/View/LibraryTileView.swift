@@ -16,10 +16,8 @@ struct LibraryTileView: View {
                     .foregroundColor(.black)
                 RoundedRectangle(cornerRadius: 12)
                     .foregroundStyle(favoriteStation.computedFaviconUIImage?.averageColor?.gradient ?? Color.gray.gradient)
-
                     .opacity(0.8)
             }
-
             VStack(alignment: .leading) {
                 Spacer()
                 VStack(alignment: .leading) {
@@ -28,21 +26,15 @@ struct LibraryTileView: View {
                         .foregroundStyle(.white)
                 }
                 .padding()
-
             }
             // CONTENT PADDING
-
         }
         .frame(height: 100)
-
     }
     init(favoriteStation: ExtendedStation) {
         self.favoriteStation = favoriteStation
     }
-    
 }
-
-
 
 struct StationTextView: View {
     let stationName: String
@@ -56,7 +48,7 @@ struct StationTextView: View {
                 .lineLimit(2)
                 .truncationMode(.tail)
                 .fontDesign(.rounded)
-                
+            
         }
     }
 }

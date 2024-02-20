@@ -35,8 +35,6 @@ struct BigScreenControls: View {
         }
         .padding(.horizontal, 24)
     }
-    
-    
 }
 
 #Preview {

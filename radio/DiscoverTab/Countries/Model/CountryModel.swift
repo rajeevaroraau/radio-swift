@@ -11,7 +11,6 @@ struct Country: Codable, Equatable {
         var name = ""
         var iso_3166_1 = ""
         var stationcount = -1
-    
     static func ==(lhs: Country, rhs: Country) -> Bool {
         lhs.name == rhs.name
     }

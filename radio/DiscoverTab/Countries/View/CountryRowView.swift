@@ -8,7 +8,6 @@ struct CountryRow: View {
             Text("\(country.stationcount) stations")
                 .foregroundStyle(.secondary)
         }
-        
     }
 }
 

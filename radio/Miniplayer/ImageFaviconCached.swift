@@ -10,7 +10,6 @@ import SwiftUI
 import SwiftData
 
 struct ImageFaviconCached: View {
-    
     let image: UIImage?
     let isPlaceholderLowRes: Bool
     let height: CGFloat
@@ -24,13 +23,11 @@ struct ImageFaviconCached: View {
             return UIImage(named: "DefaultFaviconLarge")!
         }
     }
-    
     var isPlayingStationImage: Bool
     var isManualCornerRadius: Bool = false
     var customCornerRadius: CGFloat? = nil
+    
     var body: some View {
-        
-        
         Image(uiImage: isPlayingStationImage ? (PlayingStationManager.shared.currentlyPlayingExtendedStation?.computedFaviconUIImage ?? placeholderImage) : image ?? placeholderImage)
             .resizable()
             .accessibilityHidden(true)

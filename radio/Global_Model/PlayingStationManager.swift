@@ -12,22 +12,18 @@ import Observation
 
 @Observable
 class PlayingStationManager {
-    
     static let shared = PlayingStationManager()
-    
     var currentlyPlayingExtendedStation: ExtendedStation?
     
     init() {
         Task {
             await setCurrentlyPlayingExtendedStationFromCache()
         }
-        
     }
-    
     
     func setCurrentlyPlayingExtendedStationFromCache() async {
         do {
-            let cachedExtendedStations = try await  SwiftDataContainers.shared.container.mainContext.fetch(FetchDescriptor<ExtendedStation>())
+            let cachedExtendedStations = try await SwiftDataContainers.shared.container.mainContext.fetch(FetchDescriptor<ExtendedStation>())
             for cachedExtendedStation in cachedExtendedStations {
                 if cachedExtendedStation.currentlyPlaying {
                     currentlyPlayingExtendedStation = cachedExtendedStation
@@ -41,7 +37,6 @@ class PlayingStationManager {
                     print("No extendedStationCached found")
                 }
             }
-            
         } catch {
             self.currentlyPlayingExtendedStation = nil
         }
@@ -55,8 +50,6 @@ class PlayingStationManager {
         extendedStation.setStationsFavicon(faviconCached: nil)
         
     }
-    
-    
 }
 
 

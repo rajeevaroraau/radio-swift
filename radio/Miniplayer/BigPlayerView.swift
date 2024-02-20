@@ -26,16 +26,11 @@ struct BigPlayerView: View {
                     BigScreenFavicon()
                     BigScreenControls()
                 }
-                
-                
             }
-            
         }
         .colorScheme(.dark)
         .toolbarColorScheme(.dark, for: .navigationBar)
-        
     }
-
 }
 
 #Preview {

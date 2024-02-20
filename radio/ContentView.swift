@@ -8,21 +8,15 @@
 import SwiftUI
 
 struct ContentView: View {
-    
     var body: some View {
         
         ZStack(alignment: .bottom) {
             TabView {
                 FavoriteContentView()
-                    .tabItem {
-                        Label("Favourite", systemImage: "play.square.stack.fill")
-                    }
+                    .tabItem { Label("Favourite", systemImage: "play.square.stack.fill") }
                 CountriesListContentView()
-                    .tabItem {
-                        Label("Discover", systemImage: "magnifyingglass")
-                    }
+                    .tabItem { Label("Discover", systemImage: "magnifyingglass") }
             }
-            
             MiniplayerView()
                 .shadow(radius: 8)
         }

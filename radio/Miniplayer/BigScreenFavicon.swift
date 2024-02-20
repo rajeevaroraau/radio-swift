@@ -15,7 +15,6 @@ struct BigScreenFavicon: View {
             .shadow(color: .secondary.opacity(0.2) , radius: 64, y: 48)
             .shadow(color: .black.opacity(0.2) , radius: 20, y: 48)
             .padding(24)
-
     }
 }
 

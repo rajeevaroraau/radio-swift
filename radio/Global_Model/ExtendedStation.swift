@@ -11,7 +11,6 @@ import SwiftData
 
 @Model
 class ExtendedStation {
-    
     var stationBase: StationBase
     var currentlyPlaying = false
     var favourite = false
@@ -45,16 +44,13 @@ class ExtendedStation {
                 print("No favicon link")
             }
         }
-        
         if let data = data {
             self.faviconData = data
             print("Data set from cache")
-
         } else {
             Task { await fetchFavicon() }
             print("Fetching favicon")
-
         }
-        
     }
+    
 }

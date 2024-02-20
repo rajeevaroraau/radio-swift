@@ -62,7 +62,7 @@ class StationBase: Codable, Equatable, Identifiable {
         self.geo_lat = geo_lat
         self.geo_long = geo_long
     }
-
+    
 }
 
 

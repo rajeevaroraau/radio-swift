@@ -29,17 +29,15 @@ class AVPlayerController {
             avPlayer.play()
             os_signpost(.end, log: pointsOfInterest, name: "AVPlayerController.play")
         }
-        
     }
     
     func pause() {
         os_signpost(.begin, log: pointsOfInterest, name: "AVPlayerController.pause()")
-        
         Task {
             avPlayer.pause()
             os_signpost(.end, log: pointsOfInterest, name: "AVPlayerController.pause()")
             
         }
-        
     }
+    
 }

@@ -8,6 +8,7 @@
 import Foundation
 import AVFAudio
 import OSLog
+
 class AVAudioSessionController {
     static let shared = AVAudioSessionController()
 
@@ -20,20 +21,11 @@ class AVAudioSessionController {
                 print("AVAudioSession is ready")
                 os_signpost(.end, log: pointsOfInterest, name: "AVAudioSessionController.configureAudioSession()")
             } catch let error {
-                Task {
-                    await AudioController.shared.pause()
-                }
-                
+                Task { await AudioController.shared.pause() }
                 os_signpost(.end, log: pointsOfInterest, name: "AVAudioSessionController.configureAudioSession()")
-
-                
                 print("AVAudioSession error: \(error)")
-                
             }
-        
-        
     }
-    
     
     func setActive(_ condition: Bool) {
         do {
@@ -41,8 +33,6 @@ class AVAudioSessionController {
         } catch {
             print("Cannot setActive()")
         }
-        
     }
-    
     
 }
