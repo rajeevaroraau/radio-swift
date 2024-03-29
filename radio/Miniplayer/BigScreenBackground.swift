@@ -8,15 +8,19 @@
 import SwiftUI
 
 struct BigScreenBackground: View {
+    var faviconColor: Color {
+        PlayingStationManager.shared.currentlyPlayingExtendedStation?.faviconProducts.color ?? Color.gray
+    }
     var body: some View {
         ZStack(alignment: .bottomLeading) {
             Rectangle()
-                .foregroundStyle(PlayingStationManager.shared.currentlyPlayingExtendedStation?.computedFaviconUIImage?.averageColor?.gradient ?? Color.gray.gradient)
-            Rectangle()
-                .foregroundStyle(PlayingStationManager.shared.currentlyPlayingExtendedStation?.computedFaviconUIImage?.averageColor ?? Color.gray)
-                .frame(height: UIScreen.main.bounds.height / 3)
-                .blur(radius: 5)
-                .scaleEffect(1.5)
+                .foregroundStyle(faviconColor.gradient)
+                
+//            Rectangle()
+//                .foregroundStyle(faviconColor)
+//                .frame(height: UIScreen.main.bounds.height / 3)
+//                .blur(radius: 50)
+//                .scaleEffect(1.5)
         }
         .ignoresSafeArea()
     }

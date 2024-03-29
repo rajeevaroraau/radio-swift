@@ -4,9 +4,9 @@ import SwiftData
 import OSLog
 
 @Observable
-class StationsViewController {
+class StationsOfCountryViewController {
     static var selectedCountry = Country()
-    private let networking = StationNetworking()
+    private let networking = StationsOfCountryNetworking()
     var stations : [StationBase] = []
     var searchText = ""
     var filteredStations : [StationBase] = []

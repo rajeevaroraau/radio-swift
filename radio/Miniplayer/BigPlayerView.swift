@@ -16,6 +16,7 @@ struct BigPlayerView: View {
             ZStack {
                 BigScreenBackground()
                 HStack {
+                    HomepageURLView()
                     BigScreenFavicon()
                     BigScreenControls()
                 }
@@ -23,6 +24,7 @@ struct BigPlayerView: View {
             ZStack {
                 BigScreenBackground()
                 VStack(alignment: .center) {
+                    HomepageURLView()
                     BigScreenFavicon()
                     BigScreenControls()
                 }

@@ -10,21 +10,27 @@ import SwiftData
 
 struct FavoriteContentView: View {
     @Query(filter: #Predicate<ExtendedStation> { extendedStation in extendedStation.favourite } ) var favoriteExtendedStations: [ExtendedStation]
-
+    @Environment(NetworkMonitor.self) private var networkMonitor: NetworkMonitor
+    
     var body: some View {
         NavigationStack {
             Group {
-                if favoriteExtendedStations.count == 0 {
-                    Spacer()
-                    ContentUnavailableView("Add Stations", systemImage: "magnifyingglass" , description: Text("You haven't favorited a station yet."))
-                    Spacer()
+                if favoriteExtendedStations.isEmpty {
+                    NoStationsFavorited()
                 } else {
-                    FavoriteView()
+                    ZStack(alignment: .top) {
+                        PlayingBackground()
+                        FavoriteView()
+                    }
                 }
             }
-            .navigationTitle("Favourite")
+            .navigationTitle("Favourite Stations")
+            .toolbar {
+                ToolbarItemGroup(placement: .topBarTrailing) {
+                    if !networkMonitor.isConnected { NoInternetLabelView()
+                    }
+                }
+            }
         }
     }
 }
-
-

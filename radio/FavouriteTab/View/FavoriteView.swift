@@ -10,45 +10,35 @@ import SwiftData
 
 struct FavoriteView: View {
     @Environment(\.modelContext) var modelContext
+    @Environment(NetworkMonitor.self) private var networkMonitor: NetworkMonitor
+    
     @Query(filter: #Predicate<ExtendedStation> { extendedStation in extendedStation.favourite } ) var favoriteExtendedStations: [ExtendedStation]
-    let columns = [
-        GridItem(.adaptive(minimum: 150, maximum: 180), spacing: 12),
-    ]
+    let columns = [ GridItem(.adaptive(minimum: 150, maximum: 180), spacing: 12) ]
     
     var body: some View {
-        ScrollView {
+        let favoriteExtendedStations = favoriteExtendedStations
+        ScrollView(showsIndicators: false) {
             LazyVGrid(columns: columns, spacing: 12) {
                 ForEach(favoriteExtendedStations) { favoriteExtendedStation in
-                    Button {
-                        handleStationTap(favoriteExtendedStation: favoriteExtendedStation)
-                    } label: {
-                        LibraryTileView(favoriteStation: favoriteExtendedStation)
-                    }
-                    .contextMenu() {
-                        Button("Unfavorite", systemImage: "star.slash") {
-                            Task {
-                                await CachingManager.shared.removeFromFavorites(extendedStationToUnfavorite: favoriteExtendedStation)
-                            }
+                    FavoriteButton(favoriteExtendedStation: favoriteExtendedStation)
+                        .disabled(!networkMonitor.isConnected)
+                        .contextMenu() {
+                            UnfavoriteContextButton(extendedStation: favoriteExtendedStation)
+                        } preview: {
+                            FavoriteTileView(favoriteStation: favoriteExtendedStation)
                         }
-                    } preview: {
-                        Button {
-                            handleStationTap(favoriteExtendedStation: favoriteExtendedStation)
-                        } label: {
-                            LibraryTileView(favoriteStation: favoriteExtendedStation)
-                        }
-                    }
                 }
             }
+            
+            .scaleEffect(networkMonitor.isConnected ? 1.0 : 0.95)
+            .opacity(networkMonitor.isConnected ? 1.0 : 0.6)
         }
+        
+        
+        .animation(.spring, value: networkMonitor.isConnected)
         .contentMargins(.bottom, 96, for: .automatic)
         .padding(.horizontal, 8)
+        .shadow(radius: 10)
     }
 }
 
-extension FavoriteView {
-    func handleStationTap(favoriteExtendedStation: ExtendedStation)  {
-        Task {
-            await AudioController.shared.playWithSetupExtendedStation(favoriteExtendedStation)
-        }
-    }
-}

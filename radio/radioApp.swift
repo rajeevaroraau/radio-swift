@@ -10,15 +10,19 @@ import SwiftData
 
 @main
 struct radioApp: App {
-    @State var stationsModel = StationsViewController()
+    @State var stationsModel = StationsOfCountryViewController()
+    @State private var networkMonitor = NetworkMonitor()
+
 }
 
 extension radioApp {
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .modelContainer(Persistance.shared.container)
+                .environment(stationsModel)
+                .environment(networkMonitor)
         }
-        .modelContainer(SwiftDataContainers.shared.container)
-        .environment(stationsModel)
+      
     }
 }

@@ -8,9 +8,9 @@
 import Foundation
 import SwiftData
 
-@MainActor
-class SwiftDataContainers {
-    static let shared = SwiftDataContainers()
+
+class Persistance {
+    static let shared = Persistance()
     let container: ModelContainer
     
     init() {
@@ -22,5 +22,3 @@ class SwiftDataContainers {
         }
     }
 }
-
-

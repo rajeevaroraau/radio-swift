@@ -17,7 +17,7 @@ struct Country: Codable, Equatable {
 }
 extension Country {
     static var selectedCountry: String {
-        return StationsViewController.selectedCountry.name.lowercased().trimmingCharacters(in: .whitespacesAndNewlines)
+        return StationsOfCountryViewController.selectedCountry.name.lowercased().trimmingCharacters(in: .whitespacesAndNewlines)
     }
     
 }

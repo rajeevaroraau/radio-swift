@@ -26,8 +26,7 @@ struct DynamicImageFaviconView: View {
                             .clipShape(RoundedRectangle(cornerRadius: 48/6))
                         // IF STILL LOADING SHOW PLACEHOLDER
                     } else {
-                        ProgressView()
-                            .frame(width: 48, height: 48)
+                        DefaultFaviconView()
                     }
                 }
             } else {

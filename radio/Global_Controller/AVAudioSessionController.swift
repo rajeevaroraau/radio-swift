@@ -12,7 +12,7 @@ import OSLog
 class AVAudioSessionController {
     static let shared = AVAudioSessionController()
 
-    func configureAudioSession() {
+    func configureAudioSession() async {
         os_signpost(.begin, log: pointsOfInterest, name: "AVAudioSessionController.configureAudioSession()")
             do {
                 // Configure AVAudioSession
@@ -21,13 +21,13 @@ class AVAudioSessionController {
                 print("AVAudioSession is ready")
                 os_signpost(.end, log: pointsOfInterest, name: "AVAudioSessionController.configureAudioSession()")
             } catch let error {
-                Task { await AudioController.shared.pause() }
+                await AudioController.shared.pause()
                 os_signpost(.end, log: pointsOfInterest, name: "AVAudioSessionController.configureAudioSession()")
                 print("AVAudioSession error: \(error)")
             }
     }
     
-    func setActive(_ condition: Bool) {
+    func setActive(_ condition: Bool) async {
         do {
             try AVAudioSession.sharedInstance().setActive(condition)
         } catch {

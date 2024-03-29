@@ -7,7 +7,7 @@
 
 import SwiftUI
 import OSLog
-class StationNetworking {
+class StationsOfCountryNetworking {
     func requestStationListForCountry() async throws -> [StationBase] {
         os_signpost(.begin, log: pointsOfInterest, name: "StationNetworking.requestStationListForCountry(): Prepare JSONDecoder")
         // PREPARE CUSTOM JSONDECODER

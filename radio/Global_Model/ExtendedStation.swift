@@ -5,52 +5,61 @@
 //  Created by Marcin Wolski on 06/10/2023.
 //
 
-import Foundation
 import SwiftUI
 import SwiftData
 
 @Model
 class ExtendedStation {
+    @Observable
+    class FaviconProducts {
+        var color: Color?
+        var uiImage: UIImage?
+    }
+    
     var stationBase: StationBase
     var currentlyPlaying = false
     var favourite = false
     var faviconData: Data?
-    init(stationBase: StationBase, faviconData: Data? = nil) {
+    @Transient var faviconProducts = FaviconProducts()
+    
+    init(stationBase: StationBase, faviconData: Data?)  {
         self.stationBase = stationBase
         self.faviconData = faviconData
     }
-
-    var computedFaviconUIImage: UIImage? {
-        if let data = faviconData {
-            return UIImage(data: data)
-        } else {
-            return nil
+    
+    func updateFaviconBased() async {
+        guard let faviconData = faviconData else { return }
+        let uiImage = UIImage(data: faviconData)
+        let averageColor = await uiImage?.averageColor()
+        await MainActor.run {
+            self.faviconProducts.uiImage = uiImage
+            self.faviconProducts.color = averageColor
         }
     }
     
-    @MainActor
-    func setStationsFavicon(faviconCached data: Data?) {
-        func fetchFavicon() async {
-            await MainActor.run { self.faviconData = nil }
-            // CACHE THE COVER ART
-            if let faviconURL = URL(string: stationBase.favicon) {
-                do {
-                    let (data, _) = try await URLSession.shared.data(from: faviconURL)
-                    await MainActor.run { self.faviconData =  data }
-                } catch {
-                    await MainActor.run { self.faviconData = nil }
-                }
-            } else {
-                print("No favicon link")
-            }
-        }
+    
+    func setFavicon(_ data: Data?) async {
         if let data = data {
             self.faviconData = data
-            print("Data set from cache")
+            await self.updateFaviconBased()
         } else {
-            Task { await fetchFavicon() }
-            print("Fetching favicon")
+            await fetchFavicon()
+        }
+        
+        
+        func fetchFavicon() async {
+            // CACHE THE COVER ART
+            guard let faviconURL = URL(string: stationBase.favicon) else { return }
+            do {
+                let (data, _) = try await URLSession.shared.data(from: faviconURL)
+                await MainActor.run {
+                    self.faviconData = data
+                    
+                }
+                await self.updateFaviconBased()
+            } catch {
+                print("Cannot get data")
+            }
         }
     }
-    
 }

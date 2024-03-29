@@ -9,7 +9,7 @@ import SwiftUI
 import OSLog
 struct CountriesView: View {
     @State var countriesModel = CountriesController.shared
-    @Environment(StationsViewController.self) private var stationsModel: StationsViewController
+    @Environment(StationsOfCountryViewController.self) private var stationsModel: StationsOfCountryViewController
     @State private var firstTime: Bool = true
     var body: some View {
         List {
@@ -21,7 +21,8 @@ struct CountriesView: View {
                 }
             }
         }
-        .searchable(text: $countriesModel.searchText, prompt: Text("Search for countries"))
+        .listStyle(.inset)
+        .searchable(text: $countriesModel.searchText, placement: .navigationBarDrawer(displayMode: .always), prompt: "Search for countries")
         .disableAutocorrection(true)
         .contentMargins(.bottom, 96, for: .automatic)
     }

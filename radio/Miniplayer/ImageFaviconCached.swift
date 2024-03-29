@@ -10,7 +10,10 @@ import SwiftUI
 import SwiftData
 
 struct ImageFaviconCached: View {
-    let image: UIImage?
+    var image: UIImage?
+    var imageUnwrapped: UIImage {
+        isPlayingStationImage ? (PlayingStationManager.shared.currentlyPlayingExtendedStation?.faviconProducts.uiImage ?? placeholderImage) : image ?? placeholderImage
+    }
     let isPlaceholderLowRes: Bool
     let height: CGFloat
     var autoCornerRadius: CGFloat {
@@ -28,12 +31,15 @@ struct ImageFaviconCached: View {
     var customCornerRadius: CGFloat? = nil
     
     var body: some View {
-        Image(uiImage: isPlayingStationImage ? (PlayingStationManager.shared.currentlyPlayingExtendedStation?.computedFaviconUIImage ?? placeholderImage) : image ?? placeholderImage)
+        Image(uiImage: imageUnwrapped)
+            .interpolation(.none)
             .resizable()
             .accessibilityHidden(true)
             .scaledToFit()
             .frame(width: height, height: height)
             .clipShape(.rect(cornerRadius: isManualCornerRadius ? (customCornerRadius ?? autoCornerRadius) : autoCornerRadius))
+            .animation(.snappy, value: imageUnwrapped)
+            
     }
 }
 

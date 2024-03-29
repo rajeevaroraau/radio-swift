@@ -12,10 +12,7 @@ struct TogglePlaybackButton: View {
     @State var fontSize: CGFloat
     var body: some View {
         Button {
-            Task {
-                await handlePlayPauseTap()
-            }
-
+            Task { await handlePlayPauseTap() }
         } label: {
             Image(systemName: PlayerState.shared.isPlaying  ? "pause.fill" : "play.fill")
                 .contentTransition(.symbolEffect(.replace, options: .speed(10.0)))
@@ -52,7 +49,7 @@ struct TogglePlaybackButton: View {
             
         } else {
             print("Toggling the playback")
-            await AudioController.shared.togglePlayback()
+             AudioController.shared.togglePlayback()
         }
     }
     

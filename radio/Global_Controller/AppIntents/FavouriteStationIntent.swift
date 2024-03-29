@@ -20,7 +20,7 @@ struct FavouriteStation: AppIntent {
             return .result()
         }
         currentlyPlayingExtendedStation.favourite = true
-        SwiftDataContainers.shared.container.mainContext.insert(currentlyPlayingExtendedStation)
+        Persistance.shared.container.mainContext.insert(currentlyPlayingExtendedStation)
         return .result()
     }
 }

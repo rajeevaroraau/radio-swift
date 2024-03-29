@@ -18,7 +18,7 @@ struct TogglePlayback: AppIntent {
             guard let currentlyPlayingExtendedStation = PlayingStationManager.shared.currentlyPlayingExtendedStation else { return .result()}
             await AudioController.shared.playWithSetupExtendedStation(currentlyPlayingExtendedStation)
         } else {
-            await AudioController.shared.togglePlayback()
+             AudioController.shared.togglePlayback()
         }
         return .result()
     }

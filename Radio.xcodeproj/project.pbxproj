@@ -10,36 +10,58 @@
 		D301EBD62B82AF2400FA0BCD /* CachingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D301EBD52B82AF2400FA0BCD /* CachingManager.swift */; };
 		D307999A2AD7154600D11D60 /* CountryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30799992AD7154600D11D60 /* CountryModel.swift */; };
 		D30D040C2AED54D40077371E /* AirPlayButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30D040B2AED54D40077371E /* AirPlayButton.swift */; };
-		D30E76E32B13D5D900237F8B /* SwiftDataContainers.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30E76E22B13D5D900237F8B /* SwiftDataContainers.swift */; };
+		D30E76E32B13D5D900237F8B /* Persistance.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30E76E22B13D5D900237F8B /* Persistance.swift */; };
 		D30EC7042B2A4737000D8C53 /* OSLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30EC7032B2A4737000D8C53 /* OSLog.swift */; };
 		D31B4FAE2AE1A88B002F9563 /* BigPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D31B4FAD2AE1A88B002F9563 /* BigPlayerView.swift */; };
 		D32D8A972AF6F11E004D1FB0 /* CountryNetworking.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32D8A962AF6F11E004D1FB0 /* CountryNetworking.swift */; };
-		D32D8A9D2AF6F620004D1FB0 /* StationNetworking.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32D8A9C2AF6F620004D1FB0 /* StationNetworking.swift */; };
+		D32D8A9D2AF6F620004D1FB0 /* StationsOfCountryNetworking.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32D8A9C2AF6F620004D1FB0 /* StationsOfCountryNetworking.swift */; };
 		D330D8252AFE3C260085C65D /* FavouriteStationIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = D330D8242AFE3C260085C65D /* FavouriteStationIntent.swift */; };
 		D336AF4A2B82A49000108C87 /* ImageToData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D336AF492B82A49000108C87 /* ImageToData.swift */; };
 		D342B2A02B2A9BA200C4C10C /* DynamicImageFaviconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D342B29F2B2A9BA200C4C10C /* DynamicImageFaviconView.swift */; };
 		D34F54B92AD1F3AC00347E99 /* PlayingStationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34F54B82AD1F3AC00347E99 /* PlayingStationManager.swift */; };
 		D34F54DC2AD2DAB600347E99 /* StationBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34F54DB2AD2DAB600347E99 /* StationBase.swift */; };
+		D35903502BB6C629000C29C6 /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D359034F2BB6C628000C29C6 /* NetworkMonitor.swift */; };
+		D35903522BB6C702000C29C6 /* NoInternetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D35903512BB6C702000C29C6 /* NoInternetView.swift */; };
+		D35903542BB6DA98000C29C6 /* PlayingBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = D35903532BB6DA98000C29C6 /* PlayingBackground.swift */; };
+		D35903562BB6DAFA000C29C6 /* NoInternetLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D35903552BB6DAFA000C29C6 /* NoInternetLabelView.swift */; };
+		D35903582BB6DF1F000C29C6 /* UnfavoriteContextButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D35903572BB6DF1F000C29C6 /* UnfavoriteContextButton.swift */; };
+		D359035A2BB6E11D000C29C6 /* FavoriteTileViewBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = D35903592BB6E11D000C29C6 /* FavoriteTileViewBackground.swift */; };
+		D359035C2BB6E1E0000C29C6 /* FavoriteTileViewContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = D359035B2BB6E1E0000C29C6 /* FavoriteTileViewContent.swift */; };
+		D359035E2BB6E410000C29C6 /* MiniplayerBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D359035D2BB6E410000C29C6 /* MiniplayerBackgroundView.swift */; };
+		D35903602BB6E483000C29C6 /* MiniplayerControlsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D359035F2BB6E483000C29C6 /* MiniplayerControlsView.swift */; };
+		D35903622BB6E7D5000C29C6 /* StationTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D35903612BB6E7D5000C29C6 /* StationTextView.swift */; };
+		D35903652BB70EED000C29C6 /* FavoriteButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D35903642BB70EED000C29C6 /* FavoriteButton.swift */; };
+		D35903672BB71439000C29C6 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = D35903662BB71439000C29C6 /* Localizable.xcstrings */; };
+		D35903692BB71B86000C29C6 /* DiscoverMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = D35903682BB71B86000C29C6 /* DiscoverMode.swift */; };
+		D359036B2BB72939000C29C6 /* HomepageURLView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D359036A2BB72939000C29C6 /* HomepageURLView.swift */; };
 		D359A7652AD0509B004A292B /* radioApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D359A7642AD0509B004A292B /* radioApp.swift */; };
 		D359A7672AD0509B004A292B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D359A7662AD0509B004A292B /* ContentView.swift */; };
 		D359A7692AD0509C004A292B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D359A7682AD0509C004A292B /* Assets.xcassets */; };
 		D359A76C2AD0509C004A292B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D359A76B2AD0509C004A292B /* Preview Assets.xcassets */; };
 		D359A7732AD05105004A292B /* AudioController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D359A7722AD05105004A292B /* AudioController.swift */; };
 		D359A7782AD05125004A292B /* StationRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D359A7752AD05125004A292B /* StationRowView.swift */; };
-		D359A7792AD05125004A292B /* StationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D359A7762AD05125004A292B /* StationsViewController.swift */; };
-		D359A77A2AD05125004A292B /* StationsListContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D359A7772AD05125004A292B /* StationsListContentView.swift */; };
+		D359A7792AD05125004A292B /* StationsOfCountryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D359A7762AD05125004A292B /* StationsOfCountryViewController.swift */; };
+		D359A77A2AD05125004A292B /* StationsOfCountryContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D359A7772AD05125004A292B /* StationsOfCountryContentView.swift */; };
 		D359A77C2AD05156004A292B /* Connection.swift in Sources */ = {isa = PBXBuildFile; fileRef = D359A77B2AD05156004A292B /* Connection.swift */; };
 		D359A7812AD05166004A292B /* CountriesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D359A77E2AD05166004A292B /* CountriesController.swift */; };
 		D359A7822AD05166004A292B /* CountryRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D359A77F2AD05166004A292B /* CountryRowView.swift */; };
-		D359A7832AD05166004A292B /* CountriesListContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D359A7802AD05166004A292B /* CountriesListContentView.swift */; };
+		D359A7832AD05166004A292B /* DiscoverContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D359A7802AD05166004A292B /* DiscoverContentView.swift */; };
 		D359A7872AD06777004A292B /* FavoriteContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D359A7862AD06777004A292B /* FavoriteContentView.swift */; };
-		D359A78B2AD07B77004A292B /* MiniplayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D359A78A2AD07B77004A292B /* MiniplayerView.swift */; };
+		D359A78B2AD07B77004A292B /* MiniplayerContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D359A78A2AD07B77004A292B /* MiniplayerContentView.swift */; };
+		D35F421B2BB5ACDA008B3C90 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D35F421A2BB5ACDA008B3C90 /* LoadingView.swift */; };
+		D35F421D2BB5B25B008B3C90 /* StationsSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D35F421C2BB5B25B008B3C90 /* StationsSearchController.swift */; };
+		D35F421F2BB5B9F6008B3C90 /* StationsSearchNetworking.swift in Sources */ = {isa = PBXBuildFile; fileRef = D35F421E2BB5B9F6008B3C90 /* StationsSearchNetworking.swift */; };
+		D35F42212BB5CDF1008B3C90 /* SearchPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = D35F42202BB5CDF1008B3C90 /* SearchPicker.swift */; };
+		D35F42232BB5CE2F008B3C90 /* DiscoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D35F42222BB5CE2F008B3C90 /* DiscoverView.swift */; };
+		D35F42252BB5DA99008B3C90 /* NoStationsFavorited.swift in Sources */ = {isa = PBXBuildFile; fileRef = D35F42242BB5DA99008B3C90 /* NoStationsFavorited.swift */; };
+		D3658FAF2BA58783003A7557 /* CountriesListContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3658FAE2BA58783003A7557 /* CountriesListContentView.swift */; };
+		D3658FB12BA58851003A7557 /* SearchStationContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3658FB02BA58850003A7557 /* SearchStationContentView.swift */; };
 		D366F4052B24AF49001C54D6 /* FavoriteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D366F4042B24AF49001C54D6 /* FavoriteView.swift */; };
-		D366F4072B24B161001C54D6 /* CountriesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D366F4062B24B161001C54D6 /* CountriesListView.swift */; };
-		D366F4092B24B71E001C54D6 /* StationsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D366F4082B24B71E001C54D6 /* StationsListView.swift */; };
+		D366F4072B24B161001C54D6 /* CountriesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D366F4062B24B161001C54D6 /* CountriesView.swift */; };
+		D366F4092B24B71E001C54D6 /* UniversalStationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D366F4082B24B71E001C54D6 /* UniversalStationsView.swift */; };
 		D36B91DA2AF2C6D100356285 /* hapticFeedback.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36B91D92AF2C6D100356285 /* hapticFeedback.swift */; };
 		D36B91DC2AF2C90500356285 /* TogglePlaybackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36B91DB2AF2C90500356285 /* TogglePlaybackButton.swift */; };
-		D36B91DE2AF2C94F00356285 /* FavouriteButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36B91DD2AF2C94F00356285 /* FavouriteButton.swift */; };
+		D36B91DE2AF2C94F00356285 /* MakeFavouriteButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36B91DD2AF2C94F00356285 /* MakeFavouriteButton.swift */; };
 		D36B91E42AF2CC3800356285 /* AverageColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36B91E32AF2CC3800356285 /* AverageColor.swift */; };
 		D37A37CA2B2C55A900A44E43 /* BigScreenBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37A37C92B2C55A900A44E43 /* BigScreenBackground.swift */; };
 		D37A37CC2B2C55DB00A44E43 /* BigScreenControls.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37A37CB2B2C55DB00A44E43 /* BigScreenControls.swift */; };
@@ -54,7 +76,7 @@
 		D3BEFA962B1349840082675A /* TogglePlaybackIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3BEFA952B1349840082675A /* TogglePlaybackIntent.swift */; };
 		D3BEFA982B1349BB0082675A /* AppShortcutsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3BEFA972B1349BB0082675A /* AppShortcutsProvider.swift */; };
 		D3CCC41E2AD2EC540069F900 /* ImageFaviconCached.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CCC41D2AD2EC540069F900 /* ImageFaviconCached.swift */; };
-		D3CCC4202AD2F3850069F900 /* LibraryTileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CCC41F2AD2F3850069F900 /* LibraryTileView.swift */; };
+		D3CCC4202AD2F3850069F900 /* FavoriteTileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CCC41F2AD2F3850069F900 /* FavoriteTileView.swift */; };
 		D3CCC4222AD2FB870069F900 /* ShazamButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CCC4212AD2FB870069F900 /* ShazamButton.swift */; };
 /* End PBXBuildFile section */
 
@@ -62,16 +84,30 @@
 		D301EBD52B82AF2400FA0BCD /* CachingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CachingManager.swift; sourceTree = "<group>"; };
 		D30799992AD7154600D11D60 /* CountryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryModel.swift; sourceTree = "<group>"; };
 		D30D040B2AED54D40077371E /* AirPlayButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirPlayButton.swift; sourceTree = "<group>"; };
-		D30E76E22B13D5D900237F8B /* SwiftDataContainers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftDataContainers.swift; sourceTree = "<group>"; };
+		D30E76E22B13D5D900237F8B /* Persistance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistance.swift; sourceTree = "<group>"; };
 		D30EC7032B2A4737000D8C53 /* OSLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OSLog.swift; sourceTree = "<group>"; };
 		D31B4FAD2AE1A88B002F9563 /* BigPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BigPlayerView.swift; sourceTree = "<group>"; };
 		D32D8A962AF6F11E004D1FB0 /* CountryNetworking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryNetworking.swift; sourceTree = "<group>"; };
-		D32D8A9C2AF6F620004D1FB0 /* StationNetworking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationNetworking.swift; sourceTree = "<group>"; };
+		D32D8A9C2AF6F620004D1FB0 /* StationsOfCountryNetworking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationsOfCountryNetworking.swift; sourceTree = "<group>"; };
 		D330D8242AFE3C260085C65D /* FavouriteStationIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteStationIntent.swift; sourceTree = "<group>"; };
 		D336AF492B82A49000108C87 /* ImageToData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageToData.swift; sourceTree = "<group>"; };
 		D342B29F2B2A9BA200C4C10C /* DynamicImageFaviconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicImageFaviconView.swift; sourceTree = "<group>"; };
 		D34F54B82AD1F3AC00347E99 /* PlayingStationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayingStationManager.swift; sourceTree = "<group>"; };
 		D34F54DB2AD2DAB600347E99 /* StationBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationBase.swift; sourceTree = "<group>"; };
+		D359034F2BB6C628000C29C6 /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
+		D35903512BB6C702000C29C6 /* NoInternetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoInternetView.swift; sourceTree = "<group>"; };
+		D35903532BB6DA98000C29C6 /* PlayingBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayingBackground.swift; sourceTree = "<group>"; };
+		D35903552BB6DAFA000C29C6 /* NoInternetLabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoInternetLabelView.swift; sourceTree = "<group>"; };
+		D35903572BB6DF1F000C29C6 /* UnfavoriteContextButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnfavoriteContextButton.swift; sourceTree = "<group>"; };
+		D35903592BB6E11D000C29C6 /* FavoriteTileViewBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteTileViewBackground.swift; sourceTree = "<group>"; };
+		D359035B2BB6E1E0000C29C6 /* FavoriteTileViewContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteTileViewContent.swift; sourceTree = "<group>"; };
+		D359035D2BB6E410000C29C6 /* MiniplayerBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniplayerBackgroundView.swift; sourceTree = "<group>"; };
+		D359035F2BB6E483000C29C6 /* MiniplayerControlsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniplayerControlsView.swift; sourceTree = "<group>"; };
+		D35903612BB6E7D5000C29C6 /* StationTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationTextView.swift; sourceTree = "<group>"; };
+		D35903642BB70EED000C29C6 /* FavoriteButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteButton.swift; sourceTree = "<group>"; };
+		D35903662BB71439000C29C6 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = SOURCE_ROOT; };
+		D35903682BB71B86000C29C6 /* DiscoverMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverMode.swift; sourceTree = "<group>"; };
+		D359036A2BB72939000C29C6 /* HomepageURLView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomepageURLView.swift; sourceTree = "<group>"; };
 		D359A7612AD0509B004A292B /* Radio.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Radio.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D359A7642AD0509B004A292B /* radioApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = radioApp.swift; sourceTree = "<group>"; };
 		D359A7662AD0509B004A292B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -79,21 +115,29 @@
 		D359A76B2AD0509C004A292B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		D359A7722AD05105004A292B /* AudioController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioController.swift; sourceTree = "<group>"; };
 		D359A7752AD05125004A292B /* StationRowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StationRowView.swift; sourceTree = "<group>"; };
-		D359A7762AD05125004A292B /* StationsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StationsViewController.swift; sourceTree = "<group>"; };
-		D359A7772AD05125004A292B /* StationsListContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StationsListContentView.swift; sourceTree = "<group>"; };
+		D359A7762AD05125004A292B /* StationsOfCountryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StationsOfCountryViewController.swift; sourceTree = "<group>"; };
+		D359A7772AD05125004A292B /* StationsOfCountryContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StationsOfCountryContentView.swift; sourceTree = "<group>"; };
 		D359A77B2AD05156004A292B /* Connection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Connection.swift; sourceTree = "<group>"; };
 		D359A77E2AD05166004A292B /* CountriesController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountriesController.swift; sourceTree = "<group>"; };
 		D359A77F2AD05166004A292B /* CountryRowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountryRowView.swift; sourceTree = "<group>"; };
-		D359A7802AD05166004A292B /* CountriesListContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountriesListContentView.swift; sourceTree = "<group>"; };
+		D359A7802AD05166004A292B /* DiscoverContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoverContentView.swift; sourceTree = "<group>"; };
 		D359A7852AD0581F004A292B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = Info.plist; path = Radio/Info.plist; sourceTree = "<group>"; };
 		D359A7862AD06777004A292B /* FavoriteContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteContentView.swift; sourceTree = "<group>"; };
-		D359A78A2AD07B77004A292B /* MiniplayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniplayerView.swift; sourceTree = "<group>"; };
+		D359A78A2AD07B77004A292B /* MiniplayerContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniplayerContentView.swift; sourceTree = "<group>"; };
+		D35F421A2BB5ACDA008B3C90 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LoadingView.swift; path = Countries/View/LoadingView.swift; sourceTree = "<group>"; };
+		D35F421C2BB5B25B008B3C90 /* StationsSearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationsSearchController.swift; sourceTree = "<group>"; };
+		D35F421E2BB5B9F6008B3C90 /* StationsSearchNetworking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationsSearchNetworking.swift; sourceTree = "<group>"; };
+		D35F42202BB5CDF1008B3C90 /* SearchPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPicker.swift; sourceTree = "<group>"; };
+		D35F42222BB5CE2F008B3C90 /* DiscoverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverView.swift; sourceTree = "<group>"; };
+		D35F42242BB5DA99008B3C90 /* NoStationsFavorited.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoStationsFavorited.swift; sourceTree = "<group>"; };
+		D3658FAE2BA58783003A7557 /* CountriesListContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountriesListContentView.swift; sourceTree = "<group>"; };
+		D3658FB02BA58850003A7557 /* SearchStationContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchStationContentView.swift; sourceTree = "<group>"; };
 		D366F4042B24AF49001C54D6 /* FavoriteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteView.swift; sourceTree = "<group>"; };
-		D366F4062B24B161001C54D6 /* CountriesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountriesListView.swift; sourceTree = "<group>"; };
-		D366F4082B24B71E001C54D6 /* StationsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationsListView.swift; sourceTree = "<group>"; };
+		D366F4062B24B161001C54D6 /* CountriesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountriesView.swift; sourceTree = "<group>"; };
+		D366F4082B24B71E001C54D6 /* UniversalStationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniversalStationsView.swift; sourceTree = "<group>"; };
 		D36B91D92AF2C6D100356285 /* hapticFeedback.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = hapticFeedback.swift; sourceTree = "<group>"; };
 		D36B91DB2AF2C90500356285 /* TogglePlaybackButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TogglePlaybackButton.swift; sourceTree = "<group>"; };
-		D36B91DD2AF2C94F00356285 /* FavouriteButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteButton.swift; sourceTree = "<group>"; };
+		D36B91DD2AF2C94F00356285 /* MakeFavouriteButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeFavouriteButton.swift; sourceTree = "<group>"; };
 		D36B91E32AF2CC3800356285 /* AverageColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AverageColor.swift; sourceTree = "<group>"; };
 		D37A37C92B2C55A900A44E43 /* BigScreenBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BigScreenBackground.swift; sourceTree = "<group>"; };
 		D37A37CB2B2C55DB00A44E43 /* BigScreenControls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BigScreenControls.swift; sourceTree = "<group>"; };
@@ -106,7 +150,7 @@
 		D3BEFA952B1349840082675A /* TogglePlaybackIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TogglePlaybackIntent.swift; sourceTree = "<group>"; };
 		D3BEFA972B1349BB0082675A /* AppShortcutsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppShortcutsProvider.swift; sourceTree = "<group>"; };
 		D3CCC41D2AD2EC540069F900 /* ImageFaviconCached.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageFaviconCached.swift; sourceTree = "<group>"; };
-		D3CCC41F2AD2F3850069F900 /* LibraryTileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryTileView.swift; sourceTree = "<group>"; };
+		D3CCC41F2AD2F3850069F900 /* FavoriteTileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FavoriteTileView.swift; path = ../FavoriteTileView.swift; sourceTree = "<group>"; };
 		D3CCC4212AD2FB870069F900 /* ShazamButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShazamButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -126,6 +170,13 @@
 		D30799962AD7011E00D11D60 /* DiscoverTab */ = {
 			isa = PBXGroup;
 			children = (
+				D359034F2BB6C628000C29C6 /* NetworkMonitor.swift */,
+				D35903512BB6C702000C29C6 /* NoInternetView.swift */,
+				D35F421A2BB5ACDA008B3C90 /* LoadingView.swift */,
+				D35F42222BB5CE2F008B3C90 /* DiscoverView.swift */,
+				D359A7802AD05166004A292B /* DiscoverContentView.swift */,
+				D35903682BB71B86000C29C6 /* DiscoverMode.swift */,
+				D35F42202BB5CDF1008B3C90 /* SearchPicker.swift */,
 				D359A77D2AD05166004A292B /* Countries */,
 				D359A7742AD05125004A292B /* Stations */,
 			);
@@ -135,9 +186,10 @@
 		D32D8A932AF6F047004D1FB0 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				D359A7802AD05166004A292B /* CountriesListContentView.swift */,
-				D366F4062B24B161001C54D6 /* CountriesListView.swift */,
+				D3658FAE2BA58783003A7557 /* CountriesListContentView.swift */,
+				D366F4062B24B161001C54D6 /* CountriesView.swift */,
 				D359A77F2AD05166004A292B /* CountryRowView.swift */,
+				D359A7772AD05125004A292B /* StationsOfCountryContentView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -169,7 +221,8 @@
 		D32D8A9A2AF6F5CA004D1FB0 /* Service */ = {
 			isa = PBXGroup;
 			children = (
-				D32D8A9C2AF6F620004D1FB0 /* StationNetworking.swift */,
+				D32D8A9C2AF6F620004D1FB0 /* StationsOfCountryNetworking.swift */,
+				D35F421E2BB5B9F6008B3C90 /* StationsSearchNetworking.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -177,7 +230,8 @@
 		D32D8A9B2AF6F5D3004D1FB0 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				D359A7762AD05125004A292B /* StationsViewController.swift */,
+				D359A7762AD05125004A292B /* StationsOfCountryViewController.swift */,
+				D35F421C2BB5B25B008B3C90 /* StationsSearchController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -185,7 +239,7 @@
 		D32D8A9E2AF6FD3C004D1FB0 /* Global_Controller */ = {
 			isa = PBXGroup;
 			children = (
-				D30E76E22B13D5D900237F8B /* SwiftDataContainers.swift */,
+				D30E76E22B13D5D900237F8B /* Persistance.swift */,
 				D359A7722AD05105004A292B /* AudioController.swift */,
 				D3911D4B2B2619A200F0B7A1 /* AVPlayerController.swift */,
 				D3911D492B26183A00F0B7A1 /* AVAudioSessionController.swift */,
@@ -198,6 +252,16 @@
 				D301EBD52B82AF2400FA0BCD /* CachingManager.swift */,
 			);
 			path = Global_Controller;
+			sourceTree = "<group>";
+		};
+		D35903632BB6E881000C29C6 /* Tile */ = {
+			isa = PBXGroup;
+			children = (
+				D3CCC41F2AD2F3850069F900 /* FavoriteTileView.swift */,
+				D35903592BB6E11D000C29C6 /* FavoriteTileViewBackground.swift */,
+				D359035B2BB6E1E0000C29C6 /* FavoriteTileViewContent.swift */,
+			);
+			path = Tile;
 			sourceTree = "<group>";
 		};
 		D359A7582AD0509B004A292B = {
@@ -220,12 +284,13 @@
 		D359A7632AD0509B004A292B /* radio */ = {
 			isa = PBXGroup;
 			children = (
+				D35903662BB71439000C29C6 /* Localizable.xcstrings */,
 				D359A7642AD0509B004A292B /* radioApp.swift */,
 				D359A7662AD0509B004A292B /* ContentView.swift */,
-				D32D8A9E2AF6FD3C004D1FB0 /* Global_Controller */,
 				D36B91E12AF2CA7300356285 /* Global_Model */,
-				D3A1FBFF2AD1E95E00B4E77C /* Miniplayer */,
+				D32D8A9E2AF6FD3C004D1FB0 /* Global_Controller */,
 				D3F492772AD1B5A7007DD232 /* FavouriteTab */,
+				D3A1FBFF2AD1E95E00B4E77C /* Miniplayer */,
 				D30799962AD7011E00D11D60 /* DiscoverTab */,
 				D359A7682AD0509C004A292B /* Assets.xcassets */,
 				D359A76A2AD0509C004A292B /* Preview Content */,
@@ -244,8 +309,8 @@
 		D359A7742AD05125004A292B /* Stations */ = {
 			isa = PBXGroup;
 			children = (
-				D32D8A9B2AF6F5D3004D1FB0 /* Controller */,
 				D32D8A9A2AF6F5CA004D1FB0 /* Service */,
+				D32D8A9B2AF6F5D3004D1FB0 /* Controller */,
 				D359A7842AD053E1004A292B /* Views */,
 			);
 			path = Stations;
@@ -265,8 +330,8 @@
 		D359A7842AD053E1004A292B /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				D366F4082B24B71E001C54D6 /* StationsListView.swift */,
-				D359A7772AD05125004A292B /* StationsListContentView.swift */,
+				D3658FB02BA58850003A7557 /* SearchStationContentView.swift */,
+				D366F4082B24B71E001C54D6 /* UniversalStationsView.swift */,
 				D359A7752AD05125004A292B /* StationRowView.swift */,
 				D342B29F2B2A9BA200C4C10C /* DynamicImageFaviconView.swift */,
 			);
@@ -287,10 +352,15 @@
 		D39B7E0E2B191F5900824FCE /* View */ = {
 			isa = PBXGroup;
 			children = (
+				D35F42242BB5DA99008B3C90 /* NoStationsFavorited.swift */,
+				D35903552BB6DAFA000C29C6 /* NoInternetLabelView.swift */,
 				D359A7862AD06777004A292B /* FavoriteContentView.swift */,
 				D366F4042B24AF49001C54D6 /* FavoriteView.swift */,
-				D3CCC41F2AD2F3850069F900 /* LibraryTileView.swift */,
+				D35903532BB6DA98000C29C6 /* PlayingBackground.swift */,
+				D35903632BB6E881000C29C6 /* Tile */,
+				D35903572BB6DF1F000C29C6 /* UnfavoriteContextButton.swift */,
 				D36B91E32AF2CC3800356285 /* AverageColor.swift */,
+				D35903612BB6E7D5000C29C6 /* StationTextView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -298,13 +368,16 @@
 		D3A1FBFF2AD1E95E00B4E77C /* Miniplayer */ = {
 			isa = PBXGroup;
 			children = (
+				D359A78A2AD07B77004A292B /* MiniplayerContentView.swift */,
+				D359035F2BB6E483000C29C6 /* MiniplayerControlsView.swift */,
+				D359035D2BB6E410000C29C6 /* MiniplayerBackgroundView.swift */,
 				D3CCC4212AD2FB870069F900 /* ShazamButton.swift */,
 				D36B91DB2AF2C90500356285 /* TogglePlaybackButton.swift */,
 				D3CCC41D2AD2EC540069F900 /* ImageFaviconCached.swift */,
 				D30D040B2AED54D40077371E /* AirPlayButton.swift */,
-				D36B91DD2AF2C94F00356285 /* FavouriteButton.swift */,
-				D359A78A2AD07B77004A292B /* MiniplayerView.swift */,
+				D36B91DD2AF2C94F00356285 /* MakeFavouriteButton.swift */,
 				D31B4FAD2AE1A88B002F9563 /* BigPlayerView.swift */,
+				D359036A2BB72939000C29C6 /* HomepageURLView.swift */,
 				D37A37CD2B2C57BD00A44E43 /* BigScreenFavicon.swift */,
 				D37A37C92B2C55A900A44E43 /* BigScreenBackground.swift */,
 				D37A37CB2B2C55DB00A44E43 /* BigScreenControls.swift */,
@@ -326,6 +399,7 @@
 			isa = PBXGroup;
 			children = (
 				D39B7E0E2B191F5900824FCE /* View */,
+				D35903642BB70EED000C29C6 /* FavoriteButton.swift */,
 			);
 			path = FavouriteTab;
 			sourceTree = "<group>";
@@ -362,7 +436,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1500;
-				LastUpgradeCheck = 1500;
+				LastUpgradeCheck = 1530;
 				TargetAttributes = {
 					D359A7602AD0509B004A292B = {
 						CreatedOnToolsVersion = 15.0;
@@ -376,6 +450,8 @@
 			knownRegions = (
 				en,
 				Base,
+				"en-GB",
+				pl,
 			);
 			mainGroup = D359A7582AD0509B004A292B;
 			packageReferences = (
@@ -397,6 +473,7 @@
 			files = (
 				D359A76C2AD0509C004A292B /* Preview Assets.xcassets in Resources */,
 				D359A7692AD0509C004A292B /* Assets.xcassets in Resources */,
+				D35903672BB71439000C29C6 /* Localizable.xcstrings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -407,13 +484,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D32D8A9D2AF6F620004D1FB0 /* StationNetworking.swift in Sources */,
+				D32D8A9D2AF6F620004D1FB0 /* StationsOfCountryNetworking.swift in Sources */,
+				D3658FAF2BA58783003A7557 /* CountriesListContentView.swift in Sources */,
+				D3658FB12BA58851003A7557 /* SearchStationContentView.swift in Sources */,
 				D359A7782AD05125004A292B /* StationRowView.swift in Sources */,
+				D35903562BB6DAFA000C29C6 /* NoInternetLabelView.swift in Sources */,
 				D359A7672AD0509B004A292B /* ContentView.swift in Sources */,
+				D35F421B2BB5ACDA008B3C90 /* LoadingView.swift in Sources */,
 				D307999A2AD7154600D11D60 /* CountryModel.swift in Sources */,
+				D359036B2BB72939000C29C6 /* HomepageURLView.swift in Sources */,
+				D35903502BB6C629000C29C6 /* NetworkMonitor.swift in Sources */,
+				D35903522BB6C702000C29C6 /* NoInternetView.swift in Sources */,
 				D31B4FAE2AE1A88B002F9563 /* BigPlayerView.swift in Sources */,
 				D34F54B92AD1F3AC00347E99 /* PlayingStationManager.swift in Sources */,
-				D359A77A2AD05125004A292B /* StationsListContentView.swift in Sources */,
+				D359A77A2AD05125004A292B /* StationsOfCountryContentView.swift in Sources */,
 				D359A7812AD05166004A292B /* CountriesController.swift in Sources */,
 				D36B91E42AF2CC3800356285 /* AverageColor.swift in Sources */,
 				D3CCC4222AD2FB870069F900 /* ShazamButton.swift in Sources */,
@@ -421,36 +505,50 @@
 				D301EBD62B82AF2400FA0BCD /* CachingManager.swift in Sources */,
 				D36B91DC2AF2C90500356285 /* TogglePlaybackButton.swift in Sources */,
 				D3911D4C2B2619A200F0B7A1 /* AVPlayerController.swift in Sources */,
+				D35903542BB6DA98000C29C6 /* PlayingBackground.swift in Sources */,
 				D330D8252AFE3C260085C65D /* FavouriteStationIntent.swift in Sources */,
 				D32D8A972AF6F11E004D1FB0 /* CountryNetworking.swift in Sources */,
 				D3911D482B26160900F0B7A1 /* LockscreenController.swift in Sources */,
 				D30D040C2AED54D40077371E /* AirPlayButton.swift in Sources */,
 				D3CCC41E2AD2EC540069F900 /* ImageFaviconCached.swift in Sources */,
 				D3BEFA982B1349BB0082675A /* AppShortcutsProvider.swift in Sources */,
-				D366F4092B24B71E001C54D6 /* StationsListView.swift in Sources */,
-				D36B91DE2AF2C94F00356285 /* FavouriteButton.swift in Sources */,
+				D359035E2BB6E410000C29C6 /* MiniplayerBackgroundView.swift in Sources */,
+				D366F4092B24B71E001C54D6 /* UniversalStationsView.swift in Sources */,
+				D36B91DE2AF2C94F00356285 /* MakeFavouriteButton.swift in Sources */,
 				D359A7652AD0509B004A292B /* radioApp.swift in Sources */,
-				D366F4072B24B161001C54D6 /* CountriesListView.swift in Sources */,
-				D3CCC4202AD2F3850069F900 /* LibraryTileView.swift in Sources */,
+				D366F4072B24B161001C54D6 /* CountriesView.swift in Sources */,
+				D35903602BB6E483000C29C6 /* MiniplayerControlsView.swift in Sources */,
+				D3CCC4202AD2F3850069F900 /* FavoriteTileView.swift in Sources */,
+				D35903622BB6E7D5000C29C6 /* StationTextView.swift in Sources */,
+				D359035C2BB6E1E0000C29C6 /* FavoriteTileViewContent.swift in Sources */,
 				D37A37CC2B2C55DB00A44E43 /* BigScreenControls.swift in Sources */,
 				D38C155B2AD09D3D009E831D /* ExtendedStation.swift in Sources */,
+				D35F421F2BB5B9F6008B3C90 /* StationsSearchNetworking.swift in Sources */,
 				D359A7822AD05166004A292B /* CountryRowView.swift in Sources */,
-				D359A7792AD05125004A292B /* StationsViewController.swift in Sources */,
+				D359A7792AD05125004A292B /* StationsOfCountryViewController.swift in Sources */,
 				D359A7872AD06777004A292B /* FavoriteContentView.swift in Sources */,
 				D3911D4A2B26183A00F0B7A1 /* AVAudioSessionController.swift in Sources */,
+				D35903652BB70EED000C29C6 /* FavoriteButton.swift in Sources */,
 				D359A7732AD05105004A292B /* AudioController.swift in Sources */,
-				D359A78B2AD07B77004A292B /* MiniplayerView.swift in Sources */,
+				D359A78B2AD07B77004A292B /* MiniplayerContentView.swift in Sources */,
+				D35F421D2BB5B25B008B3C90 /* StationsSearchController.swift in Sources */,
 				D3911D4E2B26595900F0B7A1 /* PlayerState.swift in Sources */,
 				D366F4052B24AF49001C54D6 /* FavoriteView.swift in Sources */,
 				D359A77C2AD05156004A292B /* Connection.swift in Sources */,
 				D30EC7042B2A4737000D8C53 /* OSLog.swift in Sources */,
 				D34F54DC2AD2DAB600347E99 /* StationBase.swift in Sources */,
 				D36B91DA2AF2C6D100356285 /* hapticFeedback.swift in Sources */,
-				D359A7832AD05166004A292B /* CountriesListContentView.swift in Sources */,
-				D30E76E32B13D5D900237F8B /* SwiftDataContainers.swift in Sources */,
+				D359A7832AD05166004A292B /* DiscoverContentView.swift in Sources */,
+				D35F42232BB5CE2F008B3C90 /* DiscoverView.swift in Sources */,
+				D35903582BB6DF1F000C29C6 /* UnfavoriteContextButton.swift in Sources */,
+				D30E76E32B13D5D900237F8B /* Persistance.swift in Sources */,
 				D336AF4A2B82A49000108C87 /* ImageToData.swift in Sources */,
+				D35903692BB71B86000C29C6 /* DiscoverMode.swift in Sources */,
+				D35F42212BB5CDF1008B3C90 /* SearchPicker.swift in Sources */,
 				D37A37CE2B2C57BD00A44E43 /* BigScreenFavicon.swift in Sources */,
+				D35F42252BB5DA99008B3C90 /* NoStationsFavorited.swift in Sources */,
 				D37A37CA2B2C55A900A44E43 /* BigScreenBackground.swift in Sources */,
+				D359035A2BB6E11D000C29C6 /* FavoriteTileViewBackground.swift in Sources */,
 				D3BEFA962B1349840082675A /* TogglePlaybackIntent.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -463,6 +561,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -526,6 +625,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -600,6 +700,8 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = delight.me.radio;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -629,6 +731,8 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = delight.me.radio;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

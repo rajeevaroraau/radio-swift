@@ -13,11 +13,13 @@ struct ContentView: View {
         ZStack(alignment: .bottom) {
             TabView {
                 FavoriteContentView()
-                    .tabItem { Label("Favourite", systemImage: "play.square.stack.fill") }
-                CountriesListContentView()
+                    .padding(.bottom, 1)
+                    .tabItem { Label("Favorite", systemImage: "star.fill") }
+                DiscoverContentView()
                     .tabItem { Label("Discover", systemImage: "magnifyingglass") }
+                    
             }
-            MiniplayerView()
+            MiniplayerContentView()
                 .shadow(radius: 8)
         }
         .ignoresSafeArea(.keyboard)

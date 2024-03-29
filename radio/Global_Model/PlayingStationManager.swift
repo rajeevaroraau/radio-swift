@@ -21,9 +21,10 @@ class PlayingStationManager {
         }
     }
     
+    @MainActor
     func setCurrentlyPlayingExtendedStationFromCache() async {
         do {
-            let cachedExtendedStations = try await SwiftDataContainers.shared.container.mainContext.fetch(FetchDescriptor<ExtendedStation>())
+            let cachedExtendedStations = try  Persistance.shared.container.mainContext.fetch(FetchDescriptor<ExtendedStation>())
             for cachedExtendedStation in cachedExtendedStations {
                 if cachedExtendedStation.currentlyPlaying {
                     currentlyPlayingExtendedStation = cachedExtendedStation
@@ -42,13 +43,14 @@ class PlayingStationManager {
         }
     }
     
-    @MainActor func setCurrentlyPlayingExtendedStation(extendedStation: ExtendedStation) {
-        SwiftDataContainers.shared.container.mainContext.insert(extendedStation)
-        currentlyPlayingExtendedStation?.currentlyPlaying = false
-        extendedStation.currentlyPlaying = true
+    func setCurrentlyPlayingExtendedStation(_ extendedStation: ExtendedStation) async {
+        await MainActor.run {
+            Persistance.shared.container.mainContext.insert(extendedStation)
+            currentlyPlayingExtendedStation?.currentlyPlaying = false
+            extendedStation.currentlyPlaying = true
+        }
         currentlyPlayingExtendedStation = extendedStation
-        extendedStation.setStationsFavicon(faviconCached: nil)
-        
+        await extendedStation.setFavicon(extendedStation.faviconData)
     }
 }
 

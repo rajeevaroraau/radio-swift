@@ -17,16 +17,13 @@ class StationBase: Codable, Equatable, Identifiable {
     let countrycode: String
     let iso_3166_2: String?
     let state: String
-    let language: String
-    let languagecodes: String
     let votes: Int
     let geo_lat: Double?
     let geo_long: Double?
     
     static func ==(lhs: StationBase, rhs: StationBase) -> Bool {
-        return lhs.url == rhs.url
+        return lhs.stationuuid == rhs.stationuuid
     }
-    
     
     
     init(
@@ -56,8 +53,6 @@ class StationBase: Codable, Equatable, Identifiable {
         self.countrycode = countrycode
         self.iso_3166_2 = iso_3166_2
         self.state = state
-        self.language = language
-        self.languagecodes = languagecodes
         self.votes = votes
         self.geo_lat = geo_lat
         self.geo_long = geo_long
