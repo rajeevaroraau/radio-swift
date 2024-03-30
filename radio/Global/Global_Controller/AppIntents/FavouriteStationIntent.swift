@@ -15,8 +15,8 @@ struct FavouriteStation: AppIntent {
     @MainActor
     func perform() async throws -> some IntentResult {
         print("Start \(Self.title.locale)")
-        print("Found a persisted station in PlayingStation.station: \(PlayingStationManager.shared.currentlyPlayingExtendedStation?.stationBase.name ?? "Nothing")")
-        guard let currentlyPlayingExtendedStation = PlayingStationManager.shared.currentlyPlayingExtendedStation else {
+        print("Found a persisted station in PlayingStation.station: \(PlayingStation.shared.currentlyPlayingExtendedStation?.stationBase.name ?? "Nothing")")
+        guard let currentlyPlayingExtendedStation = PlayingStation.shared.currentlyPlayingExtendedStation else {
             return .result()
         }
         currentlyPlayingExtendedStation.favourite = true

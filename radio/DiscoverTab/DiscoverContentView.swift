@@ -13,15 +13,7 @@ struct DiscoverContentView: View {
                         SearchPicker()
                     }
                     ToolbarItemGroup(placement: .topBarLeading) {
-                        
-                        Label(
-                            title: { Text("Data from radio-browser.info") },
-                            icon: { Image(systemName: "info.circle") }
-                        )
-                            .foregroundStyle(.secondary)
-                            .labelStyle(.titleAndIcon)
-                            .font(.caption2)
-
+                        SourceInfoView()
                     }
                 }
         }

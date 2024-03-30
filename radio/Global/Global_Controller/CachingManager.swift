@@ -47,7 +47,7 @@ class CachingManager {
     
     func removeFromFavorites(extendedStationToUnfavorite: ExtendedStation) async {
         await MainActor.run { extendedStationToUnfavorite.favourite = false }
-        if PlayingStationManager.shared.currentlyPlayingExtendedStation != extendedStationToUnfavorite {
+        if PlayingStation.shared.currentlyPlayingExtendedStation != extendedStationToUnfavorite {
             await MainActor.run {
                 Persistance.shared.container.mainContext.delete(extendedStationToUnfavorite)
                 try? Persistance.shared.container.mainContext.save()
@@ -57,7 +57,7 @@ class CachingManager {
     }
     
     func addToFavorites(_ stationBase: StationBase) async {
-        let result = await isOld(stationBase)
+        let result = await isBaseStationOld(stationBase)
         if  result.isOld {
             // the station isn't new
             guard let extendedStation = result.extendedStation else { return }
@@ -75,7 +75,7 @@ class CachingManager {
         }
     }
     
-    func isOld(_ stationBase: StationBase) async -> (isOld: Bool, extendedStation: ExtendedStation?) {
+    func isBaseStationOld(_ stationBase: StationBase) async -> (isOld: Bool, extendedStation: ExtendedStation?) {
         var isOld = false
         var extendedStation: ExtendedStation? = nil
         if let array = try? await Persistance.shared.container.mainContext.fetch(FetchDescriptor<ExtendedStation>()) {

@@ -41,6 +41,9 @@
         }
       }
     },
+    "Cancel" : {
+
+    },
     "Cannot find %@" : {
       "localizations" : {
         "pl" : {
@@ -62,6 +65,7 @@
       }
     },
     "Data from radio-browser.info" : {
+      "extractionState" : "stale",
       "localizations" : {
         "pl" : {
           "stringUnit" : {
@@ -70,6 +74,9 @@
           }
         }
       }
+    },
+    "Data provided by radio-browser.info" : {
+
     },
     "Discover" : {
       "localizations" : {
@@ -80,6 +87,9 @@
           }
         }
       }
+    },
+    "Do you want to open it in the browser?" : {
+
     },
     "Favorite" : {
       "localizations" : {
@@ -121,6 +131,9 @@
         }
       }
     },
+    "Information" : {
+
+    },
     "Item To Search" : {
       "localizations" : {
         "pl" : {
@@ -160,6 +173,12 @@
           }
         }
       }
+    },
+    "OK" : {
+
+    },
+    "Open" : {
+
     },
     "Please check your connection and try again." : {
       "localizations" : {
@@ -211,6 +230,9 @@
         }
       }
     },
+    "The app provides you with thousands of radio stations thanks to the curiosity of radio-browser.info" : {
+
+    },
     "Toggle Playback" : {
       "localizations" : {
         "pl" : {
@@ -253,6 +275,9 @@
           }
         }
       }
+    },
+    "Your default browser will open %@." : {
+
     }
   },
   "version" : "1.0"

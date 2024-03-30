@@ -15,16 +15,26 @@ struct BigPlayerView: View {
         ViewThatFits {
             ZStack {
                 BigScreenBackground()
-                HStack {
-                    HomepageURLView()
-                    BigScreenFavicon()
-                    BigScreenControls()
+                VStack {
+                    HStack {
+                        Spacer()
+                        HomepageURLView()
+                    }
+                    HStack {
+                        BigScreenFavicon()
+                        BigScreenControls()
+                    }
                 }
+                
             }
             ZStack {
                 BigScreenBackground()
                 VStack(alignment: .center) {
-                    HomepageURLView()
+                    HStack {
+                        Spacer()
+                        HomepageURLView()
+                    }
+                    
                     BigScreenFavicon()
                     BigScreenControls()
                 }

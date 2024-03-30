@@ -18,7 +18,7 @@
 		D330D8252AFE3C260085C65D /* FavouriteStationIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = D330D8242AFE3C260085C65D /* FavouriteStationIntent.swift */; };
 		D336AF4A2B82A49000108C87 /* ImageToData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D336AF492B82A49000108C87 /* ImageToData.swift */; };
 		D342B2A02B2A9BA200C4C10C /* DynamicImageFaviconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D342B29F2B2A9BA200C4C10C /* DynamicImageFaviconView.swift */; };
-		D34F54B92AD1F3AC00347E99 /* PlayingStationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34F54B82AD1F3AC00347E99 /* PlayingStationManager.swift */; };
+		D34F54B92AD1F3AC00347E99 /* PlayingStation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34F54B82AD1F3AC00347E99 /* PlayingStation.swift */; };
 		D34F54DC2AD2DAB600347E99 /* StationBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34F54DB2AD2DAB600347E99 /* StationBase.swift */; };
 		D35903502BB6C629000C29C6 /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D359034F2BB6C628000C29C6 /* NetworkMonitor.swift */; };
 		D35903522BB6C702000C29C6 /* NoInternetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D35903512BB6C702000C29C6 /* NoInternetView.swift */; };
@@ -75,6 +75,7 @@
 		D3911D4E2B26595900F0B7A1 /* PlayerState.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3911D4D2B26595900F0B7A1 /* PlayerState.swift */; };
 		D3BEFA962B1349840082675A /* TogglePlaybackIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3BEFA952B1349840082675A /* TogglePlaybackIntent.swift */; };
 		D3BEFA982B1349BB0082675A /* AppShortcutsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3BEFA972B1349BB0082675A /* AppShortcutsProvider.swift */; };
+		D3C68C3F2BB84C28000899D8 /* SourceInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C68C3E2BB84AB9000899D8 /* SourceInfoView.swift */; };
 		D3CCC41E2AD2EC540069F900 /* ImageFaviconCached.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CCC41D2AD2EC540069F900 /* ImageFaviconCached.swift */; };
 		D3CCC4202AD2F3850069F900 /* FavoriteTileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CCC41F2AD2F3850069F900 /* FavoriteTileView.swift */; };
 		D3CCC4222AD2FB870069F900 /* ShazamButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CCC4212AD2FB870069F900 /* ShazamButton.swift */; };
@@ -92,7 +93,7 @@
 		D330D8242AFE3C260085C65D /* FavouriteStationIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteStationIntent.swift; sourceTree = "<group>"; };
 		D336AF492B82A49000108C87 /* ImageToData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageToData.swift; sourceTree = "<group>"; };
 		D342B29F2B2A9BA200C4C10C /* DynamicImageFaviconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicImageFaviconView.swift; sourceTree = "<group>"; };
-		D34F54B82AD1F3AC00347E99 /* PlayingStationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayingStationManager.swift; sourceTree = "<group>"; };
+		D34F54B82AD1F3AC00347E99 /* PlayingStation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayingStation.swift; sourceTree = "<group>"; };
 		D34F54DB2AD2DAB600347E99 /* StationBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationBase.swift; sourceTree = "<group>"; };
 		D359034F2BB6C628000C29C6 /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
 		D35903512BB6C702000C29C6 /* NoInternetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoInternetView.swift; sourceTree = "<group>"; };
@@ -149,6 +150,7 @@
 		D3911D4D2B26595900F0B7A1 /* PlayerState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerState.swift; sourceTree = "<group>"; };
 		D3BEFA952B1349840082675A /* TogglePlaybackIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TogglePlaybackIntent.swift; sourceTree = "<group>"; };
 		D3BEFA972B1349BB0082675A /* AppShortcutsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppShortcutsProvider.swift; sourceTree = "<group>"; };
+		D3C68C3E2BB84AB9000899D8 /* SourceInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourceInfoView.swift; sourceTree = "<group>"; };
 		D3CCC41D2AD2EC540069F900 /* ImageFaviconCached.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageFaviconCached.swift; sourceTree = "<group>"; };
 		D3CCC41F2AD2F3850069F900 /* FavoriteTileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FavoriteTileView.swift; path = ../FavoriteTileView.swift; sourceTree = "<group>"; };
 		D3CCC4212AD2FB870069F900 /* ShazamButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShazamButton.swift; sourceTree = "<group>"; };
@@ -174,6 +176,7 @@
 				D35903512BB6C702000C29C6 /* NoInternetView.swift */,
 				D35F421A2BB5ACDA008B3C90 /* LoadingView.swift */,
 				D35F42222BB5CE2F008B3C90 /* DiscoverView.swift */,
+				D3C68C3E2BB84AB9000899D8 /* SourceInfoView.swift */,
 				D359A7802AD05166004A292B /* DiscoverContentView.swift */,
 				D35903682BB71B86000C29C6 /* DiscoverMode.swift */,
 				D35F42202BB5CDF1008B3C90 /* SearchPicker.swift */,
@@ -287,8 +290,7 @@
 				D35903662BB71439000C29C6 /* Localizable.xcstrings */,
 				D359A7642AD0509B004A292B /* radioApp.swift */,
 				D359A7662AD0509B004A292B /* ContentView.swift */,
-				D36B91E12AF2CA7300356285 /* Global_Model */,
-				D32D8A9E2AF6FD3C004D1FB0 /* Global_Controller */,
+				D3C68C3D2BB83C3E000899D8 /* Global */,
 				D3F492772AD1B5A7007DD232 /* FavouriteTab */,
 				D3A1FBFF2AD1E95E00B4E77C /* Miniplayer */,
 				D30799962AD7011E00D11D60 /* DiscoverTab */,
@@ -341,7 +343,7 @@
 		D36B91E12AF2CA7300356285 /* Global_Model */ = {
 			isa = PBXGroup;
 			children = (
-				D34F54B82AD1F3AC00347E99 /* PlayingStationManager.swift */,
+				D34F54B82AD1F3AC00347E99 /* PlayingStation.swift */,
 				D336AF492B82A49000108C87 /* ImageToData.swift */,
 				D38C155A2AD09D34009E831D /* ExtendedStation.swift */,
 				D34F54DB2AD2DAB600347E99 /* StationBase.swift */,
@@ -356,6 +358,7 @@
 				D35903552BB6DAFA000C29C6 /* NoInternetLabelView.swift */,
 				D359A7862AD06777004A292B /* FavoriteContentView.swift */,
 				D366F4042B24AF49001C54D6 /* FavoriteView.swift */,
+				D35903642BB70EED000C29C6 /* FavoriteButton.swift */,
 				D35903532BB6DA98000C29C6 /* PlayingBackground.swift */,
 				D35903632BB6E881000C29C6 /* Tile */,
 				D35903572BB6DF1F000C29C6 /* UnfavoriteContextButton.swift */,
@@ -395,11 +398,19 @@
 			path = AppIntents;
 			sourceTree = "<group>";
 		};
+		D3C68C3D2BB83C3E000899D8 /* Global */ = {
+			isa = PBXGroup;
+			children = (
+				D32D8A9E2AF6FD3C004D1FB0 /* Global_Controller */,
+				D36B91E12AF2CA7300356285 /* Global_Model */,
+			);
+			path = Global;
+			sourceTree = "<group>";
+		};
 		D3F492772AD1B5A7007DD232 /* FavouriteTab */ = {
 			isa = PBXGroup;
 			children = (
 				D39B7E0E2B191F5900824FCE /* View */,
-				D35903642BB70EED000C29C6 /* FavoriteButton.swift */,
 			);
 			path = FavouriteTab;
 			sourceTree = "<group>";
@@ -491,12 +502,13 @@
 				D35903562BB6DAFA000C29C6 /* NoInternetLabelView.swift in Sources */,
 				D359A7672AD0509B004A292B /* ContentView.swift in Sources */,
 				D35F421B2BB5ACDA008B3C90 /* LoadingView.swift in Sources */,
+				D3C68C3F2BB84C28000899D8 /* SourceInfoView.swift in Sources */,
 				D307999A2AD7154600D11D60 /* CountryModel.swift in Sources */,
 				D359036B2BB72939000C29C6 /* HomepageURLView.swift in Sources */,
 				D35903502BB6C629000C29C6 /* NetworkMonitor.swift in Sources */,
 				D35903522BB6C702000C29C6 /* NoInternetView.swift in Sources */,
 				D31B4FAE2AE1A88B002F9563 /* BigPlayerView.swift in Sources */,
-				D34F54B92AD1F3AC00347E99 /* PlayingStationManager.swift in Sources */,
+				D34F54B92AD1F3AC00347E99 /* PlayingStation.swift in Sources */,
 				D359A77A2AD05125004A292B /* StationsOfCountryContentView.swift in Sources */,
 				D359A7812AD05166004A292B /* CountriesController.swift in Sources */,
 				D36B91E42AF2CC3800356285 /* AverageColor.swift in Sources */,

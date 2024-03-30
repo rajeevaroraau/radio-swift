@@ -8,11 +8,12 @@
 import SwiftUI
 
 struct MiniplayerControlsView: View {
-    var uiImage = PlayingStationManager.shared.currentlyPlayingExtendedStation?.faviconProducts.uiImage
+    var uiImage = PlayingStation.shared.currentlyPlayingExtendedStation?.faviconProducts.uiImage
     var extendedStation: ExtendedStation?
     var body: some View {
         HStack(spacing: 8) {
             ImageFaviconCached(image: uiImage, isPlaceholderLowRes: true, height: 48, isPlayingStationImage: true)
+                .shadow(radius: 4)
             Text(extendedStation?.stationBase.name ?? "Nothing Plays")
                 .font(.body)
                 .bold()
