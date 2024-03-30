@@ -18,13 +18,14 @@ class CountriesController {
     func fetchCountries() async {
         do {
             let data = try await networking.requestCountries()
-            os_signpost(.begin, log: pointsOfInterest, name: "CountriesController.fetchCountries(): Save Data to Memory")
+            os_signpost(.begin, log: pOI, name: "CountriesController.fetchCountries(): Save Data to Memory")
             await MainActor.run { self.countries = data }
-            os_signpost(.end, log: pointsOfInterest, name: "CountriesController.fetchCountries(): Save Data to Memory")
+            os_signpost(.end, log: pOI, name: "CountriesController.fetchCountries(): Save Data to Memory")
         } catch {
-            os_signpost(.end, log: pointsOfInterest, name: "CountriesController.fetchCountries(): Save Data to Memory")
+            os_signpost(.end, log: pOI, name: "CountriesController.fetchCountries(): Save Data to Memory")
             print("Fetching error: \(error)")
         }
+
     }
     
 }

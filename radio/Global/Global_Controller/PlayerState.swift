@@ -21,10 +21,10 @@ class PlayerState {
 
     
     func playerStateSetup(_ extendedStation: ExtendedStation)  {
-        os_signpost(.begin, log: pointsOfInterest, name: "Initially Set PlayerState")
+        os_signpost(.begin, log: pOI, name: "Initially Set PlayerState")
             PlayerState.shared.isPlaying = true
             PlayerState.shared.firstPlay = false
-            os_signpost(.end, log: pointsOfInterest, name: "Initially Set PlayerState")
+            os_signpost(.end, log: pOI, name: "Initially Set PlayerState")
         logger.info("PlayerState for \(extendedStation.stationBase.name) has been set")
     }
     

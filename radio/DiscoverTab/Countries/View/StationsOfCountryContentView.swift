@@ -6,19 +6,23 @@ struct StationsOfCountryContentView: View {
     
     var body: some View {
         @Bindable var stationsModel = stationsModel
-        let baseStations = stationsModel.stations
-        
+        let baseStations = stationsModel.searchableStations
+        let initialStations = stationsModel.stations
+
         Group {
-            if baseStations.isEmpty {
+            if initialStations.isEmpty {
                 LoadingView()
             } else {
-                UniversalStationsView(baseStations: baseStations, searchText: $stationsModel.searchText)
+                UniversalStationsView(baseStations: baseStations,filteredStations: stationsModel.filteredStations , searchText: $stationsModel.searchText, didFetched: $stationsModel.didFetched)
             }
         }
         .navigationTitle(country.name)
         .task { await handleLoading() }
         .onChange(of: stationsModel.searchText) {
-            stationsModel.debounceSearch()
+            Task {
+                await stationsModel.debounceSearch()
+            }
+            
         }
     }
 }

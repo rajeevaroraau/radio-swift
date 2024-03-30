@@ -13,14 +13,14 @@ class StationsSearchNetworking {
         
         let url = URL(string: "\(Connection.baseURL)stations/search?name=\(searchText)&limit=100")!
         
-        os_signpost(.begin, log: pointsOfInterest, name: "CountryNetworking.requestCountries()")
+        os_signpost(.begin, log: pOI, name: "CountryNetworking.requestCountries()")
         do {
             let (data, _) = try await URLSession.shared.data(from: url)
             let stations = try JSONDecoder().decode([StationBase].self, from: data)
-            os_signpost(.end, log: pointsOfInterest, name: "CountryNetworking.requestCountries()")
+            os_signpost(.end, log: pOI, name: "CountryNetworking.requestCountries()")
             return stations
         } catch {
-            os_signpost(.end, log: pointsOfInterest, name: "CountryNetworking.requestCountries()")
+            os_signpost(.end, log: pOI, name: "CountryNetworking.requestCountries()")
             print("Request error: \(error)")
             return []
         }
@@ -30,15 +30,15 @@ class StationsSearchNetworking {
         
         let url = URL(string: "\(Connection.baseURL)stations/topvote/15")!
         print(url)
-        os_signpost(.begin, log: pointsOfInterest, name: "CountryNetworking.requestCountries()")
+        os_signpost(.begin, log: pOI, name: "CountryNetworking.requestCountries()")
         do {
             let (data, _) = try await URLSession.shared.data(from: url)
             let stations = try JSONDecoder().decode([StationBase].self, from: data)
             print(stations.count)
-            os_signpost(.end, log: pointsOfInterest, name: "CountryNetworking.requestCountries()")
+            os_signpost(.end, log: pOI, name: "CountryNetworking.requestCountries()")
             return stations
         } catch {
-            os_signpost(.end, log: pointsOfInterest, name: "CountryNetworking.requestCountries()")
+            os_signpost(.end, log: pOI, name: "CountryNetworking.requestCountries()")
             print("Request error: \(error)")
             return []
         }

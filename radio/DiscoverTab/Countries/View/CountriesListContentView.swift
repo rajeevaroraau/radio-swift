@@ -16,7 +16,9 @@ import OSLog
 struct CountriesListContentView: View {
     @State var countriesModel = CountriesController.shared
     @Environment(StationsOfCountryViewController.self) private var stationsModel: StationsOfCountryViewController
+    
     @State private var firstTime: Bool = true
+    
     var body: some View {
         Group {
             if countriesModel.countries.isEmpty {

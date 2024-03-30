@@ -7,4 +7,4 @@
 import OSLog
 
 import Foundation
-let pointsOfInterest = OSLog(subsystem:"delight.me.radio", category: .pointsOfInterest)
+let pOI = OSLog(subsystem:"delight.me.radio", category: .pointsOfInterest)

@@ -2,7 +2,6 @@ import SwiftUI
 import SwiftData
 import Foundation
 import SimpleCodable
-
 @Codable
 @Model
 class StationBase: Codable, Equatable, Identifiable {
@@ -35,11 +34,7 @@ class StationBase: Codable, Equatable, Identifiable {
         countrycode: String,
         iso_3166_2: String?,
         state: String,
-        language: String,
-        languagecodes: String,
-        votes: Int,
-        geo_lat: Double?,
-        geo_long: Double?
+        votes: Int
     ) {
         self.changeuuid = changeuuid
         self.stationuuid = stationuuid

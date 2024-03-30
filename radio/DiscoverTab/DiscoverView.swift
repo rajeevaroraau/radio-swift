@@ -10,7 +10,6 @@ import SwiftUI
 
 struct DiscoverView: View {
     @Environment(DiscoverMode.self) private var discoverMode: DiscoverMode
-    
     @Environment(NetworkMonitor.self) private var networkMonitor: NetworkMonitor
     var body: some View {
         if networkMonitor.isConnected {

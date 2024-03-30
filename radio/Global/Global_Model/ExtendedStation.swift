@@ -10,6 +10,7 @@ import SwiftData
 
 @Model
 class ExtendedStation {
+    
     @Observable
     class FaviconProducts {
         var color: Color?

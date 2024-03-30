@@ -30,7 +30,7 @@ extension FavoriteButton {
             isPushed = false
         }
         Task {
-            await AudioController.shared.playWithSetupExtendedStation(favoriteExtendedStation)
+            await AudioController.shared.playExtendedStation(favoriteExtendedStation)
         }
     }
 }

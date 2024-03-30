@@ -16,7 +16,6 @@ class PlayingStation {
     static let shared = PlayingStation()
     var currentlyPlayingExtendedStation: ExtendedStation?
     let logger = Logger(subsystem: "Radio", category: "PlayingStationManager")
-    
     init() {
         Task {
             await setCurrentlyPlayingExtendedStationFromCache()
@@ -43,17 +42,22 @@ class PlayingStation {
         }
     }
     
+    @MainActor
+    func persistExtendedStation(extendedStation: ExtendedStation) async {
+        logger.info("Trying to persist a station")
+        Persistance.shared.container.mainContext.insert(extendedStation)
+        do {
+            try Persistance.shared.container.mainContext.save()
+            logger.info("Persisted \(extendedStation.stationBase.name)")
+        } catch {
+            fatalError("Cannot cache \(extendedStation.stationBase.name)")
+        }
+    }
+    
     func setCurrentlyPlayingExtendedStation(_ extendedStation: ExtendedStation) async {
         if currentlyPlayingExtendedStation != extendedStation {
+            await persistExtendedStation(extendedStation: extendedStation)
             await MainActor.run {
-                logger.info("Trying to persist \(extendedStation.stationBase.name)")
-                Persistance.shared.container.mainContext.insert(extendedStation)
-                do {
-                    try Persistance.shared.container.mainContext.save()
-                    logger.info("Persisted \(extendedStation.stationBase.name)")
-                } catch {
-                    fatalError("Cannot cache \(extendedStation.stationBase.name)")
-                }
                 logger.info("Chaning currentlyPlaying item")
                 currentlyPlayingExtendedStation?.currentlyPlaying = false
                 currentlyPlayingExtendedStation = nil

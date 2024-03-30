@@ -9,43 +9,41 @@ class StationsSearchController {
     var searchText = ""
     var filteredSearchedStations : [StationBase] = []
     var initialStations: [StationBase] = []
+    var didFetched = false
     var searchableStations: [StationBase] {
-        if searchText == "" || filteredSearchedStations.isEmpty {
-            return initialStations
+        if (searchText.count < 3 && didFetched == false) {
+            return  initialStations
         } else {
             return filteredSearchedStations
         }
     }
-
+    
     
     // EMPTY TASK ALLOWING FOR TASK CANCELATION
     var fetchStationsTask = Task { }
     var searchStationsTask = Task { }
     
-    func debounceSearch() {
-        os_signpost(.end, log: pointsOfInterest, name: "Station Debounce Search")
-        os_signpost(.begin, log: pointsOfInterest, name: "Station Debounce Search")
-        if self.searchText.count > 2 {
-            self.searchStationsTask.cancel()
-            Task {
-                // Delay the task by 1 second:
-                try await Task.sleep(nanoseconds: 1_000_000_000)
-                self.searchStationsTask = Task {
-                    self.filteredSearchedStations = await fetchSearchedStations()
-                }
-                print("Search Executed")
-                os_signpost(.end, log: pointsOfInterest, name: "Station Debounce Search")
-            }
+    func debounceSearch() async{
+        os_signpost(.end, log: pOI, name: "Station Debounce Search")
+        os_signpost(.begin, log: pOI, name: "Station Debounce Search")
+        await MainActor.run { didFetched = false }
+        self.searchStationsTask.cancel()
+        guard self.searchText.count > 2 else { return }
+        try? await Task.sleep(nanoseconds: 1_000_000_000) // delay
+        self.searchStationsTask = Task {
+            self.filteredSearchedStations = await fetchSearchedStations()
+            didFetched = true
+            os_signpost(.end, log: pOI, name: "StationDebounceSearch")
         }
     }
     
     func fetchSearchedStations() async -> [StationBase] {
         do {
             let stations = try await networking.requestSearchedStations(searchText: searchText)
-            os_signpost(.begin, log: pointsOfInterest, name: "StationsViewController.fetchStationsListForCountry(): Save Data to Memory")
+            os_signpost(.begin, log: pOI, name: "StationsViewController.fetchStationsListForCountry(): Save Data to Memory")
             let stationsSorted = stations.sorted { $0.votes > $1.votes }
             
-            os_signpost(.end, log: pointsOfInterest, name: "StationsViewController.fetchStationsListForCountry(): Save Data to Memory")
+            os_signpost(.end, log: pOI, name: "StationsViewController.fetchStationsListForCountry(): Save Data to Memory")
             return stationsSorted
         } catch {
             print("Fetching error: \(error)")
@@ -57,9 +55,9 @@ class StationsSearchController {
         do {
             print("doing work")
             let requestedStations = try await networking.requestInitialStations()
-            os_signpost(.begin, log: pointsOfInterest, name: "Sort initials")
+            os_signpost(.begin, log: pOI, name: "Sort initials")
             let stationsSorted = requestedStations.sorted { $0.votes > $1.votes }
-            os_signpost(.end, log: pointsOfInterest, name: "Sort initials")
+            os_signpost(.end, log: pOI, name: "Sort initials")
             initialStations = stationsSorted
             print(initialStations.count)
             

@@ -9,25 +9,27 @@ import SwiftUI
 
 struct SearchStationContentView: View {
     @State private var stationsSearchModel = StationsSearchController()
-    
     var body: some View {
         let baseStations = stationsSearchModel.searchableStations
+        let initialStations = stationsSearchModel.initialStations
         let searchText = stationsSearchModel.searchText
+            
         Group {
-            if !baseStations.isEmpty {
-                UniversalStationsView(baseStations: baseStations, searchText: $stationsSearchModel.searchText)
+            if initialStations.isEmpty {
+                LoadingView()
             } else {
-                if searchText.isEmpty {
-                    LoadingView()
-                } else {
-                    Text("Cannot find \(searchText)")
-                }
+                UniversalStationsView(baseStations: baseStations, filteredStations: stationsSearchModel.filteredSearchedStations, searchText: $stationsSearchModel.searchText, didFetched: $stationsSearchModel.didFetched)
+                    .environment(stationsSearchModel)
+                
             }
         }
         .navigationTitle("Stations")
         .task { await handleLoading() }
         .onChange(of: stationsSearchModel.searchText) {
-            stationsSearchModel.debounceSearch()
+            Task {
+                await stationsSearchModel.debounceSearch()
+            }
+            
         }
     }
 }

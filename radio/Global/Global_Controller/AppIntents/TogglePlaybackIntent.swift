@@ -16,7 +16,7 @@ struct TogglePlayback: AppIntent {
     func perform() async throws -> some IntentResult {
         if PlayerState.shared.firstPlay == true {
             guard let currentlyPlayingExtendedStation = PlayingStation.shared.currentlyPlayingExtendedStation else { return .result()}
-            await AudioController.shared.playWithSetupExtendedStation(currentlyPlayingExtendedStation)
+            await AudioController.shared.playExtendedStation(currentlyPlayingExtendedStation)
         } else {
              AudioController.shared.togglePlayback()
         }

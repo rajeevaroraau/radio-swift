@@ -35,8 +35,8 @@ class LockscreenController  {
     }
     
     func tryToSetFaviconForLockScreen() async {
-        os_signpost(.end, log: pointsOfInterest, name: "Try to set faviconForLockscreen")
-        os_signpost(.begin, log: pointsOfInterest, name: "Try to set faviconForLockscreen")
+        os_signpost(.end, log: pOI, name: "Try to set faviconForLockscreen")
+        os_signpost(.begin, log: pOI, name: "Try to set faviconForLockscreen")
         
         if let faviconUIImageLocal = PlayingStation.shared.currentlyPlayingExtendedStation?.faviconProducts.uiImage {
             // FIRST ATTEMPT WITH CACHEDIMAGE IF THERE IS IN PLAYINGSTATION
@@ -45,7 +45,7 @@ class LockscreenController  {
                 return faviconUIImageLocal
             }
             self.nowPlayingInfoCenter.nowPlayingInfo = self.nowPlayingInfo
-            os_signpost(.end, log: pointsOfInterest, name: "Try to set faviconForLockscreen")
+            os_signpost(.end, log: pOI, name: "Try to set faviconForLockscreen")
         } else {
             // SECOND ATTEMPT WITH REQUEST
             await setDefaultFavicon()
@@ -60,9 +60,9 @@ class LockscreenController  {
                 }
                 self.nowPlayingInfoCenter.nowPlayingInfo = self.nowPlayingInfo
                 
-                os_signpost(.end, log: pointsOfInterest, name: "Try to set faviconForLockscreen")
+                os_signpost(.end, log: pOI, name: "Try to set faviconForLockscreen")
             } else {
-                os_signpost(.end, log: pointsOfInterest, name: "Try to set faviconForLockscreen")
+                os_signpost(.end, log: pOI, name: "Try to set faviconForLockscreen")
             }
             
         }

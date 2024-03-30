@@ -16,24 +16,24 @@ class AVPlayerController {
     private var playerItem: AVPlayerItem? = nil
     
     func setupAVPlayerItem(url: URL) async {
-        os_signpost(.begin, log: pointsOfInterest, name: "AVPlayerController.setupAVPlayerItem")
+        os_signpost(.begin, log: pOI, name: "AVPlayerController.setupAVPlayerItem")
         playerItem = AVPlayerItem(url: url)
         avPlayer.replaceCurrentItem(with: playerItem)
-        os_signpost(.end, log: pointsOfInterest, name: "AVPlayerController.setupAVPlayerItem")
+        os_signpost(.end, log: pOI, name: "AVPlayerController.setupAVPlayerItem")
         
     }
     
     func play() async {
-        os_signpost(.begin, log: pointsOfInterest, name: "AVPlayerController.play")
+        os_signpost(.begin, log: pOI, name: "AVPlayerController.play")
             avPlayer.play()
-            os_signpost(.end, log: pointsOfInterest, name: "AVPlayerController.play")
+            os_signpost(.end, log: pOI, name: "AVPlayerController.play")
         
     }
     
     func pause() async {
-        os_signpost(.begin, log: pointsOfInterest, name: "AVPlayerController.pause()")
+        os_signpost(.begin, log: pOI, name: "AVPlayerController.pause()")
             avPlayer.pause()
-            os_signpost(.end, log: pointsOfInterest, name: "AVPlayerController.pause()")
+            os_signpost(.end, log: pOI, name: "AVPlayerController.pause()")
     }
     
 }
