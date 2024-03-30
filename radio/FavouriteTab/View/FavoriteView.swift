@@ -21,7 +21,7 @@ struct FavoriteView: View {
             LazyVGrid(columns: columns, spacing: 12) {
                 ForEach(favoriteExtendedStations) { favoriteExtendedStation in
                     FavoriteButton(favoriteExtendedStation: favoriteExtendedStation)
-                        .disabled(!networkMonitor.isConnected)
+                        .disabled(!networkMonitor.isConnected || AudioController.shared.working)
                         .contextMenu() {
                             UnfavoriteContextButton(extendedStation: favoriteExtendedStation)
                         } preview: {

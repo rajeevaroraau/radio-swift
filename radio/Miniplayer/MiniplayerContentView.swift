@@ -14,6 +14,7 @@ struct MiniplayerContentView: View {
     @State private var isTouching = false
     @State private var isShowingModal = false
     @State private var firstPlay = true
+    @State private var hapticCounter = 0
     @Query(filter: #Predicate<ExtendedStation> { extendedStation in extendedStation.currentlyPlaying } ) var currentlyPlayingExtendedStation: [ExtendedStation]
     
     var body: some View {
@@ -24,12 +25,14 @@ struct MiniplayerContentView: View {
         .foregroundStyle(.white)
         .padding(8)
         .offset(y: -48)
+        .sensoryFeedback(.start, trigger: hapticCounter)
         .onTapGesture {
+            hapticCounter += 1
             isShowingModal = true
         }
-        // MARK: - GESTURE
         .gesture(DragGesture(minimumDistance: 10.0, coordinateSpace: .local)
-            .onEnded { value in
+            
+            .onChanged { value in
                 
                 switch(value.translation.height) {
                 case ...(-40):
@@ -43,13 +46,14 @@ struct MiniplayerContentView: View {
         .fullScreenCover(isPresented: $isShowingModal) {
             BigPlayerView(isShowingSheet: $isShowingModal)
                 .gesture(DragGesture(minimumDistance: 10.0, coordinateSpace: .local)
-                    .onEnded { value in
+                    .onChanged { value in
                         
                         switch(value.translation.height) {
-                        case (20)...:
+                        case (30)...:
                             print("up swipe : \(value.translation) [\(value.translation.height)]")
                             isShowingModal = false
-                        default:  print("no clue : \(value.translation) [\(value.translation.height)]")
+                        default:
+                            print("no clue : \(value.translation) [\(value.translation.height)]")
                         }
                     }
                 )

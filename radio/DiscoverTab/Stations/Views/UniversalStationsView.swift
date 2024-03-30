@@ -16,7 +16,7 @@ struct UniversalStationsView: View {
         List {
             ForEach(baseStations, id: \.stationuuid) { baseStation in
                 Button {
-                    Task { await AudioController.shared.playStationBase(baseStation) }}
+                    Task { await AudioController.shared.prepareStationBaseForPlayback(baseStation) }}
                     label: { StationRowView(faviconCached: nil, station: baseStation)
                 }
                 .buttonStyle(.plain)

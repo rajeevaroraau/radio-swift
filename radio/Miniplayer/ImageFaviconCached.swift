@@ -12,7 +12,7 @@ import SwiftData
 struct ImageFaviconCached: View {
     var image: UIImage?
     var imageUnwrapped: UIImage {
-        isPlayingStationImage ? (PlayingStationManager.shared.currentlyPlayingExtendedStation?.faviconProducts.uiImage ?? placeholderImage) : image ?? placeholderImage
+        isPlayingStationImage ? (PlayingStation.shared.currentlyPlayingExtendedStation?.faviconProducts.uiImage ?? placeholderImage) : image ?? placeholderImage
     }
     let isPlaceholderLowRes: Bool
     let height: CGFloat

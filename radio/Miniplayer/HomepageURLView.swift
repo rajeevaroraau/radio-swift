@@ -8,18 +8,30 @@
 import SwiftUI
 
 struct HomepageURLView: View {
+    @State private var isShowingAlert = false
+    let stationURL = PlayingStation.shared.currentlyPlayingExtendedStation?.stationBase.url
+    
     var body: some View {
-        HStack {
-            Spacer()
-            if let url = URL(string: PlayingStationManager.shared.currentlyPlayingExtendedStation?.stationBase.url ?? "") {
-                Link(destination: url) {
-                    Label("Website", systemImage: "info.circle")
-                        .labelStyle(.iconOnly)
-               }
-                .foregroundStyle(.white)
+        if let url = URL(string: stationURL ?? "") {
+            Button {
+                isShowingAlert = true
+            } label: {
+                Label("Website", systemImage: "info.circle")
+                    .labelStyle(.iconOnly)
+                    .foregroundStyle(.white)
+                    .padding()
+                    .alert("Do you want to open it in the browser?", isPresented: $isShowingAlert) {
+                        Button("Open") {
+                            UIApplication.shared.open(url, options: [:])
+                        }
+                        Button("Cancel") { }
+                    } message: {
+                        Text("Your default browser will open \(url).")
+                    }
             }
+        } else {
+            EmptyView()
         }
-        .padding()
     }
 }
 

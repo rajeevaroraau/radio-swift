@@ -43,7 +43,7 @@ struct TogglePlaybackButton: View {
         if PlayerState.shared.firstPlay {
             print("PlayingWithSetup...")
             Task {
-                guard let currentlyPlayingExtendedStation = PlayingStationManager.shared.currentlyPlayingExtendedStation else { return }
+                guard let currentlyPlayingExtendedStation = PlayingStation.shared.currentlyPlayingExtendedStation else { return }
                 await AudioController.shared.playWithSetupExtendedStation(currentlyPlayingExtendedStation)
             }
             

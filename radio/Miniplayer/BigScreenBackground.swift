@@ -9,7 +9,7 @@ import SwiftUI
 
 struct BigScreenBackground: View {
     var faviconColor: Color {
-        PlayingStationManager.shared.currentlyPlayingExtendedStation?.faviconProducts.color ?? Color.gray
+        PlayingStation.shared.currentlyPlayingExtendedStation?.faviconProducts.color ?? Color.gray
     }
     var body: some View {
         ZStack(alignment: .bottomLeading) {
