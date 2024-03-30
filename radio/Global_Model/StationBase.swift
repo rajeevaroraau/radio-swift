@@ -5,7 +5,6 @@ import SimpleCodable
 
 @Codable
 @Model
-
 class StationBase: Codable, Equatable, Identifiable {
     let changeuuid: String
     let stationuuid: String
@@ -18,8 +17,7 @@ class StationBase: Codable, Equatable, Identifiable {
     let iso_3166_2: String?
     let state: String
     let votes: Int
-    let geo_lat: Double?
-    let geo_long: Double?
+
     
     static func ==(lhs: StationBase, rhs: StationBase) -> Bool {
         return lhs.stationuuid == rhs.stationuuid
@@ -54,8 +52,6 @@ class StationBase: Codable, Equatable, Identifiable {
         self.iso_3166_2 = iso_3166_2
         self.state = state
         self.votes = votes
-        self.geo_lat = geo_lat
-        self.geo_long = geo_long
     }
     
 }

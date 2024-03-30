@@ -1,4 +1,5 @@
 {
+  "originHash" : "e233116c2090beadc1a1c478169076dfd95f08209768cd67c7d014e53c7da3cc",
   "pins" : [
     {
       "identity" : "simplecodablemacro",
@@ -19,5 +20,5 @@
       }
     }
   ],
-  "version" : 2
+  "version" : 3
 }
