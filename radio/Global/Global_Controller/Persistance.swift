@@ -16,7 +16,6 @@ class Persistance {
     init() {
         do {
             container =  try ModelContainer(for:  ExtendedStation.self)
-            print(URL.applicationSupportDirectory.path(percentEncoded: false))
         } catch {
             fatalError("\(error.localizedDescription)")
         }

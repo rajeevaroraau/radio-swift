@@ -5,6 +5,7 @@ import OSLog
 
 @Observable
 class StationsOfCountryViewController {
+    let logger = Logger(subsystem: "Radio", category: "StationsOfCountryViewController")
     static var selectedCountry = Country()
     private let networking = StationsOfCountryNetworking()
     var stations : [StationBase] = []
@@ -42,7 +43,7 @@ class StationsOfCountryViewController {
         self.filterStationsTask = Task {
             filteredStations = stations.filter { $0.name.localizedStandardContains(searchText) }
             didFetched = true  
-            print("Search Executed")
+            logger.notice("Search Executed")
             os_signpost(.end, log: pOI, name: "Station Debounce Search")
         }
         
@@ -57,7 +58,7 @@ class StationsOfCountryViewController {
             self.stations = stationsSorted
             os_signpost(.end, log: pOI, name: "StationsViewController.fetchStationsListForCountry(): Save Data to Memory")
         } catch {
-            print("Fetching error: \(error)")
+            logger.error("Fetching error: \(error)")
         }
     }
     

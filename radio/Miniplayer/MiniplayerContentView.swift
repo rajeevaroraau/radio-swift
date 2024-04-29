@@ -38,7 +38,7 @@ struct MiniplayerContentView: View {
                 case ...(-40):
                     print("up swipe : \(value.translation) [\(value.translation.height)]")
                     isShowingModal = true
-                default:  print("no clue : \(value.translation) [\(value.translation.height)]")
+                default:  print("Unrecognized gesture of value : \(value.translation) [\(value.translation.height)]")
                 }
             }
         )
@@ -50,10 +50,10 @@ struct MiniplayerContentView: View {
                         
                         switch(value.translation.height) {
                         case (30)...:
-                            print("up swipe : \(value.translation) [\(value.translation.height)]")
+                            print("Recognized swipe up : \(value.translation) [\(value.translation.height)]")
                             isShowingModal = false
                         default:
-                            print("no clue : \(value.translation) [\(value.translation.height)]")
+                            print("Unrecognized gesture of value : \(value.translation) [\(value.translation.height)]")
                         }
                     }
                 )

@@ -29,7 +29,6 @@ struct CountriesListContentView: View {
         }
         .navigationTitle("Countries")
         .task {
-            print("Fetching countries")
             await countriesModel.fetchCountries()
         }
     }

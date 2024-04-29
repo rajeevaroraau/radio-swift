@@ -3,6 +3,7 @@ import OSLog
 
 @Observable
 class CountriesController {
+    let logger = Logger(subsystem: "Radio", category: "CountriesController")
     static var shared = CountriesController()
     private let networking = CountryNetworking()
     var searchText = ""
@@ -16,6 +17,7 @@ class CountriesController {
     }
     
     func fetchCountries() async {
+        logger.notice("Fetching countries...")
         do {
             let data = try await networking.requestCountries()
             os_signpost(.begin, log: pOI, name: "CountriesController.fetchCountries(): Save Data to Memory")
@@ -23,7 +25,7 @@ class CountriesController {
             os_signpost(.end, log: pOI, name: "CountriesController.fetchCountries(): Save Data to Memory")
         } catch {
             os_signpost(.end, log: pOI, name: "CountriesController.fetchCountries(): Save Data to Memory")
-            print("Fetching error: \(error)")
+            logger.error("Fetching error: \(error)")
         }
 
     }

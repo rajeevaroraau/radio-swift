@@ -32,7 +32,7 @@ class PlayingStation {
                     break
                 }
                 if currentlyPlayingExtendedStation == nil {
-                    print("There was no played cached stations")
+                    logger.notice("There was no played cached stations")
                 } else {
                     self.currentlyPlayingExtendedStation = nil
                 }

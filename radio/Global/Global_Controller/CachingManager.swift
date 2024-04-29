@@ -7,9 +7,9 @@
 
 import Foundation
 import SwiftData
-
+import OSLog
 class CachingManager {
-    
+    let logger = Logger(subsystem: "Radio", category: "CachingManager")
     static let shared = CachingManager()
     
     @MainActor func findExtendedStation(stationBase: StationBase) -> ExtendedStation? {
@@ -31,15 +31,15 @@ class CachingManager {
         if let extendedStation = findExtendedStation(stationBase: stationBase) {
             // PLAYING FROM FAVORITED
             if !extendedStation.favourite {
-                print("Trying to add to favorites a currently playing station")
+                logger.notice("Trying to add to favorites a currently playing station")
                 await addToFavorites(extendedStation.stationBase)
             } else {
-                print("The station is already a favorite, trying to delete...")
+                logger.notice("The station is already a favorite, trying to delete...")
                 await removeFromFavorites(extendedStationToUnfavorite: extendedStation)
             }
         } else {
             // PLAYING, NOT FAVORITED YET
-            print("Not cached station found, trying to add to favorites...")
+            logger.notice("Not cached station found, trying to add to favorites...")
             await addToFavorites(stationBase)
         }
         
@@ -52,7 +52,7 @@ class CachingManager {
                 Persistance.shared.container.mainContext.delete(extendedStationToUnfavorite)
                 try? Persistance.shared.container.mainContext.save()
             }
-            print("Deleted station from cache")
+            logger.notice("Deleted station from cache")
         }
     }
     
@@ -71,7 +71,7 @@ class CachingManager {
             await extendedStationToFavorite.setFavicon(nil)
             extendedStationToFavorite.favourite = true
             
-            print("Favorited the station")
+            logger.notice("Favorited the station")
         }
     }
     
