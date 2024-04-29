@@ -11,7 +11,7 @@ import SwiftData
 struct FavoriteContentView: View {
     @Query(filter: #Predicate<ExtendedStation> { extendedStation in extendedStation.favourite } ) var favoriteExtendedStations: [ExtendedStation]
     @Environment(NetworkMonitor.self) private var networkMonitor: NetworkMonitor
-    
+    @State private var isShowingSettings = false
     var body: some View {
         NavigationStack {
             Group {
@@ -24,11 +24,19 @@ struct FavoriteContentView: View {
                     }
                 }
             }
+            .sheet(isPresented: $isShowingSettings) {
+            SettingsView()
+            }
             .navigationTitle("Favourite Stations")
             .toolbar {
                 ToolbarItemGroup(placement: .topBarTrailing) {
+                    Button("", systemImage: "gear") {
+                        isShowingSettings = true
+                    }
+                   
                     if !networkMonitor.isConnected { NoInternetLabelView()
                     }
+                    
                 }
             }
         }

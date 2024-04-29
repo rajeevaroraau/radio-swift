@@ -22,6 +22,10 @@ extension radioApp {
                 .modelContainer(Persistance.shared.container)
                 .environment(stationsModel)
                 .environment(networkMonitor)
+                .onAppear {
+                    let defaultURL = Connection.defaultURL
+                    UserDefaults.standard.register(defaults: ["baseURL": defaultURL])
+                }
         }
       
     }

@@ -11,7 +11,7 @@ import OSLog
 class StationsSearchNetworking {
     func requestSearchedStations(searchText: String) async throws -> [StationBase]{
         
-        let url = URL(string: "\(Connection.baseURL)stations/search?name=\(searchText)&limit=100")!
+        let url = URL(string: "\(Connection.baseURL())stations/search?name=\(searchText)&limit=100")!
         
         os_signpost(.begin, log: pOI, name: "CountryNetworking.requestCountries()")
         do {
@@ -28,7 +28,7 @@ class StationsSearchNetworking {
     
     func requestInitialStations() async throws -> [StationBase] {
         
-        let url = URL(string: "\(Connection.baseURL)stations/topvote/15")!
+        let url = URL(string: "\(Connection.baseURL())stations/topvote/15")!
         print(url)
         os_signpost(.begin, log: pOI, name: "CountryNetworking.requestCountries()")
         do {

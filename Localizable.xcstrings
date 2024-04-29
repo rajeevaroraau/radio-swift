@@ -1,6 +1,9 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "" : {
+
+    },
     "%@" : {
       "localizations" : {
         "pl" : {
@@ -89,6 +92,9 @@
       }
     },
     "Do you want to open it in the browser?" : {
+
+    },
+    "Done" : {
 
     },
     "Favorite" : {
@@ -190,6 +196,9 @@
         }
       }
     },
+    "Radio Directory" : {
+
+    },
     "Search for countries" : {
       "localizations" : {
         "pl" : {
@@ -209,6 +218,9 @@
           }
         }
       }
+    },
+    "Settings" : {
+
     },
     "Shazam" : {
       "localizations" : {
@@ -262,6 +274,9 @@
           }
         }
       }
+    },
+    "Web Stations Directory" : {
+
     },
     "Website" : {
 
