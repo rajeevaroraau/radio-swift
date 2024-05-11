@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-
+import OSLog
 struct SettingsView: View {
     @AppStorage("baseURL") var baseURL = ""
     @Environment(\.dismiss) var dismiss
@@ -25,6 +25,12 @@ struct SettingsView: View {
                 ToolbarItemGroup {
                     Button("Done") { dismiss() }
                 }
+            }
+            .onAppear {
+                Logger.viewCycle.info("SettingsView appeared")
+            }
+            .onDisappear {
+                Logger.viewCycle.info("SettingsView disappeared")
             }
         }
     }

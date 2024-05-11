@@ -7,6 +7,7 @@
 
 import SwiftUI
 import SwiftData
+import OSLog
 
 struct BigPlayerView: View {
     @Binding var isShowingSheet: Bool
@@ -42,6 +43,12 @@ struct BigPlayerView: View {
         }
         .colorScheme(.dark)
         .toolbarColorScheme(.dark, for: .navigationBar)
+        .onAppear {
+            Logger.viewCycle.info("BigPlayerView appeared")
+        }
+        .onDisappear {
+            Logger.viewCycle.info("BigPlayerView disappeared")
+        }
     }
 }
 

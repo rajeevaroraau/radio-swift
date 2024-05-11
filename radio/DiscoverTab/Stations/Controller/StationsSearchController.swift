@@ -5,7 +5,6 @@ import OSLog
 
 @Observable
 class StationsSearchController {
-    let logger = Logger(subsystem: "Radio", category: "StationsSearch")
     private let networking = StationsSearchNetworking()
     var searchText = ""
     var filteredSearchedStations : [StationBase] = []
@@ -47,7 +46,7 @@ class StationsSearchController {
             os_signpost(.end, log: pOI, name: "StationsViewController.fetchStationsListForCountry(): Save Data to Memory")
             return stationsSorted
         } catch {
-            logger.error("Fetching error: \(error)")
+            Logger.stationsSearch.error("Fetching error: \(error)")
             return []
         }
     }
@@ -61,7 +60,7 @@ class StationsSearchController {
             initialStations = stationsSorted
             
         } catch {
-            logger.error("No initial stations - feching error: \(error).")
+            Logger.stationsSearch.error("No initial stations - feching error: \(error).")
             initialStations = []
         }
     }

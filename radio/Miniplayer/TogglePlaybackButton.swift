@@ -41,14 +41,12 @@ struct TogglePlaybackButton: View {
     func handlePlayPauseTap() async {
         animationPlayPauseTap()
         if PlayerState.shared.firstPlay {
-            print("PlayingWithSetup...")
             Task {
                 guard let currentlyPlayingExtendedStation = PlayingStation.shared.currentlyPlayingExtendedStation else { return }
                 await AudioController.shared.playExtendedStation(currentlyPlayingExtendedStation)
             }
             
         } else {
-            print("Toggling the playback")
              AudioController.shared.togglePlayback()
         }
     }

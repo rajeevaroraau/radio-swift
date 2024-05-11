@@ -8,7 +8,6 @@
 import SwiftUI
 import OSLog
 class StationsOfCountryNetworking {
-    let logger = Logger(subsystem: "Radio", category: "StationsOfCountryNetworking")
     func requestStationListForCountry() async throws -> [StationBase] {
         os_signpost(.begin, log: pOI, name: "StationNetworking.requestStationListForCountry(): Prepare JSONDecoder")
         // PREPARE CUSTOM JSONDECODER
@@ -22,11 +21,11 @@ class StationsOfCountryNetworking {
             os_signpost(.end, log: pOI, name: "StationNetworking.requestStationListForCountry(): Get Data from Request")
             os_signpost(.begin, log: pOI, name: "StationNetworking.requestStationListForCountry(): Decode Data")
             let stations = try decoder.decode([StationBase].self, from: data)
-            logger.notice("Successfully fetched stations from \(properUrl)")
+            Logger.stationsOfCountryNetworking.notice("Successfully fetched stations from \(properUrl)")
             os_signpost(.end, log: pOI, name: "StationNetworking.requestStationListForCountry(): Decode Data")
             return stations
         } catch {
-            logger.error("Request error: \(error)")
+            Logger.stationsOfCountryNetworking.error("Request error: \(error)")
             os_signpost(.end, log: pOI, name: "StationNetworking.requestStationListForCountry(): Get Data from Request")
             os_signpost(.end, log: pOI, name: "StationNetworking.requestStationListForCountry(): Decode Data")
             return []

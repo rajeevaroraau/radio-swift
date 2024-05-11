@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import OSLog
 
 struct ContentView: View {
     var body: some View {
@@ -23,6 +24,9 @@ struct ContentView: View {
                 .shadow(radius: 8)
         }
         .ignoresSafeArea(.keyboard)
+        .onAppear {
+            Logger.viewCycle.info("ContentView appeared")
+        }
     }
 }
 

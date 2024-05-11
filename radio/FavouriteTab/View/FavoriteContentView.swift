@@ -7,6 +7,7 @@
 
 import SwiftUI
 import SwiftData
+import OSLog
 
 struct FavoriteContentView: View {
     @Query(filter: #Predicate<ExtendedStation> { extendedStation in extendedStation.favourite } ) var favoriteExtendedStations: [ExtendedStation]
@@ -24,9 +25,7 @@ struct FavoriteContentView: View {
                     }
                 }
             }
-            .sheet(isPresented: $isShowingSettings) {
-            SettingsView()
-            }
+            .sheet(isPresented: $isShowingSettings) { SettingsView() }
             .navigationTitle("Favourite Stations")
             .toolbar {
                 ToolbarItemGroup(placement: .topBarTrailing) {
@@ -38,6 +37,9 @@ struct FavoriteContentView: View {
                     }
                     
                 }
+            }
+            .onAppear {
+                Logger.viewCycle.info("FavoriteContentView appeared")
             }
         }
     }

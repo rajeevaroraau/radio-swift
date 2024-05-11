@@ -31,5 +31,8 @@ struct CountriesListContentView: View {
         .task {
             await countriesModel.fetchCountries()
         }
+        .onAppear {
+            Logger.viewCycle.info("CountriesListContentView appeared")
+        }
     }
 }
