@@ -12,7 +12,6 @@ import OSLog
 @Observable
 @MainActor
 class PlayerState {
-    let logger = Logger(subsystem: "Radio", category: "PlayerState")
 
     static let shared = PlayerState()
     var isPlaying = false
@@ -25,7 +24,7 @@ class PlayerState {
             PlayerState.shared.isPlaying = true
             PlayerState.shared.firstPlay = false
             os_signpost(.end, log: pOI, name: "Initially Set PlayerState")
-        logger.info("PlayerState for \(extendedStation.stationBase.name) has been set")
+        Logger.playerState.info("PlayerState for \(extendedStation.stationBase.name) has been set")
     }
     
     

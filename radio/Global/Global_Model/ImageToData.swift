@@ -7,14 +7,16 @@
 
 import Foundation
 import SwiftUI
+import OSLog
 
 func imageToData() ->  Data {
     if let image = UIImage(named: "DefaultFaviconLarge"),
        let imageData = image.pngData() {
         // Now you have the data representation of the image in PNG format
+        Logger.imageToData.info("Image converted to Data")
         return imageData
     } else {
-        print("Unable to convert UIImage to Data.")
+        Logger.imageToData.error("Unable to convert UIImage to Data.")
     }
     return Data()
 }

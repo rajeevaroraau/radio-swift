@@ -6,13 +6,12 @@
 //
 
 import SwiftUI
-
+import OSLog
 struct SearchStationContentView: View {
     @State private var stationsSearchModel = StationsSearchController()
     var body: some View {
         let baseStations = stationsSearchModel.searchableStations
         let initialStations = stationsSearchModel.initialStations
-        let searchText = stationsSearchModel.searchText
             
         Group {
             if initialStations.isEmpty {
@@ -25,6 +24,9 @@ struct SearchStationContentView: View {
         }
         .navigationTitle("Stations")
         .task { await handleLoading() }
+        .onAppear {
+            Logger.viewCycle.info("SearchStationContentView appeared")
+        }
         .onChange(of: stationsSearchModel.searchText) {
             Task {
                 await stationsSearchModel.debounceSearch()
@@ -34,11 +36,9 @@ struct SearchStationContentView: View {
     }
 }
 
-
-
 extension SearchStationContentView {
     func handleLoading() async {
-        print("Loading started...")
+        Logger.searchingStation.info("Loading started...")
         stationsSearchModel.initialStations = []
         stationsSearchModel.filteredSearchedStations = []
         stationsSearchModel.fetchStationsTask.cancel()

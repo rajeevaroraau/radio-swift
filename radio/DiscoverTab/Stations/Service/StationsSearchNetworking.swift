@@ -9,9 +9,7 @@ import Foundation
 import OSLog
 
 class StationsSearchNetworking {
-    
-    let logger = Logger(subsystem: "Radio", category: "StationsSearchNetworking")
-    func requestSearchedStations(searchText: String) async throws -> [StationBase]{
+        func requestSearchedStations(searchText: String) async throws -> [StationBase]{
         
         let url = URL(string: "\(Connection.baseURL())stations/search?name=\(searchText)&limit=100")!
         
@@ -23,7 +21,7 @@ class StationsSearchNetworking {
             return stations
         } catch {
             os_signpost(.end, log: pOI, name: "CountryNetworking.requestCountries()")
-            logger.error("Request error: \(error)")
+            Logger.stationsSearchNetworking.error("Request error: \(error)")
             return []
         }
     }
@@ -31,7 +29,7 @@ class StationsSearchNetworking {
     func requestInitialStations() async throws -> [StationBase] {
         
         let url = URL(string: "\(Connection.baseURL())stations/topvote/15")!
-        logger.notice("Rquesting from \(url)")
+        Logger.stationsSearchNetworking.notice("Rquesting from \(url)")
         os_signpost(.begin, log: pOI, name: "CountryNetworking.requestCountries()")
         do {
             let (data, _) = try await URLSession.shared.data(from: url)
@@ -40,7 +38,7 @@ class StationsSearchNetworking {
             return stations
         } catch {
             os_signpost(.end, log: pOI, name: "CountryNetworking.requestCountries()")
-            logger.error("Request error: \(error)")
+            Logger.stationsSearchNetworking.error("Request error: \(error)")
             return []
         }
     }

@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import OSLog
 
 struct LoadingView: View {
     var body: some View {
@@ -14,6 +15,9 @@ struct LoadingView: View {
                 .padding()
             Text("LOADING...")
                 .foregroundStyle(.secondary)
+        }
+        .onAppear {
+            Logger.viewCycle.info("LoadingView appeared")
         }
     }
 }

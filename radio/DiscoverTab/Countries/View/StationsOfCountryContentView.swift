@@ -1,4 +1,5 @@
 import SwiftUI
+import OSLog
 
 struct StationsOfCountryContentView: View {
     @Environment(StationsOfCountryViewController.self) private var stationsModel: StationsOfCountryViewController
@@ -16,6 +17,9 @@ struct StationsOfCountryContentView: View {
                 UniversalStationsView(baseStations: baseStations,filteredStations: stationsModel.filteredStations , searchText: $stationsModel.searchText, didFetched: $stationsModel.didFetched)
             }
         }
+        .onAppear {
+            Logger.viewCycle.info("StationsOfCountryContentView appeared")
+        }
         .navigationTitle(country.name)
         .task { await handleLoading() }
         .onChange(of: stationsModel.searchText) {
@@ -27,11 +31,9 @@ struct StationsOfCountryContentView: View {
     }
 }
 
-
-
 extension StationsOfCountryContentView {
     private func handleLoading() async {
-        print("Country Browse process")
+        Logger.viewCycle.info("Country Button pressed")
         StationsOfCountryViewController.selectedCountry = country
         stationsModel.stations = []
         stationsModel.fetchStationsTask.cancel()

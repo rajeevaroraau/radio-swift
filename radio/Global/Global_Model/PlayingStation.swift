@@ -15,7 +15,6 @@ import OSLog
 class PlayingStation {
     static let shared = PlayingStation()
     var currentlyPlayingExtendedStation: ExtendedStation?
-    let logger = Logger(subsystem: "Radio", category: "PlayingStationManager")
     init() {
         Task {
             await setCurrentlyPlayingExtendedStationFromCache()
@@ -32,7 +31,7 @@ class PlayingStation {
                     break
                 }
                 if currentlyPlayingExtendedStation == nil {
-                    logger.notice("There was no played cached stations")
+                    Logger.playingStationManager.notice("There was no played cached stations")
                 } else {
                     self.currentlyPlayingExtendedStation = nil
                 }
@@ -44,11 +43,11 @@ class PlayingStation {
     
     @MainActor
     func persistExtendedStation(extendedStation: ExtendedStation) async {
-        logger.info("Trying to persist a station")
+        Logger.playingStationManager.info("Trying to persist a station")
         Persistance.shared.container.mainContext.insert(extendedStation)
         do {
             try Persistance.shared.container.mainContext.save()
-            logger.info("Persisted \(extendedStation.stationBase.name)")
+            Logger.playingStationManager.info("Persisted \(extendedStation.stationBase.name)")
         } catch {
             fatalError("Cannot cache \(extendedStation.stationBase.name)")
         }
@@ -58,7 +57,7 @@ class PlayingStation {
         if currentlyPlayingExtendedStation != extendedStation {
             await persistExtendedStation(extendedStation: extendedStation)
             await MainActor.run {
-                logger.info("Chaning currentlyPlaying item")
+                Logger.playingStationManager.info("Chaning currentlyPlaying item")
                 currentlyPlayingExtendedStation?.currentlyPlaying = false
                 currentlyPlayingExtendedStation = nil
                 extendedStation.currentlyPlaying = true
@@ -67,10 +66,10 @@ class PlayingStation {
                     await extendedStation.setFavicon(extendedStation.faviconData)
                 }
                 
-                logger.info("PlayingStation has been replaced by \(extendedStation.stationBase.name)")
+                Logger.playingStationManager.info("PlayingStation has been replaced by \(extendedStation.stationBase.name)")
             }
         } else {
-            logger.notice("No need to replace PlayingStation")
+            Logger.playingStationManager.notice("No need to replace PlayingStation")
         }
 
        

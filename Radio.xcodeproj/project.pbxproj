@@ -74,6 +74,7 @@
 		D3911D4A2B26183A00F0B7A1 /* AVAudioSessionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3911D492B26183A00F0B7A1 /* AVAudioSessionController.swift */; };
 		D3911D4C2B2619A200F0B7A1 /* AVPlayerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3911D4B2B2619A200F0B7A1 /* AVPlayerController.swift */; };
 		D3911D4E2B26595900F0B7A1 /* PlayerState.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3911D4D2B26595900F0B7A1 /* PlayerState.swift */; };
+		D394425C2BEF504E0085A2C8 /* LoggerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D394425B2BEF504E0085A2C8 /* LoggerExtension.swift */; };
 		D3BEFA962B1349840082675A /* TogglePlaybackIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3BEFA952B1349840082675A /* TogglePlaybackIntent.swift */; };
 		D3BEFA982B1349BB0082675A /* AppShortcutsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3BEFA972B1349BB0082675A /* AppShortcutsProvider.swift */; };
 		D3C68C3F2BB84C28000899D8 /* SourceInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C68C3E2BB84AB9000899D8 /* SourceInfoView.swift */; };
@@ -150,6 +151,7 @@
 		D3911D492B26183A00F0B7A1 /* AVAudioSessionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVAudioSessionController.swift; sourceTree = "<group>"; };
 		D3911D4B2B2619A200F0B7A1 /* AVPlayerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVPlayerController.swift; sourceTree = "<group>"; };
 		D3911D4D2B26595900F0B7A1 /* PlayerState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerState.swift; sourceTree = "<group>"; };
+		D394425B2BEF504E0085A2C8 /* LoggerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LoggerExtension.swift; path = radio/Miniplayer/LoggerExtension.swift; sourceTree = SOURCE_ROOT; };
 		D3BEFA952B1349840082675A /* TogglePlaybackIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TogglePlaybackIntent.swift; sourceTree = "<group>"; };
 		D3BEFA972B1349BB0082675A /* AppShortcutsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppShortcutsProvider.swift; sourceTree = "<group>"; };
 		D3C68C3E2BB84AB9000899D8 /* SourceInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourceInfoView.swift; sourceTree = "<group>"; };
@@ -244,6 +246,7 @@
 		D32D8A9E2AF6FD3C004D1FB0 /* Global_Controller */ = {
 			isa = PBXGroup;
 			children = (
+				D394425B2BEF504E0085A2C8 /* LoggerExtension.swift */,
 				D30E76E22B13D5D900237F8B /* Persistance.swift */,
 				D359A7722AD05105004A292B /* AudioController.swift */,
 				D3911D4B2B2619A200F0B7A1 /* AVPlayerController.swift */,
@@ -291,7 +294,6 @@
 			children = (
 				D35903662BB71439000C29C6 /* Localizable.xcstrings */,
 				D359A7642AD0509B004A292B /* radioApp.swift */,
-				D359A7662AD0509B004A292B /* ContentView.swift */,
 				D3C68C3D2BB83C3E000899D8 /* Global */,
 				D3F492772AD1B5A7007DD232 /* FavouriteTab */,
 				D3A1FBFF2AD1E95E00B4E77C /* Miniplayer */,
@@ -404,6 +406,7 @@
 		D3C68C3D2BB83C3E000899D8 /* Global */ = {
 			isa = PBXGroup;
 			children = (
+				D359A7662AD0509B004A292B /* ContentView.swift */,
 				D32D8A9E2AF6FD3C004D1FB0 /* Global_Controller */,
 				D36B91E12AF2CA7300356285 /* Global_Model */,
 			);
@@ -533,6 +536,7 @@
 				D36B91DE2AF2C94F00356285 /* MakeFavouriteButton.swift in Sources */,
 				D359A7652AD0509B004A292B /* radioApp.swift in Sources */,
 				D366F4072B24B161001C54D6 /* CountriesView.swift in Sources */,
+				D394425C2BEF504E0085A2C8 /* LoggerExtension.swift in Sources */,
 				D35903602BB6E483000C29C6 /* MiniplayerControlsView.swift in Sources */,
 				D3CCC4202AD2F3850069F900 /* FavoriteTileView.swift in Sources */,
 				D35903622BB6E7D5000C29C6 /* StationTextView.swift in Sources */,

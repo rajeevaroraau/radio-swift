@@ -8,6 +8,7 @@
 import SwiftUI
 import Observation
 import SwiftData
+import OSLog
 
 struct MiniplayerContentView: View {
     @Environment(StationsOfCountryViewController.self) private var stationsModel: StationsOfCountryViewController
@@ -30,30 +31,30 @@ struct MiniplayerContentView: View {
             hapticCounter += 1
             isShowingModal = true
         }
-        .gesture(DragGesture(minimumDistance: 10.0, coordinateSpace: .local)
-            
+        .gesture(
+            DragGesture(minimumDistance: 10.0, coordinateSpace: .local)
             .onChanged { value in
-                
                 switch(value.translation.height) {
-                case ...(-40):
-                    print("up swipe : \(value.translation) [\(value.translation.height)]")
-                    isShowingModal = true
-                default:  print("Unrecognized gesture of value : \(value.translation) [\(value.translation.height)]")
+                    case ...(-40):
+                        print("Up swipe : \(value.translation) [\(value.translation.height)]")
+                        isShowingModal = true
+                    default:
+                        print("Unrecognized gesture : \(value.translation) [\(value.translation.height)]")
                 }
             }
         )
-        // MARK: - BIGPLAYERVIEW
+        
         .fullScreenCover(isPresented: $isShowingModal) {
             BigPlayerView(isShowingSheet: $isShowingModal)
-                .gesture(DragGesture(minimumDistance: 10.0, coordinateSpace: .local)
+                .gesture(
+                    DragGesture(minimumDistance: 10.0, coordinateSpace: .local)
                     .onChanged { value in
-                        
                         switch(value.translation.height) {
-                        case (30)...:
-                            print("Recognized swipe up : \(value.translation) [\(value.translation.height)]")
-                            isShowingModal = false
-                        default:
-                            print("Unrecognized gesture of value : \(value.translation) [\(value.translation.height)]")
+                            case (30)...:
+                                print("Recognized swipe up : \(value.translation) [\(value.translation.height)]")
+                                isShowingModal = false
+                            default:
+                                print("Unrecognized gesture : \(value.translation) [\(value.translation.height)]")
                         }
                     }
                 )

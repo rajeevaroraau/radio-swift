@@ -59,7 +59,7 @@ class ExtendedStation {
                 }
                 await self.updateFaviconBased()
             } catch {
-                print("Cannot get data")
+                Logger.extendedStationNetworking.error("Cannot get data")
             }
         }
     }

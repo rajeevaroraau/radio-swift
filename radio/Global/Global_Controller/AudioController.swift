@@ -4,7 +4,6 @@ import OSLog
 
 @Observable
 class AudioController {
-    let logger = Logger(subsystem: "Radio", category: "AudioController")
 
     static let shared = AudioController()
     
@@ -15,26 +14,25 @@ class AudioController {
 
         let extendedStation = ExtendedStation(stationBase: stationBase, faviconData: nil)
         await playExtendedStation(extendedStation)
-        logger.notice("Preparing station finished.")
+        Logger.audioController.notice("Preparing station finished.")
     }
     
     func playExtendedStation(_ extendedStation: ExtendedStation) async {
         setupTask.cancel()
         setupTask = Task {
             
-            logger.info("Started playExtendedStation()")
+            Logger.audioController.info("Started playExtendedStation()")
             
             
             
 
             await PlayingStation.shared.persistExtendedStation(extendedStation: extendedStation)
             let name = extendedStation.stationBase.name
-            logger.info("Trying to play a \(name)")
-            // logger.notice("⏩️ notWorking! Continuing \(extendedStation.stationBase.name)")
+            Logger.audioController.info("Trying to play a \(name)")
             await PlayingStation.shared.setCurrentlyPlayingExtendedStation(extendedStation)
             await MainActor.run { PlayerState.shared.playerStateSetup(extendedStation) }
             guard let url = URL(string: extendedStation.stationBase.url) else {
-                logger.error("Couldn't create URL - \(extendedStation.stationBase.name): \(extendedStation.stationBase.url)")
+                Logger.audioController.error("Couldn't create URL - \(extendedStation.stationBase.name): \(extendedStation.stationBase.url)")
                 await pause()
                 return
             }
@@ -46,7 +44,7 @@ class AudioController {
             await LockscreenController.shared.setupRemoteCommandCenterForLockScreenInput()
             await LockscreenController.shared.updateInfoCenterWithPlayingStation()
             
-            logger.notice("🟩🎉Setup of \(extendedStation.stationBase.name) is done.")
+            Logger.audioController.notice("🟩🎉Setup of \(extendedStation.stationBase.name) is done.")
             
         }
     }
@@ -63,6 +61,7 @@ class AudioController {
     }
     
     @MainActor func togglePlayback()   {
+        Logger.audioController.info("Toggling the playback")
         if PlayerState.shared.isPlaying { Task { await pause() }}
         else { Task { await resume() }}
     }
