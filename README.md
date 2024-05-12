@@ -1,4 +1,4 @@
-# Radio app for iOS
+# 📻 Radio app for iOS
 A Swift Internet Radio Player for iOS
 
 ![collage](https://github.com/martin-desktops/radioAppiOS/assets/64419373/b19b959f-6cfb-47ae-8a33-eb5662c3a4b7)
