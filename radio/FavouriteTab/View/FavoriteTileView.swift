@@ -8,16 +8,14 @@
 import SwiftUI
 
 struct FavoriteTileView: View {
-    let favoriteStation: ExtendedStation
+    let favoriteStation: RichStation
+    
     var body: some View {
         ZStack(alignment: .bottomLeading) {
             FavoriteTileViewBackground(favoriteStation: favoriteStation)
             FavoriteTileViewContent(favoriteStation: favoriteStation)
-            // CONTENT PADDING
         }
-        .task {
-            await favoriteStation.updateFaviconBased()
-        }
+        .task { await favoriteStation.updateFaviconBased() }
         .frame(height: 100)
         .drawingGroup()
     }

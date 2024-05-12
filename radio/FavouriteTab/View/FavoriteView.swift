@@ -1,5 +1,5 @@
 //
-//  LibraryView.swift
+//  FavoriteView.swift
 //  Radio
 //
 //  Created by Marcin Wolski on 09/12/2023.
@@ -11,21 +11,20 @@ import SwiftData
 struct FavoriteView: View {
     @Environment(\.modelContext) var modelContext
     @Environment(NetworkMonitor.self) private var networkMonitor: NetworkMonitor
-    
-    @Query(filter: #Predicate<ExtendedStation> { extendedStation in extendedStation.favourite } ) var favoriteExtendedStations: [ExtendedStation]
+    @Query(filter: #Predicate<RichStation> { richStation in richStation.favourite } ) var favoriteRichStations: [RichStation]
     let columns = [ GridItem(.adaptive(minimum: 150, maximum: 180), spacing: 12) ]
     
     var body: some View {
-        let favoriteExtendedStations = favoriteExtendedStations
+        let favoriteRichStations = favoriteRichStations
         ScrollView(showsIndicators: false) {
             LazyVGrid(columns: columns, spacing: 12) {
-                ForEach(favoriteExtendedStations) { favoriteExtendedStation in
-                    FavoriteButton(favoriteExtendedStation: favoriteExtendedStation)
+                ForEach(favoriteRichStations) { favoriteRichStation in
+                    FavoriteButton(favoriteRichStation: favoriteRichStation)
                         .disabled(!networkMonitor.isConnected)
                         .contextMenu() {
-                            UnfavoriteContextButton(extendedStation: favoriteExtendedStation)
+                            UnfavoriteContextButton(richStation: favoriteRichStation)
                         } preview: {
-                            FavoriteTileView(favoriteStation: favoriteExtendedStation)
+                            FavoriteTileView(favoriteStation: favoriteRichStation)
                         }
                 }
             }
@@ -33,8 +32,6 @@ struct FavoriteView: View {
             .scaleEffect(networkMonitor.isConnected ? 1.0 : 0.95)
             .opacity(networkMonitor.isConnected ? 1.0 : 0.6)
         }
-        
-        
         .animation(.spring, value: networkMonitor.isConnected)
         .contentMargins(.bottom, 96, for: .automatic)
         .padding(.horizontal, 8)

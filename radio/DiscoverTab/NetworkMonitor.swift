@@ -8,10 +8,13 @@
 import Foundation
 import Network
 import SwiftUI
+
 @Observable
 class NetworkMonitor {
+    
     private let networkMonitor = NWPathMonitor()
     private let workerQueue = DispatchQueue(label: "Monitor")
+    
     var isConnected = false
 
     init() {
@@ -23,7 +26,5 @@ class NetworkMonitor {
         }
         networkMonitor.start(queue: workerQueue)
     }
-    
-    
-    
+
 }

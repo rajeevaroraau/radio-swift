@@ -8,14 +8,16 @@
 import Foundation
 import SwiftData
 import OSLog
+
 class CachingManager {
+    
     static let shared = CachingManager()
     
-    @MainActor func findExtendedStation(stationBase: StationBase) -> ExtendedStation? {
+    @MainActor func findRichStation(stationBase: StationBase) -> RichStation? {
         do {
-            let extendedCachedStations = try  Persistance.shared.container.mainContext.fetch(FetchDescriptor<ExtendedStation>())
-            if let extendedCachedStation = extendedCachedStations.first(where: {$0.stationBase == stationBase }) {
-                return extendedCachedStation
+            let richCachedStations = try  Persistance.shared.container.mainContext.fetch(FetchDescriptor<RichStation>())
+            if let richCachedStation = richCachedStations.first(where: {$0.stationBase == stationBase }) {
+                return richCachedStation
             }
             return nil
             
@@ -27,14 +29,14 @@ class CachingManager {
     
     @MainActor
     func toggleFavorite(_ stationBase: StationBase) async {
-        if let extendedStation = findExtendedStation(stationBase: stationBase) {
+        if let richStation = findRichStation(stationBase: stationBase) {
             // PLAYING FROM FAVORITED
-            if !extendedStation.favourite {
+            if !richStation.favourite {
                 Logger.cachingManager.notice("Trying to add to favorites a currently playing station")
-                await addToFavorites(extendedStation.stationBase)
+                await addToFavorites(richStation.stationBase)
             } else {
                 Logger.cachingManager.notice("The station is already a favorite, trying to delete...")
-                await removeFromFavorites(extendedStationToUnfavorite: extendedStation)
+                await removeFromFavorites(richStation)
             }
         } else {
             // PLAYING, NOT FAVORITED YET
@@ -44,11 +46,11 @@ class CachingManager {
         
     }
     
-    func removeFromFavorites(extendedStationToUnfavorite: ExtendedStation) async {
-        await MainActor.run { extendedStationToUnfavorite.favourite = false }
-        if PlayingStation.shared.currentlyPlayingExtendedStation != extendedStationToUnfavorite {
+    func removeFromFavorites(_ richStationToUnfavorite: RichStation) async {
+        await MainActor.run { richStationToUnfavorite.favourite = false }
+        if PlayingStation.shared.currentlyPlayingRichStation != richStationToUnfavorite {
             await MainActor.run {
-                Persistance.shared.container.mainContext.delete(extendedStationToUnfavorite)
+                Persistance.shared.container.mainContext.delete(richStationToUnfavorite)
                 try? Persistance.shared.container.mainContext.save()
             }
             Logger.cachingManager.notice("Deleted station from cache")
@@ -59,33 +61,34 @@ class CachingManager {
         let result = await isBaseStationOld(stationBase)
         if  result.isOld {
             // the station isn't new
-            guard let extendedStation = result.extendedStation else { return }
-            extendedStation.favourite = true
+            guard let richStation = result.richStation else { return }
+            richStation.favourite = true
         } else {
             // "The station is not playing and wasn't cached..."
-            let extendedStationToFavorite = ExtendedStation(stationBase: stationBase, faviconData: nil)
+            let richStationToFavorite = RichStation(stationBase: stationBase, faviconData: nil)
             await MainActor.run {
-                Persistance.shared.container.mainContext.insert(extendedStationToFavorite)
+                Persistance.shared.container.mainContext.insert(richStationToFavorite)
             }
-            await extendedStationToFavorite.setFavicon(nil)
-            extendedStationToFavorite.favourite = true
+            await richStationToFavorite.setFavicon(nil)
+            richStationToFavorite.favourite = true
             
             Logger.cachingManager.notice("Favorited the station")
         }
     }
     
-    func isBaseStationOld(_ stationBase: StationBase) async -> (isOld: Bool, extendedStation: ExtendedStation?) {
+    func isBaseStationOld(_ stationBase: StationBase) async -> (isOld: Bool, richStation: RichStation?) {
         var isOld = false
-        var extendedStation: ExtendedStation? = nil
-        if let array = try? await Persistance.shared.container.mainContext.fetch(FetchDescriptor<ExtendedStation>()) {
+        var richStation: RichStation? = nil
+        if let array = try? await Persistance.shared.container.mainContext.fetch(FetchDescriptor<RichStation>()) {
             for i in array {
                 if i.stationBase == stationBase {
                     isOld = true
-                    extendedStation = i
+                    richStation = i
                     break
                 }
             }
         }
-        return (isOld, extendedStation)
+        return (isOld, richStation)
     }
+    
 }

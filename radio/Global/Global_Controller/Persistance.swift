@@ -15,7 +15,7 @@ class Persistance {
     
     init() {
         do {
-            container =  try ModelContainer(for:  ExtendedStation.self)
+            container =  try ModelContainer(for:  RichStation.self)
         } catch {
             fatalError("\(error.localizedDescription)")
         }

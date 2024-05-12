@@ -9,6 +9,7 @@ import SwiftUI
 
 struct NoInternetLabelView: View {
     @Environment(NetworkMonitor.self) private var networkMonitor: NetworkMonitor
+    
     var body: some View {
         Label("No internet", systemImage:  "wifi.exclamationmark")
             .foregroundStyle(.red)

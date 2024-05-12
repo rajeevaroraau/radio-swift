@@ -3,8 +3,11 @@ import OSLog
 
 @Observable
 class CountriesController {
+    
     static var shared = CountriesController()
+    
     private let networking = CountryNetworking()
+    
     var searchText = ""
     var countries : [Country] = []
     var searchableCountries: [Country] {
@@ -26,7 +29,6 @@ class CountriesController {
             os_signpost(.end, log: pOI, name: "CountriesController.fetchCountries(): Save Data to Memory")
             Logger.countriesController.error("Fetching error: \(error)")
         }
-
     }
-    
+
 }

@@ -8,13 +8,13 @@
 import SwiftUI
 
 struct MiniplayerControlsView: View {
-    var uiImage = PlayingStation.shared.currentlyPlayingExtendedStation?.faviconProducts.uiImage
-    var extendedStation: ExtendedStation?
+    var uiImage = PlayingStation.shared.currentlyPlayingRichStation?.faviconProducts.uiImage
+    var richStation: RichStation?
     var body: some View {
         HStack(spacing: 8) {
             ImageFaviconCached(image: uiImage, isPlaceholderLowRes: true, height: 48, isPlayingStationImage: true)
                 .shadow(radius: 4)
-            Text(extendedStation?.stationBase.name ?? "Nothing Plays")
+            Text(richStation?.stationBase.name ?? "Nothing Plays")
                 .font(.body)
                 .bold()
                 .multilineTextAlignment(.leading)

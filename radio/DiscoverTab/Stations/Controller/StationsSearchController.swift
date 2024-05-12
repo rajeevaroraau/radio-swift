@@ -40,10 +40,10 @@ class StationsSearchController {
     func fetchSearchedStations() async -> [StationBase] {
         do {
             let stations = try await networking.requestSearchedStations(searchText: searchText)
-            os_signpost(.begin, log: pOI, name: "StationsViewController.fetchStationsListForCountry(): Save Data to Memory")
+            os_signpost(.begin, log: pOI, name: "Save Station Data to Memory")
             let stationsSorted = stations.sorted { $0.votes > $1.votes }
             
-            os_signpost(.end, log: pOI, name: "StationsViewController.fetchStationsListForCountry(): Save Data to Memory")
+            os_signpost(.end, log: pOI, name: "Save Station Data to Memory")
             return stationsSorted
         } catch {
             Logger.stationsSearch.error("Fetching error: \(error)")
@@ -60,11 +60,10 @@ class StationsSearchController {
             initialStations = stationsSorted
             
         } catch {
-            Logger.stationsSearch.error("No initial stations - feching error: \(error).")
+            Logger.stationsSearch.error("No initial stations - error: \(error).")
             initialStations = []
         }
     }
-    
-    
+
 }
 

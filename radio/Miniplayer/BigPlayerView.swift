@@ -52,8 +52,3 @@ struct BigPlayerView: View {
     }
 }
 
-#Preview {
-    EmptyView()
-}
-
-

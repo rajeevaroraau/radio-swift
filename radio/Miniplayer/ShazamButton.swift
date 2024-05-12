@@ -9,10 +9,9 @@ import SwiftUI
 
 struct ShazamButton: View {
     @Environment(\.openURL) var openURL
+    
     var body: some View {
-        Button("Shazam", systemImage: "shazam.logo.fill") {
-            openURL(URL(string: "shazam://")!)
-        }
+        Button("Shazam", systemImage: "shazam.logo.fill") { openURL(URL(string: "shazam://")!) }
         .labelStyle(.iconOnly)
         .contentTransition(.symbolEffect(.replace))
         .disabled(!UIApplication.shared.canOpenURL(URL(string: "shazam://shazam")!))

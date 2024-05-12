@@ -7,14 +7,13 @@
 
 import SwiftUI
 import OSLog
+
 struct SettingsView: View {
     @AppStorage("baseURL") var baseURL = ""
     @Environment(\.dismiss) var dismiss
     
     var body: some View {
         NavigationStack {
-            
-            
             Form {
                 Section("Radio Directory") {
                     TextField("Web Stations Directory", text: $baseURL)
@@ -26,15 +25,8 @@ struct SettingsView: View {
                     Button("Done") { dismiss() }
                 }
             }
-            .onAppear {
-                Logger.viewCycle.info("SettingsView appeared")
-            }
-            .onDisappear {
-                Logger.viewCycle.info("SettingsView disappeared")
-            }
+            .onAppear { Logger.viewCycle.info("SettingsView appeared") }
+            .onDisappear { Logger.viewCycle.info("SettingsView disappeared") }
         }
     }
-}
-#Preview {
-    SettingsView()
 }

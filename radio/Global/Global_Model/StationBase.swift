@@ -5,6 +5,7 @@ import SimpleCodable
 @Codable
 @Model
 class StationBase: Codable, Equatable, Identifiable {
+
     let changeuuid: String
     let stationuuid: String
     let name: String
@@ -17,11 +18,9 @@ class StationBase: Codable, Equatable, Identifiable {
     let state: String
     let votes: Int
 
-    
     static func ==(lhs: StationBase, rhs: StationBase) -> Bool {
         return lhs.stationuuid == rhs.stationuuid
     }
-    
     
     init(
         changeuuid: String,

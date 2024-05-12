@@ -12,15 +12,13 @@ struct StationTextView: View {
     let textAlignment: TextAlignment
     let textSize: Font
     let fontDesign: Font.Design
+    
     var body: some View {
-        
             Text(stationName)
                 .font(textSize)
                 .multilineTextAlignment(textAlignment)
                 .lineLimit(2)
                 .truncationMode(.tail)
                 .fontDesign(fontDesign)
-            
-        
     }
 }

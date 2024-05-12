@@ -12,13 +12,11 @@ import SwiftData
 struct ImageFaviconCached: View {
     var image: UIImage?
     var imageUnwrapped: UIImage {
-        isPlayingStationImage ? (PlayingStation.shared.currentlyPlayingExtendedStation?.faviconProducts.uiImage ?? placeholderImage) : image ?? placeholderImage
+        isPlayingStationImage ? (PlayingStation.shared.currentlyPlayingRichStation?.faviconProducts.uiImage ?? placeholderImage) : image ?? placeholderImage
     }
     let isPlaceholderLowRes: Bool
     let height: CGFloat
-    var autoCornerRadius: CGFloat {
-        return (height / 6)
-    }
+    var autoCornerRadius: CGFloat { return (height / 6) }
     var placeholderImage: UIImage {
         if isPlaceholderLowRes {
             return UIImage(named: "DefaultFaviconSmall")!
@@ -39,7 +37,6 @@ struct ImageFaviconCached: View {
             .frame(width: height, height: height)
             .clipShape(.rect(cornerRadius: isManualCornerRadius ? (customCornerRadius ?? autoCornerRadius) : autoCornerRadius))
             .animation(.snappy, value: imageUnwrapped)
-            
     }
 }
 

@@ -16,12 +16,12 @@ struct MiniplayerContentView: View {
     @State private var isShowingModal = false
     @State private var firstPlay = true
     @State private var hapticCounter = 0
-    @Query(filter: #Predicate<ExtendedStation> { extendedStation in extendedStation.currentlyPlaying } ) var currentlyPlayingExtendedStation: [ExtendedStation]
+    @Query(filter: #Predicate<RichStation> { richStation in richStation.currentlyPlaying } ) var currentlyPlayingRichStation: [RichStation]
     
     var body: some View {
         ZStack {
             MiniplayerBackgroundView()
-            MiniplayerControlsView(extendedStation: currentlyPlayingExtendedStation.first)
+            MiniplayerControlsView(richStation: currentlyPlayingRichStation.first)
         }
         .foregroundStyle(.white)
         .padding(8)

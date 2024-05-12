@@ -13,67 +13,69 @@ import OSLog
 
 @Observable
 class PlayingStation {
+    
     static let shared = PlayingStation()
-    var currentlyPlayingExtendedStation: ExtendedStation?
+    
+    var currentlyPlayingRichStation: RichStation?
+    
     init() {
         Task {
-            await setCurrentlyPlayingExtendedStationFromCache()
+            await setCurrentlyPlayingRichStationFromCache()
         }
     }
     
     @MainActor
-    func setCurrentlyPlayingExtendedStationFromCache() async {
+    func setCurrentlyPlayingRichStationFromCache() async {
         do {
-            let cachedExtendedStations = try  Persistance.shared.container.mainContext.fetch(FetchDescriptor<ExtendedStation>())
-            for cachedExtendedStation in cachedExtendedStations {
-                if cachedExtendedStation.currentlyPlaying {
-                    currentlyPlayingExtendedStation = cachedExtendedStation
+            let cachedRichStations = try  Persistance.shared.container.mainContext.fetch(FetchDescriptor<RichStation>())
+            for cachedRichStation in cachedRichStations {
+                if cachedRichStation.currentlyPlaying {
+                    currentlyPlayingRichStation = cachedRichStation
                     break
                 }
-                if currentlyPlayingExtendedStation == nil {
+                if currentlyPlayingRichStation == nil {
                     Logger.playingStationManager.notice("There was no played cached stations")
                 } else {
-                    self.currentlyPlayingExtendedStation = nil
+                    self.currentlyPlayingRichStation = nil
                 }
             }
         } catch {
-            self.currentlyPlayingExtendedStation = nil
+            self.currentlyPlayingRichStation = nil
         }
     }
     
     @MainActor
-    func persistExtendedStation(extendedStation: ExtendedStation) async {
+    func persistRichStation(richStation: RichStation) async {
         Logger.playingStationManager.info("Trying to persist a station")
-        Persistance.shared.container.mainContext.insert(extendedStation)
+        Persistance.shared.container.mainContext.insert(richStation)
         do {
             try Persistance.shared.container.mainContext.save()
-            Logger.playingStationManager.info("Persisted \(extendedStation.stationBase.name)")
+            Logger.playingStationManager.info("Persisted \(richStation.stationBase.name)")
         } catch {
-            fatalError("Cannot cache \(extendedStation.stationBase.name)")
+            fatalError("Cannot cache \(richStation.stationBase.name)")
         }
     }
     
-    func setCurrentlyPlayingExtendedStation(_ extendedStation: ExtendedStation) async {
-        if currentlyPlayingExtendedStation != extendedStation {
-            await persistExtendedStation(extendedStation: extendedStation)
+    func setCurrentlyPlayingRichStation(_ richStation: RichStation) async {
+        if currentlyPlayingRichStation != richStation {
+            await persistRichStation(richStation: richStation)
             await MainActor.run {
                 Logger.playingStationManager.info("Chaning currentlyPlaying item")
-                currentlyPlayingExtendedStation?.currentlyPlaying = false
-                currentlyPlayingExtendedStation = nil
-                extendedStation.currentlyPlaying = true
-                currentlyPlayingExtendedStation = extendedStation
+                currentlyPlayingRichStation?.currentlyPlaying = false
+                currentlyPlayingRichStation = nil
+                richStation.currentlyPlaying = true
+                currentlyPlayingRichStation = richStation
                 Task {
-                    await extendedStation.setFavicon(extendedStation.faviconData)
+                    await richStation.setFavicon(richStation.faviconData)
                 }
                 
-                Logger.playingStationManager.info("PlayingStation has been replaced by \(extendedStation.stationBase.name)")
+                Logger.playingStationManager.info("PlayingStation has been replaced by \(richStation.stationBase.name)")
             }
         } else {
             Logger.playingStationManager.notice("No need to replace PlayingStation")
         }
-
-       
     }
+    
 }
 
 

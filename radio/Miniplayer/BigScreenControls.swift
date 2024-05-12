@@ -8,11 +8,11 @@
 import SwiftUI
 
 struct BigScreenControls: View {
+    
     var body: some View {
         VStack {
-            
             HStack {
-                StationTextView(stationName: PlayingStation.shared.currentlyPlayingExtendedStation?.stationBase.name ?? "Nothing Playing", textAlignment: .leading, textSize: .largeTitle.bold(), fontDesign: .default)
+                StationTextView(stationName: PlayingStation.shared.currentlyPlayingRichStation?.stationBase.name ?? "Nothing Playing", textAlignment: .leading, textSize: .largeTitle.bold(), fontDesign: .default)
                     .shadow(radius: 8, y: 8)
                 Spacer()
                 MakeFavouriteButton().shadow(radius: 8, y: 8)
@@ -36,8 +36,4 @@ struct BigScreenControls: View {
         }
         .padding(.horizontal, 24)
     }
-}
-
-#Preview {
-    BigScreenControls()
 }

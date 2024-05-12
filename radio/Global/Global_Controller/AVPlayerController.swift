@@ -10,6 +10,7 @@ import AVFoundation
 import OSLog
 
 class AVPlayerController {
+    
     static let shared = AVPlayerController()
     
     private var avPlayer = AVPlayer()

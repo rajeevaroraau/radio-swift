@@ -9,7 +9,7 @@ struct StationsOfCountryContentView: View {
         @Bindable var stationsModel = stationsModel
         let baseStations = stationsModel.searchableStations
         let initialStations = stationsModel.stations
-
+        
         Group {
             if initialStations.isEmpty {
                 LoadingView()
@@ -17,9 +17,7 @@ struct StationsOfCountryContentView: View {
                 UniversalStationsView(baseStations: baseStations,filteredStations: stationsModel.filteredStations , searchText: $stationsModel.searchText, didFetched: $stationsModel.didFetched)
             }
         }
-        .onAppear {
-            Logger.viewCycle.info("StationsOfCountryContentView appeared")
-        }
+        .onAppear { Logger.viewCycle.info("StationsOfCountryContentView appeared") }
         .navigationTitle(country.name)
         .task { await handleLoading() }
         .onChange(of: stationsModel.searchText) {
@@ -32,6 +30,7 @@ struct StationsOfCountryContentView: View {
 }
 
 extension StationsOfCountryContentView {
+    
     private func handleLoading() async {
         Logger.viewCycle.info("Country Button pressed")
         StationsOfCountryViewController.selectedCountry = country
@@ -39,4 +38,5 @@ extension StationsOfCountryContentView {
         stationsModel.fetchStationsTask.cancel()
         await stationsModel.fetchStationsListForCountry()
     }
+    
 }

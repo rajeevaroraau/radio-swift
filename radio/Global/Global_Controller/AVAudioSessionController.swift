@@ -10,7 +10,9 @@ import AVFAudio
 import OSLog
 
 class AVAudioSessionController {
+    
     static let shared = AVAudioSessionController()
+    
     func configureAudioSession() async {
         os_signpost(.begin, log: pOI, name: "AVAudioSessionController.configureAudioSession()")
             do {

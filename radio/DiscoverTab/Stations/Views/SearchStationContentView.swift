@@ -7,12 +7,14 @@
 
 import SwiftUI
 import OSLog
+
 struct SearchStationContentView: View {
     @State private var stationsSearchModel = StationsSearchController()
+    
     var body: some View {
         let baseStations = stationsSearchModel.searchableStations
         let initialStations = stationsSearchModel.initialStations
-            
+        
         Group {
             if initialStations.isEmpty {
                 LoadingView()
@@ -37,6 +39,7 @@ struct SearchStationContentView: View {
 }
 
 extension SearchStationContentView {
+    
     func handleLoading() async {
         Logger.searchingStation.info("Loading started...")
         stationsSearchModel.initialStations = []
@@ -44,4 +47,5 @@ extension SearchStationContentView {
         stationsSearchModel.fetchStationsTask.cancel()
         await stationsSearchModel.fetchInitialStations()
     }
+    
 }

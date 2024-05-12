@@ -60,7 +60,6 @@
 		D366F4052B24AF49001C54D6 /* FavoriteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D366F4042B24AF49001C54D6 /* FavoriteView.swift */; };
 		D366F4072B24B161001C54D6 /* CountriesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D366F4062B24B161001C54D6 /* CountriesView.swift */; };
 		D366F4092B24B71E001C54D6 /* UniversalStationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D366F4082B24B71E001C54D6 /* UniversalStationsView.swift */; };
-		D36B91DA2AF2C6D100356285 /* hapticFeedback.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36B91D92AF2C6D100356285 /* hapticFeedback.swift */; };
 		D36B91DC2AF2C90500356285 /* TogglePlaybackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36B91DB2AF2C90500356285 /* TogglePlaybackButton.swift */; };
 		D36B91DE2AF2C94F00356285 /* MakeFavouriteButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36B91DD2AF2C94F00356285 /* MakeFavouriteButton.swift */; };
 		D36B91E42AF2CC3800356285 /* AverageColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36B91E32AF2CC3800356285 /* AverageColor.swift */; };
@@ -139,7 +138,6 @@
 		D366F4042B24AF49001C54D6 /* FavoriteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteView.swift; sourceTree = "<group>"; };
 		D366F4062B24B161001C54D6 /* CountriesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountriesView.swift; sourceTree = "<group>"; };
 		D366F4082B24B71E001C54D6 /* UniversalStationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniversalStationsView.swift; sourceTree = "<group>"; };
-		D36B91D92AF2C6D100356285 /* hapticFeedback.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = hapticFeedback.swift; sourceTree = "<group>"; };
 		D36B91DB2AF2C90500356285 /* TogglePlaybackButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TogglePlaybackButton.swift; sourceTree = "<group>"; };
 		D36B91DD2AF2C94F00356285 /* MakeFavouriteButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeFavouriteButton.swift; sourceTree = "<group>"; };
 		D36B91E32AF2CC3800356285 /* AverageColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AverageColor.swift; sourceTree = "<group>"; };
@@ -253,7 +251,6 @@
 				D3911D492B26183A00F0B7A1 /* AVAudioSessionController.swift */,
 				D3911D472B26160900F0B7A1 /* LockscreenController.swift */,
 				D359A77B2AD05156004A292B /* Connection.swift */,
-				D36B91D92AF2C6D100356285 /* hapticFeedback.swift */,
 				D3911D4D2B26595900F0B7A1 /* PlayerState.swift */,
 				D3BEFA942B1349730082675A /* AppIntents */,
 				D30EC7032B2A4737000D8C53 /* OSLog.swift */,
@@ -557,7 +554,6 @@
 				D359A77C2AD05156004A292B /* Connection.swift in Sources */,
 				D30EC7042B2A4737000D8C53 /* OSLog.swift in Sources */,
 				D34F54DC2AD2DAB600347E99 /* StationBase.swift in Sources */,
-				D36B91DA2AF2C6D100356285 /* hapticFeedback.swift in Sources */,
 				D359A7832AD05166004A292B /* DiscoverContentView.swift in Sources */,
 				D35F42232BB5CE2F008B3C90 /* DiscoverView.swift in Sources */,
 				D35903582BB6DF1F000C29C6 /* UnfavoriteContextButton.swift in Sources */,
@@ -718,7 +714,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = delight.me.radio;
+				PRODUCT_BUNDLE_IDENTIFIER = marcin.jan.radio;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
 				SUPPORTS_MACCATALYST = NO;
@@ -749,7 +745,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = delight.me.radio;
+				PRODUCT_BUNDLE_IDENTIFIER = marcin.jan.radio;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
 				SUPPORTS_MACCATALYST = NO;

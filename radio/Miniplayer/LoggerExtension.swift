@@ -1,5 +1,5 @@
 //
-//  Radio.swift
+//  LoggerExtension.swift
 //  Radio
 //
 //  Created by Marcin Wolski on 11/05/2024.
@@ -30,5 +30,5 @@ extension Logger {
     static let stationsOfCountryViewController = Logger(subsystem: subsystem, category: "StationsOfCountryViewController")
     static let stationsSearch = Logger(subsystem: subsystem, category: "StationsSearch")
     static let searchingStation = Logger(subsystem: subsystem, category: "SearchingStation")
-    static let extendedStationNetworking = Logger(subsystem: subsystem, category: "ExtendedStationNetworking")
+    static let richStationNetworking = Logger(subsystem: subsystem, category: "RichStationNetworking")
 }

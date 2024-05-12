@@ -4,35 +4,31 @@ import OSLog
 
 @Observable
 class AudioController {
-
+    
     static let shared = AudioController()
     
-
     var setupTask = Task { }
-
+    
     func prepareStationBaseForPlayback(_ stationBase: StationBase) async {
-
-        let extendedStation = ExtendedStation(stationBase: stationBase, faviconData: nil)
-        await playExtendedStation(extendedStation)
+        
+        let richStation = RichStation(stationBase: stationBase, faviconData: nil)
+        await playRichStation(richStation)
         Logger.audioController.notice("Preparing station finished.")
     }
     
-    func playExtendedStation(_ extendedStation: ExtendedStation) async {
+    func playRichStation(_ richStation: RichStation) async {
         setupTask.cancel()
         setupTask = Task {
             
-            Logger.audioController.info("Started playExtendedStation()")
+            Logger.audioController.info("Started playRichStation()")
             
-            
-            
-
-            await PlayingStation.shared.persistExtendedStation(extendedStation: extendedStation)
-            let name = extendedStation.stationBase.name
+            await PlayingStation.shared.persistRichStation(richStation: richStation)
+            let name = richStation.stationBase.name
             Logger.audioController.info("Trying to play a \(name)")
-            await PlayingStation.shared.setCurrentlyPlayingExtendedStation(extendedStation)
-            await MainActor.run { PlayerState.shared.playerStateSetup(extendedStation) }
-            guard let url = URL(string: extendedStation.stationBase.url) else {
-                Logger.audioController.error("Couldn't create URL - \(extendedStation.stationBase.name): \(extendedStation.stationBase.url)")
+            await PlayingStation.shared.setCurrentlyPlayingRichStation(richStation)
+            await MainActor.run { PlayerState.shared.playerStateSetup(richStation) }
+            guard let url = URL(string: richStation.stationBase.url) else {
+                Logger.audioController.error("Couldn't create URL - \(richStation.stationBase.name): \(richStation.stationBase.url)")
                 await pause()
                 return
             }
@@ -44,10 +40,11 @@ class AudioController {
             await LockscreenController.shared.setupRemoteCommandCenterForLockScreenInput()
             await LockscreenController.shared.updateInfoCenterWithPlayingStation()
             
-            Logger.audioController.notice("🟩🎉Setup of \(extendedStation.stationBase.name) is done.")
+            Logger.audioController.notice("🟩🎉Setup of \(richStation.stationBase.name) is done.")
             
         }
     }
+    
     func resume() async {
         await MainActor.run { PlayerState.shared.isPlaying = true }
         await AVPlayerController.shared.play()

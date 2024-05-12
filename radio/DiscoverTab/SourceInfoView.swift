@@ -9,6 +9,7 @@ import SwiftUI
 
 struct SourceInfoView: View {
     @State private var isPresented = false
+    
     var body: some View {
         Button {
             isPresented = true
@@ -24,7 +25,7 @@ struct SourceInfoView: View {
         .alert("Data provided by radio-browser.info", isPresented: $isPresented) {
             Button("OK", role: .cancel) { isPresented = false }
         } message: {
-            Text("The app provides you with thousands of radio stations thanks to the curiosity of radio-browser.info")
+            Text("The app provides you with thousands of radio stations thanks to the courtesy of radio-browser.info")
         }
     }
 }

@@ -10,13 +10,14 @@ import SwiftData
 import OSLog
 
 struct FavoriteContentView: View {
-    @Query(filter: #Predicate<ExtendedStation> { extendedStation in extendedStation.favourite } ) var favoriteExtendedStations: [ExtendedStation]
+    @Query(filter: #Predicate<RichStation> { richStation in richStation.favourite } ) var favoriteRichStations: [RichStation]
     @Environment(NetworkMonitor.self) private var networkMonitor: NetworkMonitor
     @State private var isShowingSettings = false
+    
     var body: some View {
         NavigationStack {
             Group {
-                if favoriteExtendedStations.isEmpty {
+                if favoriteRichStations.isEmpty {
                     NoStationsFavorited()
                 } else {
                     ZStack(alignment: .top) {
@@ -29,13 +30,8 @@ struct FavoriteContentView: View {
             .navigationTitle("Favourite Stations")
             .toolbar {
                 ToolbarItemGroup(placement: .topBarTrailing) {
-                    Button("", systemImage: "gear") {
-                        isShowingSettings = true
-                    }
-                   
-                    if !networkMonitor.isConnected { NoInternetLabelView()
-                    }
-                    
+                    Button("", systemImage: "gear") { isShowingSettings = true }
+                    if !networkMonitor.isConnected { NoInternetLabelView() }
                 }
             }
             .onAppear {

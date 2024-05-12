@@ -2,7 +2,14 @@
   "sourceLanguage" : "en",
   "strings" : {
     "" : {
-
+      "localizations" : {
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : ""
+          }
+        }
+      }
     },
     "%@" : {
       "localizations" : {
@@ -45,7 +52,14 @@
       }
     },
     "Cancel" : {
-
+      "localizations" : {
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Anuluj"
+          }
+        }
+      }
     },
     "Cannot find %@" : {
       "localizations" : {
@@ -79,7 +93,14 @@
       }
     },
     "Data provided by radio-browser.info" : {
-
+      "localizations" : {
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dane dostarczone przez radio-browser.info"
+          }
+        }
+      }
     },
     "Discover" : {
       "localizations" : {
@@ -92,10 +113,24 @@
       }
     },
     "Do you want to open it in the browser?" : {
-
+      "localizations" : {
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Czy chcesz otworzyć w przeglądarce?"
+          }
+        }
+      }
     },
     "Done" : {
-
+      "localizations" : {
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gotowe"
+          }
+        }
+      }
     },
     "Favorite" : {
       "localizations" : {
@@ -138,7 +173,14 @@
       }
     },
     "Information" : {
-
+      "localizations" : {
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Informacja"
+          }
+        }
+      }
     },
     "Item To Search" : {
       "localizations" : {
@@ -181,10 +223,24 @@
       }
     },
     "OK" : {
-
+      "localizations" : {
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "OK"
+          }
+        }
+      }
     },
     "Open" : {
-
+      "localizations" : {
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Otwórz"
+          }
+        }
+      }
     },
     "Please check your connection and try again." : {
       "localizations" : {
@@ -197,7 +253,14 @@
       }
     },
     "Radio Directory" : {
-
+      "localizations" : {
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Katalog stacji"
+          }
+        }
+      }
     },
     "Search for countries" : {
       "localizations" : {
@@ -220,7 +283,14 @@
       }
     },
     "Settings" : {
-
+      "localizations" : {
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ustawienia"
+          }
+        }
+      }
     },
     "Shazam" : {
       "localizations" : {
@@ -242,8 +312,15 @@
         }
       }
     },
-    "The app provides you with thousands of radio stations thanks to the curiosity of radio-browser.info" : {
-
+    "The app provides you with thousands of radio stations thanks to the courtesy of radio-browser.info" : {
+      "localizations" : {
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aplikacja udostępnia tysiące stacji radiowych dzięki uprzejmości radio-browser.info"
+          }
+        }
+      }
     },
     "Toggle Playback" : {
       "localizations" : {
@@ -276,10 +353,24 @@
       }
     },
     "Web Stations Directory" : {
-
+      "localizations" : {
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Katalog stacji internetowych"
+          }
+        }
+      }
     },
     "Website" : {
-
+      "localizations" : {
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Strona WWW"
+          }
+        }
+      }
     },
     "You haven't favorited a station yet." : {
       "localizations" : {
@@ -292,7 +383,14 @@
       }
     },
     "Your default browser will open %@." : {
-
+      "localizations" : {
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Domyślna przeglądarka otworzy %@."
+          }
+        }
+      }
     }
   },
   "version" : "1.0"

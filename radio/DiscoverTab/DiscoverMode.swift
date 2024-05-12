@@ -9,21 +9,21 @@ import SwiftUI
 
 @Observable
 class DiscoverMode {
+    
     var mode = Modes.station
+    
     enum Modes: String, CaseIterable {
         case station = "Stations"
         case country = "Countries"
-        
-        
     }
-    
-    
     
 }
 
 
 extension String {
+    
     func localizedString() -> String {
-           return NSLocalizedString(self, comment: "")
-       }
+        return NSLocalizedString(self, comment: "")
+    }
+    
 }

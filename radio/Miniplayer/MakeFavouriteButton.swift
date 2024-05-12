@@ -9,14 +9,14 @@ import SwiftUI
 import SwiftData
 
 struct MakeFavouriteButton: View {
-    @Query(filter: #Predicate<ExtendedStation> { extendedStation in extendedStation.currentlyPlaying } ) var currentlyPlayingExtendedStation: [ExtendedStation]
-    @Query(filter: #Predicate<ExtendedStation> { extendedStation in extendedStation.favourite } ) var favoriteExtendedStations: [ExtendedStation]
+    @Query(filter: #Predicate<RichStation> { richStation in richStation.currentlyPlaying } ) var currentlyPlayingRichStation: [RichStation]
+    @Query(filter: #Predicate<RichStation> { richStation in richStation.favourite } ) var favoriteRichStations: [RichStation]
     
     var body: some View {
-        Button("Favourite", systemImage: favoriteExtendedStations.contains(where: { $0.stationBase == currentlyPlayingExtendedStation.first?.stationBase }) ? "star.circle.fill" : "star.circle") {
+        Button("Favourite", systemImage: favoriteRichStations.contains(where: { $0.stationBase == currentlyPlayingRichStation.first?.stationBase }) ? "star.circle.fill" : "star.circle") {
             Task {
-                guard let currentlyPlayingExtendedStation = currentlyPlayingExtendedStation.first else { return }
-                await CachingManager.shared.toggleFavorite(currentlyPlayingExtendedStation.stationBase)
+                guard let currentlyPlayingRichStation = currentlyPlayingRichStation.first else { return }
+                await CachingManager.shared.toggleFavorite(currentlyPlayingRichStation.stationBase)
             }
         }
         .contentTransition(.symbolEffect(.replace))

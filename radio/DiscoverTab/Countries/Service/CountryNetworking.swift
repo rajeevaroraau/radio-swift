@@ -9,6 +9,7 @@ import SwiftUI
 import OSLog
 
 class CountryNetworking {
+    
     init() {
         let baseURL = Connection.baseURL()
         let connectedURL = "\(baseURL)countries?order=stationcount"
@@ -17,7 +18,7 @@ class CountryNetworking {
     
     private let url: URL
     
-    func requestCountries() async throws -> [Country]{
+    func requestCountries() async throws -> [Country] {
         os_signpost(.begin, log: pOI, name: "CountryNetworking.requestCountries()")
         do {
             Logger.countryNetworking.notice("Fetching from \(self.url)...")
@@ -31,4 +32,5 @@ class CountryNetworking {
             return []
         }
     }
+    
 }

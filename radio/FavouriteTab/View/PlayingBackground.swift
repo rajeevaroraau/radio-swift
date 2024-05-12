@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct PlayingBackground: View {
-    var playingColor = PlayingStation.shared.currentlyPlayingExtendedStation?.faviconProducts.color ?? Color.clear
+    var playingColor = PlayingStation.shared.currentlyPlayingRichStation?.faviconProducts.color ?? Color.clear
     
     var body: some View {
         VStack {

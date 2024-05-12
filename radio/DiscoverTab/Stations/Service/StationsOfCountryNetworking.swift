@@ -8,6 +8,7 @@
 import SwiftUI
 import OSLog
 class StationsOfCountryNetworking {
+    
     func requestStationListForCountry() async throws -> [StationBase] {
         os_signpost(.begin, log: pOI, name: "StationNetworking.requestStationListForCountry(): Prepare JSONDecoder")
         // PREPARE CUSTOM JSONDECODER
@@ -15,6 +16,7 @@ class StationsOfCountryNetworking {
         decoder.dateDecodingStrategy = .iso8601
         os_signpost(.end, log: pOI, name: "StationNetworking.requestStationListForCountry(): Prepare JSONDecoder")
         let properUrl = URL(string: "\(Connection.baseURL())stations/bycountryexact/\(Country.selectedCountry)")!
+        
         do {
             os_signpost(.begin, log: pOI, name: "StationNetworking.requestStationListForCountry(): Get Data from Request")
             let (data, _) = try await URLSession.shared.data(from: properUrl)
@@ -31,5 +33,6 @@ class StationsOfCountryNetworking {
             return []
         }
     }
+
 }
 

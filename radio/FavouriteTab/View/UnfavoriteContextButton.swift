@@ -8,12 +8,11 @@
 import SwiftUI
 
 struct UnfavoriteContextButton: View {
-    var extendedStation: ExtendedStation
+    var richStation: RichStation
+    
     var body: some View {
         Button("Unfavorite", systemImage: "star.slash") {
-            Task {
-                await CachingManager.shared.removeFromFavorites(extendedStationToUnfavorite: extendedStation)
-            }
+            Task { await CachingManager.shared.removeFromFavorites(richStation) }
         }
     }
 }

@@ -9,12 +9,13 @@ import SwiftUI
 
 struct FavoriteButton: View {
     @State private var isPushed = false
-    var favoriteExtendedStation: ExtendedStation
+    var favoriteRichStation: RichStation
+    
     var body: some View {
         Button {
-            stationTap(favoriteExtendedStation)
+            stationTap(favoriteRichStation)
         } label: {
-            FavoriteTileView(favoriteStation: favoriteExtendedStation)
+            FavoriteTileView(favoriteStation: favoriteRichStation)
         }
         .scaleEffect(isPushed ? 0.8 : 1.0)
         .animation(.easeOut, value: isPushed)
@@ -23,14 +24,16 @@ struct FavoriteButton: View {
 
 
 extension FavoriteButton {
-    func stationTap(_ favoriteExtendedStation: ExtendedStation)  {
+    
+    func stationTap(_ favoriteRichStation: RichStation)  {
         isPushed = true
         Task {
             try await Task.sleep(nanoseconds: 100_000_000)
             isPushed = false
         }
         Task {
-            await AudioController.shared.playExtendedStation(favoriteExtendedStation)
+            await AudioController.shared.playRichStation(favoriteRichStation)
         }
     }
+    
 }

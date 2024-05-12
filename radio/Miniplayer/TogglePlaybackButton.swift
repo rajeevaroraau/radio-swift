@@ -10,6 +10,7 @@ import SwiftUI
 struct TogglePlaybackButton: View {
     @State private var isTouching = false
     @State var fontSize: CGFloat
+    
     var body: some View {
         Button {
             Task { await handlePlayPauseTap() }
@@ -28,11 +29,8 @@ struct TogglePlaybackButton: View {
                     isTouching
                     ? Circle().frame(width: fontSize, height: fontSize).scaleEffect(1.75).foregroundStyle(Color.secondary)
                     : Circle().frame(width: fontSize, height: fontSize).scaleEffect(1.75).foregroundStyle(Color.clear)
-         
-                    
                 )
                 .animation(.easeInOut, value: isTouching)
-            
         }
         .contentShape(Rectangle())
     }
@@ -42,8 +40,8 @@ struct TogglePlaybackButton: View {
         animationPlayPauseTap()
         if PlayerState.shared.firstPlay {
             Task {
-                guard let currentlyPlayingExtendedStation = PlayingStation.shared.currentlyPlayingExtendedStation else { return }
-                await AudioController.shared.playExtendedStation(currentlyPlayingExtendedStation)
+                guard let currentlyPlayingRichStation = PlayingStation.shared.currentlyPlayingRichStation else { return }
+                await AudioController.shared.playRichStation(currentlyPlayingRichStation)
             }
             
         } else {
@@ -55,7 +53,6 @@ struct TogglePlaybackButton: View {
     func animationPlayPauseTap() {
         isTouching = true
         Task {
-            // Delay the task by 1 second:
             try await Task.sleep(nanoseconds: 100_000_000)
             isTouching = false
         }

@@ -9,6 +9,7 @@ import SwiftUI
 import OSLog
 
 struct LoadingView: View {
+    
     var body: some View {
         VStack {
             ProgressView()
@@ -16,8 +17,6 @@ struct LoadingView: View {
             Text("LOADING...")
                 .foregroundStyle(.secondary)
         }
-        .onAppear {
-            Logger.viewCycle.info("LoadingView appeared")
-        }
+        .onAppear { Logger.viewCycle.info("LoadingView appeared") }
     }
 }

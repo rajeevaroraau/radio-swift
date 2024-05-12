@@ -8,8 +8,9 @@
 import SwiftUI
 import SwiftData
 import OSLog
+
 @Model
-class ExtendedStation {
+class RichStation {
 
     @Observable
     class FaviconProducts {
@@ -38,15 +39,14 @@ class ExtendedStation {
         }
     }
     
-    
     func setFavicon(_ data: Data?) async {
+        
         if let data = data {
             self.faviconData = data
             await self.updateFaviconBased()
         } else {
             await fetchFavicon()
         }
-        
         
         func fetchFavicon() async {
             // CACHE THE COVER ART
@@ -55,12 +55,13 @@ class ExtendedStation {
                 let (data, _) = try await URLSession.shared.data(from: faviconURL)
                 await MainActor.run {
                     self.faviconData = data
-                    
                 }
                 await self.updateFaviconBased()
             } catch {
-                Logger.extendedStationNetworking.error("Cannot get data")
+                Logger.richStationNetworking.error("Cannot get data")
             }
         }
+        
     }
+    
 }

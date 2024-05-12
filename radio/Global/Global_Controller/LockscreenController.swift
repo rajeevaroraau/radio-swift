@@ -10,7 +10,9 @@ import MediaPlayer
 import OSLog
 
 class LockscreenController  {
+    
     static let shared = LockscreenController()
+    
     init() {
         self.nowPlayingInfo = nowPlayingInfoCenter.nowPlayingInfo ?? [String: Any]()
         Logger.lockscreenController.notice("Lockscreen Init complete")
@@ -21,7 +23,7 @@ class LockscreenController  {
     
     func updateInfoCenterWithPlayingStation() async  {
         // SET NAME
-        nowPlayingInfo[MPMediaItemPropertyTitle] = PlayingStation.shared.currentlyPlayingExtendedStation?.stationBase.name ?? "Nothing Playing"
+        nowPlayingInfo[MPMediaItemPropertyTitle] = PlayingStation.shared.currentlyPlayingRichStation?.stationBase.name ?? "Nothing Playing"
         nowPlayingInfo[MPMediaItemPropertyPlaybackDuration] = 0
         nowPlayingInfo[MPNowPlayingInfoPropertyIsLiveStream] = true
         nowPlayingInfo[MPNowPlayingInfoPropertyPlaybackRate] = 1.0
@@ -37,7 +39,7 @@ class LockscreenController  {
         os_signpost(.end, log: pOI, name: "Try to set faviconForLockscreen")
         os_signpost(.begin, log: pOI, name: "Try to set faviconForLockscreen")
         
-        if let faviconUIImageLocal = PlayingStation.shared.currentlyPlayingExtendedStation?.faviconProducts.uiImage {
+        if let faviconUIImageLocal = PlayingStation.shared.currentlyPlayingRichStation?.faviconProducts.uiImage {
             // FIRST ATTEMPT WITH CACHEDIMAGE IF THERE IS IN PLAYINGSTATION
             nowPlayingInfo[MPMediaItemPropertyArtwork] = MPMediaItemArtwork(boundsSize: faviconUIImageLocal.size) { size in
                 Logger.lockscreenController.notice("Successful first attempt to set remote favicon.")
@@ -52,7 +54,7 @@ class LockscreenController  {
             //TRY AGAIN AFTER SOME TIME WITH REQUESTED FAVICON
             // Delay the task by 1 second:
             try? await Task.sleep(nanoseconds: 4_000_000_000)
-            if let faviconUIImage = PlayingStation.shared.currentlyPlayingExtendedStation?.faviconProducts.uiImage {
+            if let faviconUIImage = PlayingStation.shared.currentlyPlayingRichStation?.faviconProducts.uiImage {
                 self.nowPlayingInfo[MPMediaItemPropertyArtwork] = MPMediaItemArtwork(boundsSize: faviconUIImage.size) { size in
                     Logger.lockscreenController.notice("Successful second attempt to set remote favicon.")
                     return faviconUIImage

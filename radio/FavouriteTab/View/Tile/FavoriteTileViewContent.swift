@@ -8,16 +8,14 @@
 import SwiftUI
 
 struct FavoriteTileViewContent: View {
-    var favoriteStation: ExtendedStation
-    var uiImage: UIImage? {
-        favoriteStation.faviconProducts.uiImage
-    }
+    var favoriteStation: RichStation
+    var uiImage: UIImage? { favoriteStation.faviconProducts.uiImage }
+    
     var body: some View {
         VStack(alignment: .leading) {
             Spacer()
             VStack(alignment: .leading) {
                 ImageFaviconCached(image: uiImage, isPlaceholderLowRes: true, height: 30, isPlayingStationImage: false )
-                    
                 StationTextView(stationName: favoriteStation.stationBase.name, textAlignment: .leading, textSize: .headline, fontDesign: .rounded)
                     .foregroundStyle(.white)
                     .shadow(color: .black, radius: 10)

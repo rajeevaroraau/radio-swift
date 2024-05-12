@@ -9,6 +9,7 @@ import Foundation
 import UIKit
 import SwiftUI
 import AVKit
+
 struct AirPlayButton: UIViewRepresentable {
     
     func makeUIView(context: Context) -> UIView {
@@ -19,7 +20,6 @@ struct AirPlayButton: UIViewRepresentable {
         return routePickerView
     }
     
-    func updateUIView(_ uiView: UIView, context: Context) {
-    }
+    func updateUIView(_ uiView: UIView, context: Context) { }
     
 }
