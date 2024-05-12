@@ -29,12 +29,12 @@ A Swift Internet Radio Player for iOS
 
 --- 
 
-### Requirements:
+## Requirements:
 - Xcode 15+
 - iOS 17+
 - Internet connection
 
 ---
 
-### License:
+## License:
 Radio is licensed under the MIT License.
