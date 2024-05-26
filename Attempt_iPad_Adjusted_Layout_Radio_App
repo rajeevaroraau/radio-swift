@@ -1,0 +1,270 @@
+diff --git a/Radio.xcodeproj/project.pbxproj b/Radio.xcodeproj/project.pbxproj
+index 63c4158..3f94d70 100644
+--- a/Radio.xcodeproj/project.pbxproj
++++ b/Radio.xcodeproj/project.pbxproj
+@@ -39,6 +39,8 @@
+ 		D3CCC41E2AD2EC540069F900 /* faviconCachedImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CCC41D2AD2EC540069F900 /* faviconCachedImage.swift */; };
+ 		D3CCC4202AD2F3850069F900 /* LibraryTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CCC41F2AD2F3850069F900 /* LibraryTile.swift */; };
+ 		D3CCC4222AD2FB870069F900 /* ShazamButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CCC4212AD2FB870069F900 /* ShazamButton.swift */; };
++		D3E514902AF7E9CE00E120B6 /* UIDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3E5148F2AF7E9CE00E120B6 /* UIDevice.swift */; };
++		D3E514922AF7EE4800E120B6 /* TabItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3E514912AF7EE4800E120B6 /* TabItemModel.swift */; };
+ 		D3F492792AD1B5FC007DD232 /* LibraryListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F492782AD1B5FC007DD232 /* LibraryListView.swift */; };
+ /* End PBXBuildFile section */
+ 
+@@ -75,6 +77,8 @@
+ 		D3CCC41D2AD2EC540069F900 /* faviconCachedImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = faviconCachedImage.swift; sourceTree = "<group>"; };
+ 		D3CCC41F2AD2F3850069F900 /* LibraryTile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryTile.swift; sourceTree = "<group>"; };
+ 		D3CCC4212AD2FB870069F900 /* ShazamButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShazamButton.swift; sourceTree = "<group>"; };
++		D3E5148F2AF7E9CE00E120B6 /* UIDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIDevice.swift; sourceTree = "<group>"; };
++		D3E514912AF7EE4800E120B6 /* TabItemModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabItemModel.swift; sourceTree = "<group>"; };
+ 		D3F492782AD1B5FC007DD232 /* LibraryListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryListView.swift; sourceTree = "<group>"; };
+ /* End PBXFileReference section */
+ 
+@@ -241,6 +245,7 @@
+ 			isa = PBXGroup;
+ 			children = (
+ 				D359A7662AD0509B004A292B /* ContentView.swift */,
++				D3E514912AF7EE4800E120B6 /* TabItemModel.swift */,
+ 				D36B91E32AF2CC3800356285 /* AverageColor.swift */,
+ 				D36B91DD2AF2C94F00356285 /* FavouriteButton.swift */,
+ 				D36B91DB2AF2C90500356285 /* TogglePlaybackButton.swift */,
+@@ -258,6 +263,7 @@
+ 				D34F54DB2AD2DAB600347E99 /* StationModel.swift */,
+ 				D38C155A2AD09D34009E831D /* CachedStation.swift */,
+ 				D34F54B82AD1F3AC00347E99 /* PlayingStation.swift */,
++				D3E5148F2AF7E9CE00E120B6 /* UIDevice.swift */,
+ 			);
+ 			path = Model;
+ 			sourceTree = "<group>";
+@@ -388,10 +394,12 @@
+ 				D38C155B2AD09D3D009E831D /* CachedStation.swift in Sources */,
+ 				D359A7822AD05166004A292B /* CountryRowView.swift in Sources */,
+ 				D359A7792AD05125004A292B /* StationsController.swift in Sources */,
++				D3E514922AF7EE4800E120B6 /* TabItemModel.swift in Sources */,
+ 				D359A7872AD06777004A292B /* LibraryView.swift in Sources */,
+ 				D359A7732AD05105004A292B /* AudioModel.swift in Sources */,
+ 				D359A78B2AD07B77004A292B /* MiniplayerView.swift in Sources */,
+ 				D359A77C2AD05156004A292B /* Connection.swift in Sources */,
++				D3E514902AF7E9CE00E120B6 /* UIDevice.swift in Sources */,
+ 				D34F54DC2AD2DAB600347E99 /* StationModel.swift in Sources */,
+ 				D36B91DA2AF2C6D100356285 /* hapticFeedback.swift in Sources */,
+ 				D359A7832AD05166004A292B /* CountriesListView.swift in Sources */,
+diff --git a/radio/Common/Model/PlayingStation.swift b/radio/Common/Model/PlayingStation.swift
+index 4af8f76..9e13498 100644
+--- a/radio/Common/Model/PlayingStation.swift
++++ b/radio/Common/Model/PlayingStation.swift
+@@ -56,10 +56,10 @@ class PlayingStation {
+         self.station = station
+         self.faviconData = nil
+         
+-        guard let data = data else {  await self.fetchFavicon(); return }
++        guard let data = data else {  await self.faviconData = self.fetchFavicon(); return }
++        self.faviconData = data
+         
+-            self.faviconData = data
+-            print("Set faviconCached as PlayingStation data")
++        print("Set faviconCached as PlayingStation data")
+    
+     }
+ }
+diff --git a/radio/Common/Model/UIDevice.swift b/radio/Common/Model/UIDevice.swift
+new file mode 100644
+index 0000000..826e851
+--- /dev/null
++++ b/radio/Common/Model/UIDevice.swift
+@@ -0,0 +1,23 @@
++//
++//  UIDevice.swift
++//  Radio
++//
++//  Created by Marcin Wolski on 05/11/2023.
++//
++
++import SwiftUI
++
++extension UIDevice {
++    
++    static var idiom: UIUserInterfaceIdiom {
++      UIDevice.current.userInterfaceIdiom
++    }
++    
++static var isIpad: Bool {
++    idiom == .pad
++  }
++  
++  static var isiPhone: Bool {
++    idiom == .phone
++  }
++}
+diff --git a/radio/Common/View/ContentView.swift b/radio/Common/View/ContentView.swift
+index 93ceab4..e6d0829 100644
+--- a/radio/Common/View/ContentView.swift
++++ b/radio/Common/View/ContentView.swift
+@@ -8,30 +8,46 @@
+ import SwiftUI
+ 
+ struct ContentView: View {
+-    
++    @State private var preferredColumn = NavigationSplitViewColumn.detail
++    @State private var selectedTab = TabItems.tabs.first
+     var body: some View {
+         
+-        ZStack(alignment: .bottom) {
+-            TabView {
+-                LibraryView()
+-                    .padding(.bottom, 60)
+-                    .tabItem {
+-                        Label("Favourite", systemImage: "play.square.stack.fill")
+-                    }
+-                CountriesListView()
+-                    .padding(.bottom, 60)
+-                    .tabItem {
+-                        Label("Discover", systemImage: "magnifyingglass")
++        if UIDevice.isiPhone {
++            ZStack(alignment: .bottom) {
++                TabView {
++                    LibraryView()
++                        .padding(.bottom, 60)
++                        .tabItem {
++                            Label("Favourite", systemImage: "play.square.stack.fill")
++                        }
++                    CountriesListView()
++                        .padding(.bottom, 60)
++                        .tabItem {
++                            Label("Discover", systemImage: "magnifyingglass")
++                        }
++                }
++                
++                MiniplayerView()
++            }
++            .ignoresSafeArea(.keyboard)
++        } else {
++            NavigationSplitView(preferredCompactColumn: $preferredColumn) {
++                List(TabItems.tabs, selection: $selectedTab) { tab in
++                    NavigationLink(value: tab) {
++                        Label(tab.name, systemImage: tab.icon)
+                     }
++              
++                }
++                .navigationTitle("Radio")
++            } detail: {
++                ZStack(alignment: .bottom) {
++                    selectedTab?.view
++                        .padding(.bottom, 60)
++                    MiniplayerView()
++                }
++                .ignoresSafeArea(.keyboard)
++
+             }
+-            
+-            MiniplayerView()
+         }
+-        .ignoresSafeArea(.keyboard)
+-        
+     }
+-    
+-    
+-    
+ }
+-
+diff --git a/radio/Common/View/TabItemModel.swift b/radio/Common/View/TabItemModel.swift
+new file mode 100644
+index 0000000..826a5bd
+--- /dev/null
++++ b/radio/Common/View/TabItemModel.swift
+@@ -0,0 +1,44 @@
++//
++//  TabItemModel.swift
++//  Radio
++//
++//  Created by Marcin Wolski on 05/11/2023.
++//
++
++import SwiftUI
++
++
++class TabItemModel: Identifiable, Hashable, Equatable {
++    static func == (lhs: TabItemModel, rhs: TabItemModel) -> Bool {
++        return (lhs.id == rhs.id)
++    }
++    
++    public func hash(into hasher: inout Hasher) {
++        return hasher.combine(id)
++    }
++    
++    let id: UUID
++    let name: String
++    let icon: String
++    let view: AnyView
++
++
++    init(name: String, icon: String, view: AnyView) {
++        self.id = UUID()
++        self.name = name
++        self.icon = icon
++        self.view = view
++    }
++}
++
++
++class TabItems {
++    static let tabs =
++    [
++    TabItemModel(name: "Favourite", icon: "play.square.stack.fill", view: AnyView(LibraryView())),
++    TabItemModel(name: "Discover", icon: "magnifyingglass", view: AnyView(CountriesListView()))
++    ]
++}
++
++
++
+diff --git a/radio/Discover/Countries/View/CountriesListView.swift b/radio/Discover/Countries/View/CountriesListView.swift
+index e99c073..891f0af 100644
+--- a/radio/Discover/Countries/View/CountriesListView.swift
++++ b/radio/Discover/Countries/View/CountriesListView.swift
+@@ -6,7 +6,7 @@ struct CountriesListView: View {
+     @State private var firstTime: Bool = true
+     var body: some View {
+         
+-        NavigationView {
++        NavigationStack {
+             
+             Group {
+                 if countriesModel.countries == [] {
+@@ -31,14 +31,11 @@ struct CountriesListView: View {
+                     .disableAutocorrection(true)
+                 }
+             }
+-            .onFirstAppear {
+-                Task {
+-                    await countriesModel.fetchCountries()
+-                    
+-                    
+-                }
+-                
++            .task {
++                await countriesModel.fetchCountries()
+             }
++                
++            
+             
+             .navigationTitle("Countries")
+         }
+diff --git a/radio/Discover/Stations/Views/StationsListView.swift b/radio/Discover/Stations/Views/StationsListView.swift
+index ecd96ea..ca2f862 100644
+--- a/radio/Discover/Stations/Views/StationsListView.swift
++++ b/radio/Discover/Stations/Views/StationsListView.swift
+@@ -72,13 +72,10 @@ struct StationsListView: View {
+                     // await  stationsModel.fetchList()
+                 }
+             }
+-            .onAppear {
+-                Task {
+-                    
++            .task {
+                     updateCountry()
+                     stationsModel.stations = []
+                     await  stationsModel.fetchStationsListForCountry()
+-                }
+             }
+     }
+     func updateCountry() {
