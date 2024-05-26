@@ -9,8 +9,12 @@
 import OSLog
 
 extension Logger {
-    /// Using your bundle identifier is a great way to ensure a unique identifier.
-    private static var subsystem = Bundle.main.bundleIdentifier!
+    private static let subsystem: String = {
+        guard let bundleIdentifier = Bundle.main.bundleIdentifier else {
+            return "marcin.jan.radio" // Fallback to a default value if not available
+        }
+        return bundleIdentifier
+    }()
 
     /// Logs the view cycles like a view that appeared.
     static let viewCycle = Logger(subsystem: subsystem, category: "viewcycle")
