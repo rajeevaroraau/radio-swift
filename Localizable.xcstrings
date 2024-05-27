@@ -81,17 +81,6 @@
         }
       }
     },
-    "Data from radio-browser.info" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Dane z radio-browser.info"
-          }
-        }
-      }
-    },
     "Data provided by radio-browser.info" : {
       "localizations" : {
         "pl" : {
