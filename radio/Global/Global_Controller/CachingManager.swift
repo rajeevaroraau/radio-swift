@@ -76,10 +76,12 @@ class CachingManager {
         }
     }
     
+    @MainActor
     func isBaseStationOld(_ stationBase: StationBase) async -> (isOld: Bool, richStation: RichStation?) {
         var isOld = false
         var richStation: RichStation? = nil
-        if let array = try? await Persistance.shared.container.mainContext.fetch(FetchDescriptor<RichStation>()) {
+        
+        if let array = try?  Persistance.shared.container.mainContext.fetch(FetchDescriptor<RichStation>()) {
             for i in array {
                 if i.stationBase == stationBase {
                     isOld = true
@@ -88,7 +90,9 @@ class CachingManager {
                 }
             }
         }
+        
         return (isOld, richStation)
     }
+
     
 }
