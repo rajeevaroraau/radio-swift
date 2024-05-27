@@ -9,13 +9,13 @@ import SwiftUI
 import OSLog
 
 struct CountriesView: View {
-    @State var countriesModel = CountriesController.shared
-    @Environment(StationsOfCountryViewController.self) private var stationsModel: StationsOfCountryViewController
+    @Environment(StationsOfCountryViewController.self) private var stationsController: StationsOfCountryViewController
     @State private var firstTime: Bool = true
-    
+    @Environment(CountriesController.self) private var countriesController: CountriesController
     var body: some View {
+        @Bindable var countriesController = countriesController
         List {
-            ForEach(countriesModel.searchableCountries, id: \.iso_3166_1) { country in
+            ForEach(countriesController.searchableCountries, id: \.iso_3166_1) { country in
                 NavigationLink  {
                     StationsOfCountryContentView(country: country)
                 } label: {
@@ -25,7 +25,7 @@ struct CountriesView: View {
         }
         .listStyle(.inset)
         .searchable(
-            text: $countriesModel.searchText,
+            text: $countriesController.searchText,
             placement: .navigationBarDrawer(displayMode: .always),
             prompt: "Search for countries")
         .disableAutocorrection(true)

@@ -3,9 +3,6 @@ import OSLog
 
 @Observable
 class CountriesController {
-    
-    static var shared = CountriesController()
-    
     private let networking = CountryNetworking()
     
     var searchText = ""

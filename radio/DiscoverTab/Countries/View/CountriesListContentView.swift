@@ -15,20 +15,20 @@ import SwiftUI
 import OSLog
 
 struct CountriesListContentView: View {
-    @State var countriesModel = CountriesController.shared
-    @Environment(StationsOfCountryViewController.self) private var stationsModel: StationsOfCountryViewController
+    @Environment(StationsOfCountryViewController.self) private var stationsController: StationsOfCountryViewController
     @State private var firstTime: Bool = true
+    @Environment(CountriesController.self) private var countriesController: CountriesController
     
     var body: some View {
         Group {
-            if countriesModel.countries.isEmpty {
+            if countriesController.countries.isEmpty {
                 LoadingView()
             } else {
                 CountriesView()
             }
         }
         .navigationTitle("Countries")
-        .task { await countriesModel.fetchCountries() }
+        .task { await countriesController.fetchCountries() }
         .onAppear { Logger.viewCycle.info("CountriesListContentView appeared") }
     }
 }

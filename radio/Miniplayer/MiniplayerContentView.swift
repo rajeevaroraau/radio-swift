@@ -11,7 +11,7 @@ import SwiftData
 import OSLog
 
 struct MiniplayerContentView: View {
-    @Environment(StationsOfCountryViewController.self) private var stationsModel: StationsOfCountryViewController
+    @Environment(StationsOfCountryViewController.self) private var stationsController: StationsOfCountryViewController
     @State private var isTouching = false
     @State private var isShowingModal = false
     @State private var firstPlay = true

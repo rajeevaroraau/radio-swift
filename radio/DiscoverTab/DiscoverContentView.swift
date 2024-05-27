@@ -2,7 +2,7 @@ import SwiftUI
 import OSLog
 
 struct DiscoverContentView: View {
-    @State var countriesModel = CountriesController.shared
+    @State private var countriesController = CountriesController()
     @State private var searchText = ""
     @State private var discoverModes = DiscoverMode()
     
@@ -19,6 +19,7 @@ struct DiscoverContentView: View {
                 }
         }
         .environment(discoverModes)
+        .environment(countriesController)
         .onAppear { Logger.viewCycle.info("DiscoverContentView appeared") }
     }
 }

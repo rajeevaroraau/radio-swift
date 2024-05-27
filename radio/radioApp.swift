@@ -10,7 +10,7 @@ import SwiftData
 
 @main
 struct radioApp: App {
-    @State var stationsModel = StationsOfCountryViewController()
+    @State private var stationsController = StationsOfCountryViewController()
     @State private var networkMonitor = NetworkMonitor()
 
 }
@@ -20,7 +20,7 @@ extension radioApp {
         WindowGroup {
             ContentView()
                 .modelContainer(Persistance.shared.container)
-                .environment(stationsModel)
+                .environment(stationsController)
                 .environment(networkMonitor)
                 .onAppear {
                     let defaultURL = Connection.defaultURL
