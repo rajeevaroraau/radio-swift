@@ -6,17 +6,17 @@ import SimpleCodable
 @Model
 class StationBase: Codable, Equatable, Identifiable {
 
-    let changeuuid: String
-    let stationuuid: String
-    let name: String
-    let url: String
-    let homepage: String
-    let favicon: String
-    let country: String
-    let countrycode: String
-    let iso_3166_2: String?
-    let state: String
-    let votes: Int
+    var changeuuid: String
+    var stationuuid: String
+    var name: String
+    var url: String
+    var homepage: String
+    var favicon: String
+    var country: String
+    var countrycode: String
+    var iso_3166_2: String?
+    var state: String
+    var votes: Int
 
     static func ==(lhs: StationBase, rhs: StationBase) -> Bool {
         return lhs.stationuuid == rhs.stationuuid
